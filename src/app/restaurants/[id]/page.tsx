@@ -3,6 +3,8 @@ import { RestaurantRating } from '../RestaurantCard';
 import { Restaurant } from '../types';
 import { formatCurrency } from '@/utils/formatCurrency';
 
+import { Icon } from '@iconify/react';
+
 export const revalidate = 1
 
 async function getRestaurant(restaurantId: string) {
@@ -36,9 +38,9 @@ export default async function RestaurantPage({ params }: { params: { id: string 
         <div className="flex flex-col items-center justify-center">
             <h1 className="mb-12 text-3xl font-bold">Restaurant / {restaurant.id}</h1>
 
-            <div >
+            <div className='max-w-screen-lg'>
                 <ImageGrid images={placeholderImageUrls} />
-                <h1 className='mb-1 mt-3 text-3xl font-bold'>{restaurant.name}</h1>
+                <h1 className='mb-1 mt-5 text-3xl font-bold'>{restaurant.name}</h1>
                 <div className="badge badge-outline badge-primary">{restaurant.type}</div>
                 <p className='mt-5 text-sm font-bold opacity-50'>{formatCurrency(restaurant.price!!, 'kronor')}</p>
                 <RestaurantRating rating={restaurant.rating!!} roundedRating={Math.round(restaurant.rating!!)} id={restaurant.id!!} />
@@ -57,18 +59,18 @@ export default async function RestaurantPage({ params }: { params: { id: string 
                     </a>
                 </div>
                 <div className="divider"></div>
-                <div className='flex flex-col gap-3'>
-                    <h4 className=' opacity-50'>{restaurant.address}</h4>
-                    <h4 className=' opacity-50'>031-312 76 77</h4>
-                    <h4 className=''><span className='opacity-100 text-success'>Open</span> - Closes 20:00</h4>
+                <div className='flex flex-col gap-3  '>
+                    <h4 className='flex items-center'><Icon icon="lucide:map-pin" className='inline mr-3 text-primary' />{restaurant.address}</h4>
+                    <h4 className='flex items-center '><Icon icon="lucide:phone" className='inline mr-3 text-primary' />031-312 76 77</h4>
+                    <h4 className='flex items-center'><span className='opacity-100 text-success mr-1'><Icon icon="lucide:clock" className='text-primary inline mr-3' />Open </span> - Closes 20:00</h4>
                 </div>
                 <div className="divider"></div>
                 <h3 className='text-lg mb-2 font-bold'>Description</h3>
                 <p className="m-0 max-w-[30ch] text-base opacity-50">
                     {restaurant.description}
                 </p>
-            </div>
-        </div>
+            </div >
+        </div >
     );
 }
 
