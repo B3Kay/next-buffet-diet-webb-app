@@ -35,7 +35,7 @@ export default async function RestaurantPage({ params }: { params: { id: string 
         'https://images.unsplash.com/photo-1687254351560-b8fb47e2bdff?q=80&w=1487&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D']
 
     return (
-        <div className="flex flex-col items-center justify-center">
+        <div className="flex flex-col items-center justify-center pb-24">
             <h1 className="mb-12 text-3xl font-bold">Restaurant / {restaurant.id}</h1>
 
             <div className='max-w-screen-lg'>
