@@ -10,7 +10,7 @@ export const revalidate = 1
 async function getRestaurants(): Promise<Restaurant[]> {
 
     const db = new PocketBase('http://127.0.0.1:8090');
-    const data = await db.collection('restaurants').getList<Restaurant>(1, 30);
+    const data = await db.collection('restaurants').getList<Restaurant>(1, 30, { sort: '-created' });
 
     return data.items;
 }
