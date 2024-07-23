@@ -39,3 +39,34 @@
   - [ ] Filter by price
   - [ ] Filter by location
   - [ ] Pagination
+
+## Advanced food ratings
+
+- [ ] Food quality badges select
+  - Styles
+    - Asian
+    - Pizza
+    - Hamburger
+    - Italian
+    - Mexican
+    - American
+    - Husmanskost/Swedish
+    - Pakistani
+    - Arabic
+    - Indian
+  - Good
+    - Lean protein
+    - Meat variation
+    - High meat quality
+    - Carnivore friendly
+    - Vegan friendly
+    - Keto friendly
+    - Gluten free
+    - Low fat options
+    - Animal based fats
+  - Bad
+    - Meats are hidden
+    - Vegan only
+    - Cooks in sead oils
+    - Mostly grain based
+- [ ] Add badge if not available
