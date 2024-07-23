@@ -50,9 +50,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" data-theme="dark">
-
-      <body className={inter.className}>{children}</body>
-      <Footer />
+      <body className={inter.className}>
+        {children}
+        <Footer />
+      </body>
     </html>
   );
 }

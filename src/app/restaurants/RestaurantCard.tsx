@@ -44,6 +44,7 @@ export function RestaurantCard(restaurant: Restaurant) {
                 <p className="mt-3 max-w-[30ch] text-sm opacity-50">
                     {restaurant.address}
                 </p>
+
                 <h2 className="mb-2 text-2xl font-semibold">
                     {restaurant.name}{" "}
                     <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
@@ -52,7 +53,7 @@ export function RestaurantCard(restaurant: Restaurant) {
                 </h2>
 
 
-                <p className="m-0 max-w-[30ch] text-sm opacity-50">
+                <p className="m-0 max-w-[30ch] text-sm opacity-50 line-clamp-3">
                     {restaurant.description}
                 </p>
 

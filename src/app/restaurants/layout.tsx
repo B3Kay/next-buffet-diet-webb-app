@@ -7,7 +7,7 @@ export default function Restaurant({
 }) {
     return (
         <section className='flex flex-col items-center justify-center pb-24'>
-            <div className="max-w-screen-lg">
+            <div className="max-w-screen-lg w-full">
                 <Breadcrumb />
                 {children}
             </div>

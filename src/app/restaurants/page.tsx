@@ -3,6 +3,7 @@ import PocketBase from 'pocketbase';
 import { Restaurant } from './types';
 import CreateRestaurant from './CreateRestaurant';
 import { RestaurantCard } from './RestaurantCard';
+import Link from 'next/link';
 
 export const revalidate = 1
 
@@ -30,7 +31,8 @@ export default async function RestaurantsPage() {
                 ))}
             </div>
 
-            <CreateRestaurant />
+            <Link href="/restaurants/new" className="mt-8 btn rounded-full btn-primary">Create Restaurant</Link>
+
         </div>
     );
 }

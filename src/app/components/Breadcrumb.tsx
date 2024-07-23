@@ -19,6 +19,7 @@ const Breadcrumb = () => {
                 {pathParts.map((part, index) => {
                     const href = '/' + pathParts.slice(0, index + 1).join('/');
                     return (
+
                         index < pathParts.length - 1 ?
 
                             <li key={index} className="flex items-center">
@@ -27,7 +28,7 @@ const Breadcrumb = () => {
                                 {pathParts.length == index + 1}
                             </li>
                             :
-                            <li className="capitalize ">{decodeURIComponent(part)}</li>
+                            <li key={index} className="capitalize ">{decodeURIComponent(part)}</li>
                     );
                 })}
             </ul>
