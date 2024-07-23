@@ -58,9 +58,9 @@ export default async function RestaurantPage({ params }: { params: { id: string 
                 <a href={`https://www.google.com/maps/dir/?api=1&destination=${restaurant.website}`} target="_blank" rel="noreferrer">
                     <button className="btn btn-sm btn-outline rounded-full"><Icon icon="lucide:signpost" />Directions</button>
                 </a>
-                <a href="#" rel="noreferrer">
-                    <button className="btn btn-sm btn-outline rounded-full"><Icon icon="lucide:save" />Save</button>
-                </a>
+                <button className="btn btn-sm btn-outline rounded-full" disabled><Icon icon="lucide:bookmark" />Save</button>
+                <button aria-label='Edit restaurant' className="btn btn-sm btn-outline btn-circle" disabled><Icon icon="lucide:settings" /></button>
+
             </div>
             <div className="divider"></div>
             <div className='flex flex-col gap-3  '>
