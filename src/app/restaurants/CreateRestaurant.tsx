@@ -2,10 +2,12 @@
 
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-import { Restaurant } from './types';
+import { Restaurant, RestaurantV2 } from './types';
 import PocketBase from 'pocketbase';
 
 import Select from "react-tailwindcss-select";
+import { Option, SelectValue } from 'react-tailwindcss-select/dist/components/type';
+import { makeRestV2 } from './page';
 
 // Define constants for food style badges
 const foodStylesBadges = {
@@ -49,14 +51,14 @@ const badBadges = {
 type BadBadges = typeof badBadges[keyof typeof badBadges];
 
 // Interfaces
-interface Option<T> {
+interface BadgeOption<T> {
     value: T,
     label: T,
 }
 
 interface FoodStyleOptions<T> {
     label: string,
-    options: Array<Option<T>>
+    options: Array<BadgeOption<T>>
 }
 
 // Food options
@@ -130,7 +132,7 @@ export default function CreateRestaurant() {
         rating: 0,
         type: '',
         website: '',
-        image_url: '',
+        imageUrl: '',
     });
 
     const router = useRouter();
@@ -139,11 +141,15 @@ export default function CreateRestaurant() {
         e.preventDefault();
 
         const db = new PocketBase('http://127.0.0.1:8090');
-        const collection = db.collection<Restaurant>('restaurants');
+        const collection = db.collection<RestaurantV2>('restaurants');
 
-        collection.create<Restaurant>(restaurant);
+        const restV2 = makeRestV2(restaurant)
+
+        await collection.create<RestaurantV2>(restV2);
+
 
         router.push('/restaurants');
+
     };
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -154,11 +160,23 @@ export default function CreateRestaurant() {
         }));
     };
 
-    const [badge, setBadge] = useState(null);
+    const [badge, setBadge] = useState<SelectValue>(null);
 
-    const handleBadgeChange = (value: any) => {
-        console.log("value:", value);
-        setBadge(value);
+    const handleBadgeChange = (options: Option[]) => {
+        console.log("value:", options);
+        if (options === null) return;
+        if (options.length === 0) return;
+        const badgesInArray = options.map(option => {
+            return option.value;
+        })
+
+        setBadge(options);
+
+
+        setRestaurant(prevState => ({
+            ...prevState,
+            foodBadges: badgesInArray
+        }));
     };
 
 
@@ -273,7 +291,7 @@ export default function CreateRestaurant() {
                         id="image_url"
                         type="text"
                         placeholder="url of your image"
-                        value={restaurant.image_url}
+                        value={restaurant.imageUrl}
                         onChange={handleInputChange}
                         className="input input-bordered w-full"
                     />

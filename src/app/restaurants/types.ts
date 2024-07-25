@@ -14,8 +14,22 @@ interface RestaurantBase {
     price: number;
     rating: number;
     website: string;
-    image_url: string;
+    imageUrl: string;
+    foodBadges: Array<string>;
 }
+
+export type RestaurantV2 = {
+    id: string;
+    name: string;
+    description: string;
+    address: string;
+    type: string;
+    price: number;
+    rating: number;
+    website: string;
+    imageUrl: string;
+    foodBadges: string;
+} & Partial<PocketbaseBase>;
 
 export type Restaurant = Partial<RestaurantBase> & Partial<PocketbaseBase>;
 

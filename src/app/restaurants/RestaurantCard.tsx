@@ -40,7 +40,7 @@ export function RestaurantCard(restaurant: Restaurant) {
         <Link href={`/restaurants/${restaurant.id}`} >
 
             <div className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30">
-                <img src={restaurant.image_url} alt={`${restaurant.name} image`} className="w-full h-48 object-cover object-center rounded-lg" />
+                <img src={restaurant.imageUrl} alt={`${restaurant.name} image`} className="w-full h-48 object-cover object-center rounded-lg" />
                 <p className="mt-3 max-w-[30ch] text-sm opacity-50">
                     {restaurant.address}
                 </p>
@@ -51,6 +51,7 @@ export function RestaurantCard(restaurant: Restaurant) {
                         -&gt;
                     </span>
                 </h2>
+                {/* {restaurant.foodBadges?.map(badge => <span>{badge}</span>)} */}
 
 
                 <p className="m-0 max-w-[30ch] text-sm opacity-50 line-clamp-3">
