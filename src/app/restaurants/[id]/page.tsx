@@ -36,7 +36,7 @@ export default async function RestaurantPage({ params }: { params: { id: string 
 
     const images = [restaurant.image_url!!]
     return (
-        <div className="">
+        <div className="px-5">
             <h1 className="mb-12 mt-2 text-3xl font-bold">Restaurant / {restaurant.id}</h1>
             {images.length > 1 ?
                 <ImageGrid images={images} />

@@ -8,7 +8,9 @@ export default function Restaurant({
     return (
         <section className='flex flex-col items-center justify-center pb-24'>
             <div className="max-w-screen-lg w-full">
-                <Breadcrumb />
+                <div className="px-5">
+                    <Breadcrumb />
+                </div>
                 {children}
             </div>
         </section>
