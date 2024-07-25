@@ -37,7 +37,7 @@
 
 - [ ] Restaurants list
   - [x] List all restaurants
-  - [ ] Default images
+  - [x] Default images
   - [ ] Search by any field
   - [ ] Filter by type
   - [ ] Filter by price

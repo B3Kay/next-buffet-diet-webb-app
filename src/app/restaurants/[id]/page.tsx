@@ -4,6 +4,7 @@ import { Restaurant } from '../types';
 import { formatCurrency } from '@/utils/formatCurrency';
 
 import { Icon } from '@iconify/react';
+import { Images } from '@/app/components/Images';
 
 export const revalidate = 1
 
@@ -14,7 +15,7 @@ async function getRestaurant(restaurantId: string) {
     return data;
 }
 
-const ImageGrid = ({ images: imageUrls }: { images: string[] }) => {
+export const ImageGrid = ({ images: imageUrls }: { images: string[] }) => {
     return (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {imageUrls.map((image) => (
@@ -28,21 +29,13 @@ export default async function RestaurantPage({ params }: { params: { id: string 
     const restaurant = await getRestaurant(params.id);
 
 
-    const placeholderImageUrls = [
-        'https://images.unsplash.com/photo-1605321995625-c77c7204cd70?q=80&w=1635&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-        'https://images.unsplash.com/photo-1533142146849-4620b8191531?q=80&w=1742&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-        'https://images.unsplash.com/photo-1524932326868-56e1f1ede465?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-        'https://images.unsplash.com/photo-1687254351560-b8fb47e2bdff?q=80&w=1487&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D']
 
     const images = [restaurant.imageUrl!!]
+
     return (
         <div className="px-5">
             <h1 className="mb-12 mt-2 text-3xl font-bold">Restaurant / {restaurant.id}</h1>
-            {images.length > 1 ?
-                <ImageGrid images={images} />
-                :
-                <img src={restaurant.imageUrl} alt={`${restaurant.name} image`} className="w-full max-h-96 object-cover object-center rounded-3xl" />
-            }
+            <Images imageAlt={restaurant.name} imageUrls={images} />
 
             <h1 className='mb-1 mt-5 text-3xl font-bold'>{restaurant.name}</h1>
             <div className="badge badge-outline badge-primary">{restaurant.type}</div>
