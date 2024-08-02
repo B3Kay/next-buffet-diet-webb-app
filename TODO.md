@@ -29,9 +29,9 @@
     - [ ] Show multiple images - Show images
     - [ ] Add image slideshow in list view - Show images
   - [ ] Add multiple types/tags - As a user I want to add multiple tags for a restaurant
-    - [ ] Add multiple tags - Input & Db
-    - [ ] Show multiple tags in list, tags showed in image - Show tags
-    - [ ] Show multiple tags in detail page - Show tags
+    - [x] Add multiple tags - Input & Db
+    - [] Show multiple tags in list, tags showed in image - Show tags
+    - [x] Show multiple tags in detail page - Show tags
 
 ## Restaurant list page
 
@@ -46,31 +46,4 @@
 
 ## Advanced food ratings
 
-- [ ] Food quality badges select
-  - Styles
-    - Asian
-    - Pizza
-    - Hamburger
-    - Italian
-    - Mexican
-    - American
-    - Husmanskost/Swedish
-    - Pakistani
-    - Arabic
-    - Indian
-  - Good
-    - Lean protein
-    - Meat variation
-    - High meat quality
-    - Carnivore friendly
-    - Vegan friendly
-    - Keto friendly
-    - Gluten free
-    - Low fat options
-    - Animal based fats
-  - Bad
-    - Meats are hidden
-    - Vegan only
-    - Cooks in sead oils
-    - Mostly grain based
-- [ ] Add badge if not available
+- [x] Food quality badges select

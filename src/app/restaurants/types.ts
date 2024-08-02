@@ -31,5 +31,5 @@ export type RestaurantV2 = {
     foodBadges: string;
 } & Partial<PocketbaseBase>;
 
-export type Restaurant = Partial<RestaurantBase> & Partial<PocketbaseBase>;
+export type Restaurant = RestaurantBase & Partial<PocketbaseBase>;
 
