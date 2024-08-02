@@ -13,6 +13,7 @@
     "pocketbase": "^0.21.3",
     "react": "^18",
     "react-dom": "^18",
+    "react-select": "^5.8.0",
     "react-tailwindcss-select": "^1.8.5"
   },
   "devDependencies": {

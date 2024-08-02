@@ -1,19 +1,13 @@
 import PocketBase from 'pocketbase';
 import { RestaurantRating } from '../RestaurantCard';
-import { Restaurant } from '../types';
 import { formatCurrency } from '@/utils/formatCurrency';
 
 import { Icon } from '@iconify/react';
 import { Images } from '@/app/components/Images';
+import { getRestaurant, makeRestaurantFromV2 } from '../restaurants';
+import { isBadBadge, isFoodStyleBadge, isGoodBadge } from '@/app/components/FoodBadges';
 
 export const revalidate = 1
-
-async function getRestaurant(restaurantId: string) {
-    const db = new PocketBase('http://127.0.0.1:8090');
-    const data = await db.collection('restaurants').getOne<Restaurant>(restaurantId);
-
-    return data;
-}
 
 export const ImageGrid = ({ images: imageUrls }: { images: string[] }) => {
     return (
@@ -28,9 +22,11 @@ export const ImageGrid = ({ images: imageUrls }: { images: string[] }) => {
 export default async function RestaurantPage({ params }: { params: { id: string } }) {
     const restaurant = await getRestaurant(params.id);
 
-
-
     const images = [restaurant.imageUrl!!]
+
+    const foodStyleBadges = restaurant.foodBadges.filter(isFoodStyleBadge);
+    const goodBadges = restaurant.foodBadges.filter(isGoodBadge);
+    const badBadges = restaurant.foodBadges.filter(isBadBadge);
 
     return (
         <div className="px-5">
@@ -41,7 +37,26 @@ export default async function RestaurantPage({ params }: { params: { id: string 
             <div className="badge badge-outline badge-primary">{restaurant.type}</div>
             <p className='mt-5 text-sm font-bold opacity-50'>{formatCurrency(restaurant.price!!, 'kronor')}</p>
             <RestaurantRating rating={restaurant.rating!!} roundedRating={Math.round(restaurant.rating!!)} id={restaurant.id!!} />
+            <div className="divider"></div>
 
+            <div className='flex flex-wrap gap-3 max-w-lg'>
+
+                {foodStyleBadges.map((badge, index) => (
+                    <div key={`foodStyleBadge-${index}`} className="badge ">
+                        {badge}
+                    </div>
+                ))}
+                {goodBadges.map((badge, index) => (
+                    <div key={`goodBadge-${index}`} className="badge  badge-success">
+                        {badge}
+                    </div>
+                ))}
+                {badBadges.map((badge, index) => (
+                    <div key={`badBadge-${index}`} className="badge  badge-warning">
+                        {badge}
+                    </div>
+                ))}
+            </div >
             <div className="divider"></div>
             <div className='flex gap-3'>
 
