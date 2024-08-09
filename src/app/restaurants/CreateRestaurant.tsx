@@ -5,8 +5,7 @@ import { useState } from 'react';
 import { Restaurant, RestaurantV2 } from './types';
 import PocketBase from 'pocketbase';
 
-import Select from "react-tailwindcss-select";
-import { Option, SelectValue } from 'react-tailwindcss-select/dist/components/type';
+import { Button, Input, Select, SelectOption, SelectInput, SelectInputChip, SelectMenu } from 'reablocks';
 import { makeRestV2 } from './restaurants';
 import { foodLabelOption } from '../components/FoodBadges';
 
@@ -29,9 +28,11 @@ export default function CreateRestaurant() {
     const create = async (e: React.FormEvent) => {
         e.preventDefault();
 
+
         const db = new PocketBase('http://127.0.0.1:8090');
         const collection = db.collection<RestaurantV2>('restaurants');
 
+        console.log("restaurant:", restaurant);
         const restV2 = makeRestV2(restaurant)
 
         await collection.create<RestaurantV2>(restV2);
@@ -41,157 +42,166 @@ export default function CreateRestaurant() {
 
     };
 
-    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        const { id, value } = e.target;
+    const handleInputChange = (value: string, id: string) => {
         setRestaurant(prevState => ({
             ...prevState,
             [id]: id === 'rating' || id === 'price' ? parseFloat(value) : value
         }));
     };
 
-    const [badge, setBadge] = useState<SelectValue>(null);
+    const [badgeOptions, setBadgeOptions] = useState(foodLabelOption);
 
-    const handleBadgeChange = (options: Option[]) => {
-        console.log("value:", options);
-        if (options === null) return;
-        if (options.length === 0) return;
-        const badgesInArray = options.map(option => {
-            return option.value;
-        })
+    const [selectedBadges, setSelectedBadges] = useState<string[]>();
 
-        setBadge(options);
-
+    const handleNewBadgeChange = (newBadges: string[]) => {
+        setSelectedBadges(newBadges);
 
         setRestaurant(prevState => ({
             ...prevState,
-            foodBadges: badgesInArray
+            foodBadges: newBadges
         }));
     };
 
-
+    const [value, setValue] = useState<string | null>(null);
     return (
         <div className="p-6 max-w-lg mx-auto">
             <h1 className="text-2xl font-bold mb-4">Create Restaurant</h1>
+            {/*  TODO: form needs to be validated */}
             <form className="space-y-4" onSubmit={create}>
-                <Select
-                    primaryColor='red'
+                <div>
 
-                    value={badge}
-                    onChange={handleBadgeChange}
-                    options={foodLabelOption}
-                    isMultiple={true}
-                    isSearchable={true}
+                    <label className="block text-sm font-medium mb-1" htmlFor="badges">Badges</label>
+                    <Select
+                        // Does not know how to make it creatable atm...
+                        // TODO: make creatable, add color for groups of chips. Placeholder does not work
+                        id='badges'
+                        multiple
+                        placeholder="Add some categories or pick existing one..."
+                        closeOnSelect={false}
+                        selectOnPaste
+                        selectOnKeys={['Enter', 'Space', 'Comma']}
+                        searchOptions={{
+                            threshold: 0
+                        }}
+                        // input={<SelectInput chip={<SelectInputChip className='bg-gray-800' />} />}
+                        value={selectedBadges}
+                        onChange={handleNewBadgeChange}
+                    >
 
-                    // formatOptionLabel={data => (<div>{data.value}</div>)}
-                    formatGroupLabel={data => (
-                        <div className={`py-    2 text-xs flex items-center justify-between`}>
-                            {/* // 👉 data represents each subgroup */}
-                            <span className="font-bold">{data.label}</span>
-                            <span className="bg-gray-200 h-5 h-5 p-1.5 flex items-center justify-center rounded-full">
-                                {data.options.length}
-                            </span>
-                        </div>
-                    )}
-                />
+                        {badgeOptions.map(group => group.options.map(opt => <SelectOption key={opt.value} group={group.label} value={opt.value}>{opt.label}</SelectOption>))}
+                    </Select>
+                </div>
+
                 <div>
                     <label className="block text-sm font-medium mb-1" htmlFor="name">Name</label>
-                    <input
+                    <Input
                         id="name"
                         type="text"
                         placeholder="Edets Öde & Mammas Mat"
                         value={restaurant.name}
-                        onChange={handleInputChange}
-                        className="input input-bordered w-full"
+                        onValueChange={(value) => handleInputChange(value, 'name')}
+
+                        fullWidth
                     />
                 </div>
                 <div>
                     <label className="block text-sm font-medium mb-1" htmlFor="description">Description</label>
-                    <textarea
+                    <Input
                         id="description"
+                        type="text"
                         placeholder="Bufférestaurang med fokus på hemlagad husmanskost...."
                         value={restaurant.description}
-                        onChange={handleInputChange}
-                        className="textarea textarea-bordered w-full"
+                        onValueChange={(value) => handleInputChange(value, 'description')}
+
+                        fullWidth
                     />
                 </div>
                 <div>
                     <label className="block text-sm font-medium mb-1" htmlFor="address">Address</label>
-                    <input
+                    <Input
                         id="address"
                         type="text"
                         placeholder="Solvägen 12, 123 45 Edet"
                         value={restaurant.address}
-                        onChange={handleInputChange}
-                        className="input input-bordered w-full"
+                        onValueChange={(value) => handleInputChange(value, 'address')}
+
+                        fullWidth
                     />
                 </div>
                 <div>
                     <label className="block text-sm font-medium mb-1" htmlFor="price">Price</label>
-                    <input
+                    <Input
                         id="price"
                         type="number"
                         placeholder="Price"
-                        value={restaurant.price}
-                        onChange={handleInputChange}
-                        className="input input-bordered w-full"
-                        step="0.01" // Allows for decimal values
-                        min="0" // Optional: Set minimum value if needed
+                        value={restaurant.price.toString()}
+                        onValueChange={(value) => handleInputChange(value, 'price')}
+
+                        fullWidth
+                        step="0.01"
+                        min="0"
                     />
                 </div>
                 <div>
                     <label className="block text-sm font-medium mb-1" htmlFor="rating">Rating</label>
-                    <input
+                    <Input
                         id="rating"
                         type="number"
                         placeholder="4.3"
-                        value={restaurant.rating}
-                        onChange={handleInputChange}
-                        className="input input-bordered w-full"
-                        step="0.1" // Allows for decimal values
-                        min="0" // Optional: Set minimum value if needed
-                        max="5" // Optional: Set maximum value if needed
+                        value={restaurant.rating.toString()}
+                        onValueChange={(value) => handleInputChange(value, 'rating')}
+
+                        fullWidth
+                        step="0.1"
+                        min="0"
+                        max="5"
                     />
                 </div>
                 <div>
                     <label className="block text-sm font-medium mb-1" htmlFor="type">Type</label>
-                    <input
+                    <Input
                         id="type"
                         type="text"
                         placeholder="Husmanskost"
                         value={restaurant.type}
-                        onChange={handleInputChange}
-                        className="input input-bordered w-full"
+                        onValueChange={(value) => handleInputChange(value, 'type')}
+
+                        fullWidth
                     />
                 </div>
                 <div>
                     <label className="block text-sm font-medium mb-1" htmlFor="website">Website</label>
-                    <input
+                    <Input
                         id="website"
                         type="text"
                         placeholder="http://www.edetsode.se/"
                         value={restaurant.website}
-                        onChange={handleInputChange}
-                        className="input input-bordered w-full"
+                        onValueChange={(value) => handleInputChange(value, 'website')}
+
+                        fullWidth
                     />
                 </div>
                 <div>
                     <label className="block text-sm font-medium mb-1" htmlFor="image_url">Image Url</label>
-                    <input
+                    <Input
                         id="image_url"
                         type="text"
                         placeholder="url of your image"
                         value={restaurant.imageUrl}
-                        onChange={handleInputChange}
-                        className="input input-bordered w-full"
+                        onValueChange={(value) => handleInputChange(value, 'imageUrl')}
+
+                        fullWidth
                     />
                 </div>
-                <button
+                <Button
+                    variant='filled'
                     type="submit"
-                    className="btn rounded-full btn-primary w-full"
+
+
                 >
                     Create Restaurant
-                </button>
+                </Button>
             </form>
-        </div>
+        </div >
     );
 }
