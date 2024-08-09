@@ -1,10 +1,10 @@
-
-
+'use client'
 import { RestaurantCard } from './RestaurantCard';
 import Link from 'next/link';
-import { getRestaurants, makeRestaurantFromV2 } from './restaurants';
+import { getRestaurants } from './restaurants';
+import { Button } from 'reablocks';
 
-export const revalidate = 1
+// export const revalidate = 1
 
 export default async function RestaurantsPage() {
     const restaurants = await getRestaurants();
@@ -22,8 +22,8 @@ export default async function RestaurantsPage() {
                 ))}
             </div>
 
-            <Link href="/restaurants/new" className="mt-8 btn rounded-full btn-primary">Create Restaurant</Link>
 
+            <Link href={"/restaurants/new"} passHref><Button className='rounded-full mt-8' variant="filled"  >Create Restaurant</Button></Link>
         </div>
     );
 }
