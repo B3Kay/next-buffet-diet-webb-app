@@ -22,16 +22,28 @@
 
 ## Restaurant details page
 
-- [ ] Restaurant page
-  - [x] See restaurant - Show a restaurant
-  - [ ] Multiple Images - As a user I want to add multiple images to a restaurant
-    - [ ] Add multiple images - Input & Db
-    - [ ] Show multiple images - Show images
-    - [ ] Add image slideshow in list view - Show images
-  - [ ] Add multiple types/tags - As a user I want to add multiple tags for a restaurant
-    - [x] Add multiple tags - Input & Db
-    - [] Show multiple tags in list, tags showed in image - Show tags
-    - [x] Show multiple tags in detail page - Show tags
+- [X] Create a Restaurant page
+
+### Tags
+
+- [X] Show multiple tags in list
+- [ ] Show tags in image
+
+### Images
+
+- [ ] Show Multiple Images - As a user I want to see multiple images of a restaurant as a slideshow
+
+## Create a restaurant
+
+### Images
+
+- [ ] Add multiple images to ui and send to db
+- [ ] Handle multiple images in db
+
+### TagsF
+
+- [X] Add multiple types/tags - As a user I want to add multiple tags for a restaurant
+  - [x] Add multiple tags - Input & Db
 
 ## Restaurant list page
 
