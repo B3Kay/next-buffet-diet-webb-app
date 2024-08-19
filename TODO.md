@@ -11,12 +11,13 @@
 
 ## Authentication
 
-- [ ] Login - Create a login session
+- [X] Login - Create a login session
   - [ ] Create a login page
     <https://reablocks.dev/blocks/authentication/login>
-    - [ ] Login w. email & password - get a session
+    - [X] Login w. email & password - get a session
     - [ ] Login w. google - get a session
-  - [ ] Store session
+  - [X] Store session
+  - [ ] Error handling login/signup
   - [ ] Logout
   - [ ] Restrict access to CUD
 

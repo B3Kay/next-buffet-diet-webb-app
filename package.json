@@ -16,11 +16,13 @@
     "react-dom": "^18",
     "react-hook-form": "^7.52.2",
     "react-select": "^5.8.0",
-    "react-tailwindcss-select": "^1.8.5"
+    "react-tailwindcss-select": "^1.8.5",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
     "@iconify-icons/lucide": "^1.2.135",
     "@iconify/react": "^5.0.1",
+    "@types/bcrypt": "^5.0.2",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",

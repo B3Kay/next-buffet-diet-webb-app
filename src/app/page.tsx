@@ -1,7 +1,17 @@
 // This app is based on the Next.js template
 // It is a app to find buffet diet restaurants
 // and it teaches you how to follow the buffet diet to lose weight and get healthy while saving money and time by eating out.
+import db from '@/db';
+import { cookies } from 'next/headers';
 import Link from 'next/link';
+
+const getUser = async () => {
+  const cookieStore = cookies();
+
+  const result = await db.getUser(cookieStore);
+
+  return result as any;
+}
 
 
 const Card = ({ title, link, description }: any) => {
@@ -21,7 +31,9 @@ const Card = ({ title, link, description }: any) => {
   </Link>)
 }
 
-export default function Home() {
+export default async function Home() {
+  const user = await getUser();
+
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
@@ -45,7 +57,7 @@ export default function Home() {
 
       <h1 className="relative
       dark:drop-shadow-[0_0_0.3rem_#ffffff70] 
-      text-5xl font-bold ">Buffet Diet + Finder</h1>
+      text-5xl font-bold ">Buffet Diet + {user ? user.name : 'Finder'}</h1>
 
 
       <div className="mb-32 grid text-center lg:mb-0 lg:w-full lg:max-w-5xl lg:grid-cols-4 lg:text-left">
