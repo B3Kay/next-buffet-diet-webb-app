@@ -83,7 +83,6 @@ export async function login(values: FieldValues) {
             errors: validatedFields.error.flatten().fieldErrors,
         }
     }
-
     try {
         const res = await db.authenticate(email, password);
         const { record, token } = res;
@@ -92,10 +91,10 @@ export async function login(values: FieldValues) {
         cookies().set('pb_auth', db.client.authStore.exportToCookie());
 
         console.log('Redirecting to /')
-        redirect('/')
     } catch (error) {
         console.log('error', error)
         return { message: 'Invalid email or password' }
     }
+    redirect('/')
 
 }
