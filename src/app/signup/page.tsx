@@ -3,16 +3,27 @@ import { Input, Card, Block, Button, Divider, Stack } from "reablocks";
 
 import { useForm, Controller } from 'react-hook-form';
 import { signup } from "../actions/auth";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+
+type FormValues = {
+    name: string
+    email: string
+    password: string
+    passwordConfirm: string
+}
 
 export default function SignupPage() {
+    const router = useRouter();
     const {
         control,
         handleSubmit,
+        setError,
         formState: {
             isSubmitting,
-            errors
+            errors,
         }
-    } = useForm();
+    } = useForm<FormValues>();
     return <Card className="w-full grow p-5 h-[650px] md:h-[800px] " contentClassName="w-full flex gap-12">
         <div className="h-full w-full flex flex-col items-start p-7">
             <div className="w-full grow flex flex-col justify-center">
@@ -23,9 +34,33 @@ export default function SignupPage() {
                 <span className="text-base text-text-secondary font-sans">
                     Welcome to Buffet Finder, powered by Buffet Diet.
                 </span>
-                <form className="my-14" onSubmit={handleSubmit(values => {
-                    console.log('values', values)
-                    signup(values)
+                <form className="my-14" onSubmit={handleSubmit(async values => {
+
+                    const resp = await signup(values)
+
+
+                    if (resp.error) {
+                        setError(`root.serverError`, {
+                            type: 'serverError',
+                            message: resp.error
+                        })
+                    }
+                    if (resp.errors?.email) {
+                        const errorMessage = resp.errors?.email.length > 1 ? resp.errors?.email.join(" ") : resp.errors?.email[0]
+                        setError('root.email', { types: { required: errorMessage } })
+                    }
+                    if (resp.errors?.name) {
+                        const errorMessage = resp.errors?.name.length > 1 ? resp.errors?.name.join(" ") : resp.errors?.name[0]
+                        setError('name', { types: { required: errorMessage } })
+                    }
+                    if (resp.errors?.password) {
+                        const errorMessage = resp.errors?.password.length > 1 ? resp.errors?.password.join(" ") : resp.errors?.password[0]
+                        setError('password', { types: { required: errorMessage } })
+                    }
+                    if (resp.errors?.passwordConfirm) {
+                        const errorMessage = resp.errors?.passwordConfirm.length > 1 ? resp.errors?.passwordConfirm.join(" ") : resp.errors?.passwordConfirm[0]
+                        setError('password', { types: { required: errorMessage } })
+                    }
                 })}>
                     <Block labelClassName="text-sm font-medium mb-1" label="Name">
                         <Controller name="name" rules={{ required: 'Please enter a name', minLength: 2 }} control={control} render={({
@@ -87,6 +122,29 @@ export default function SignupPage() {
                         />
                         {errors.password ? <span className="text-red-500 text-xs">{'Password must be at least 6 characters'}</span> : null}
                     </Block>
+                    <Block labelClassName="text-sm font-medium mb-1" label="Repeat Password">
+                        <Controller name="passwordConfirm" control={control} rules={{ required: 'Password must match', minLength: 6 }} render={({
+                            field: {
+                                value,
+                                onBlur,
+                                onChange
+                            }
+                        }) => <Input
+                                name="passwordConfirm"
+                                disabled={isSubmitting}
+
+                                value={value || ''}
+                                type="password"
+                                onChange={onChange}
+                                onBlur={onBlur}
+                                error={!!errors.passwordConfirm}
+                            />}
+                        />
+                        {errors.passwordConfirm ? <span className="text-red-500 text-xs">{'Repeated password must match'}</span> : null}
+                    </Block>
+                    <p>
+                        {errors.root?.serverError ? <span className="text-red-500 text-xs">{errors.root.serverError.message}</span> : null}
+                    </p>
                     <Stack direction="column">
                         <Button type="submit" variant="filled" color="primary" disabled={isSubmitting} className="mt-7 rounded-sm px-4 py-2 flex items-center gap-2 self-stretch !text-lg bg-button-gradient hover:bg-button-gradient-hover focus:bg-button-gradient-focus light:bg-none light:bg-primary light:hover:bg-none light:hover:bg-primary-hover light:focus:bg-primary-hover focus:outline-none transition-colors" startAdornment={<svg xmlns="http://www.w3.org/2000/svg" width="17" height="16" fill="none">
                             <g clipPath="url(#a)">
@@ -98,7 +156,7 @@ export default function SignupPage() {
                                 </clipPath>
                             </defs>
                         </svg>} fullWidth>
-                            {isSubmitting ? 'Logging in...' : 'Login'}
+                            {isSubmitting ? 'Signing up...' : 'Sign up'}
                         </Button>
                     </Stack>
                     <Stack className="my-7">
@@ -127,13 +185,13 @@ export default function SignupPage() {
                     </div>
                     <div className="mt-5 text-sm text-text-secondary flex items-center justify-center gap-1.5">
                         By signing in, you agree to our
-                        <a href="#" className="text-primary hover:text-primary-hover text-sm">
+                        <Link href="/terms" className="text-primary hover:text-primary-hover text-sm">
                             terms of service
-                        </a>
+                        </Link>
                         and
-                        <a href="#" className="text-primary hover:text-primary-hover text-sm">
+                        <Link href="/privacy" className="text-primary hover:text-primary-hover text-sm">
                             privacy policy
-                        </a>
+                        </Link>
                     </div>
                 </form>
             </div>
@@ -142,5 +200,5 @@ export default function SignupPage() {
             <img src={'https://images.pexels.com/photos/2983101/pexels-photo-2983101.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'}
                 className="w-auto h-full object-cover" />
         </div>
-    </Card>;
+    </Card >;
 }

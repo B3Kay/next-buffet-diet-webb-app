@@ -1,6 +1,6 @@
 'use server'
 import { FieldValues } from "react-hook-form";
-import PocketBase from 'pocketbase';
+import PocketBase, { ClientResponseError } from 'pocketbase';
 import { SignupFormSchema, LoginFormSchema } from '@/app/lib/definitions'
 import { redirect } from "next/navigation";
 import db from "@/db";
@@ -29,14 +29,14 @@ type UserV1 = Partial<{
 
 
 export async function signup(values: FieldValues) {
-    const { email, password, name } = values;
+    const { email, password, name, passwordConfirm } = values;
 
     const validatedFields = SignupFormSchema.safeParse({
         email: email,
         password: password,
-        name: name
+        name: name,
+        passwordConfirm: passwordConfirm
     });
-    console.log('validatedFields', validatedFields)
 
     if (!validatedFields.success) {
         return {
@@ -44,22 +44,31 @@ export async function signup(values: FieldValues) {
         }
     }
 
-    const pb = new PocketBase('http://127.0.0.1:8090');
-    const userCollection = pb.collection<User>('users');
+    try {
+        const pb = new PocketBase('http://127.0.0.1:8090');
+        const userCollection = pb.collection<User>('users');
 
-    const resp = await userCollection.create<UserV1>({
-        name: name,
-        email: email,
-        password: password,
-        passwordConfirm: password
-    });
-    if (!resp.username) {
-        return { message: 'could not create user' }
+        const resp = await userCollection.create<UserV1>({
+            name: name,
+            email: email,
+            password: password,
+            passwordConfirm: passwordConfirm
+        });
+        if (!resp.username) {
+            return { error: 'Could not create user' }
+        }
+    } catch (error) {
+        console.log('error statuscode', error.status)
+        if (error instanceof ClientResponseError) {
+            if (error.response.data.email.code === 'validation_invalid_email') {
+                return { error: error.response.data.email.message }
+            }
+        }
+        return { error: 'Could not create user' }
     }
-    console.log('resp', resp)
-
-    redirect('/')
+    redirect('/welcome')
 }
+
 export async function login(values: FieldValues) {
     console.log('login values', values)
     const { email, password } = values;
@@ -75,14 +84,18 @@ export async function login(values: FieldValues) {
         }
     }
 
-    const res = await db.authenticate(email, password);
-    const { record, token } = res;
+    try {
+        const res = await db.authenticate(email, password);
+        const { record, token } = res;
 
-    record.token = token;
-    cookies().set('pb_auth', db.client.authStore.exportToCookie());
+        record.token = token;
+        cookies().set('pb_auth', db.client.authStore.exportToCookie());
 
-
-    console.log('Redirecting to /')
-    redirect('/')
+        console.log('Redirecting to /')
+        redirect('/')
+    } catch (error) {
+        console.log('error', error)
+        return { message: 'Invalid email or password' }
+    }
 
 }
