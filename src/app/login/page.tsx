@@ -7,6 +7,7 @@ export default function LoginPage() {
     const {
         control,
         handleSubmit,
+        setError,
         formState: {
             isSubmitting,
             errors
@@ -23,9 +24,31 @@ export default function LoginPage() {
                     <span className="text-base text-text-secondary font-sans">
                         Welcome back! Please log in to continue.
                     </span>
-                    <form className="my-14" onSubmit={handleSubmit(values => {
-                        console.log('values', values);
-                        login(values);
+                    <form className="my-14" onSubmit={handleSubmit(async values => {
+
+
+                        const resp = await login(values);
+                        if (resp) {
+                            if (resp.error && typeof resp.error === 'string') {
+                                setError('root.serverError', {
+                                    type: 'serverError',
+                                    message: resp.error
+                                });
+                            } else {
+                                if (resp.errors?.email) {
+                                    const errorMessage = Array.isArray(resp.errors.email)
+                                        ? resp.errors.email.join(" ")
+                                        : resp.errors.email;
+                                    setError('email', { type: 'manual', message: errorMessage });
+                                }
+                                if (resp.errors?.password) {
+                                    const errorMessage = Array.isArray(resp.errors.password)
+                                        ? resp.errors.password.join(" ")
+                                        : resp.errors.password;
+                                    setError('password', { type: 'manual', message: errorMessage });
+                                }
+                            }
+                        }
                     })}>
                         <Block labelClassName="text-sm font-medium mb-1" label="Email">
                             <Controller

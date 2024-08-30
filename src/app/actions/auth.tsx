@@ -58,8 +58,8 @@ export async function signup(values: FieldValues) {
             return { error: 'Could not create user' }
         }
     } catch (error) {
-        console.log('error statuscode', error.status)
         if (error instanceof ClientResponseError) {
+            console.log('error statuscode', error.status)
             if (error.response.data.email.code === 'validation_invalid_email') {
                 return { error: error.response.data.email.message }
             }
@@ -70,9 +70,9 @@ export async function signup(values: FieldValues) {
 }
 
 export async function login(values: FieldValues) {
-    console.log('login values', values)
     const { email, password } = values;
 
+    // Validate input fields
     const validatedFields = LoginFormSchema.safeParse({
         email: email,
         password: password,
@@ -81,20 +81,18 @@ export async function login(values: FieldValues) {
     if (!validatedFields.success) {
         return {
             errors: validatedFields.error.flatten().fieldErrors,
-        }
+        };
     }
+
     try {
         const res = await db.authenticate(email, password);
         const { record, token } = res;
 
         record.token = token;
         cookies().set('pb_auth', db.client.authStore.exportToCookie());
-
-        console.log('Redirecting to /')
     } catch (error) {
-        console.log('error', error)
-        return { message: 'Invalid email or password' }
+        console.error('Authentication error:', error);
+        return { error: 'Invalid email or password' };
     }
-    redirect('/')
-
+    redirect('/');
 }
