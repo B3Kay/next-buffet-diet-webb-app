@@ -96,3 +96,8 @@ export async function login(values: FieldValues) {
     }
     redirect('/');
 }
+
+export async function signOut() {
+    cookies().set('pb_auth', '');
+    redirect('/');
+}
