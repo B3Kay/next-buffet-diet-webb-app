@@ -3,8 +3,9 @@ import { FieldValues } from "react-hook-form";
 import PocketBase, { ClientResponseError } from 'pocketbase';
 import { SignupFormSchema, LoginFormSchema } from '@/app/lib/definitions'
 import { redirect } from "next/navigation";
-import db from "@/db";
+
 import { cookies } from "next/headers";
+import db from "@/db";
 
 type User = {
     name: string
@@ -101,3 +102,20 @@ export async function signOut() {
     cookies().set('pb_auth', '');
     redirect('/');
 }
+
+export const isUserAuthenticated = async () => {
+    const cookieStore = cookies();
+
+    const result = await db.isAuthenticated(cookieStore);
+
+    return result;
+};
+
+export const getUser = async () => {
+    const cookieStore = cookies();
+
+    const result = await db.getUser(cookieStore);
+
+    return result;
+};
+

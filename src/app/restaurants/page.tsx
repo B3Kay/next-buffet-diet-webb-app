@@ -2,23 +2,13 @@
 import { RestaurantCard } from './RestaurantCard';
 import { getRestaurants } from './restaurants';
 import { NavigationButton } from './NavigationButton';
-import { cookies } from 'next/headers';
-import db from '@/db';
+import { isUserAuthenticated } from '../actions/auth';
 
-// export const revalidate = 1
-
-const isUtherAuthenticated = async () => {
-    const cookieStore = cookies();
-
-    const result = await db.isAuthenticated(cookieStore);
-
-    return result as any;
-}
 
 export default async function RestaurantsPage() {
     const restaurants = await getRestaurants();
 
-    const isAuthenticated = await isUtherAuthenticated();
+    const isAuthenticated = await isUserAuthenticated();
     return (
         <div className="flex flex-col items-center justify-center pb-24">
 
