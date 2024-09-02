@@ -1,14 +1,24 @@
-'use client'
+
 import { RestaurantCard } from './RestaurantCard';
-import Link from 'next/link';
 import { getRestaurants } from './restaurants';
-import { Button } from 'reablocks';
+import { NavigationButton } from './NavigationButton';
+import { cookies } from 'next/headers';
+import db from '@/db';
 
 // export const revalidate = 1
+
+const isUtherAuthenticated = async () => {
+    const cookieStore = cookies();
+
+    const result = await db.isAuthenticated(cookieStore);
+
+    return result as any;
+}
 
 export default async function RestaurantsPage() {
     const restaurants = await getRestaurants();
 
+    const isAuthenticated = await isUtherAuthenticated();
     return (
         <div className="flex flex-col items-center justify-center pb-24">
 
@@ -23,8 +33,9 @@ export default async function RestaurantsPage() {
             </div>
 
 
-            <Link href={"/restaurants/new"} passHref><Button className='rounded-full mt-8' variant="filled"  >Create Restaurant</Button></Link>
+            {isAuthenticated && <NavigationButton />}
         </div>
     );
 }
+
 

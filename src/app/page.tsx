@@ -4,6 +4,7 @@
 import db from '@/db';
 import { cookies } from 'next/headers';
 import Link from 'next/link';
+import { SignOutButton } from './actions/SignOutButton';
 
 const getUser = async () => {
   const cookieStore = cookies();
@@ -34,6 +35,7 @@ const Card = ({ title, link, description }: any) => {
 export default async function Home() {
   const user = await getUser();
 
+
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
@@ -51,6 +53,7 @@ export default async function Home() {
             By{" "}Benjamin Karlsson
 
           </a>
+          <SignOutButton />
         </div>
       </div>
 

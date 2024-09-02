@@ -39,7 +39,7 @@ export default function CreateRestaurant() {
         await collection.create<RestaurantV2>(restV2);
 
         router.push('/restaurants');
-
+        revalidateTag('/restaurants');
     };
 
     const handleInputChange = (value: string, id: string) => {
