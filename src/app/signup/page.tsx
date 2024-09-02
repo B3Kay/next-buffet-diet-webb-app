@@ -1,5 +1,5 @@
 'use client'
-import { Input, Card, Block, Button, Divider, Stack } from "reablocks";
+import { Input, Card, Block, Button, Divider, Stack, Toggle } from "reablocks";
 
 import { useForm, Controller } from 'react-hook-form';
 import { signup } from "../actions/auth";
@@ -11,6 +11,7 @@ type FormValues = {
     email: string
     password: string
     passwordConfirm: string
+    subscribe: boolean
 }
 
 export default function SignupPage() {
@@ -24,12 +25,12 @@ export default function SignupPage() {
             errors,
         }
     } = useForm<FormValues>();
-    return <Card className="w-full grow p-5 h-[650px] md:h-[800px] " contentClassName="w-full flex gap-12">
+    return <Card className="w-full grow p-5 h-[1000px]" contentClassName="w-full flex gap-12">
         <div className="h-full w-full flex flex-col items-start p-7">
             <div className="w-full grow flex flex-col justify-center">
                 {/* <LogoIcon className="h-11 mb-2 self-start w-auto" /> */}
                 <h4 className="text-2xl font-sans font-bold mb-0">
-                    Log In or create account
+                    Create an account to Sign up
                 </h4>
                 <span className="text-base text-text-secondary font-sans">
                     Welcome to Buffet Finder, powered by Buffet Diet.
@@ -60,6 +61,10 @@ export default function SignupPage() {
                     if (resp.errors?.passwordConfirm) {
                         const errorMessage = resp.errors?.passwordConfirm.length > 1 ? resp.errors?.passwordConfirm.join(" ") : resp.errors?.passwordConfirm[0]
                         setError('password', { types: { required: errorMessage } })
+                    }
+                    if (resp.errors?.subscribe) {
+                        const errorMessage = resp.errors?.subscribe.length > 1 ? resp.errors?.subscribe.join(" ") : resp.errors?.subscribe[0]
+                        setError('subscribe', { types: { required: errorMessage } })
                     }
                 })}>
                     <Block labelClassName="text-sm font-medium mb-1" label="Name">
@@ -142,11 +147,23 @@ export default function SignupPage() {
                         />
                         {errors.passwordConfirm ? <span className="text-red-500 text-xs">{'Repeated password must match'}</span> : null}
                     </Block>
+                    <Block className="mb-7" labelClassName="text-sm font-medium mb-1" label="Subscribe to our newsletter, we promise to not spam you.">
+
+                        <Controller name="subscribe" control={control}
+                            render={({
+                                field: {
+                                    value,
+                                    onBlur,
+                                    onChange
+                                }
+                            }) => <Toggle checked={value} onChange={onChange} onBlur={onBlur} />}
+                        />
+                    </Block>
                     <p>
                         {errors.root?.serverError ? <span className="text-red-500 text-xs">{errors.root.serverError.message}</span> : null}
                     </p>
                     <Stack direction="column">
-                        <Button type="submit" variant="filled" color="primary" disabled={isSubmitting} className="mt-7 rounded-sm px-4 py-2 flex items-center gap-2 self-stretch !text-lg bg-button-gradient hover:bg-button-gradient-hover focus:bg-button-gradient-focus light:bg-none light:bg-primary light:hover:bg-none light:hover:bg-primary-hover light:focus:bg-primary-hover focus:outline-none transition-colors" startAdornment={<svg xmlns="http://www.w3.org/2000/svg" width="17" height="16" fill="none">
+                        <Button type="submit" variant="filled" color="primary" disabled={isSubmitting} className="mt-7 rounded-sm px-4 py-2 flex items-center gap-2 self-stretch !text-lg light:hover:bg-none " startAdornment={<svg xmlns="http://www.w3.org/2000/svg" width="17" height="16" fill="none">
                             <g clipPath="url(#a)">
                                 <path fill="#fff" d="M7.833 4.667 6.9 5.6l1.733 1.733h-6.8v1.334h6.8L6.9 10.4l.933.933L11.167 8 7.833 4.667Zm6 8H8.5V14h5.333c.734 0 1.334-.6 1.334-1.333V3.333c0-.733-.6-1.333-1.334-1.333H8.5v1.333h5.333v9.334Z" />
                             </g>
@@ -159,6 +176,16 @@ export default function SignupPage() {
                             {isSubmitting ? 'Signing up...' : 'Sign up'}
                         </Button>
                     </Stack>
+                    <div className="mt-5 text-sm text-text-secondary flex items-center justify-center gap-1.5">
+                        By signing in, you agree to our
+                        <Link href="/terms" className="text-primary hover:text-primary-hover text-sm">
+                            terms of service
+                        </Link>
+                        and
+                        <Link href="/privacy" className="text-primary hover:text-primary-hover text-sm">
+                            privacy policy
+                        </Link>
+                    </div>
                     <Stack className="my-7">
                         <Divider variant="secondary" />
                         <span className="whitespace-nowrap text-sm dark:text-waterloo light:text-charade">
@@ -183,14 +210,11 @@ export default function SignupPage() {
                             Sign up with Microsoft
                         </Button>
                     </div>
-                    <div className="mt-5 text-sm text-text-secondary flex items-center justify-center gap-1.5">
-                        By signing in, you agree to our
-                        <Link href="/terms" className="text-primary hover:text-primary-hover text-sm">
-                            terms of service
-                        </Link>
-                        and
-                        <Link href="/privacy" className="text-primary hover:text-primary-hover text-sm">
-                            privacy policy
+                    <Divider className="mt-5 mb-5" variant="secondary" />
+                    <div className="mt-5 text-text-secondary text-sm flex items-center justify-center gap-2">
+                        Already have an account?
+                        <Link href="/login" className="text-primary hover:text-primary-hover text-lg">
+                            Sign in
                         </Link>
                     </div>
                 </form>

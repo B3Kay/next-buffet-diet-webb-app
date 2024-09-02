@@ -24,6 +24,7 @@ export const SignupFormSchema = z.object({
             message: 'Contain at least one special character.',
         })
         .trim(),
+    subscribe: z.boolean()
 }).refine((data) => data.password === data.passwordConfirm, {
     path: ['passwordConfirm'], // Show the error message on the passwordConfirm field
     message: 'Passwords do not match',

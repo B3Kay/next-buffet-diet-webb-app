@@ -2,6 +2,7 @@
 import { Input, Card, Block, Button, Divider, Stack } from "reablocks";
 import { useForm, Controller } from 'react-hook-form';
 import { login } from "../actions/auth";
+import Link from "next/link";
 
 export default function LoginPage() {
     const {
@@ -15,7 +16,7 @@ export default function LoginPage() {
     } = useForm();
 
     return (
-        <Card className="w-full grow p-5 h-[650px] md:h-[800px]" contentClassName="w-full flex gap-12">
+        <Card className="w-full grow max:w-[32rem]">
             <div className="h-full w-full flex flex-col items-start p-7">
                 <div className="w-full grow flex flex-col justify-center">
                     <h4 className="text-2xl font-sans font-bold mb-0">
@@ -95,7 +96,7 @@ export default function LoginPage() {
                                 variant="filled"
                                 color="primary"
                                 disabled={isSubmitting}
-                                className="mt-7 rounded-sm px-4 py-2 flex items-center gap-2 self-stretch !text-lg bg-button-gradient hover:bg-button-gradient-hover focus:bg-button-gradient-focus light:bg-none light:bg-primary light:hover:bg-none light:hover:bg-primary-hover light:focus:bg-primary-hover focus:outline-none transition-colors"
+                                // className="mt-7 rounded-sm px-4 py-2 flex items-center gap-2 self-stretch !text-lg bg-button-gradient hover:bg-button-gradient-hover focus:bg-button-gradient-focus light:bg-none light:bg-primary light:hover:bg-none light:hover:bg-primary-hover light:focus:bg-primary-hover focus:outline-none transition-colors"
                                 fullWidth
                             >
                                 {isSubmitting ? 'Logging in...' : 'Login'}
@@ -126,6 +127,12 @@ export default function LoginPage() {
                             </Button>
                         </div>
                     </form>
+                    <div className="mt-5 text-sm  flex items-center justify-center gap-2">
+                        Don't have an account?
+                        <Link href="/signup" className="text-primary hover:text-primary-hover text-lg">
+                            Sign up
+                        </Link>
+                    </div>
                 </div>
             </div>
         </Card>

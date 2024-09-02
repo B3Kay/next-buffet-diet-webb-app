@@ -30,13 +30,14 @@ type UserV1 = Partial<{
 
 
 export async function signup(values: FieldValues) {
-    const { email, password, name, passwordConfirm } = values;
+    const { email, password, name, passwordConfirm, subscribe } = values;
 
     const validatedFields = SignupFormSchema.safeParse({
         email: email,
         password: password,
         name: name,
-        passwordConfirm: passwordConfirm
+        passwordConfirm: passwordConfirm,
+        subscribe: subscribe
     });
 
     if (!validatedFields.success) {
@@ -53,7 +54,8 @@ export async function signup(values: FieldValues) {
             name: name,
             email: email,
             password: password,
-            passwordConfirm: passwordConfirm
+            passwordConfirm: passwordConfirm,
+            subscribed: subscribe,
         });
         if (!resp.username) {
             return { error: 'Could not create user' }
