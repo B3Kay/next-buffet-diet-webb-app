@@ -2,6 +2,10 @@
 
 - [ ] Migrate to Reabklocks - <https://reablocks.dev/docs>
 
+## Landing page
+
+- [ ] Landing page
+
 ## CRUD Restaurants
 
 - [ ] CRUD for restaurants
@@ -17,8 +21,11 @@
     - [X] Login w. email & password - get a session
     - [ ] Login w. google - get a session
   - [X] Store session
-  - [ ] Error handling login/signup
-  - [ ] Logout
+  - [x] Error handling login/signup
+  - [x] Logout Button
+  - [ ] Add navbar with logout button.
+  - [X] Add welcome page
+  - [ ] Welcome page, with text saying you can get full access once the app is ready
   - [ ] Restrict access to CUD
 
 ## Restaurant details page
@@ -28,6 +35,8 @@
 ### Tags
 
 - [X] Show multiple tags in list
+- [ ] Tag should be showned with amount of ratings, bsed on reviews of the restaurant
+      - Eg. Carnivore friendly 10 reviews = (10 Carnivore friendly)
 - [ ] Show tags in image
 
 ### Images
