@@ -17,6 +17,10 @@ export default function WelcomePage() {
                     New to Buffet Diet?
                 </div>
                 <div className="dark:text-waterloo light:text-charade opacity-80 z-10 relative">
+
+                    This is currently ony a alpha version, so please be patient and enjoy the buffetdiet!
+
+
                     Go to the login page to see the amazing offering of the buffetdiet!
                 </div>
 

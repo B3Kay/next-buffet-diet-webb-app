@@ -1,4 +1,4 @@
-import CreateRestaurant from "../CreateRestaurant";
+import CreateRestaurant from "./CreateRestaurant";
 
 export default function Page() {
     return <div>
