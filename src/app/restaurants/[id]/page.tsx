@@ -21,14 +21,47 @@ export const ImageGrid = ({ images: imageUrls }: { images: string[] }) => {
     );
 }
 
+async function getCoordinates(address: string) {
+    const url = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(address)}&format=json&limit=1`;
+
+    try {
+        const response = await fetch(url, {
+            headers: {
+                'User-Agent': 'Your App Name'
+            }
+        });
+
+        const data = await response.json();
+
+        if (data.length > 0) {
+            const { lat, lon } = data[0];
+            console.log(`Latitude: ${lat}, Longitude: ${lon}`);
+            const latitude = parseFloat(lat);
+            const longitude = parseFloat(lon);
+
+            return { latitude: latitude, longitude: longitude };
+        } else {
+            console.log('No results found');
+            return {};
+        }
+    } catch (error) {
+        console.error('Error fetching coordinates:', error);
+        return {};
+    }
+}
+
 export default async function RestaurantPage({ params }: { params: { id: string } }) {
     const restaurant = await getRestaurant(params.id);
+
+    // ToDo: This should be done on backend when creating a restaurant.
+    const coordinates = await getCoordinates(restaurant.address)
 
     const images = [restaurant.imageUrl!!]
 
     const foodStyleBadges = restaurant.foodBadges.filter(isFoodStyleBadge);
     const goodBadges = restaurant.foodBadges.filter(isGoodBadge);
     const badBadges = restaurant.foodBadges.filter(isBadBadge);
+
 
     return (
         <div className="px-5">
@@ -88,6 +121,8 @@ export default async function RestaurantPage({ params }: { params: { id: string 
             </div>
             <div>
                 <RestaurantMap
+                    latitude={coordinates?.latitude || 0}
+                    longitude={coordinates?.longitude || 0}
 
                 />
             </div>
