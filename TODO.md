@@ -31,6 +31,9 @@
 ## Restaurant details page
 
 - [X] Create a Restaurant page
+- [x] Show map of restaurant
+- [ ] Style map
+- [ ] Move map handling to backend.
 
 ### Tags
 
