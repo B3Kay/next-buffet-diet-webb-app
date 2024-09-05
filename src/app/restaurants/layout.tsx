@@ -1,4 +1,4 @@
-import Breadcrumb from "../components/Breadcrumb"
+import Breadcrumb from "../../components/core/Breadcrumb"
 
 export default function Restaurant({
     children,

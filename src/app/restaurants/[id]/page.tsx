@@ -1,10 +1,10 @@
 
 
 
-import { getRestaurant, makeRestaurantFromV2 } from '../restaurants';
-import { isBadBadge, isFoodStyleBadge, isGoodBadge } from '@/app/components/FoodBadges';
-import RestaurantMap from './RestaurantMap';
-import { RestaurantDetails } from './RestaurantDetails';
+import { getRestaurant, makeRestaurantFromV2 } from '../../../db/pocketbase/restaurants';
+import { isBadBadge, isFoodStyleBadge, isGoodBadge } from '@/components/FoodBadges';
+import RestaurantMap from './components/RestaurantMap';
+import { RestaurantDetails } from './components/RestaurantDetails';
 
 export const revalidate = 1
 

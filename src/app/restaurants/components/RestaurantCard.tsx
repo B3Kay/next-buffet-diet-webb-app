@@ -1,6 +1,6 @@
+import { Restaurant } from "@/db/pocketbase/types";
 import { formatCurrency } from "@/utils/formatCurrency";
 import Link from "next/link";
-import { Restaurant } from "./types";
 
 
 interface RestaurantRating {

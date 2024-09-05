@@ -2,12 +2,12 @@
 
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-import { Restaurant, RestaurantV2 } from '../types';
+import { Restaurant, RestaurantV2 } from '../../../db/pocketbase/types';
 import PocketBase from 'pocketbase';
 
 import { Button, Input, Select, SelectOption, SelectInput, SelectInputChip, SelectMenu } from 'reablocks';
-import { makeRestV2 } from '../restaurants';
-import { foodLabelOption } from '../../components/FoodBadges';
+import { makeRestV2 } from '../../../db/pocketbase/restaurants';
+import { foodLabelOption } from '../../../components/FoodBadges';
 import { revalidatePath, revalidateTag } from 'next/cache';
 
 export default function CreateRestaurant() {

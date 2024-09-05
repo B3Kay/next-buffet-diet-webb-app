@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { SignOutButton } from './components/SignOutButton';
+import { SignOutButton } from '../../components/SignOutButton';
 import { Button } from 'reablocks';
 
 const Card = ({ title, link, description }: any) => {

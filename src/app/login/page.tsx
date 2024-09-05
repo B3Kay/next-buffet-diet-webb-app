@@ -1,7 +1,7 @@
 'use client'
 import { Input, Card, Block, Button, Divider, Stack } from "reablocks";
 import { useForm, Controller } from 'react-hook-form';
-import { login } from "../actions/auth";
+import { login } from "../../actions/auth";
 import Link from "next/link";
 
 export default function LoginPage() {

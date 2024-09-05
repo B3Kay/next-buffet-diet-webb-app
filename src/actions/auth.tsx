@@ -1,7 +1,7 @@
 'use server'
 import { FieldValues } from "react-hook-form";
 import PocketBase, { ClientResponseError } from 'pocketbase';
-import { SignupFormSchema, LoginFormSchema } from '@/app/lib/definitions'
+import { SignupFormSchema, LoginFormSchema } from '@/lib/definitions'
 import { redirect } from "next/navigation";
 
 import { cookies } from "next/headers";

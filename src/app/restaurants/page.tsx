@@ -1,9 +1,9 @@
 
-import { RestaurantCard } from './RestaurantCard';
-import { getRestaurants } from './restaurants';
-import { NavigationButton } from './NavigationButton';
-import { isUserAuthenticated } from '../actions/auth';
+import { getRestaurants } from '../../db/pocketbase/restaurants';
+import { NavigationButton } from './components/NavigationButton';
+import { isUserAuthenticated } from '../../actions/auth';
 import { revalidatePath } from 'next/cache';
+import { RestaurantCard } from './components/RestaurantCard';
 
 
 export default async function RestaurantsPage() {

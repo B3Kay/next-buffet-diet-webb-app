@@ -2,7 +2,7 @@
 import { Input, Card, Block, Button, Divider, Stack, Toggle } from "reablocks";
 
 import { useForm, Controller } from 'react-hook-form';
-import { signup } from "../actions/auth";
+import { signup } from "../../actions/auth";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
