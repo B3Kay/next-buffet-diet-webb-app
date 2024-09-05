@@ -32,7 +32,7 @@
 
 - [X] Create a Restaurant page
 - [x] Show map of restaurant
-- [ ] Style map
+- [x] Style map
 - [ ] Move map handling to backend.
 
 ### Tags
