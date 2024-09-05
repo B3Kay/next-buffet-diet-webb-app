@@ -8,7 +8,7 @@ import PocketBase from 'pocketbase';
 import { Button, Input, Select, SelectOption, SelectInput, SelectInputChip, SelectMenu } from 'reablocks';
 import { makeRestV2 } from '../restaurants';
 import { foodLabelOption } from '../../components/FoodBadges';
-import { revalidateTag } from 'next/cache';
+import { revalidatePath, revalidateTag } from 'next/cache';
 
 export default function CreateRestaurant() {
     const [restaurant, setRestaurant] = useState<Restaurant>({
@@ -38,6 +38,8 @@ export default function CreateRestaurant() {
 
         await collection.create<RestaurantV2>(restV2);
 
+
+        revalidatePath('/restaurants');
         router.push('/restaurants');
     };
 

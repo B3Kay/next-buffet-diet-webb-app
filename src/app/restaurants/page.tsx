@@ -3,27 +3,32 @@ import { RestaurantCard } from './RestaurantCard';
 import { getRestaurants } from './restaurants';
 import { NavigationButton } from './NavigationButton';
 import { isUserAuthenticated } from '../actions/auth';
+import { revalidatePath } from 'next/cache';
 
 
 export default async function RestaurantsPage() {
     const restaurants = await getRestaurants();
 
     const isAuthenticated = await isUserAuthenticated();
+
+
     return (
-        <div className="flex flex-col items-center justify-center pb-24">
+        <div className=" flex flex-col items-center justify-center pb-24">
+            <div className='max-w-screen-lg '>
+                <h1 className="text-3xl font-bold ml-5">Restaurants</h1>
 
-            <h1 className="text-3xl font-bold">Restaurants</h1>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                {restaurants.map((restaurant) => (
-                    <RestaurantCard
-                        key={restaurant.id}
-                        {...restaurant}
-                    />
-                ))}
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                    {restaurants.map((restaurant) => (
+                        <RestaurantCard
+                            key={restaurant.id}
+                            {...restaurant}
+                        />
+                    ))}
+                </div>
+
+
+                {isAuthenticated && <NavigationButton />}
             </div>
-
-
-            {isAuthenticated && <NavigationButton />}
         </div>
     );
 }

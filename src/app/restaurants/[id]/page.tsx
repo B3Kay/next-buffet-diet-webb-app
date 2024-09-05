@@ -64,9 +64,9 @@ export default async function RestaurantPage({ params }: { params: { id: string 
 
 
     return (
-        <div className="px-5">
-            <div>
-                <h1 className="mb-12 mt-2 text-3xl font-bold">Restaurant / {restaurant.id}</h1>
+        <div className="flex">
+            <div className='flex-none lg:w-[800px] md:w-[600] w-full px-4'>
+                <h1 className="mb-2 mt-2 text-3xl font-bold">Restaurant / {restaurant.id}</h1>
                 <Images imageAlt={restaurant.name} imageUrls={images} />
 
                 <h1 className='mb-1 mt-5 text-3xl font-bold'>{restaurant.name}</h1>
@@ -114,12 +114,12 @@ export default async function RestaurantPage({ params }: { params: { id: string 
                 </div>
                 <div className="divider"></div>
                 <h3 className='text-lg mb-2 font-bold'>Description</h3>
-                <p className="m-0 max-w-[30ch] text-base opacity-50">
+                <p className="m-0 max-w-[30ch] text-base opacity-50 mb-12">
                     {restaurant.description}
                 </p>
 
             </div>
-            <div>
+            <div className='flex-1 bg-slate-100 w-full sm:hidden md:flex'>
                 <RestaurantMap
                     latitude={coordinates?.latitude || 0}
                     longitude={coordinates?.longitude || 0}
