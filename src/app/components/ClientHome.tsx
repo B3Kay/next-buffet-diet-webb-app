@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { SignOutButton } from '../../components/SignOutButton';
-import { Button } from 'reablocks';
+
 
 const Card = ({ title, link, description }: any) => {
     return (
@@ -27,7 +27,7 @@ export default function ClientHome({ user, isAuthenticated }: { user: any, isAut
     return (
         <main className="flex min-h-screen flex-col items-center justify-between p-24">
             <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-                <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
+                <p className="fixed left-0 bottom-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
                     Get fit by eating more&nbsp;
                     <code className="font-mono font-bold">and save time</code>
                 </p>
@@ -49,9 +49,7 @@ export default function ClientHome({ user, isAuthenticated }: { user: any, isAut
             </h1>
 
             {/* Show the login button if not authenticated */}
-            {!isAuthenticated && <Link href="/login" passHref legacyBehavior>
-                <Button>To Login</Button>
-            </Link>}
+
 
             <div className="mb-32 grid text-center lg:mb-0 lg:w-full lg:max-w-5xl lg:grid-cols-4 lg:text-left">
                 {/* Section of links about the buffet diet */}
