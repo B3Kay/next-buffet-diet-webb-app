@@ -1,4 +1,4 @@
-import { Restaurant } from "@/db/pocketbase/types";
+import { Restaurant } from "@/services/types";
 import { formatCurrency } from "@/utils/formatCurrency";
 import Link from "next/link";
 

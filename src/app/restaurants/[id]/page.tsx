@@ -1,10 +1,11 @@
 
 
 
-import { getRestaurant, makeRestaurantFromV2 } from '../../../db/pocketbase/restaurants';
+import { getRestaurant, makeRestaurantFromV2 } from '../../../services/restaurantsService';
 import { isBadBadge, isFoodStyleBadge, isGoodBadge } from '@/components/FoodBadges';
 import RestaurantMap from './components/RestaurantMap';
 import { RestaurantDetails } from './components/RestaurantDetails';
+import { notFound } from 'next/navigation';
 
 export const revalidate = 1
 
@@ -32,7 +33,7 @@ async function getCoordinates(address: string) {
 
         if (data.length > 0) {
             const { lat, lon } = data[0];
-            console.log(`Latitude: ${lat}, Longitude: ${lon}`);
+
             const latitude = parseFloat(lat);
             const longitude = parseFloat(lon);
 
@@ -48,7 +49,12 @@ async function getCoordinates(address: string) {
 }
 
 export default async function RestaurantPage({ params }: { params: { id: string } }) {
+
     const restaurant = await getRestaurant(params.id);
+
+    if (!restaurant) {
+        return notFound(); // This triggers the 404 page in Next.js
+    }
 
     // ToDo: This should be done on backend when creating a restaurant.
     const coordinates = await getCoordinates(restaurant.address)
@@ -63,7 +69,7 @@ export default async function RestaurantPage({ params }: { params: { id: string 
     return (
         <div className="flex">
             <RestaurantDetails restaurant={restaurant} images={images} foodStyleBadges={foodStyleBadges} goodBadges={goodBadges} badBadges={badBadges} />
-            <div className='flex-1 bg-slate-100 w-full sm:hidden md:flex'>
+            <div className='flex-1  w-full sm:hidden md:flex'>
                 <RestaurantMap
                     latitude={coordinates?.latitude || 0}
                     longitude={coordinates?.longitude || 0}

@@ -2,11 +2,10 @@
 
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-import { Restaurant, RestaurantV2 } from '../../../db/pocketbase/types';
-import PocketBase from 'pocketbase';
+import { Restaurant, RestaurantV2 } from '../../../services/types';
 
 import { Button, Input, Select, SelectOption, SelectInput, SelectInputChip, SelectMenu } from 'reablocks';
-import { makeRestV2 } from '../../../db/pocketbase/restaurants';
+import { createRestaurant, makeRestV2 } from '../../../services/restaurantsService';
 import { foodLabelOption } from '../../../components/FoodBadges';
 import { revalidatePath, revalidateTag } from 'next/cache';
 
@@ -29,14 +28,9 @@ export default function CreateRestaurant() {
     const create = async (e: React.FormEvent) => {
         e.preventDefault();
 
-        // TODO: This should be done in the backend, not on the client!!!
-        const db = new PocketBase('http://127.0.0.1:8090');
-        const collection = db.collection<RestaurantV2>('restaurants');
-
         console.log("restaurant:", restaurant);
         const restV2 = makeRestV2(restaurant)
-
-        await collection.create<RestaurantV2>(restV2);
+        const collection = await createRestaurant(restV2);
 
 
         revalidatePath('/restaurants');

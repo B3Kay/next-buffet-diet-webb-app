@@ -1,5 +1,5 @@
 
-import { getRestaurants } from '../../db/pocketbase/restaurants';
+import { getRestaurants } from '../../services/restaurantsService';
 import { NavigationButton } from './components/NavigationButton';
 import { isUserAuthenticated } from '../../actions/auth';
 import { revalidatePath } from 'next/cache';

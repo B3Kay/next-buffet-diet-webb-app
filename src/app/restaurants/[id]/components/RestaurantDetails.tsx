@@ -3,7 +3,7 @@ import { Images } from "@/components/Images";
 import { formatCurrency } from "@/utils/formatCurrency";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { Card } from "reablocks";
-import { Restaurant } from "../../../../db/pocketbase/types";
+import { Restaurant } from "../../../../services/types";
 import { RestaurantRating } from "../../components/RestaurantCard";
 
 export const RestaurantDetails = ({ restaurant, images, foodStyleBadges, goodBadges, badBadges }: { restaurant: Restaurant; images: string[]; foodStyleBadges: string[]; goodBadges: string[]; badBadges: string[]; }) => {
