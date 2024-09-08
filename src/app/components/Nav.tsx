@@ -1,10 +1,10 @@
 'use client';
 import { signOut } from "@/actions/auth";
 import { motion } from "framer-motion";
-import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { AuthModel } from "pocketbase";
-import { Avatar, Button, ButtonGroup, Card, List, ListItem, Menu } from "reablocks";
+import { Avatar, Button, Card, List, ListItem, Menu } from "reablocks";
 import { FC, useRef, useState } from "react";
 
 // import { cn } from "@/utils/cn";
@@ -13,22 +13,21 @@ const navLinks = [
     {
         label: "Restaurants",
         href: "/restaurants",
+        target: "_self",
     },
     {
         label: "About",
         href: "/about",
     },
-    {
-        label: "Instagram",
-        href: "/#",
-        target: "_blank",
-    },
-
 ];
 const AnimatedButton = motion(Button)
 
 export const Nav = ({ user }: { user: AuthModel | false }) => {
     const [isNavOpen, setIsNavOpen] = useState<boolean>(false);
+    const pathName = usePathname();
+
+    const isActive = (path: string) => pathName.startsWith(path);
+
 
     const [openProfile, setProfileOpen] = useState(false);
     const buttonRef = useRef(null);
@@ -105,7 +104,7 @@ export const Nav = ({ user }: { user: AuthModel | false }) => {
                     {navLinks.map(({ label, href, target }, index) => (
                         <Link
                             href={href}
-                            className="text-base font-semibold leading-6 text-content-secondary transition-colors hover:text-content-primary"
+                            className={`text-base font-semibold leading-6 text-content-secondary transition-colors hover:text-content-primary `}
                             target={target}
                             key={`nav-link-${label}-${index}`}
                             legacyBehavior
@@ -114,7 +113,7 @@ export const Nav = ({ user }: { user: AuthModel | false }) => {
                             <AnimatedButton
                                 variant="text"
 
-                                className="text-sm/6 font-semibold text-white/50"
+                                className={`text-sm/6 font-semibold text-white/50 ${isActive(href) ? 'text-content-primary' : ''}`}
 
                                 initial={{ opacity: 0, y: -50 }}
                                 animate={{ opacity: 1, y: 0, transition: { delay: 0.1 * index } }}
