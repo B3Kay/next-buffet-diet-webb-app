@@ -107,6 +107,7 @@ export const Nav = ({ user }: { user: AuthModel | false }) => {
                             href={href}
                             className="text-base font-semibold leading-6 text-content-secondary transition-colors hover:text-content-primary"
                             target={target}
+                            key={`nav-link-${label}-${index}`}
                             legacyBehavior
                             passHref
                         >
@@ -114,7 +115,7 @@ export const Nav = ({ user }: { user: AuthModel | false }) => {
                                 variant="text"
 
                                 className="text-sm/6 font-semibold text-white/50"
-                                key={`nav-link-${label}-${index}`}
+
                                 initial={{ opacity: 0, y: -50 }}
                                 animate={{ opacity: 1, y: 0, transition: { delay: 0.1 * index } }}
                             >
