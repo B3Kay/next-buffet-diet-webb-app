@@ -6,12 +6,20 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import getInitals from "name-initials";
 import { AuthModel } from "pocketbase";
-import { Card, List, ListItem, Menu } from "reablocks";
-import { FC, useMemo, useRef, useState } from "react";
+import { List, ListItem, Menu } from "reablocks";
+import { useRef, useState } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Button } from "@/components/ui/button";
+import { Button, } from "@/components/ui/button";
+import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuShortcut, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import { Separator } from "@/components/ui/separator";
+import { Card } from "@/components/ui/card";
+import { LogIn, LogInIcon, LogOut, MoonIcon, SunIcon } from "lucide-react";
 
-// import { cn } from "@/utils/cn";
+import { useTheme } from "next-themes";
+import { HamburgerMenuIcon } from "@radix-ui/react-icons";
+import { NavElements } from "./NavElements";
+
 
 const navLinks = [
     {
@@ -25,26 +33,17 @@ const navLinks = [
     },
 ];
 const AnimatedButton = motion(Button)
-const AnimatedAvatar = motion(Avatar)
 
 export const Nav = ({ user }: { user: AuthModel | false }) => {
     const [isNavOpen, setIsNavOpen] = useState<boolean>(false);
     const pathName = usePathname();
 
     const isActive = (path: string) => pathName.startsWith(path);
+    const { theme, setTheme } = useTheme()
 
 
     const [openProfile, setProfileOpen] = useState(false);
     const buttonRef = useRef(null);
-
-    // const initials = useMemo(() => {
-    //     if (!user) {
-    //         return '';
-    //     }
-    //     getInitals(user.name || '')
-    // }, [user.name]);
-
-
 
     return (
         <nav className="flex justify-center sticky top-0 z-40 w-full backdrop-blur flex-none transition-colors duration-500 lg:z-50 lg:border-b lg:border-slate-900/10 dark:border-slate-50/[0.1] bg-white/95 supports-backdrop-blur:bg-white/60 dark:bg-transparent">
@@ -63,50 +62,63 @@ export const Nav = ({ user }: { user: AuthModel | false }) => {
                     </Link>
                 </div>
 
-                <div className="absolute right-4 top-3 flex md:hidden">
-                    <button
-                        type="button"
-                        className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-content-secondary"
-                        onClick={() => setIsNavOpen(!isNavOpen)}
-                    >
-                        <span className="sr-only">Open main menu</span>
-                        {isNavOpen ? (
-                            <svg
-                                className="h-6 w-6"
-                                xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 20 20"
-                                fill="none"
-                            >
-                                <path
-                                    d="M4 16L16 4"
-                                    stroke="currentColor"
-                                    strokeWidth="1.5"
-                                    strokeLinecap="round"
-                                />
-                                <path
-                                    d="M4 4L16 16"
-                                    stroke="currentColor"
-                                    strokeWidth="1.5"
-                                    strokeLinecap="round"
-                                />
-                            </svg>
-                        ) : (
-                            <svg
-                                className="h-6 w-6"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                strokeWidth="1.5"
-                                stroke="currentColor"
-                                aria-hidden="true"
-                            >
-                                <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
-                                />
-                            </svg>
-                        )}
-                    </button>
+                <div className="absolute right-4 top-4 flex md:hidden">
+                    <Sheet>
+                        <SheetTrigger><HamburgerMenuIcon /></SheetTrigger>
+                        <SheetContent className="p-0">
+                            <div className="p-5">
+
+                                <SheetHeader className="text-left">
+                                    <SheetTitle>The Buffet diet</SheetTitle>
+                                    <SheetDescription>
+                                        Welcome to The Buffet Diet, navigate around the website and enjoy your buffet experience.
+                                    </SheetDescription>
+                                </SheetHeader>
+                            </div>
+
+                            <NavElements isCollapsed={false} links={[
+                                {
+                                    title: "Restaurants",
+                                    href: "/restaurants",
+                                    variant: isActive('/restaurants') ? 'default' : 'ghost',
+                                },
+
+                                {
+                                    title: "About",
+                                    href: "/about",
+                                    label: "",
+                                    // icon: Send,
+                                    variant: isActive('/about') ? 'default' : 'ghost',
+                                },
+
+                            ]}></NavElements>
+                            <Separator />
+                            <NavElements isCollapsed={false} links={[
+                                {
+                                    title: "Toggle Theme",
+                                    onClick: () => setTheme(theme === 'dark' ? 'light' : 'dark'),
+                                    icon: theme === 'dark' ? MoonIcon : SunIcon,
+                                    variant: 'ghost',
+                                },
+                                user ?
+                                    {
+                                        title: "Log out",
+                                        href: "/",
+                                        onClick: () => signOut(),
+                                        icon: LogOut,
+                                        variant: 'ghost',
+                                    } :
+                                    {
+                                        title: "Log in",
+                                        href: "/authentication",
+                                        onClick: () => signOut(),
+                                        icon: LogIn,
+                                        variant: 'ghost',
+                                    },
+                            ]}></NavElements>
+                        </SheetContent>
+                    </Sheet>
+
                 </div>
                 <div className="hidden md:flex md:gap-x-2 lg:gap-x-4 items-center">
 
@@ -130,14 +142,24 @@ export const Nav = ({ user }: { user: AuthModel | false }) => {
                     ))}
 
 
-                    {user ? <div ref={buttonRef} onClick={() => setProfileOpen(!openProfile)}>
+                    {user ? <div ref={buttonRef}
+                    >
                         <motion.div initial={{ opacity: 0, y: -50 }}
                             animate={{ opacity: 1, y: 0, transition: { delay: 0.1 * 3 } }}>
+                            <DropdownMenu>
+                                <DropdownMenuTrigger><Avatar className="h-8 w-8  text-xs">
+                                    <AvatarImage src="" alt="@shadcn" />
+                                    <AvatarFallback>{getInitals(user.name)}</AvatarFallback>
+                                </Avatar></DropdownMenuTrigger>
+                                <DropdownMenuContent>
+                                    <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                                    <DropdownMenuSeparator />
+                                    <DropdownMenuItem disabled>Profile</DropdownMenuItem>
+                                    <DropdownMenuSeparator />
+                                    <DropdownMenuItem><LogInIcon className="mr-2 h-4 w-4" /> Sign out</DropdownMenuItem>
+                                </DropdownMenuContent>
+                            </DropdownMenu>
 
-                            <Avatar className="h-8 w-8 cursor-pointer text-xs">
-                                <AvatarImage src="" alt="@shadcn" />
-                                <AvatarFallback>{getInitals(user.name)}</AvatarFallback>
-                            </Avatar>
                         </motion.div>
                     </div> :
                         <AnimatedButton
@@ -151,7 +173,7 @@ export const Nav = ({ user }: { user: AuthModel | false }) => {
                     }
 
                     <Menu open={openProfile} onClose={() => setProfileOpen(false)} reference={buttonRef}>
-                        <Card disablePadding>
+                        <Card>
                             <List>
                                 <ListItem onClick={() => signOut()}>Sign out</ListItem>
 
@@ -183,11 +205,22 @@ export const Nav = ({ user }: { user: AuthModel | false }) => {
                                     </Link>
                                 </motion.div>
                             ))}
+                            <div
+                                className="text-content-secondary transition-colors hover:text-content-primary lg:inline-block"
+
+                                onClick={() => { setIsNavOpen(false); signOut(); }}
+                            >
+                                <span>Signout</span>
+                            </div>
+                            <ThemeToggle />
                         </div>
                     )
                 }
 
             </div >
-        </nav>
+        </nav >
     );
 };
+
+
+
