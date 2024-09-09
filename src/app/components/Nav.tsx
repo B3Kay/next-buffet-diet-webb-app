@@ -1,11 +1,15 @@
 'use client';
 import { signOut } from "@/actions/auth";
+import { ThemeToggle } from "@/components/ThemeToggle";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import getInitals from "name-initials";
 import { AuthModel } from "pocketbase";
-import { Avatar, Button, Card, List, ListItem, Menu } from "reablocks";
-import { FC, useRef, useState } from "react";
+import { Card, List, ListItem, Menu } from "reablocks";
+import { FC, useMemo, useRef, useState } from "react";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Button } from "@/components/ui/button";
 
 // import { cn } from "@/utils/cn";
 
@@ -21,6 +25,7 @@ const navLinks = [
     },
 ];
 const AnimatedButton = motion(Button)
+const AnimatedAvatar = motion(Avatar)
 
 export const Nav = ({ user }: { user: AuthModel | false }) => {
     const [isNavOpen, setIsNavOpen] = useState<boolean>(false);
@@ -31,6 +36,13 @@ export const Nav = ({ user }: { user: AuthModel | false }) => {
 
     const [openProfile, setProfileOpen] = useState(false);
     const buttonRef = useRef(null);
+
+    // const initials = useMemo(() => {
+    //     if (!user) {
+    //         return '';
+    //     }
+    //     getInitals(user.name || '')
+    // }, [user.name]);
 
 
 
@@ -97,24 +109,18 @@ export const Nav = ({ user }: { user: AuthModel | false }) => {
                     </button>
                 </div>
                 <div className="hidden md:flex md:gap-x-2 lg:gap-x-4 items-center">
-                    {/* <ButtonGroup > */}
-
-
 
                     {navLinks.map(({ label, href, target }, index) => (
                         <Link
                             href={href}
-                            className={`text-base font-semibold leading-6 text-content-secondary transition-colors hover:text-content-primary `}
+                            className={`text-base font-semibold leading-6 text-content-secondary transition-colors hover:text-content-primary ${isActive(href) && ''}`}
                             target={target}
                             key={`nav-link-${label}-${index}`}
                             legacyBehavior
                             passHref
                         >
                             <AnimatedButton
-                                variant="text"
-
-                                className={`text-sm/6 font-semibold text-white/50 ${isActive(href) ? 'text-content-primary' : ''}`}
-
+                                variant={isActive(href) ? 'secondary' : 'ghost'}
                                 initial={{ opacity: 0, y: -50 }}
                                 animate={{ opacity: 1, y: 0, transition: { delay: 0.1 * index } }}
                             >
@@ -122,18 +128,24 @@ export const Nav = ({ user }: { user: AuthModel | false }) => {
                             </AnimatedButton>
                         </Link>
                     ))}
-                    {/* <div className="text-base font-semibold leading-6 text-content-secondary transition-colors hover:text-content-primary">Profile</div> */}
+
 
                     {user ? <div ref={buttonRef} onClick={() => setProfileOpen(!openProfile)}>
-                        <Avatar name={user.name} />
+                        <motion.div initial={{ opacity: 0, y: -50 }}
+                            animate={{ opacity: 1, y: 0, transition: { delay: 0.1 * 3 } }}>
+
+                            <Avatar className="h-8 w-8 cursor-pointer text-xs">
+                                <AvatarImage src="" alt="@shadcn" />
+                                <AvatarFallback>{getInitals(user.name)}</AvatarFallback>
+                            </Avatar>
+                        </motion.div>
                     </div> :
                         <AnimatedButton
                             variant="outline"
                             initial={{ opacity: 0, y: -50 }}
                             animate={{ opacity: 1, y: 0, transition: { delay: 0.1 * 3 } }}>
-                            <Link href="/login" passHref legacyBehavior>
-                                {/* <Button variant="outline" color="secondary" size="medium">Login</Button> */}
-                                login
+                            <Link href="/authentication" passHref legacyBehavior>
+                                Login
                             </Link>
                         </AnimatedButton>
                     }
@@ -146,6 +158,10 @@ export const Nav = ({ user }: { user: AuthModel | false }) => {
                             </List>
                         </Card>
                     </Menu>
+                    <motion.div initial={{ opacity: 0, y: -50 }}
+                        animate={{ opacity: 1, y: 0, transition: { delay: 0.1 * 4 } }}>
+                        <ThemeToggle />
+                    </motion.div>
 
                 </div>
                 {

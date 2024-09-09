@@ -1,4 +1,5 @@
 'use client'
+import { Button } from "@/components/ui/button";
 import { Count } from "@/components/utils/Count/Count";
 import { motion } from "framer-motion";
 import Link from "next/link";
@@ -35,9 +36,9 @@ export const Hero = ({ className }: { className?: string }) => (
                     </p>
                     <div className="flex gap-4">
                         <Link href="/restaurants">
-                            <button className="min-w-[125px] whitespace-nowrap rounded-md bg-primary px-4 py-2 font-semibold text-content-primary shadow-button transition-colors hover:bg-primary-hover">
+                            <Button>
                                 Explore buffets →
-                            </button>
+                            </Button>
                         </Link>
                     </div>
                 </motion.div>
