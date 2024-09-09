@@ -23,9 +23,13 @@ export default async function RootLayout({
   const user = await getUser();
 
   return (
-    <html lang="en" data-theme="dark">
+    <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
-        <Providers >
+        <Providers
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange >
           <Nav user={user} />
           {children}
           <Footer />
