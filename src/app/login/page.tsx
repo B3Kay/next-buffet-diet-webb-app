@@ -16,7 +16,7 @@ export default function LoginPage() {
     } = useForm();
 
     return (
-        <Card className="w-full grow md:max-w-[32rem] ">
+        <Card className="w-full grow md: max-w-[32rem] ">
             <div className="h-full w-full flex flex-col items-start p-7">
                 <div className="w-full grow flex flex-col justify-center">
                     <h4 className="text-2xl font-sans font-bold mb-0">
