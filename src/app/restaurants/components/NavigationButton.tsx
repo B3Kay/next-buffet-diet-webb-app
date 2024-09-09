@@ -5,7 +5,7 @@ import { Button } from "reablocks";
 
 
 
-export const NavigationButton = () => {
+export const NavigationButton = ({ className }: { className?: string }) => {
 
-    return <Link href={"/restaurants/new"} passHref><Button className='rounded-full mt-8' variant="filled">Create Restaurant</Button></Link>;
+    return <Link href={"/restaurants/new"} passHref><Button className={className} variant="filled">Create Restaurant</Button></Link>;
 }
