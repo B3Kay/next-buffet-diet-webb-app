@@ -67,9 +67,9 @@ export default async function RestaurantPage({ params }: { params: { id: string 
 
 
     return (
-        <div className="flex">
+        <div className="">
             <RestaurantDetails restaurant={restaurant} images={images} foodStyleBadges={foodStyleBadges} goodBadges={goodBadges} badBadges={badBadges} />
-            <div className='flex-1  w-full sm:hidden md:flex'>
+            <div className='flex-1  w-full sm:hidden md:flex h-[600px]'>
                 <RestaurantMap
                     latitude={coordinates?.latitude || 0}
                     longitude={coordinates?.longitude || 0}

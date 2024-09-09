@@ -7,7 +7,7 @@ import { Restaurant } from "../../../../services/types";
 import { RestaurantRating } from "../../components/RestaurantCard";
 
 export const RestaurantDetails = ({ restaurant, images, foodStyleBadges, goodBadges, badBadges }: { restaurant: Restaurant; images: string[]; foodStyleBadges: string[]; goodBadges: string[]; badBadges: string[]; }) => {
-    return <div className='flex-none lg:w-[800px] md:w-[500] w-full px-4'>
+    return <div className='w-full px-4'>
         <h1 className="mb-2 mt-2 text-3xl font-bold">Restaurant / {restaurant.id}</h1>
         <Images imageAlt={restaurant.name} imageUrls={images} />
 
