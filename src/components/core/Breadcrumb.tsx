@@ -10,8 +10,8 @@ const Breadcrumb = () => {
 
     return (
         <nav className="text-sm breadcrumbs">
-            <ul className="flex items-center space-x-2  text-gray-500">
-                <li>
+            <ul className="flex items-center space-x-2  ">
+                <li className='text-muted-foreground transition-colors hover:text-foreground'>
                     <Link href="/" className="flex items-center  ">
                         <Icon icon="lucide:home" className='mr-3' /> Home
                     </Link>
@@ -22,13 +22,13 @@ const Breadcrumb = () => {
 
                         index < pathParts.length - 1 ?
 
-                            <li key={index} className="flex items-center">
+                            <li key={index} className="flex items-center text-muted-foreground transition-colors hover:text-foreground">
                                 <Link href={href} className="capitalize ">{decodeURIComponent(part)}
                                 </Link>
                                 {pathParts.length == index + 1}
                             </li>
                             :
-                            <li key={index} className="capitalize ">{decodeURIComponent(part)}</li>
+                            <li key={index} className="capitalize text-muted-foreground ">{decodeURIComponent(part)}</li>
                     );
                 })}
             </ul>

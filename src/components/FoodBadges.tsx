@@ -43,7 +43,7 @@ interface FoodStyleOptions<T> {
     options: Array<BadgeOption<T>>;
 }
 // Food options
-const foodOptions: FoodStyleOptions<FoodStylesBadges> = {
+export const foodOptions: FoodStyleOptions<FoodStylesBadges> = {
     label: '🍽️ Food styles',
     options: Object.values(foodStylesBadges).map(badge => ({
         label: badge,
@@ -51,7 +51,7 @@ const foodOptions: FoodStyleOptions<FoodStylesBadges> = {
     })),
 };
 // Good options
-const goodOptions: FoodStyleOptions<GoodBadges> = {
+export const goodOptions: FoodStyleOptions<GoodBadges> = {
     label: '💚 Good',
     options: Object.values(goodBadges).map(badge => ({
         label: badge,
@@ -59,7 +59,7 @@ const goodOptions: FoodStyleOptions<GoodBadges> = {
     })),
 };
 // Bad options
-const badOptions: FoodStyleOptions<BadBadges> = {
+export const badOptions: FoodStyleOptions<BadBadges> = {
     label: '🛑 Bad',
     options: Object.values(badBadges).map(badge => ({
         label: badge,

@@ -4,10 +4,15 @@ import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { Restaurant, RestaurantV2 } from '../../../services/types';
 
-import { Button, Input, Select, SelectOption, SelectInput, SelectInputChip, SelectMenu } from 'reablocks';
 import { createRestaurant, makeRestV2 } from '../../../services/restaurantsService';
-import { foodLabelOption } from '../../../components/FoodBadges';
+import { badOptions, foodLabelOption, foodOptions, goodOptions } from '../../../components/FoodBadges';
 import { revalidatePath, revalidateTag } from 'next/cache';
+import { MultiSelect } from '@/components/Multi-Select';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { PlusIcon } from '@radix-ui/react-icons';
+import { Textarea } from '@/components/ui/textarea';
 
 export default function CreateRestaurant() {
     const [restaurant, setRestaurant] = useState<Restaurant>({
@@ -44,11 +49,13 @@ export default function CreateRestaurant() {
         }));
     };
 
-    const [badgeOptions, setBadgeOptions] = useState(foodLabelOption);
-    const [selectedBadges, setSelectedBadges] = useState<string[]>();
+    // const [badgeOptions, setBadgeOptions] = useState();
+    const [selectedGoodBadges, setSelectedGoodBadges] = useState<string[]>([]);
+    const [selectedBadBadges, setSelectedBadBadges] = useState<string[]>([]);
+    const [selectedFoodOptions, setSelectedFoodOptions] = useState<string[]>([]);
 
     const handleNewBadgeChange = (newBadges: string[]) => {
-        setSelectedBadges(newBadges);
+        setSelectedGoodBadges(newBadges);
 
         setRestaurant(prevState => ({
             ...prevState,
@@ -80,62 +87,76 @@ export default function CreateRestaurant() {
                         type="text"
                         placeholder="Edets Öde & Mammas Mat"
                         value={restaurant.name}
-                        onValueChange={(value) => handleInputChange(value, 'name')}
+                        onChange={(e) => handleInputChange(e.target.value, 'name')}
 
-                        fullWidth
+
                     />
                 </div>
                 <div>
                     <label className="block text-sm font-medium mb-1" htmlFor="description">Description</label>
-                    <Input
+                    <Textarea
                         id="description"
-                        type="text"
                         placeholder="Bufférestaurang med fokus på hemlagad husmanskost...."
-                        value={restaurant.description}
-                        onValueChange={(value) => handleInputChange(value, 'description')}
 
-                        fullWidth
+                        value={restaurant.description}
+                        onChange={(e) => handleInputChange(e.target.value, 'description')}
+
+
                     />
                 </div>
 
                 <div>
-                    <label className="block text-sm font-medium mb-1" htmlFor="type">Type</label>
-                    <Select
-                        id='type'
-                        placeholder="Select type"
-                        closeOnSelect={false}
-                        selectOnPaste
-                        selectOnKeys={['Enter', 'Space', 'Comma']}
-                        searchOptions={{
-                            threshold: 0
-                        }}
-                        value={selectedRestaurantType}
-                        onChange={handleSelectedRestaurantTypeChange}>
-                        {restaurantTypes.map(type => <SelectOption key={type} value={type}>{type}</SelectOption>)}
+                    <label className="block text-sm font-medium mb-1" htmlFor="type">Restaurant type</label>
+
+                    <Select onValueChange={(e) => handleSelectedRestaurantTypeChange(e)}>
+                        <SelectTrigger className="w-full">
+                            <SelectValue placeholder="Buffet" />
+                        </SelectTrigger>
+                        <SelectContent>
+                            {restaurantTypes.map(type => <SelectItem key={type} value={type}>{type}</SelectItem>)}
+
+                        </SelectContent>
                     </Select>
+
                 </div>
                 <div>
+                    <label className="block text-sm font-medium mb-1" htmlFor="badges">Good Badges</label>
+                    <MultiSelect
+                        options={goodOptions.options}
+                        onValueChange={setSelectedGoodBadges}
+                        defaultValue={selectedGoodBadges}
+                        placeholder="Select good things"
+                        variant="inverted"
+                        animation={2}
+                        maxCount={3}
+                    />
 
-                    <label className="block text-sm font-medium mb-1" htmlFor="badges">Badges</label>
-                    <Select
-                        // Does not know how to make it creatable atm...
-                        // TODO: make creatable, add color for groups of chips. Placeholder does not work
-                        id='badges'
-                        multiple
-                        placeholder="Add some categories or pick existing one..."
-                        closeOnSelect={false}
-                        selectOnPaste
-                        selectOnKeys={['Enter', 'Space', 'Comma']}
-                        searchOptions={{
-                            threshold: 0
-                        }}
-                        // input={<SelectInput chip={<SelectInputChip className='bg-gray-800' />} />}
-                        value={selectedBadges}
-                        onChange={handleNewBadgeChange}
-                    >
+                </div>
+                <div>
+                    <label className="block text-sm font-medium mb-1" htmlFor="badges">Bad Badges</label>
+                    <MultiSelect
+                        options={badOptions.options}
+                        onValueChange={setSelectedBadBadges}
+                        defaultValue={selectedBadBadges}
+                        placeholder="Select bad things"
+                        variant="inverted"
+                        animation={2}
+                        maxCount={3}
+                    />
 
-                        {badgeOptions.map(group => group.options.map(opt => <SelectOption key={opt.value} group={group.label} value={opt.value}>{opt.label}</SelectOption>))}
-                    </Select>
+                </div>
+                <div>
+                    <label className="block text-sm font-medium mb-1" htmlFor="badges">Food Types</label>
+                    <MultiSelect
+                        options={foodOptions.options}
+                        onValueChange={setSelectedFoodOptions}
+                        defaultValue={selectedFoodOptions}
+                        placeholder="Select food options"
+                        variant="inverted"
+                        animation={2}
+                        maxCount={3}
+                    />
+
                 </div>
                 <div>
                     <label className="block text-sm font-medium mb-1" htmlFor="address">Address</label>
@@ -144,39 +165,43 @@ export default function CreateRestaurant() {
                         type="text"
                         placeholder="Solvägen 12, 123 45 Edet"
                         value={restaurant.address}
-                        onValueChange={(value) => handleInputChange(value, 'address')}
+                        onChange={(e) => handleInputChange(e.target.value, 'address')}
+                    // onChange={}
 
-                        fullWidth
                     />
                 </div>
-                <div>
-                    <label className="block text-sm font-medium mb-1" htmlFor="price">Price</label>
-                    <Input
-                        id="price"
-                        type="number"
-                        placeholder="Price"
-                        value={restaurant.price.toString()}
-                        onValueChange={(value) => handleInputChange(value, 'price')}
+                <div className="grid grid-cols-2 gap-4">
 
-                        fullWidth
-                        step="0.01"
-                        min="0"
-                    />
-                </div>
-                <div>
-                    <label className="block text-sm font-medium mb-1" htmlFor="rating">Rating</label>
-                    <Input
-                        id="rating"
-                        type="number"
-                        placeholder="4.3"
-                        value={restaurant.rating.toString()}
-                        onValueChange={(value) => handleInputChange(value, 'rating')}
 
-                        fullWidth
-                        step="0.1"
-                        min="0"
-                        max="5"
-                    />
+                    <div>
+                        <label className="block text-sm font-medium mb-1" htmlFor="price">Price</label>
+                        <Input
+                            id="price"
+                            type="number"
+                            placeholder="Price"
+                            value={restaurant.price.toString()}
+                            onChange={(e) => handleInputChange(e.target.value, 'price')}
+
+
+                            step="0.01"
+                            min="0"
+                        />
+                    </div>
+                    <div>
+                        <label className="block text-sm font-medium mb-1" htmlFor="rating">Rating</label>
+                        <Input
+                            id="rating"
+                            type="number"
+                            placeholder="4.3"
+                            value={restaurant.rating.toString()}
+                            onChange={(e) => handleInputChange(e.target.value, 'rating')}
+
+
+                            step="0.1"
+                            min="0"
+                            max="5"
+                        />
+                    </div>
                 </div>
 
                 <div>
@@ -186,9 +211,9 @@ export default function CreateRestaurant() {
                         type="text"
                         placeholder="http://www.edetsode.se/"
                         value={restaurant.website}
-                        onValueChange={(value) => handleInputChange(value, 'website')}
+                        onChange={(e) => handleInputChange(e.target.value, 'website')}
 
-                        fullWidth
+
                     />
                 </div>
                 <div>
@@ -198,18 +223,18 @@ export default function CreateRestaurant() {
                         type="text"
                         placeholder="url of your image"
                         value={restaurant.imageUrl}
-                        onValueChange={(value) => handleInputChange(value, 'imageUrl')}
+                        onChange={(e) => handleInputChange(e.target.value, 'imageUrl')}
 
-                        fullWidth
+
                     />
                 </div>
                 <Button
-                    variant='filled'
+                    // variant='filled'
                     type="submit"
 
 
                 >
-                    Create Restaurant
+                    <PlusIcon className="mr-2 h-4 w-4" />Create Restaurant
                 </Button>
             </form>
         </div >
