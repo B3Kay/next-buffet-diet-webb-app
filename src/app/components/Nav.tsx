@@ -17,7 +17,7 @@ import { Card } from "@/components/ui/card";
 import { LogIn, LogInIcon, LogOut, MoonIcon, SunIcon } from "lucide-react";
 
 import { useTheme } from "next-themes";
-import { HamburgerMenuIcon } from "@radix-ui/react-icons";
+import { HamburgerMenuIcon, PlusIcon } from "@radix-ui/react-icons";
 import { NavElements } from "./NavElements";
 
 
@@ -147,16 +147,23 @@ export const Nav = ({ user }: { user: AuthModel | false }) => {
                         <motion.div initial={{ opacity: 0, y: -50 }}
                             animate={{ opacity: 1, y: 0, transition: { delay: 0.1 * 3 } }}>
                             <DropdownMenu>
-                                <DropdownMenuTrigger><Avatar className="h-8 w-8  text-xs">
-                                    <AvatarImage src="" alt="@shadcn" />
-                                    <AvatarFallback>{getInitals(user.name)}</AvatarFallback>
-                                </Avatar></DropdownMenuTrigger>
+                                <DropdownMenuTrigger>
+                                    <Avatar className="h-8 w-8  text-xs">
+                                        <AvatarImage src="" alt="@shadcn" />
+                                        <AvatarFallback>{getInitals(user.name)}</AvatarFallback>
+                                    </Avatar>
+                                </DropdownMenuTrigger>
                                 <DropdownMenuContent>
                                     <DropdownMenuLabel>My Account</DropdownMenuLabel>
                                     <DropdownMenuSeparator />
                                     <DropdownMenuItem disabled>Profile</DropdownMenuItem>
+                                    <Link href="/restaurants/new" >
+                                        <DropdownMenuItem >
+                                            <PlusIcon className="mr-2 h-4 w-4"></PlusIcon>Add restaurant
+                                        </DropdownMenuItem>
+                                    </Link>
                                     <DropdownMenuSeparator />
-                                    <DropdownMenuItem><LogInIcon className="mr-2 h-4 w-4" /> Sign out</DropdownMenuItem>
+                                    <DropdownMenuItem onClick={() => signOut()}><LogInIcon className="mr-2 h-4 w-4" /> Sign out</DropdownMenuItem>
                                 </DropdownMenuContent>
                             </DropdownMenu>
 
