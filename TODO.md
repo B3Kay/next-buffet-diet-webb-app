@@ -1,6 +1,10 @@
 # TODO - List
 
-- [ ] Migrate to Reabklocks - <https://reablocks.dev/docs>
+- [ ] Migrate away from Reabklocks to Chadcn - RadixUI - <https://reablocks.dev/docs>
+  - [X] Start using Chadcn components
+  - [ ] Remove reablocks dependency
+
+- [ ] Make website accessible
 
 ## Landing page
 
