@@ -31,15 +31,25 @@ export const RestaurantRating = ({ rating, roundedRating, id }: RestaurantRating
     </div>;
 }
 
+export type RestaurantCardProps = {
+    imageUrl: string;
+    name: string;
+    address: string;
+    description: string;
+    price: number;
+    rating: number;
+    id: string;
+    className?: string;
+}
 
-export function RestaurantCard(restaurant: Restaurant) {
+export function RestaurantCard(restaurant: RestaurantCardProps) {
 
     const rating = restaurant?.rating ?? 0
     const roundedRating = Math.round(rating);
     return (
         <Link href={`/restaurants/${restaurant.id}`} >
 
-            <div className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30">
+            <div className={"group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30" + " " + restaurant.className}>
                 {restaurant.imageUrl === '' ?
                     <div className="w-full h-48 object-cover object-center rounded-lg overflow-hidden">
                         <img src="https://images.unsplash.com/photo-1524721696987-b9527df9e512?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fGFic3RyYWN0fGVufDB8fDB8fHww"
@@ -60,7 +70,6 @@ export function RestaurantCard(restaurant: Restaurant) {
                         -&gt;
                     </span>
                 </h2>
-                {/* {restaurant.foodBadges?.map(badge => <span>{badge}</span>)} */}
 
 
                 <p className="m-0 max-w-[30ch] text-sm opacity-50 line-clamp-3">

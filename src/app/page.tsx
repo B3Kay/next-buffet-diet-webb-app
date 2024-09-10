@@ -1,15 +1,15 @@
 
 import ClientHome from './components/ClientHome';
-import { motion } from "framer-motion";
+
 import { getUser, isUserAuthenticated } from '../actions/auth';
-import Link from 'next/link';
-import { Divider } from 'reablocks';
-import { Count } from '@/components/utils/Count/Count';
+
+import { getRestaurants } from '@/services/restaurantsService';
 
 export default async function Home() {
   const user = await getUser();
   const isAuthenticated = await isUserAuthenticated();
+  // Todo: this should be static
+  const restaurants = await getRestaurants();
 
-
-  return <ClientHome user={user} isAuthenticated={isAuthenticated} />;
+  return <ClientHome user={user} isAuthenticated={isAuthenticated} restaurants={restaurants} />;
 }

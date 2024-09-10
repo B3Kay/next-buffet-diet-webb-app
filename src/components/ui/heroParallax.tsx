@@ -1,4 +1,5 @@
 "use client";
+import { RestaurantCard, RestaurantCardProps } from "@/app/restaurants/components/RestaurantCard";
 import { useViewportDimensions } from "@/hooks/useViewportDimensions";
 import {
     MotionValue,
@@ -7,26 +8,48 @@ import {
     useSpring,
     useTransform,
 } from "framer-motion";
-import Image from "next/image";
-import Link from "next/link";
 import React, { useMemo, useState } from "react";
 
-export type HeroParallaxProps = {
-    products: {
-        title: string;
-        link: string;
-        thumbnail: string;
-    }[];
+
+export const ProductRestaurantCard = ({
+    product,
+    translate,
+}: {
+    product: RestaurantCardProps;
+    translate: MotionValue<number>;
+}) => {
+    const [isImageLoaded, setImageIsLoaded] = useState<boolean>(false);
+
+    return (
+        <motion.div
+            style={{
+                x: translate,
+            }}
+            whileHover={{
+                y: -20,
+                boxShadow: "0px 20px 20px 10px rgba(0,0,0,0.2)",
+            }}
+            key={product.id}
+            className="group/product relative h-[400px] w-[300px] flex-shrink-0"
+        >
+            <RestaurantCard {...product} />
+        </motion.div>
+    );
+};
+
+export type HeroRestaurantParallaxProps = {
+    products: RestaurantCardProps[];
     children: React.ReactNode;
     className?: string;
 };
 
-export const HeroParallax = ({
+export const HeroRestaurantParallax = ({
     products,
     children,
     className,
-}: HeroParallaxProps) => {
+}: HeroRestaurantParallaxProps) => {
     const { width, height } = useViewportDimensions();
+
 
     const firstRow = products.slice(0, 10);
     const secondRow = products.slice(10, 20);
@@ -92,81 +115,24 @@ export const HeroParallax = ({
                 >
                     <motion.div className="mb-3 flex flex-row-reverse space-x-3 space-x-reverse ">
                         {firstRow.map((product) => (
-                            <ProductCard
-                                product={product}
-                                translate={translateX}
-                                key={product.title}
-                            />
+
+                            <ProductRestaurantCard product={product} translate={translateX} key={product.id} />
                         ))}
                     </motion.div>
                     <motion.div className="mb-3 flex flex-row space-x-3  ">
                         {secondRow.map((product) => (
-                            <ProductCard
-                                product={product}
-                                translate={translateXReverse}
-                                key={product.title}
-                            />
+
+                            <ProductRestaurantCard product={product} translate={translateXReverse} key={product.id} />
                         ))}
                     </motion.div>
                     <motion.div className="flex flex-row-reverse space-x-3 space-x-reverse">
                         {thirdRow.map((product) => (
-                            <ProductCard
-                                product={product}
-                                translate={translateX}
-                                key={product.title}
-                            />
+
+                            <ProductRestaurantCard product={product} translate={translateX} key={product.id} />
                         ))}
                     </motion.div>
                 </motion.div>
             </div>
-        </div>
-    );
-};
-
-export const ProductCard = ({
-    product,
-    translate,
-}: {
-    product: {
-        title: string;
-        link: string;
-        thumbnail: string;
-    };
-    translate: MotionValue<number>;
-}) => {
-    const [isImageLoaded, setImageIsLoaded] = useState<boolean>(false);
-
-    return (
-        <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: isImageLoaded ? 1 : 0 }}
-            style={{
-                x: translate,
-            }}
-            whileHover={{
-                y: -20,
-                boxShadow: "0px 20px 20px 10px rgba(0,0,0,0.2)",
-            }}
-            key={product.title}
-            className="group/product relative h-[400px] w-[300px] flex-shrink-0"
-        >
-            <Link
-                href={product.link}
-                className="block group-hover/product:shadow-2xl "
-            >
-                <Image
-                    src={product.thumbnail}
-                    height="400"
-                    width="300"
-                    className="absolute inset-0 object-cover object-left-top md:h-full md:w-full"
-                    alt={product.title}
-                    // onLoadingComplete={() => setImageIsLoaded(true)}
-                    onLoad={(_) => setImageIsLoaded(true)}
-                    // onLoad={}
-                    priority
-                />
-            </Link>
-            <div className="pointer-events-none absolute inset-0 h-full w-full bg-black opacity-0 transition-opacity group-hover/product:opacity-30"></div>
-        </motion.div>
+        </div >
     );
 };
