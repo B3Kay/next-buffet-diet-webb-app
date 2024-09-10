@@ -88,8 +88,16 @@ export async function getRestaurant(restaurantId: string): Promise<Restaurant | 
 
 
 export async function createRestaurant(restaurant: RestaurantV2) {
-    const collection = db.collection<RestaurantV2>('restaurants');
+    try {
+        const collection = db.collection<RestaurantV2>('restaurants');
 
-    await collection.create<RestaurantV2>(restaurant);
+        const resp = await collection.create<RestaurantV2>(restaurant);
+        return resp;
+    } catch (error) {
+        // Todo: Handle error better
+        console.log('Error creating restaurant:', error);
+
+        return error;
+    }
 
 }

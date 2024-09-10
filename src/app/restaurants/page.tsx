@@ -1,18 +1,12 @@
 
 import { getRestaurants } from '../../services/restaurantsService';
-import { NavigationButton } from './components/NavigationButton';
 import { isUserAuthenticated } from '../../actions/auth';
-import { revalidatePath } from 'next/cache';
 import { RestaurantCard } from './components/RestaurantCard';
-import { Input } from 'reablocks';
 import { RestaurantSearchSection } from './components/RestaurantSearchSection';
-
 
 export default async function RestaurantsPage() {
     const restaurants = await getRestaurants();
-
     const isAuthenticated = await isUserAuthenticated();
-
 
     return (
         <div className=" flex flex-col items-center justify-center pb-24">
@@ -27,7 +21,6 @@ export default async function RestaurantsPage() {
                         />
                     ))}
                 </div>
-
 
             </div>
         </div>

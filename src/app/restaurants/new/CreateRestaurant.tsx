@@ -13,9 +13,11 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { PlusIcon } from '@radix-ui/react-icons';
 import { Textarea } from '@/components/ui/textarea';
+import createRestaurantAction from '@/actions/restaurant';
 
 export default function CreateRestaurant() {
-    const [restaurant, setRestaurant] = useState<Restaurant>({
+    // Todo: Merge good bad and type badges later
+    const [restaurant, setRestaurant] = useState<Restaurant & { goodBadges: string[], badBadges: string[] }>({
         id: '',
         name: '',
         description: '',
@@ -26,6 +28,8 @@ export default function CreateRestaurant() {
         website: '',
         imageUrl: '',
         foodBadges: [],
+        goodBadges: [],
+        badBadges: [],
     });
 
     const router = useRouter();
@@ -33,12 +37,15 @@ export default function CreateRestaurant() {
     const create = async (e: React.FormEvent) => {
         e.preventDefault();
 
-        console.log("restaurant:", restaurant);
-        const restV2 = makeRestV2(restaurant)
-        const collection = await createRestaurant(restV2);
+        // console.log("restaurant:", restaurant);
+        // Todo: This should be moved to server action with validation
+        // Todo: Should check if restaurant already exists! Then add error message
+        const restV2 = makeRestV2({ ...restaurant, foodBadges: [...restaurant.badBadges, ...restaurant.goodBadges, ...restaurant.foodBadges] });
+        const collection = await createRestaurantAction(restV2);
+        console.log(collection)
 
-
-        revalidatePath('/restaurants');
+        // Todo: Revalidation can only be done on server side, eg: Action
+        // revalidatePath('/restaurants');
         router.push('/restaurants');
     };
 
@@ -54,12 +61,28 @@ export default function CreateRestaurant() {
     const [selectedBadBadges, setSelectedBadBadges] = useState<string[]>([]);
     const [selectedFoodOptions, setSelectedFoodOptions] = useState<string[]>([]);
 
-    const handleNewBadgeChange = (newBadges: string[]) => {
-        setSelectedGoodBadges(newBadges);
+    const handleNewGoodBadgeChange = (goodBadges: string[]) => {
+        setSelectedGoodBadges(goodBadges);
 
         setRestaurant(prevState => ({
             ...prevState,
-            foodBadges: newBadges
+            goodBadges: goodBadges
+        }));
+    };
+    const handleNewBadBadgeChange = (badBadges: string[]) => {
+        setSelectedBadBadges(badBadges);
+
+        setRestaurant(prevState => ({
+            ...prevState,
+            badbadges: badBadges
+        }));
+    };
+    const handleNewFoodBadgeChange = (foodBadges: string[]) => {
+        setSelectedFoodOptions(foodBadges);
+
+        setRestaurant(prevState => ({
+            ...prevState,
+            foodBadges: foodBadges
         }));
     };
 
@@ -123,7 +146,7 @@ export default function CreateRestaurant() {
                     <label className="block text-sm font-medium mb-1" htmlFor="badges">Good Badges</label>
                     <MultiSelect
                         options={goodOptions.options}
-                        onValueChange={setSelectedGoodBadges}
+                        onValueChange={handleNewGoodBadgeChange}
                         defaultValue={selectedGoodBadges}
                         placeholder="Select good things"
                         variant="inverted"
@@ -136,7 +159,7 @@ export default function CreateRestaurant() {
                     <label className="block text-sm font-medium mb-1" htmlFor="badges">Bad Badges</label>
                     <MultiSelect
                         options={badOptions.options}
-                        onValueChange={setSelectedBadBadges}
+                        onValueChange={handleNewBadBadgeChange}
                         defaultValue={selectedBadBadges}
                         placeholder="Select bad things"
                         variant="inverted"
@@ -149,7 +172,7 @@ export default function CreateRestaurant() {
                     <label className="block text-sm font-medium mb-1" htmlFor="badges">Food Types</label>
                     <MultiSelect
                         options={foodOptions.options}
-                        onValueChange={setSelectedFoodOptions}
+                        onValueChange={handleNewFoodBadgeChange}
                         defaultValue={selectedFoodOptions}
                         placeholder="Select food options"
                         variant="inverted"
