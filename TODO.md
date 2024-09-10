@@ -5,6 +5,7 @@
 ## Landing page
 
 - [ ] Landing page
+  - [x] hero section
 
 ## CRUD Restaurants
 
@@ -23,7 +24,7 @@
   - [X] Store session
   - [x] Error handling login/signup
   - [x] Logout Button
-  - [ ] Add navbar with logout button.
+  - [X] Add navbar with logout button.
   - [X] Add welcome page
   - [ ] Welcome page, with text saying you can get full access once the app is ready
   - [ ] Restrict access to CUD
