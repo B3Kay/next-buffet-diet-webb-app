@@ -14,7 +14,7 @@ import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTr
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuShortcut, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Separator } from "@/components/ui/separator";
 import { Card } from "@/components/ui/card";
-import { LogIn, LogInIcon, LogOut, MoonIcon, SunIcon } from "lucide-react";
+import { HandPlatterIcon, LogIn, LogInIcon, LogOut, MoonIcon, SunIcon } from "lucide-react";
 
 import { useTheme } from "next-themes";
 import { HamburgerMenuIcon, PlusIcon } from "@radix-ui/react-icons";
@@ -57,8 +57,11 @@ export const Nav = ({ user }: { user: AuthModel | false }) => {
 
                 <div className="">
                     <Link href="/">
-                        <span className="sr-only">reablocks</span>
-                        Buffet Diet
+                        <span className="sr-only">The Buffet Diet</span>
+                        <div className="relative z-20 flex items-center text-lg font-medium">
+                            <HandPlatterIcon className="mr-2 h-5 w-5" />
+                            The Buffet Diet
+                        </div>
                     </Link>
                 </div>
 

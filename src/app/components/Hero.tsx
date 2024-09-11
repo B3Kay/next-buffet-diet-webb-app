@@ -10,14 +10,6 @@ export const Hero = ({ className }: { className?: string }) => (
         <section className={`container mt-32 h-full flex-1 px-4 md:px-24`}>
             <div className="relative z-10 flex flex-col gap-4 py-12">
                 <div className="relative flex flex-1 flex-col gap-4">
-                    {/* <div className="absolute -top-10 flex gap-2">
-                        <a href="https://npm.im/reablocks" target="_blank">
-                            <img
-                                alt="Reablocks npm tag"
-                                src="https://img.shields.io/npm/v/reablocks?style=social"
-                            />
-                        </a>
-                    </div> */}
                     <motion.h1
                         initial={{ opacity: 0, scale: 0.5 }}
                         animate={{ opacity: 1, scale: 1 }}
