@@ -27,10 +27,9 @@ export const ProductRestaurantCard = ({
             }}
             whileHover={{
                 y: -20,
-                boxShadow: "0px 20px 20px 10px rgba(0,0,0,0.2)",
             }}
             key={product.id}
-            className="group/product relative h-[400px] w-[300px] flex-shrink-0"
+            className="group/product relative  w-[300px] flex-shrink-0 opacity-70 hover:opacity-100 "
         >
             <RestaurantCard {...product} />
         </motion.div>

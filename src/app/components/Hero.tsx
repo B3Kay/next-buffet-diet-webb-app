@@ -74,7 +74,7 @@ export const Hero = ({ className }: { className?: string }) => (
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
                     >
-                        Reviews
+                        Total Reviews
                     </motion.h2>
                 </div>
 
@@ -101,7 +101,7 @@ export const Hero = ({ className }: { className?: string }) => (
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
                     >
-                        Kinds
+                        Countries
                     </motion.h2>
                 </div>
             </div>

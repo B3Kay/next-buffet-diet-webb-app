@@ -8,7 +8,7 @@ import { getRestaurants } from '@/services/restaurantsService';
 export default async function Home() {
   const user = await getUser();
   const isAuthenticated = await isUserAuthenticated();
-  // Todo: this should be static
+  // Todo: this should be static - Should be maximum 20 restaurants.
   const restaurants = await getRestaurants();
 
   return <ClientHome user={user} isAuthenticated={isAuthenticated} restaurants={restaurants} />;
