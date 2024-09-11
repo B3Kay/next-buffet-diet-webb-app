@@ -5,6 +5,8 @@
   - [ ] Remove reablocks dependency
 
 - [ ] Make website accessible
+- [ ] Make readme.md prettier and better
+- [ ] Deploy to Next.js fullstack app and Pocketbase database
 
 ## Landing page
 
