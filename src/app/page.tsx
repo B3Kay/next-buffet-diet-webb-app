@@ -9,7 +9,7 @@ export default async function Home() {
   const user = await getUser();
   const isAuthenticated = await isUserAuthenticated();
   // Todo: this should be static - Should be maximum 20 restaurants.
-  const restaurants = await getRestaurants();
+  const restaurants = await getRestaurants({ sortKey: 'rating', sortOrder: 'desc', page: 1, perPage: 20 });
 
   return <ClientHome user={user} isAuthenticated={isAuthenticated} restaurants={restaurants} />;
 }

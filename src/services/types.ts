@@ -33,3 +33,5 @@ export type RestaurantV2 = {
 
 export type Restaurant = RestaurantBase & Partial<PocketbaseBase>;
 
+export type RestaurantV2Keys = keyof RestaurantV2;
+

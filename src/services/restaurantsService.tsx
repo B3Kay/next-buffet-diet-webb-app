@@ -1,4 +1,4 @@
-import { RestaurantV2, Restaurant } from "./types";
+import { RestaurantV2, Restaurant, RestaurantV2Keys } from "./types";
 
 import PocketBase from 'pocketbase';
 
@@ -60,11 +60,15 @@ export function makeRestV2(restaurant: Restaurant): RestaurantV2 {
 }
 
 // PocketBase database URL
+// TODO: this need to be set as an environment variable before deployment
 const pbUrl = 'http://127.0.0.1:8090';
 const db = new PocketBase(pbUrl);
 
-export async function getRestaurants(): Promise<Restaurant[]> {
-    const data = await db.collection('restaurants').getList<RestaurantV2>(1, 30, { sort: '-created' });
+export async function getRestaurants({ page = 1, perPage = 30, sortKey = 'created', sortOrder = 'asc' }: { page?: number, perPage?: number, sortKey?: RestaurantV2Keys, sortOrder?: 'asc' | 'desc' } = {}): Promise<Restaurant[]> {
+
+    const order = sortOrder === 'desc' ? '-' : '+';
+
+    const data = await db.collection('restaurants').getList<RestaurantV2>(page, perPage, { sort: order + sortKey });
     const restaurants = data.items.map((restV2) => makeRestaurantFromV2(restV2))
     return restaurants;
 
