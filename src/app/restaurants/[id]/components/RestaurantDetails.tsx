@@ -7,8 +7,7 @@ import { Restaurant } from "../../../../services/types";
 import { RestaurantRating } from "../../components/RestaurantCard";
 
 export const RestaurantDetails = ({ restaurant, images, foodStyleBadges, goodBadges, badBadges }: { restaurant: Restaurant; images: string[]; foodStyleBadges: string[]; goodBadges: string[]; badBadges: string[]; }) => {
-    return <div className='w-full px-4'>
-        <h1 className="mb-2 mt-2 text-3xl font-bold">Restaurant / {restaurant.id}</h1>
+    return <div className='w-full px-4 mt-4'>
         <Images imageAlt={restaurant.name} imageUrls={images} />
 
         <h1 className='mb-1 mt-5 text-3xl font-bold'>{restaurant.name}</h1>
@@ -22,10 +21,10 @@ export const RestaurantDetails = ({ restaurant, images, foodStyleBadges, goodBad
                 <RestaurantRating rating={restaurant.rating!!} roundedRating={Math.round(restaurant.rating!!)} id={restaurant.id!!} />
 
             </div>
-            <div className="divider divider-horizontal" />
-            <div>
-                <p>7</p>
-                <a className="link">Reviews</a>
+            <div className="divider divider-horizontal pointer-events-none" />
+            <div className="text-secondary-foreground/30">
+                <p>X</p>
+                <a className="">Reviews</a>
             </div>
 
         </Card>
