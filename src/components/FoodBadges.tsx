@@ -1,5 +1,5 @@
 // Define constants for food style badges
-const foodStylesBadges = {
+export const foodStylesBadges = {
     ASIAN: '🍜 Asian',
     PIZZA: '🍕 Pizza',
     HAMBURGER: '🍔 Hamburger',
@@ -11,9 +11,9 @@ const foodStylesBadges = {
     ARABIC: '🥙 Arabic',
     INDIAN: '🍛 Indian',
 } as const;
-type FoodStylesBadges = (typeof foodStylesBadges)[keyof typeof foodStylesBadges];
+export type FoodStylesBadges = (typeof foodStylesBadges)[keyof typeof foodStylesBadges];
 // Define constants for good badges
-const goodBadges = {
+export const goodBadges = {
     LEAN_PROTEIN: '💪 Lean protein',
     MEAT_VARIATION: '🍖 Meat variation',
     HIGH_MEAT_QUALITY: '🥩 High meat quality',
@@ -24,15 +24,15 @@ const goodBadges = {
     LOW_FAT_OPTIONS: '🏃 Low fat options',
     ANIMAL_BASED_FATS: '🐄 Animal based fats',
 } as const;
-type GoodBadges = (typeof goodBadges)[keyof typeof goodBadges];
+export type GoodBadges = (typeof goodBadges)[keyof typeof goodBadges];
 // Define constants for bad badges
-const badBadges = {
+export const badBadges = {
     MEATS_HIDDEN: '🙈 Meats are hidden',
     VEGAN_ONLY: '🥦 Vegan only',
     COOKS_IN_SEED_OILS: '🌻 Cooks in seed oils',
     MOSTLY_GRAIN_BASED: '🌾 Mostly grain based',
 } as const;
-type BadBadges = (typeof badBadges)[keyof typeof badBadges];
+export type BadBadges = (typeof badBadges)[keyof typeof badBadges];
 // Interfaces
 interface BadgeOption<T> {
     value: T;
