@@ -172,14 +172,14 @@ export const Nav = ({ user }: { user: AuthModel | false }) => {
 
                         </motion.div>
                     </div> :
-                        <AnimatedButton
-                            variant="outline"
-                            initial={{ opacity: 0, y: -50 }}
-                            animate={{ opacity: 1, y: 0, transition: { delay: 0.1 * 3 } }}>
-                            <Link href="/authentication" passHref legacyBehavior>
+                        <Link href="/authentication" passHref legacyBehavior>
+                            <AnimatedButton
+                                variant="outline"
+                                initial={{ opacity: 0, y: -50 }}
+                                animate={{ opacity: 1, y: 0, transition: { delay: 0.1 * 3 } }}>
                                 Login
-                            </Link>
-                        </AnimatedButton>
+                            </AnimatedButton>
+                        </Link>
                     }
 
                     <Menu open={openProfile} onClose={() => setProfileOpen(false)} reference={buttonRef}>
