@@ -1,5 +1,7 @@
 import { Restaurant } from "@/services/types";
 import { formatCurrency } from "@/utils/formatCurrency";
+import { StarFilledIcon, StarIcon } from "@radix-ui/react-icons";
+import { StarHalfIcon } from "lucide-react";
 import Link from "next/link";
 
 
@@ -10,23 +12,23 @@ interface RestaurantRating {
 }
 
 export const RestaurantRating = ({ rating, roundedRating, id }: RestaurantRating) => {
-    return <div className=' flex items-baseline gap-2'>
+    const fullStars = Math.floor(rating);
+    const hasHalfStar = (rating % 1) >= 0.5;
+    const emptyStars = 5 - Math.ceil(rating);
+
+
+    return <div className=' flex gap-2'>
         <p className='m-0 max-w-[30ch] text-2xl font-black '>
             {rating}
         </p>
-        <div className="rating">
-            {[...Array(5)].map((_, index) => {
-                const isChecked = (index + 1) === roundedRating;
-                return (
-                    <input
-                        key={`${index}_${id}`}
-                        type="radio"
-                        name={`rating_${index}_${id}`}
-                        className="mask mask-star bg-red-400"
-                        checked={isChecked}
-                        readOnly />
-                );
-            })}
+        <div className="flex items-center">
+            {[...Array(fullStars)].map((_, index) => (
+                <StarFilledIcon key={`${index}_${id}`} className="w-6 h-6 text-red-500" />
+            ))}
+            {hasHalfStar ? <StarHalfIcon key={`half_star_${id}`} className="w-6 h-6 text-red-500" /> : <StarIcon key={`${id}`} className="w-6 h-6 text-primary/30" />}
+            {[...Array(emptyStars)].map((_, index) => (
+                <StarIcon key={`${index}_${id}`} className="w-6 h-6 text-primary/30" />
+            ))}
         </div>
     </div>;
 }
