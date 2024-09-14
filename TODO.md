@@ -4,6 +4,8 @@
   - [X] Start using Chadcn components
   - [ ] Remove reablocks dependency
 
+- [ ] add search to restaurants page
+- [ ] let user like restaurants
 - [ ] Make website accessible
 - [ ] Make readme.md prettier and better
 - [ ] Deploy to Next.js fullstack app and Pocketbase database
