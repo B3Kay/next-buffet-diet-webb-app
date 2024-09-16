@@ -10,6 +10,12 @@
 - [ ] Make readme.md prettier and better
 - [ ] Deploy to Next.js fullstack app and Pocketbase database
 
+## Social Media
+
+- [ ] Open instagram account
+  - [ ] Make 1 post
+- [ ] 1 Linkedin post
+
 ## Landing page
 
 - [ ] Landing page
