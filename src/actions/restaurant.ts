@@ -15,6 +15,7 @@ export default async function createRestaurantAction(restaurantV2: RestaurantV2)
     if (resp instanceof Error) {
         return resp;
     }
+
     revalidatePath('/restaurants')
     return resp;
 }

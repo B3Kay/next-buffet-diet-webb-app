@@ -5,15 +5,48 @@ import { Button } from "@/components/ui/button"
 import { PlusIcon } from '@radix-ui/react-icons'
 import { useEffect, useState } from "react"
 
-import { Dialog, DialogContent, DialogOverlay, DialogPortal, DialogTrigger } from "@/components/ui/dialog"
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogOverlay, DialogPortal, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
+import { useRouter } from "next/navigation"
+import { Controller, Form, useForm } from "react-hook-form"
+import * as VisuallyHidden from '@radix-ui/react-visually-hidden';
 
+interface GeolocationCoords {
+    latitude: number;
+    longitude: number;
+}
+
+function getGeolocation(): Promise<GeolocationCoords> {
+    return new Promise((resolve, reject) => {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+                (position) => {
+                    const { latitude, longitude } = position.coords;
+                    resolve({ latitude, longitude });
+                },
+                (_) => {
+                    reject(new Error('Failed to get geolocation'));
+                }
+            );
+        } else {
+            reject(new Error('Geolocation is not supported by this browser.'));
+        }
+    });
+}
 
 
 var a = 0
 export const RestaurantSearchSection = ({ isAuthenticated }: { isAuthenticated: boolean }) => {
+    const { control, handleSubmit, reset } = useForm({
+        defaultValues: {
+            search: ''
+        }
+    });
+
     const [open, setOpen] = useState(false)
     const [search, setSearch] = useState('')
-    const [distance, setDistance] = useState(0)
+    // const [distance, setDistance] = useState(0)
+    const router = useRouter()
+
     useEffect(() => {
         const down = (e: KeyboardEvent) => {
             if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
@@ -26,6 +59,28 @@ export const RestaurantSearchSection = ({ isAuthenticated }: { isAuthenticated: 
     }, [])
 
     console.log(search + a++)
+
+    const onSubmit = async (formValues: { search: string }) => {
+        console.log(formValues);
+        const encodedSearch = encodeURIComponent(formValues.search);
+
+
+        const params = new URLSearchParams(window.location.search);
+        params.set('search', encodedSearch);
+
+        try {
+            const { latitude, longitude } = await getGeolocation();
+            params.set('latitude', latitude.toString());
+            params.set('longitude', longitude.toString());
+        } catch (error) {
+            console.error('Failed to get geolocation:', error);
+        }
+
+        const newUrl = `/restaurants?${params.toString()}`;
+        router.push(newUrl);
+
+        setOpen(false);
+    }
     return <>
 
         <header className="flex sm:items-center justify-between flex-col sm:flex-row mb-8 mx-5 gap-3">
@@ -43,17 +98,31 @@ export const RestaurantSearchSection = ({ isAuthenticated }: { isAuthenticated: 
             <Dialog open={open} onOpenChange={setOpen}>
                 <DialogPortal   >
                     <DialogOverlay />
-                    <DialogContent>
-                        <form
-                            onSubmit={(event) => {
-                                setOpen(false);
-                                event.preventDefault();
-
-                            }}
-                        >
-                            {/* Add search icon to input */}
-                            <Input className="w-full h-12" placeholder="Search a buffet near you..." />
-                            {/* <button type="submit">Submit</button> */}
+                    <DialogContent >
+                        <VisuallyHidden.Root asChild>
+                            <DialogHeader>
+                                <DialogTitle>Are you absolutely sure?</DialogTitle>
+                                <DialogDescription>
+                                    This action cannot be undone. This will permanently delete your account
+                                    and remove your data from our servers.
+                                </DialogDescription>
+                            </DialogHeader>
+                        </VisuallyHidden.Root >
+                        <form onSubmit={handleSubmit(onSubmit)}>
+                            <Controller
+                                name="search"
+                                control={control}
+                                render={({ field }) => (
+                                    <Input
+                                        {...field}
+                                        className="w-full h-12"
+                                        placeholder="Search a buffet near you..."
+                                    />
+                                )}
+                            />
+                            {/* <Button type="submit" className="mt-4">
+                                Search
+                            </Button> */}
                         </form>
                     </DialogContent>
                 </DialogPortal>
