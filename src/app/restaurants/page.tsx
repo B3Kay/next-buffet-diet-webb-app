@@ -4,6 +4,8 @@ import { isUserAuthenticated } from '../../actions/auth';
 import { RestaurantCard } from './components/RestaurantCard';
 import { RestaurantSearchSection } from './components/RestaurantSearchSection';
 
+
+
 export default async function RestaurantsPage() {
     const restaurants = await getRestaurants({});
     const isAuthenticated = await isUserAuthenticated();
