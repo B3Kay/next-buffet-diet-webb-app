@@ -36,11 +36,11 @@ export default function ClientHome({ user, isAuthenticated, restaurants }: { use
                         <div className="flex flex-col justify-center space-y-4">
                             <div className="space-y-2">
                                 <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none">
-                                    Find your favourite buffet
+                                    Find your favorite buffet
                                 </h1>
                                 <div className='flex flex-wrap gap-2'>
-                                    <Badge><StarIcon className='mr-2 h-4 w-4' />Higest Ratings</Badge>
-                                    <Badge><MapPinCheckIcon className='mr-2 h-4 w-4' />Your Countrys</Badge>
+                                    <Badge><StarIcon className='mr-2 h-4 w-4' />Highest Ratings</Badge>
+                                    <Badge><MapPinCheckIcon className='mr-2 h-4 w-4' />Your Country</Badge>
                                     <Badge><HandPlatterIcon className='mr-2 h-4 w-4' />The Best Buffets</Badge>
                                 </div>
                                 <p className="max-w-[600px] text-muted-foreground md:text-xl">
@@ -76,7 +76,7 @@ export default function ClientHome({ user, isAuthenticated, restaurants }: { use
                                     <Badge>{goodBadges.VEGAN_FRIENDLY}</Badge>
                                 </div>
                                 <p className="max-w-[600px] text-muted-foreground md:text-xl">
-                                    Every buffet is reviewed by our experts and users to ensure it fits your diet or Macros.
+                                    Every buffet is reviewed by our experts and community to ensure it fits your diet or Macros.
                                     That you get the best food qualities, avoid seed oils or whatever your macronutrial needs are.
                                 </p>
                             </div>
