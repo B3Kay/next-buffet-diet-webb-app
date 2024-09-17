@@ -27,6 +27,8 @@ export default function CreateRestaurant() {
         type: '',
         website: '',
         imageUrl: '',
+        longitude: 0,
+        latitude: 0,
         foodBadges: [],
         goodBadges: [],
         badBadges: [],

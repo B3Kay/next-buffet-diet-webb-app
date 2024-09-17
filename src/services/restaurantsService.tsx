@@ -21,6 +21,8 @@ export function makeRestaurantFromV2(restaurantV2: RestaurantV2): Restaurant {
         rating: restaurantV2.rating,
         website: restaurantV2.website,
         imageUrl: restaurantV2.imageUrl,
+        longitude: restaurantV2.longitude,
+        latitude: restaurantV2.latitude,
         foodBadges: foodBadges,
         // 
         collectionId: restaurantV2.collectionId,
@@ -51,6 +53,8 @@ export function makeRestV2(restaurant: Restaurant): RestaurantV2 {
         website: restaurant.website || '',
         imageUrl: restaurant.imageUrl || '',
         foodBadges: foodBadgesV2 || '',
+        longitude: restaurant.longitude || 0,
+        latitude: restaurant.latitude || 0,
         // 
         collectionId: restaurant.collectionId || '',
         collectionName: restaurant.collectionName || '',

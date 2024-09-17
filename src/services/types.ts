@@ -15,6 +15,8 @@ interface RestaurantBase {
     rating: number;
     website: string;
     imageUrl: string;
+    longitude: number;
+    latitude: number;
     foodBadges: Array<string>;
 }
 
@@ -29,6 +31,8 @@ export type RestaurantV2 = {
     website: string;
     imageUrl: string;
     foodBadges: string;
+    longitude: number;
+    latitude: number;
 } & Partial<PocketbaseBase>;
 
 export type Restaurant = RestaurantBase & Partial<PocketbaseBase>;
