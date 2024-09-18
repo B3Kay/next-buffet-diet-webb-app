@@ -1,18 +1,22 @@
 
-import { getRestaurants } from '../../services/restaurantsService';
+import { getRestaurants, getRestaurantsByProximity } from '../../services/restaurantsService';
 import { isUserAuthenticated } from '../../actions/auth';
 import { RestaurantCard } from './components/RestaurantCard';
 import { RestaurantSearchSection } from './components/RestaurantSearchSection';
+
+import { Restaurant } from '@/services/types';
+
 
 
 
 export default async function RestaurantsPage({ searchParams }: { searchParams?: { [key: string]: string } }) {
     console.log(searchParams);
     const search = searchParams?.search || '';
+    const decodedSearch = decodeURIComponent(search);
 
     let searchQuery: string | undefined;
-    if (search && search.length > 0) {
-        searchQuery = search.split(' ').map(
+    if (decodedSearch && decodedSearch.length > 0) {
+        searchQuery = decodedSearch.split(',').map(
             keyword => `name ~ "${keyword}" || address ~ "${keyword}" || type ~ "${keyword}" || foodBadges ~ "${keyword}"`
         ).join(' && ');
     }
@@ -20,7 +24,14 @@ export default async function RestaurantsPage({ searchParams }: { searchParams?:
 
     const restaurantQuery = searchQuery && searchQuery.length > 0 ? { filterQuery: searchQuery } : {};
 
-    const restaurants = await getRestaurants(restaurantQuery);
+    let restaurants: Restaurant[];
+    if (searchParams?.latitude && searchParams?.longitude) {
+        console.log('searching by proximity', Number(searchParams.latitude));
+        restaurants = await getRestaurantsByProximity({ maxDistance: 20000, latitude: Number(searchParams.latitude), longitude: Number(searchParams.longitude), searchQuery: searchQuery });
+    } else {
+        restaurants = await getRestaurants(restaurantQuery);
+    }
+    // const restaurants = await getRestaurants(restaurantQuery);
     const isAuthenticated = await isUserAuthenticated();
 
     return (

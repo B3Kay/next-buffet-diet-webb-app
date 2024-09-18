@@ -1,3 +1,4 @@
+import { haversineDistance } from "@/lib/utils";
 import { RestaurantV2, Restaurant, RestaurantV2Keys } from "./types";
 
 import PocketBase from 'pocketbase';
@@ -75,6 +76,31 @@ export async function getRestaurants({ page = 1, perPage = 30, sortKey = 'create
     const restaurants = data.items.map((restV2) => makeRestaurantFromV2(restV2))
     return restaurants;
 
+}
+
+export async function getRestaurantsByProximity({ latitude, longitude, maxDistance = 10, searchQuery = '' }: { latitude: number, longitude: number, maxDistance?: number, searchQuery?: string }) {
+    // Fetch all restaurants matching text search
+    const restaurantsV2 = await db.collection('restaurants').getFullList<RestaurantV2>(1, {
+        filter: searchQuery,
+        sort: 'created',
+        sortOrder: '-',
+    });
+
+    // Filter restaurants by proximity (if location is provided)
+    if (latitude && longitude) {
+        const nearbyRestaurants = restaurantsV2.filter((restaurant) => {
+            const distance = haversineDistance(
+                latitude,
+                longitude,
+                restaurant.latitude,
+                restaurant.longitude
+            );
+            console.log(distance)
+            return distance <= maxDistance;
+        });
+        return nearbyRestaurants.map((restV2) => makeRestaurantFromV2(restV2));
+    }
+    return restaurantsV2.map((restV2) => makeRestaurantFromV2(restV2));
 }
 
 export async function getRestaurant(restaurantId: string): Promise<Restaurant | null> {
