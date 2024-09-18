@@ -23,7 +23,8 @@ function getGeolocation(): Promise<GeolocationCoords> {
                     const { latitude, longitude } = position.coords;
                     resolve({ latitude, longitude });
                 },
-                (_) => {
+                (error) => {
+                    console.error('Failed to get geolocation:', error);
                     reject(new Error('Failed to get geolocation'));
                 }
             );
