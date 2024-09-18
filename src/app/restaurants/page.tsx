@@ -5,6 +5,7 @@ import { RestaurantCard } from './components/RestaurantCard';
 import { RestaurantSearchSection } from './components/RestaurantSearchSection';
 
 import { Restaurant } from '@/services/types';
+import { Card } from '@/components/ui/card';
 
 
 
@@ -36,7 +37,7 @@ export default async function RestaurantsPage({ searchParams }: { searchParams?:
 
     return (
         <div className="flex flex-col items-center justify-center pb-24">
-            <div className='max-w-screen-lg'>
+            <div className='max-w-screen-lg w-full'>
                 <RestaurantSearchSection isAuthenticated={isAuthenticated} />
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                     {restaurants.map((restaurant) => (
@@ -45,7 +46,14 @@ export default async function RestaurantsPage({ searchParams }: { searchParams?:
                             {...restaurant}
                         />
                     ))}
+
                 </div>
+                {restaurants.length === 0 &&
+                    <div className='justify-center items-center flex flex-col'>
+                        <p className="text-center text-muted-foreground m-12">No restaurants found</p>
+                    </div>
+
+                }
             </div>
         </div>
     );
