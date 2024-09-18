@@ -11,7 +11,6 @@ import { Card } from '@/components/ui/card';
 
 
 export default async function RestaurantsPage({ searchParams }: { searchParams?: { [key: string]: string } }) {
-    console.log(searchParams);
     const search = searchParams?.search || '';
     const decodedSearch = decodeURIComponent(search);
 
@@ -27,12 +26,13 @@ export default async function RestaurantsPage({ searchParams }: { searchParams?:
 
     let restaurants: Restaurant[];
     if (searchParams?.latitude && searchParams?.longitude) {
-        console.log('searching by proximity', Number(searchParams.latitude));
-        restaurants = await getRestaurantsByProximity({ maxDistance: 20000, latitude: Number(searchParams.latitude), longitude: Number(searchParams.longitude), searchQuery: searchQuery });
+        console.log('Searching by proximity', Number(searchParams.latitude), Number(searchParams.longitude));
+        restaurants = await getRestaurantsByProximity({ maxDistance: 100, latitude: Number(searchParams.latitude), longitude: Number(searchParams.longitude), searchQuery: searchQuery });
     } else {
+        console.log('Searching by text');
         restaurants = await getRestaurants(restaurantQuery);
     }
-    // const restaurants = await getRestaurants(restaurantQuery);
+
     const isAuthenticated = await isUserAuthenticated();
 
     return (

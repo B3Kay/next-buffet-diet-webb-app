@@ -7,7 +7,7 @@ export function cn(...inputs: ClassValue[]) {
 
 
 // Haversine formula to calculate the distance between two coordinates
-export function haversineDistance(lat1: number, lon1: number, lat2: number, lon2: number): number {
+export function getDistanceBetweenTwoCoordinates(lat1: number, lon1: number, lat2: number, lon2: number): number {
   const EarthRadiusInKm = 6371; // Radius of the Earth in km
   const dLat = (lat2 - lat1) * Math.PI / 180;
   const dLon = (lon2 - lon1) * Math.PI / 180;
@@ -17,4 +17,18 @@ export function haversineDistance(lat1: number, lon1: number, lat2: number, lon2
     Math.sin(dLon / 2) * Math.sin(dLon / 2);
   const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
   return EarthRadiusInKm * c; // Distance in km
+}
+
+export function getBoundingBox(latitude: number, longitude: number, distanceKm: number) {
+  const latDegreeDistance = distanceKm / 111; // 1 degree latitude is approx 111km
+
+  // Longitude degrees per kilometer (this depends on latitude)
+  const lngDegreeDistance = distanceKm / (111 * Math.cos(latitude * Math.PI / 180));
+
+  return {
+    minLat: latitude - latDegreeDistance,
+    maxLat: latitude + latDegreeDistance,
+    minLng: longitude - lngDegreeDistance,
+    maxLng: longitude + lngDegreeDistance
+  };
 }
