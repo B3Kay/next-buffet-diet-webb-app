@@ -5,6 +5,7 @@ interface PocketbaseBase {
     updated: string;
 }
 
+
 interface RestaurantBase {
     id: string;
     name: string;
@@ -33,7 +34,7 @@ export type RestaurantV2 = {
     foodBadges: string;
     longitude: number;
     latitude: number;
-} & Partial<PocketbaseBase>;
+} & PocketbaseBase;
 
 export type Restaurant = RestaurantBase & Partial<PocketbaseBase>;
 

@@ -5,7 +5,7 @@ import 'maplibre-gl/dist/maplibre-gl.css';
 import { useTheme } from 'next-themes';
 
 
-
+// TODO: Add user location to map
 export default async function RestaurantMap({ latitude, longitude }: { latitude: number, longitude: number }) {
     const [viewport, setViewport] = useState({
         latitude: latitude,

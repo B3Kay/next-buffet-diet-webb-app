@@ -49,6 +49,8 @@
 - [x] Show map of restaurant
 - [x] Style map
 - [ ] Move map handling to backend.
+- [ ] Add pin for current location of user on map.
+- [ ] Figure out solution for, "Open now"
 
 ### Tags
 

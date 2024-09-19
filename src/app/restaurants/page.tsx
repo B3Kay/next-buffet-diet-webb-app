@@ -41,6 +41,8 @@ export default async function RestaurantsPage({ searchParams }: { searchParams?:
                 <RestaurantSearchSection isAuthenticated={isAuthenticated} />
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                     {restaurants.map((restaurant) => (
+                        // Show "Open now on the card"
+                        // If you are searching for a restaurant you probably want to eat it now, so is it open now?
                         <RestaurantCard
                             key={restaurant.id}
                             {...restaurant}

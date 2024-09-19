@@ -25,6 +25,12 @@ The buffet diet is a website that allows you to find buffets and all you can eat
 
 ## Getting Started
 
+Install dependencies
+
+```bash
+npm install
+```
+
 ### First, run the development server
 
 ```bash
@@ -46,16 +52,16 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ./pocketbase serve 
 
-# You might have to run: sudo ./pocketbase serve 
+# You might have to run if you use Ubuntu: sudo ./pocketbase serve 
 
 #├─ REST API: http://127.0.0.1:8090/api/
 #└─ Admin UI: http://127.0.0.1:8090/_/
 ```
 
-### To setup pocketbase on your machine
+### To setup pocketbase database on your machine
 
 1. Navigate to [https://pocketbase.io/docs](Pocketbase Docs) and follow the instructions to install pocketbase on your machine.
 2. Download the executable
 3. Place executable in project root:
 ![Pocketbase executable root image example](./public/pocketBaseExecutable.png)
-4. Run the executable `sudo ./pocketbase serve` in the root folder.
+4. Run the executable `./pocketbase serve` in the root folder.
