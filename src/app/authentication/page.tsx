@@ -54,9 +54,12 @@ export default function AuthenticationPage() {
                     <div className="relative z-20 mt-auto">
                         <blockquote className="space-y-2">
                             <p className="text-lg">
-                                &ldquo;When you're on a any kind of diet, buffets can feel like a landmine of carbs and seed oils. Google wasn’t counting my macros, so I created The Buffet Diet —because avoiding carbs should be easier than avoiding your ex.&rdquo;
+                                &ldquo;One week in we let the story begin
+                                We're going out on our first date (mm-mm)
+                                But you and me are thrifty, so go all-you-can-eat
+                                Fill up your bag, and I fill up a plate (mm-mm)&rdquo;
                             </p>
-                            <footer className="text-sm">Benjamin Karlsson, Founder</footer>
+                            <footer className="text-sm">Shape of you, Ed Sheeran</footer>
                         </blockquote>
                     </div>
                 </div>
