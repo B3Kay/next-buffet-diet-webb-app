@@ -1,5 +1,5 @@
 import { getBoundingBox, getDistanceBetweenTwoCoordinates } from "@/lib/utils";
-import { RestaurantV2, Restaurant, RestaurantV2Keys } from "./types";
+import { RestaurantV2, Restaurant, RestaurantV2Keys, LikeV1, LikeBaseV1 } from "./types";
 
 import PocketBase from 'pocketbase';
 
@@ -130,6 +130,20 @@ export async function createRestaurant(restaurant: RestaurantV2) {
 
         const resp = await collection.create<RestaurantV2>(restaurant);
         return resp;
+    } catch (error) {
+        // Todo: Handle error better
+        console.log('Error creating restaurant:', error);
+
+        return error;
+    }
+
+}
+
+export async function likeRestaurant(restaurantId: string, userId: string) {
+    try {
+        const record = db.collection('likes').create<LikeBaseV1>({ restaurantId, userId });
+        return record;
+
     } catch (error) {
         // Todo: Handle error better
         console.log('Error creating restaurant:', error);

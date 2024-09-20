@@ -40,3 +40,9 @@ export type Restaurant = RestaurantBase & Partial<PocketbaseBase>;
 
 export type RestaurantV2Keys = keyof RestaurantV2;
 
+export type LikeBaseV1 = {
+    userId: string;
+    restaurantId: string;
+}
+
+export type LikeV1 = LikeBaseV1 & PocketbaseBase;
