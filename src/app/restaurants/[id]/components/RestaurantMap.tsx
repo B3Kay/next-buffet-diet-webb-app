@@ -1,4 +1,5 @@
 'use client'
+
 import { useState } from 'react';
 import Map, { Marker, NavigationControl } from 'react-map-gl/maplibre';
 import 'maplibre-gl/dist/maplibre-gl.css';
@@ -6,7 +7,7 @@ import { useTheme } from 'next-themes';
 
 
 // TODO: Add user location to map
-export default async function RestaurantMap({ latitude, longitude }: { latitude: number, longitude: number }) {
+export default function RestaurantMap({ latitude, longitude }: { latitude: number, longitude: number }) {
     const [viewport, setViewport] = useState({
         latitude: latitude,
         longitude: longitude,

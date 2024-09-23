@@ -7,6 +7,8 @@ import RestaurantMap from './components/RestaurantMap';
 import { RestaurantDetails } from './components/RestaurantDetails';
 import { notFound } from 'next/navigation';
 import { getCoordinates } from '@/components/utils/map';
+import { getUser } from '@/actions/auth';
+import { likeRestaurantAction } from '@/actions/restaurant';
 
 export const revalidate = 1
 
@@ -21,8 +23,10 @@ export const ImageGrid = ({ images: imageUrls }: { images: string[] }) => {
 }
 
 export default async function RestaurantPage({ params }: { params: { id: string } }) {
+    const user = await getUser();
 
     const restaurant = await getRestaurant(params.id);
+
 
     if (!restaurant) {
         return notFound(); // This triggers the 404 page in Next.js
@@ -40,7 +44,7 @@ export default async function RestaurantPage({ params }: { params: { id: string 
 
     return (
         <div className="">
-            <RestaurantDetails restaurant={restaurant} images={images} foodStyleBadges={foodStyleBadges} goodBadges={goodBadges} badBadges={badBadges} />
+            <RestaurantDetails user={user} restaurant={restaurant} images={images} foodStyleBadges={foodStyleBadges} goodBadges={goodBadges} badBadges={badBadges} />
             <div className='flex-1  w-full sm:hidden md:flex h-[600px]'>
                 <RestaurantMap
                     latitude={

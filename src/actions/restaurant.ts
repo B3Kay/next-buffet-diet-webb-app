@@ -4,6 +4,7 @@ import { getCoordinates } from '@/components/utils/map';
 import { createRestaurant, likeRestaurant } from '@/services/restaurantsService';
 import { RestaurantV2 } from '@/services/types';
 import { revalidatePath } from 'next/cache'
+import { ClientResponseError } from 'pocketbase';
 
 export async function createRestaurantAction(restaurantV2: RestaurantV2) {
 
@@ -12,7 +13,7 @@ export async function createRestaurantAction(restaurantV2: RestaurantV2) {
 
     const resp = await createRestaurant(restV2);
 
-    if (resp instanceof Error) {
+    if (resp instanceof ClientResponseError) {
         return resp;
     }
 
@@ -23,8 +24,9 @@ export async function createRestaurantAction(restaurantV2: RestaurantV2) {
 
 export async function likeRestaurantAction(restaurantId: string, userId: string) {
     const resp = await likeRestaurant(restaurantId, userId);
-
-    if (resp instanceof Error) {
+    console.log('likeRestaurantAction resp:', resp)
+    if (resp instanceof ClientResponseError) {
+        console.log(resp.data.message);
         return resp;
     }
 

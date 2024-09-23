@@ -2,11 +2,23 @@
 import { Images } from "@/components/Images";
 import { formatCurrency } from "@/utils/formatCurrency";
 import { Icon } from "@iconify/react/dist/iconify.js";
-import { Card } from "reablocks";
+import { Card, cn } from "reablocks";
 import { Restaurant } from "../../../../services/types";
 import { RestaurantRating } from "../../components/RestaurantCard";
+import { Button } from "@/components/ui/button";
+import { likeRestaurantAction } from "@/actions/restaurant";
+import { toggleVariants } from "@/components/ui/toggle";
+import { HeartIcon } from "lucide-react";
 
-export const RestaurantDetails = ({ restaurant, images, foodStyleBadges, goodBadges, badBadges }: { restaurant: Restaurant; images: string[]; foodStyleBadges: string[]; goodBadges: string[]; badBadges: string[]; }) => {
+export const RestaurantDetails = ({ restaurant, images, foodStyleBadges, goodBadges, badBadges, user }: { restaurant: Restaurant; images: string[]; foodStyleBadges: string[]; goodBadges: string[]; badBadges: string[], user: AuthModel }) => {
+
+    const handeLikeRestaurant = async () => {
+        console.log('like restaurant', user)
+        if (user && user.id) {
+            const resp = await likeRestaurantAction(restaurant.id, user.id);
+            console.log(resp);
+        }
+    }
     return <div className='w-full px-4 mt-4'>
         <Images imageAlt={restaurant.name} imageUrls={images} />
 
@@ -27,6 +39,12 @@ export const RestaurantDetails = ({ restaurant, images, foodStyleBadges, goodBad
                 <a className="">Reviews</a>
             </div>
 
+            {user &&
+                <button className={cn(toggleVariants({ variant: 'outline' }), 'self-end')} onClick={() => {
+                    console.log('like restaurant')
+                    handeLikeRestaurant();
+                }}><HeartIcon className="w-5 h-5" /></button>
+            }
         </Card>
 
         <div className="divider"></div>

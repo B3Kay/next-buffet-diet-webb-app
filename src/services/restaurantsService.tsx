@@ -1,7 +1,7 @@
 import { getBoundingBox, getDistanceBetweenTwoCoordinates } from "@/lib/utils";
 import { RestaurantV2, Restaurant, RestaurantV2Keys, LikeV1, LikeBaseV1 } from "./types";
 
-import PocketBase from 'pocketbase';
+import PocketBase, { ClientResponseError } from 'pocketbase';
 
 export function makeRestaurantFromV2(restaurantV2: RestaurantV2): Restaurant {
 
@@ -124,6 +124,8 @@ export async function getRestaurant(restaurantId: string): Promise<Restaurant | 
 }
 
 
+
+
 export async function createRestaurant(restaurant: RestaurantV2) {
     try {
         const collection = db.collection<RestaurantV2>('restaurants');
@@ -141,14 +143,19 @@ export async function createRestaurant(restaurant: RestaurantV2) {
 
 export async function likeRestaurant(restaurantId: string, userId: string) {
     try {
+
         const record = db.collection('likes').create<LikeBaseV1>({ restaurantId, userId });
         return record;
 
     } catch (error) {
+        if (error instanceof ClientResponseError) {
+            console.log(error.data.message);
+            return error;
+        }
         // Todo: Handle error better
         console.log('Error creating restaurant:', error);
 
-        return error;
+        // return error;
     }
 
 }
