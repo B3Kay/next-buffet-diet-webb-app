@@ -5,7 +5,8 @@ import { SignupFormSchema, LoginFormSchema } from '@/lib/definitions'
 import { redirect } from "next/navigation";
 
 import { cookies } from "next/headers";
-import db from "@/db";
+import { ReadonlyRequestCookies } from "next/dist/server/web/spec-extension/adapters/request-cookies";
+import db from "@/db/db";
 
 type User = {
     name: string
@@ -88,15 +89,15 @@ export async function login(values: FieldValues) {
     }
 
     try {
-        const res = await db.authenticate(email, password);
-        const { record, token } = res;
+        const cookieStore = cookies()
 
-        record.token = token;
-        cookies().set('pb_auth', db.client.authStore.exportToCookie());
+        await db.authenticate(email, password, cookieStore);
+
     } catch (error) {
         console.error('Authentication error:', error);
         return { error: 'Invalid email or password' };
     }
+
     redirect('/');
 }
 
@@ -121,3 +122,24 @@ export const getUser = async () => {
     return result;
 };
 
+export async function loadAuthFromCookie() {
+    const cookieStore = cookies()
+
+    const cookie = cookieStore.get('pb_auth');
+
+    if (cookie) {
+        db.client.authStore.loadFromCookie(cookie.value || '');
+    }
+
+    if (!db.client.authStore.isValid) {
+        throw new Error('User is not authenticated');
+    }
+
+    try {
+        await db.client.collection('users').authRefresh(); // Refresh session if needed
+    } catch (err) {
+        console.error("Session is invalid or expired:", err);
+        throw new Error('Session is invalid or expired');
+    }
+    console.log('CLient is authenticated')
+}

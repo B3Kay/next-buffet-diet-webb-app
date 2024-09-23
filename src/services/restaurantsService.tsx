@@ -2,6 +2,10 @@ import { getBoundingBox, getDistanceBetweenTwoCoordinates } from "@/lib/utils";
 import { RestaurantV2, Restaurant, RestaurantV2Keys, LikeV1, LikeBaseV1 } from "./types";
 
 import PocketBase, { ClientResponseError } from 'pocketbase';
+import { ReadonlyRequestCookies } from "next/dist/server/web/spec-extension/adapters/request-cookies";
+import { loadAuthFromCookie } from "@/actions/auth";
+import db from "@/db/db";
+
 
 export function makeRestaurantFromV2(restaurantV2: RestaurantV2): Restaurant {
 
@@ -64,15 +68,12 @@ export function makeRestV2(restaurant: Restaurant): RestaurantV2 {
     };
 }
 
-// PocketBase database URL
-// TODO: this need to be set as an environment variable before deployment
-const pbUrl = 'http://127.0.0.1:8090';
-const db = new PocketBase(pbUrl);
+
 
 export async function getRestaurants({ page = 1, perPage = 30, sortKey = 'created', sortOrder = 'asc', filterQuery = '' }: { page?: number, perPage?: number, sortKey?: RestaurantV2Keys, sortOrder?: 'asc' | 'desc', filterQuery?: string } = {}): Promise<Restaurant[]> {
     const order = sortOrder === 'desc' ? '+' : '-';
 
-    const data = await db.collection('restaurants').getList<RestaurantV2>(page, perPage, { sort: order + sortKey, filter: filterQuery });
+    const data = await db.client.collection('restaurants').getList<RestaurantV2>(page, perPage, { sort: order + sortKey, filter: filterQuery });
     const restaurants = data.items.map((restV2) => makeRestaurantFromV2(restV2))
     return restaurants;
 
@@ -86,7 +87,7 @@ export async function getRestaurantsByProximity({ latitude, longitude, maxDistan
     const filterQuery = `latitude >= ${minLat} && latitude <= ${maxLat} && longitude >= ${minLng} && longitude <= ${maxLng} ${searchQuery ? `&& ${searchQuery}` : ''}`;
     console.log('filterQuery:', filterQuery)
 
-    const restaurantsV2InBoundingBox = await db.collection('restaurants').getList<RestaurantV2>(page, perPage, {
+    const restaurantsV2InBoundingBox = await db.client.collection('restaurants').getList<RestaurantV2>(page, perPage, {
         filter: filterQuery,
         sort: 'created',
         sortOrder: '-',
@@ -109,7 +110,7 @@ export async function getRestaurantsByProximity({ latitude, longitude, maxDistan
 
 export async function getRestaurant(restaurantId: string): Promise<Restaurant | null> {
     try {
-        const data = await db.collection('restaurants').getOne<RestaurantV2>(restaurantId);
+        const data = await db.client.collection('restaurants').getOne<RestaurantV2>(restaurantId);
 
         if (data.name === undefined) {
             console.log('No data found');
@@ -128,7 +129,7 @@ export async function getRestaurant(restaurantId: string): Promise<Restaurant | 
 
 export async function createRestaurant(restaurant: RestaurantV2) {
     try {
-        const collection = db.collection<RestaurantV2>('restaurants');
+        const collection = db.client.collection<RestaurantV2>('restaurants');
 
         const resp = await collection.create<RestaurantV2>(restaurant);
         return resp;
@@ -142,9 +143,12 @@ export async function createRestaurant(restaurant: RestaurantV2) {
 }
 
 export async function likeRestaurant(restaurantId: string, userId: string) {
+
+    await loadAuthFromCookie();
+
     try {
 
-        const record = db.collection('likes').create<LikeBaseV1>({ restaurantId, userId });
+        const record = db.client.collection('likes').create<LikeBaseV1>({ restaurantId, userId });
         return record;
 
     } catch (error) {
@@ -157,5 +161,19 @@ export async function likeRestaurant(restaurantId: string, userId: string) {
 
         // return error;
     }
+}
 
+export async function getIsRestaurantLiked(restaurantId: string, userId: string) {
+    await loadAuthFromCookie();
+
+    console.log('getIsRestaurantLiked', restaurantId, userId)
+    const likeQuery = `userId = "${userId}" && restaurantId = "${restaurantId}"`;
+    try {
+        console.log('token:', db.client.authStore.token)
+        const data = await db.client.collection('likes').getList<LikeV1>(1, 1, { filter: likeQuery });
+        return data.totalItems > 0;
+    } catch (error) {
+        console.log('Error fetching restaurant:', error);
+        return error as ClientResponseError;
+    }
 }
