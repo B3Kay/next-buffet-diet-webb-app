@@ -1,14 +1,15 @@
 
 
 
-import { getRestaurant, makeRestaurantFromV2 } from '../../../services/restaurantsService';
+import { getIsRestaurantLiked, getRestaurant, makeRestaurantFromV2 } from '../../../services/restaurantsService';
 import { isBadBadge, isFoodStyleBadge, isGoodBadge } from '@/components/FoodBadges';
 import RestaurantMap from './components/RestaurantMap';
 import { RestaurantDetails } from './components/RestaurantDetails';
 import { notFound } from 'next/navigation';
 import { getCoordinates } from '@/components/utils/map';
 import { getUser } from '@/actions/auth';
-import { likeRestaurantAction } from '@/actions/restaurant';
+import { ClientResponseError } from 'pocketbase';
+
 
 export const revalidate = 1
 
@@ -28,6 +29,22 @@ export default async function RestaurantPage({ params }: { params: { id: string 
     const restaurant = await getRestaurant(params.id);
 
 
+    var isLiked = false;
+    console.log('Passes here')
+    // console.log(user)
+    if (user && user.id) {
+        // console.log('Check if is liked', user)
+        const resp = await getIsRestaurantLiked(params.id, user.id);
+        if (resp instanceof ClientResponseError) {
+            console.log('Error fetching restaurant:', resp);
+        } else {
+            console.log('likes', resp)
+            isLiked = resp
+        }
+    }
+
+
+
     if (!restaurant) {
         return notFound(); // This triggers the 404 page in Next.js
     }
@@ -44,7 +61,7 @@ export default async function RestaurantPage({ params }: { params: { id: string 
 
     return (
         <div className="">
-            <RestaurantDetails user={user} restaurant={restaurant} images={images} foodStyleBadges={foodStyleBadges} goodBadges={goodBadges} badBadges={badBadges} />
+            <RestaurantDetails user={user} restaurantIsLiked={isLiked} restaurant={restaurant} images={images} foodStyleBadges={foodStyleBadges} goodBadges={goodBadges} badBadges={badBadges} />
             <div className='flex-1  w-full sm:hidden md:flex h-[600px]'>
                 <RestaurantMap
                     latitude={
