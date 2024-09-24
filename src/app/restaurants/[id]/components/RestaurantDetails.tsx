@@ -6,7 +6,6 @@ import { Card, cn } from "reablocks";
 import { Restaurant } from "../../../../services/types";
 import { RestaurantRating } from "../../components/RestaurantCard";
 import { likeRestaurantAction } from "@/actions/restaurant";
-import { toggleVariants } from "@/components/ui/toggle";
 import { HeartIcon } from "lucide-react";
 import { AuthModel } from "pocketbase";
 import { Button } from "@/components/ui/button";
@@ -43,8 +42,11 @@ export const RestaurantDetails = ({ restaurant, images, foodStyleBadges, goodBad
                 <a className="">Reviews</a>
             </div>
 
-            {restaurantIsLiked && <Button variant={'default'} size={'icon'} className="ml-auto" onClick={() => handleLikeRestaurant()}><HeartIcon className="w-5 h-5" /></Button>}
-            {!restaurantIsLiked && <Button variant={'outline'} size={'icon'} className="ml-auto" onClick={() => handleLikeRestaurant()}><HeartIcon className="w-5 h-5" /></Button>}
+            {!!user && <>
+                {restaurantIsLiked && <Button variant={'default'} size={'icon'} className="ml-auto" onClick={() => handleLikeRestaurant()}><HeartIcon className="w-5 h-5" /></Button>}
+                {!restaurantIsLiked && <Button variant={'outline'} size={'icon'} className="ml-auto" onClick={() => handleLikeRestaurant()}><HeartIcon className="w-5 h-5" /></Button>}
+            </>}
+
         </Card>
 
         <div className="divider"></div>
