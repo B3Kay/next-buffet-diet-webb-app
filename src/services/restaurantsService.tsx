@@ -5,6 +5,7 @@ import PocketBase, { ClientResponseError } from 'pocketbase';
 import { ReadonlyRequestCookies } from "next/dist/server/web/spec-extension/adapters/request-cookies";
 import { loadAuthFromCookie } from "@/actions/auth";
 import db from "@/db/db";
+import { boolean } from "zod";
 
 
 export function makeRestaurantFromV2(restaurantV2: RestaurantV2): Restaurant {
@@ -147,19 +148,52 @@ export async function likeRestaurant(restaurantId: string, userId: string) {
     await loadAuthFromCookie();
 
     try {
-
-        const record = db.client.collection('likes').create<LikeBaseV1>({ restaurantId, userId });
+        const record = await db.client.collection('likes').create<LikeBaseV1>({ restaurantId, userId });
         return record;
 
     } catch (error) {
-        if (error instanceof ClientResponseError) {
-            console.log(error.data.message);
-            return error;
-        }
-        // Todo: Handle error better
-        console.log('Error creating restaurant:', error);
+        console.log('Error liking reestaurant:', error);
+        return error as ClientResponseError;
+    }
+}
 
-        // return error;
+// TODO, Refactor functions to use this error / response pattern
+type SuccessResponse<T> = {
+    isError: false;
+    data: T; // Replace `any` with the actual type of the successful response if known
+};
+
+type ErrorResponse = {
+    isError: true;
+    message: string;
+    code?: number;
+};
+
+type RemoveLikedRestaurantResponse<T> = SuccessResponse<T> | ErrorResponse;
+export async function removeLikedRestaurant(recordId: string): Promise<RemoveLikedRestaurantResponse<boolean>> {
+
+    await loadAuthFromCookie();
+
+    try {
+        const record = await db.client.collection('likes').delete(recordId);
+        return {
+            isError: false,
+            data: record,
+        };
+
+    } catch (error) {
+        if (error instanceof ClientResponseError) {
+            return {
+                isError: true,
+                message: error.message,
+                code: error.status,
+            };
+        }
+
+        return {
+            isError: true,
+            message: "An unexpected error occurred",
+        };
     }
 }
 
@@ -171,7 +205,7 @@ export async function getIsRestaurantLiked(restaurantId: string, userId: string)
     try {
         console.log('token:', db.client.authStore.token)
         const data = await db.client.collection('likes').getList<LikeV1>(1, 1, { filter: likeQuery });
-        return data.totalItems > 0;
+        return { isLiked: data.totalItems > 0, recordId: data.items[0]?.id };
     } catch (error) {
         console.log('Error fetching restaurant:', error);
         return error as ClientResponseError;

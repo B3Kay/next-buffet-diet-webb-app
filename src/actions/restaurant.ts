@@ -1,7 +1,7 @@
 'use server'
 
 import { getCoordinates } from '@/components/utils/map';
-import { createRestaurant, likeRestaurant } from '@/services/restaurantsService';
+import { createRestaurant, likeRestaurant, removeLikedRestaurant } from '@/services/restaurantsService';
 import { RestaurantV2 } from '@/services/types';
 import { revalidatePath } from 'next/cache'
 import { ClientResponseError } from 'pocketbase';
@@ -27,6 +27,17 @@ export async function likeRestaurantAction(restaurantId: string, userId: string)
     console.log('likeRestaurantAction resp:', resp)
     if (resp instanceof ClientResponseError) {
         console.log(resp.data.message);
+        return resp;
+    }
+
+    revalidatePath('/restaurants')
+    return resp;
+}
+export async function removeLikeRestaurantAction(recordId: string) {
+    const resp = await removeLikedRestaurant(recordId);
+    console.log('likeRestaurantAction resp:', resp)
+    if (resp.isError) {
+        console.log(resp.message);
         return resp;
     }
 
