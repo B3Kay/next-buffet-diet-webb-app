@@ -1,4 +1,5 @@
 interface PocketbaseBase {
+    id: string;
     collectionId: string;
     collectionName: string;
     created: string;
@@ -7,7 +8,6 @@ interface PocketbaseBase {
 
 
 interface RestaurantBase {
-    id: string;
     name: string;
     description: string;
     address: string;
@@ -22,7 +22,6 @@ interface RestaurantBase {
 }
 
 export type RestaurantV2 = {
-    id: string;
     name: string;
     description: string;
     address: string;
@@ -36,7 +35,7 @@ export type RestaurantV2 = {
     latitude: number;
 } & PocketbaseBase;
 
-export type Restaurant = RestaurantBase & Partial<PocketbaseBase>;
+export type Restaurant = RestaurantBase & PocketbaseBase;
 
 export type RestaurantV2Keys = keyof RestaurantV2;
 
