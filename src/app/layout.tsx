@@ -6,6 +6,7 @@ import Providers from "../components/Providers";
 
 import { Nav } from "./components/Nav";
 import { getUser } from "@/actions/auth";
+import { Toaster } from "@/components/ui/toaster";
 
 
 const inter = Inter({ subsets: ["latin"] });
@@ -33,6 +34,7 @@ export default async function RootLayout({
           <Nav user={user} />
           {children}
           <Footer />
+          <Toaster />
         </Providers>
       </body>
     </html>
