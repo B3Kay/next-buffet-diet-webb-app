@@ -5,18 +5,43 @@ import { Icon } from "@iconify/react/dist/iconify.js";
 import { Card, cn } from "reablocks";
 import { Restaurant } from "../../../../services/types";
 import { RestaurantRating } from "../../components/RestaurantCard";
-import { likeRestaurantAction } from "@/actions/restaurant";
+import { likeRestaurantAction, removeLikeRestaurantAction } from "@/actions/restaurant";
 import { HeartIcon } from "lucide-react";
-import { AuthModel } from "pocketbase";
+import { AuthModel, ClientResponseError } from "pocketbase";
 import { Button } from "@/components/ui/button";
+import { useToast } from "@/hooks/use-toast";
 
-export const RestaurantDetails = ({ restaurant, images, foodStyleBadges, goodBadges, badBadges, user, restaurantIsLiked }: { restaurant: Restaurant; images: string[]; foodStyleBadges: string[]; goodBadges: string[]; badBadges: string[], user: AuthModel | false, restaurantIsLiked: boolean, }) => {
-
+export const RestaurantDetails = ({ restaurant, images, foodStyleBadges, goodBadges, badBadges, user, like }: { restaurant: Restaurant; images: string[]; foodStyleBadges: string[]; goodBadges: string[]; badBadges: string[], user: AuthModel | false, like: { isLiked: boolean, recordId: string } }) => {
+    const { toast } = useToast()
+    console.log(like)
     const handleLikeRestaurant = async () => {
-        if (user && user.id && !restaurantIsLiked) {
-            console.log('like restaurant', user)
-            const resp = await likeRestaurantAction(restaurant.id, user.id);
-            console.log(resp);
+        if (user && user.id) {
+            if (!like.isLiked) {
+                console.log('like restaurant', user)
+                const resp = await likeRestaurantAction(restaurant.id, user.id);
+                if (resp instanceof ClientResponseError) {
+                    toast({
+                        variant: "destructive",
+                        title: "Could not like restaurant",
+                        description: resp.message,
+
+                    })
+                }
+                console.log('successfully removed like', resp);
+            } else {
+                console.log("removing like", like.recordId)
+                const resp = await removeLikeRestaurantAction(like.recordId);
+                if (resp.isError) {
+                    console.log('We had an error', resp)
+                    toast({
+                        variant: "destructive",
+                        title: "Could not remove like",
+                        description: resp.message,
+
+                    })
+                }
+                console.log('successfully removed like', resp);
+            }
         } else {
             console.log('unlike restaurant', user)
         }
@@ -43,8 +68,8 @@ export const RestaurantDetails = ({ restaurant, images, foodStyleBadges, goodBad
             </div>
 
             {!!user && <>
-                {restaurantIsLiked && <Button variant={'default'} size={'icon'} className="ml-auto" onClick={() => handleLikeRestaurant()}><HeartIcon className="w-5 h-5" /></Button>}
-                {!restaurantIsLiked && <Button variant={'outline'} size={'icon'} className="ml-auto" onClick={() => handleLikeRestaurant()}><HeartIcon className="w-5 h-5" /></Button>}
+                {like.isLiked && <Button variant={'default'} size={'icon'} className="ml-auto" onClick={() => handleLikeRestaurant()}><HeartIcon className="w-5 h-5" /></Button>}
+                {!like.isLiked && <Button variant={'outline'} size={'icon'} className="ml-auto" onClick={() => handleLikeRestaurant()}><HeartIcon className="w-5 h-5" /></Button>}
             </>}
 
         </Card>

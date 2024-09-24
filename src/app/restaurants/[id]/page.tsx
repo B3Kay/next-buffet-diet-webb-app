@@ -10,7 +10,6 @@ import { getCoordinates } from '@/components/utils/map';
 import { getUser } from '@/actions/auth';
 import { ClientResponseError } from 'pocketbase';
 
-
 export const revalidate = 1
 
 export const ImageGrid = ({ images: imageUrls }: { images: string[] }) => {
@@ -29,24 +28,25 @@ export default async function RestaurantPage({ params }: { params: { id: string 
     const restaurant = await getRestaurant(params.id);
 
 
-    var isLiked = false;
-    console.log('Passes here')
-    // console.log(user)
+    var restaurantLike: {
+        isLiked: boolean;
+        recordId: string;
+    } = { isLiked: false, recordId: '' };
+
     if (user && user.id) {
-        // console.log('Check if is liked', user)
         const resp = await getIsRestaurantLiked(params.id, user.id);
         if (resp instanceof ClientResponseError) {
             console.log('Error fetching restaurant:', resp);
         } else {
             console.log('likes', resp)
-            isLiked = resp
+            restaurantLike = resp
         }
     }
 
 
 
     if (!restaurant) {
-        return notFound(); // This triggers the 404 page in Next.js
+        return notFound();
     }
 
     // ToDo: This should be done on backend when creating a restaurant.
@@ -58,10 +58,9 @@ export default async function RestaurantPage({ params }: { params: { id: string 
     const goodBadges = restaurant.foodBadges.filter(isGoodBadge);
     const badBadges = restaurant.foodBadges.filter(isBadBadge);
 
-
     return (
         <div className="">
-            <RestaurantDetails user={user} restaurantIsLiked={isLiked} restaurant={restaurant} images={images} foodStyleBadges={foodStyleBadges} goodBadges={goodBadges} badBadges={badBadges} />
+            <RestaurantDetails user={user} like={restaurantLike} restaurant={restaurant} images={images} foodStyleBadges={foodStyleBadges} goodBadges={goodBadges} badBadges={badBadges} />
             <div className='flex-1  w-full sm:hidden md:flex h-[600px]'>
                 <RestaurantMap
                     latitude={
