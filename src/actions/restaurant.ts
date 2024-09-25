@@ -33,6 +33,7 @@ export async function likeRestaurantAction(restaurantId: string, userId: string)
     revalidatePath('/restaurants')
     return resp;
 }
+
 export async function removeLikeRestaurantAction(recordId: string) {
     const resp = await removeLikedRestaurant(recordId);
     console.log('likeRestaurantAction resp:', resp)

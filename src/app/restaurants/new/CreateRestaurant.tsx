@@ -13,11 +13,15 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { PlusIcon } from '@radix-ui/react-icons';
 import { Textarea } from '@/components/ui/textarea';
-import createRestaurantAction from '@/actions/restaurant';
+import { createRestaurantAction } from '@/actions/restaurant';
 
 export default function CreateRestaurant() {
     // Todo: Merge good bad and type badges later
     const [restaurant, setRestaurant] = useState<Restaurant & { goodBadges: string[], badBadges: string[] }>({
+        collectionId: '',
+        collectionName: '',
+        created: '',
+        updated: '',
         id: '',
         name: '',
         description: '',
