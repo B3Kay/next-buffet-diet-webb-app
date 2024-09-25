@@ -5,7 +5,7 @@ import { RestaurantCard } from './components/RestaurantCard';
 import { RestaurantSearchSection } from './components/RestaurantSearchSection';
 
 import { Restaurant } from '@/services/types';
-import { Card } from '@/components/ui/card';
+import RestaurantsMap from './components/RestaurantsMap';
 
 
 
@@ -34,6 +34,15 @@ export default async function RestaurantsPage({ searchParams }: { searchParams?:
     }
 
     const isAuthenticated = await isUserAuthenticated();
+    // Filter out restaurants with latitude or longitude equal to 0
+    const filteredRestaurants = restaurants.filter(restaurant =>
+        restaurant.latitude !== 0 && restaurant.longitude !== 0
+    );
+    const restaurantsMarkers = filteredRestaurants.map(restaurant => ({
+        latitude: restaurant.latitude || 0,
+        longitude: restaurant.longitude || 0,
+        restaurantid: restaurant.id
+    }));
 
     return (
         <div className="flex flex-col items-center justify-center pb-24">
@@ -56,6 +65,14 @@ export default async function RestaurantsPage({ searchParams }: { searchParams?:
                     </div>
 
                 }
+                <div className='flex-1  w-full sm:hidden md:flex h-[600px] rounded-lg overflow-hidden'>
+
+                    <RestaurantsMap restaurantMarkers={restaurantsMarkers} currentMarker={{
+                        latitude: 0,
+                        longitude: 0,
+                        restaurantid: ''
+                    }} zoomLevel={15} />
+                </div>
             </div>
         </div>
     );
