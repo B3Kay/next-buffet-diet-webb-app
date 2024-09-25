@@ -10,6 +10,8 @@ import { HeartIcon } from "lucide-react";
 import { AuthModel, ClientResponseError } from "pocketbase";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
+import { Badge } from "@/components/ui/badge";
+import { HeartFilledIcon } from "@radix-ui/react-icons";
 
 export const RestaurantDetails = ({ restaurant, images, foodStyleBadges, goodBadges, badBadges, user, like }: { restaurant: Restaurant; images: string[]; foodStyleBadges: string[]; goodBadges: string[]; badBadges: string[], user: AuthModel | false, like: { isLiked: boolean, recordId: string } }) => {
     const { toast } = useToast()
@@ -50,9 +52,28 @@ export const RestaurantDetails = ({ restaurant, images, foodStyleBadges, goodBad
     return <div className='w-full px-4 mt-4'>
         <Images imageAlt={restaurant.name} imageUrls={images} />
 
-        <h1 className='mb-1 mt-5 text-3xl font-bold'>{restaurant.name}</h1>
+        <h1 className='mb-4 mt-5 text-3xl font-bold'>{restaurant.name}</h1>
+        <section className='flex flex-wrap gap-3 '>
+            <Badge variant='outline'>{restaurant.type}</Badge>
+            {foodStyleBadges.map((badge, index) => (
 
-        <div className="badge badge-outline badge-primary">{restaurant.type}</div>
+                <Badge key={`foodStyleBadge-${index}`} variant="secondary">
+                    {badge}
+                </Badge>
+            ))}
+            {goodBadges.map((badge, index) => (
+
+                <Badge key={`goodBadge-${index}`} variant="default">
+                    {badge}
+                </Badge>
+            ))}
+            {badBadges.map((badge, index) => (
+
+                <Badge key={`badBadge-${index}`} variant="destructive">
+                    {badge}
+                </Badge>
+            ))}
+        </section>
         <Card className="light:bg-athens-gray flex-1 mt-5" contentClassName="flex flex gap-2 items-center">
 
             <div>
@@ -68,56 +89,53 @@ export const RestaurantDetails = ({ restaurant, images, foodStyleBadges, goodBad
             </div>
 
             {!!user && <>
-                {like.isLiked && <Button variant={'default'} size={'icon'} className="ml-auto" onClick={() => handleLikeRestaurant()}><HeartIcon className="w-5 h-5" /></Button>}
-                {!like.isLiked && <Button variant={'outline'} size={'icon'} className="ml-auto" onClick={() => handleLikeRestaurant()}><HeartIcon className="w-5 h-5" /></Button>}
+                {like.isLiked && <Button variant={'ghost'} size={'icon'} className="ml-auto" onClick={() => handleLikeRestaurant()}><HeartFilledIcon className="w-5 h-5" /></Button>}
+                {!like.isLiked && <Button variant={'ghost'} size={'icon'} className="ml-auto" onClick={() => handleLikeRestaurant()}><HeartIcon className="w-5 h-5" /></Button>}
             </>}
 
         </Card>
 
         <div className="divider"></div>
+        {/* Description  section*/}
+        <section className="mb-4 flex flex-col md:flex-row gap-3 justify-between">
+            <div className="">
+                <h3 className='text-lg mb-2 font-bold'>Description</h3>
+                <p className="m-0 md:max-w-[30ch] lg:max-w-[50ch] text-base opacity-50 ">
+                    {restaurant.description}
+                </p>
 
-        <div className='flex flex-wrap gap-3 max-w-lg'>
+            </div>
+            <div className="divider"></div>
+            <div>
 
-            {foodStyleBadges.map((badge, index) => (
-                <div key={`foodStyleBadge-${index}`} className="badge">
-                    {badge}
+
+                <div className='flex gap-3 mb-4'>
+
+                    <a href={restaurant.website} target="_blank" rel="noreferrer">
+                        <button className="btn btn-sm btn-outline rounded-full"><Icon icon="lucide:globe" />Website</button>
+                    </a>
+                    <a href={`https://www.google.com/maps/dir/?api=1&destination=${restaurant.website}`} target="_blank" rel="noreferrer">
+                        <button className="btn btn-sm btn-outline rounded-full"><Icon icon="lucide:signpost" />Directions</button>
+                    </a>
+                    <button className="btn btn-sm btn-outline rounded-full" disabled><Icon icon="lucide:bookmark" />Save</button>
+                    <button aria-label='Edit restaurant' className="btn btn-sm btn-outline btn-circle" disabled><Icon icon="lucide:settings" /></button>
+
                 </div>
-            ))}
-            {goodBadges.map((badge, index) => (
-                <div key={`goodBadge-${index}`} className="badge  badge-success">
-                    {badge}
+                <div className='flex flex-col gap-3  text-sm text-sm text-gray-400 light:text-gray-600 mb-12'>
+                    <h4 className='flex items-center'><Icon icon="lucide:map-pin" className='inline mr-3 text-primary' />{restaurant.address}</h4>
+                    <h4 className='flex items-center '><Icon icon="lucide:phone" className='inline mr-3 text-primary' />031-312 76 77</h4>
+                    <h4 className='flex items-center'><span className='opacity-100 text-success mr-1'><Icon icon="lucide:clock" className='text-primary inline mr-3' />Open </span> - Closes 20:00</h4>
                 </div>
-            ))}
-            {badBadges.map((badge, index) => (
-                <div key={`badBadge-${index}`} className="badge  badge-warning">
-                    {badge}
-                </div>
-            ))}
-        </div>
-        <div className="divider"></div>
-        <div className='flex gap-3'>
+            </div>
+        </section>
+        {/* <div className="badge badge-outline badge-primary">{restaurant.type}</div> */}
 
-            <a href={restaurant.website} target="_blank" rel="noreferrer">
-                <button className="btn btn-sm btn-outline rounded-full"><Icon icon="lucide:globe" />Website</button>
-            </a>
-            <a href={`https://www.google.com/maps/dir/?api=1&destination=${restaurant.website}`} target="_blank" rel="noreferrer">
-                <button className="btn btn-sm btn-outline rounded-full"><Icon icon="lucide:signpost" />Directions</button>
-            </a>
-            <button className="btn btn-sm btn-outline rounded-full" disabled><Icon icon="lucide:bookmark" />Save</button>
-            <button aria-label='Edit restaurant' className="btn btn-sm btn-outline btn-circle" disabled><Icon icon="lucide:settings" /></button>
 
-        </div>
 
-        <div className="divider"></div>
-        <h3 className='text-lg mb-2 font-bold'>Description</h3>
-        <p className="m-0 max-w-[30ch] text-base opacity-50 ">
-            {restaurant.description}
-        </p>
-        <div className="divider"></div>
-        <div className='flex flex-col gap-3  text-sm text-sm text-gray-400 light:text-gray-600 mb-12'>
-            <h4 className='flex items-center'><Icon icon="lucide:map-pin" className='inline mr-3 text-primary' />{restaurant.address}</h4>
-            <h4 className='flex items-center '><Icon icon="lucide:phone" className='inline mr-3 text-primary' />031-312 76 77</h4>
-            <h4 className='flex items-center'><span className='opacity-100 text-success mr-1'><Icon icon="lucide:clock" className='text-primary inline mr-3' />Open </span> - Closes 20:00</h4>
-        </div>
+
+
+
+
+
     </div >;
 };

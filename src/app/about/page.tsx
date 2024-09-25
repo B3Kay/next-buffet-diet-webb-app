@@ -63,7 +63,7 @@ export default function AboutPage() {
             </section>
 
             {/* Founder Section */}
-            <section className="py-16 px-4">
+            <section className="py-24 px-4">
                 <div className="max-w-4xl mx-auto flex flex-col md:flex-row items-center">
                     <Avatar className="w-64 h-64 mb-8 md:mb-0 md:mr-8">
                         <AvatarImage src="/placeholder.svg?height=400&width=400" alt="Founder" />
@@ -85,7 +85,7 @@ export default function AboutPage() {
 
 
             {/* Join Us Section */}
-            < section className="py-16 bg-primary text-primary-foreground">
+            < section className="py-24 bg-primary text-primary-foreground">
                 <div className="max-w-4xl mx-auto px-4 text-center">
                     <h2 className="text-3xl font-bold mb-4">Join the The Buffet Diet Community</h2>
                     <p className="text-xl mb-8">
