@@ -12,31 +12,9 @@ import * as VisuallyHidden from '@radix-ui/react-visually-hidden';
 import { Toggle, toggleVariants } from "@/components/ui/toggle"
 import { MapPinCheckIcon, MapPinIcon, PinIcon, StarIcon, Wifi } from "lucide-react"
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
-import { cn } from "@/lib/utils"
+import { cn, getGeolocation } from "@/lib/utils"
 
-interface GeolocationCoords {
-    latitude: number;
-    longitude: number;
-}
 
-function getGeolocation(): Promise<GeolocationCoords> {
-    return new Promise((resolve, reject) => {
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(
-                (position) => {
-                    const { latitude, longitude } = position.coords;
-                    resolve({ latitude, longitude });
-                },
-                (error) => {
-                    console.error('Failed to get geolocation:', error);
-                    reject(new Error('Failed to get geolocation'));
-                }
-            );
-        } else {
-            reject(new Error('Geolocation is not supported by this browser.'));
-        }
-    });
-}
 
 
 export const RestaurantSearchSection = ({ isAuthenticated }: { isAuthenticated: boolean }) => {
