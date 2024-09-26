@@ -32,47 +32,47 @@ export default function RestaurantMap({ restaurantMarkers, currentMarker, zoomLe
     const { theme } = useTheme()
 
 
-    const [userLocation, setUserLocation] = useState<GeolocationCoords>({ latitude: 0, longitude: 0 });
-    const [locationError, setLocationError] = useState<string | null>(null);
+    // const [userLocation, setUserLocation] = useState<GeolocationCoords>({ latitude: 0, longitude: 0 });
+    // const [locationError, setLocationError] = useState<string | null>(null);
 
-    useEffect(() => {
-        const getLocation = () => {
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(
-                    (position) => {
-                        const { latitude, longitude } = position.coords;
-                        setUserLocation({ latitude, longitude });
-                        setViewport({
-                            latitude: latitude,
-                            longitude: longitude,
-                            zoom: zoomLevel
-                        });
-                        console.log('update user location', latitude, longitude, zoomLevel);
-                    },
-                    (err) => {
-                        setLocationError(err.message);
-                    }
-                );
-            } else {
-                setLocationError("Geolocation is not supported by this browser.");
-            }
-        };
+    // useEffect(() => {
+    //     const getLocation = () => {
+    //         if (navigator.geolocation) {
+    //             navigator.geolocation.getCurrentPosition(
+    //                 (position) => {
+    //                     const { latitude, longitude } = position.coords;
+    //                     setUserLocation({ latitude, longitude });
+    //                     setViewport({
+    //                         latitude: latitude,
+    //                         longitude: longitude,
+    //                         zoom: zoomLevel
+    //                     });
+    //                     console.log('update user location', latitude, longitude, zoomLevel);
+    //                 },
+    //                 (err) => {
+    //                     setLocationError(err.message);
+    //                 }
+    //             );
+    //         } else {
+    //             setLocationError("Geolocation is not supported by this browser.");
+    //         }
+    //     };
 
-        getLocation();
-    }, []); // Empty dependency array ensures this runs once on mount.
+    //     getLocation();
+    // }, []); // Empty dependency array ensures this runs once on mount.
 
 
 
 
     const tileTheme = theme === 'dark' ? 'dark_all' : 'light_all'
-    if (userLocation.latitude === 0 && userLocation.longitude === 0) {
-        console.log('no user location')
-        return <Skeleton className="h-full w-full rounded-xl" />
-    }
-    if (locationError) {
-        console.log('location error', locationError)
-        return <div>Error loading user location: {locationError}</div>
-    }
+    // if (userLocation.latitude === 0 && userLocation.longitude === 0) {
+    //     console.log('no user location')
+    //     return <Skeleton className="h-full w-full rounded-xl" />
+    // }
+    // if (locationError) {
+    //     console.log('location error', locationError)
+    //     return <div>Error loading user location: {locationError}</div>
+    // }
 
     return (
 
@@ -108,7 +108,7 @@ export default function RestaurantMap({ restaurantMarkers, currentMarker, zoomLe
         >
             {/* {!(latitude === 0 && longitude === 0) ? <Marker longitude={longitude} latitude={latitude} color="purple" /> : null} */}
             {currentMarker && <Marker longitude={currentMarker.longitude} latitude={currentMarker.latitude} color="red" />}
-            {userLocation && <Marker longitude={userLocation.longitude} latitude={userLocation.latitude} color="blue" />}
+            {/* {userLocation && <Marker longitude={userLocation.longitude} latitude={userLocation.latitude} color="blue" />} */}
             {restaurantMarkers.map((restaurantMarker, index) => (
                 <Marker key={index} longitude={restaurantMarker.longitude} latitude={restaurantMarker.latitude} color="purple" />
             ))}

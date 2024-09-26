@@ -25,9 +25,12 @@ export default async function RestaurantsPage({ searchParams }: { searchParams?:
     const restaurantQuery = searchQuery && searchQuery.length > 0 ? { filterQuery: searchQuery } : {};
 
     let restaurants: Restaurant[];
+    const userLat = searchParams?.latitude ? Number(searchParams.latitude) : 0;
+    const userLng = searchParams?.longitude ? Number(searchParams.longitude) : 0;
+
     if (searchParams?.latitude && searchParams?.longitude) {
-        console.log('Searching by proximity', Number(searchParams.latitude), Number(searchParams.longitude));
-        restaurants = await getRestaurantsByProximity({ maxDistance: 100, latitude: Number(searchParams.latitude), longitude: Number(searchParams.longitude), searchQuery: searchQuery });
+        console.log('Searching by proximity', userLat, userLng);
+        restaurants = await getRestaurantsByProximity({ maxDistance: 100, latitude: userLat, longitude: userLng, searchQuery: searchQuery });
     } else {
         console.log('Searching by text');
         restaurants = await getRestaurants(restaurantQuery);
@@ -67,11 +70,13 @@ export default async function RestaurantsPage({ searchParams }: { searchParams?:
                 }
                 <div className='flex-1  w-full sm:hidden md:flex h-[600px] rounded-lg overflow-hidden'>
 
-                    <RestaurantsMap restaurantMarkers={restaurantsMarkers} currentMarker={{
-                        latitude: 0,
-                        longitude: 0,
-                        restaurantid: ''
-                    }} zoomLevel={15} />
+                    <RestaurantsMap restaurantMarkers={restaurantsMarkers}
+                        // This should be based on search, current user location
+                        currentMarker={{
+                            latitude: userLat,
+                            longitude: userLng,
+                            restaurantid: ''
+                        }} zoomLevel={15} />
                 </div>
             </div>
         </div>
