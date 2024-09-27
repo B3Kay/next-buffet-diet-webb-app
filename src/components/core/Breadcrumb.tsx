@@ -9,7 +9,7 @@ const Breadcrumb = () => {
     const pathParts = path.split('/').filter((part) => part);
 
     return (
-        <nav className="text-sm breadcrumbs">
+        <nav className="text-sm breadcrumbs mx-5">
             <ul className="flex items-center space-x-2  ">
                 <li className='text-muted-foreground transition-colors hover:text-foreground'>
                     <Link href="/" className="flex items-center  ">

@@ -9,6 +9,7 @@ import { notFound } from 'next/navigation';
 import { getCoordinates } from '@/components/utils/map';
 import { getUser } from '@/actions/auth';
 import { ClientResponseError } from 'pocketbase';
+import Breadcrumb from '@/components/core/Breadcrumb';
 
 export const revalidate = 1
 
@@ -59,7 +60,8 @@ export default async function RestaurantPage({ params }: { params: { id: string 
     const badBadges = restaurant.foodBadges.filter(isBadBadge);
 
     return (
-        <div className="">
+        <div className="max-w-screen-lg mx-auto">
+            <Breadcrumb />
             <RestaurantDetails user={user} like={restaurantLike} restaurant={restaurant} images={images} foodStyleBadges={foodStyleBadges} goodBadges={goodBadges} badBadges={badBadges} />
             <div className='flex-1  w-full sm:hidden md:flex h-[600px]'>
                 <RestaurantMap
