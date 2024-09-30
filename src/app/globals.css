@@ -21,6 +21,18 @@ html {
   /* Always reserve space for scrollbar */
 }
 
+/* Remove map popup border styling */
+.maplibregl-popup-content {
+  border-radius: none !important;
+  background: none !important;
+  padding: 0 !important
+}
+
+/* Remove map popup tip */
+.maplibregl-popup-tip {
+  display: none !important;
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;

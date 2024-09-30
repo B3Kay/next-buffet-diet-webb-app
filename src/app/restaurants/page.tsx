@@ -46,7 +46,8 @@ export default async function RestaurantsPage({ searchParams }: { searchParams?:
     const restaurantsMarkers = filteredRestaurants.map(restaurant => ({
         latitude: restaurant.latitude || 0,
         longitude: restaurant.longitude || 0,
-        restaurantid: restaurant.id
+        restaurantid: restaurant.id,
+        restaurantName: restaurant.name
     }));
 
 
@@ -84,7 +85,6 @@ export default async function RestaurantsPage({ searchParams }: { searchParams?:
                                 currentMarker={{
                                     latitude: userLat,
                                     longitude: userLng,
-                                    restaurantid: ''
                                 }} zoomLevel={13} />
                         </div>
                     }
