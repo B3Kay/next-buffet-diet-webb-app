@@ -96,7 +96,7 @@ export default function RestaurantMap({ restaurantMarkers, currentMarker, zoomLe
 
             {restaurantMarkers.map((restaurantMarker, index) => (
 
-                <Marker onClick={(e) => {
+                <Marker onClick={(e: any) => {
                     e.originalEvent.stopPropagation();
                     setPopupInfo(restaurantMarker)
                 }}

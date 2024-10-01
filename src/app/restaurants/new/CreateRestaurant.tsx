@@ -14,6 +14,7 @@ import { Input } from '@/components/ui/input';
 import { PlusIcon } from '@radix-ui/react-icons';
 import { Textarea } from '@/components/ui/textarea';
 import { createRestaurantAction } from '@/actions/restaurant';
+import { SelectAddress } from '../components/SelectAddress';
 
 export default function CreateRestaurant() {
     // Todo: Merge good bad and type badges later
@@ -188,16 +189,21 @@ export default function CreateRestaurant() {
 
                 </div>
                 <div>
+                    {/* TODO: Use Openmaps api to get adress suggestions */}
                     <label className="block text-sm font-medium mb-1" htmlFor="address">Address</label>
-                    <Input
+                    {/* <Input
                         id="address"
                         type="text"
                         placeholder="Solvägen 12, 123 45 Edet"
                         value={restaurant.address}
                         onChange={(e) => handleInputChange(e.target.value, 'address')}
-                    // onChange={}
-
-                    />
+                    /> */}
+                    <SelectAddress onSelect={(address) => {
+                        // TODO: this can be refactored to have unique fields in db, like adress, city, country etc instead of single string
+                        // And then format this in the frontend instead of saving an formated string. Different countries have different formats
+                        const addressString = address.address.road + ' ' + address.address.house_number + ', ' + address.address.city + ', ' + address.address.country;
+                        handleInputChange(addressString, 'address')
+                    }} />
                 </div>
                 <div className="grid grid-cols-2 gap-4">
 
