@@ -1,33 +1,24 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react';
-import Map, { Marker, NavigationControl, Popup } from 'react-map-gl/maplibre';
+import { useState } from 'react';
 import 'maplibre-gl/dist/maplibre-gl.css';
+import Map, { Marker, NavigationControl, Popup } from 'react-map-gl/maplibre';
 import { useTheme } from 'next-themes';
-import { formatDate, GeolocationCoords } from '@/lib/utils';
-import { Skeleton } from '@/components/ui/skeleton';
-import { Circle, DollarSign, Heart, MapPin, Navigation } from 'lucide-react';
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
-import { Label } from '@/components/ui/label';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { badOptions, foodLabelOption, foodOptions, goodOptions, isBadBadge, isFoodStyleBadge, isGoodBadge } from '@/components/FoodBadges';
+import { formatDate } from '@/lib/utils';
+import { DollarSign, Heart, Navigation } from 'lucide-react';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { isBadBadge, isFoodStyleBadge, isGoodBadge } from '@/components/FoodBadges';
 import { Badge } from '@/components/ui/badge';
-import { CircleIcon, StarIcon } from '@radix-ui/react-icons';
-import { Separator } from '@/components/ui/separator';
+import { StarIcon } from '@radix-ui/react-icons';
 import { Restaurant } from '@/services/types';
 import Link from 'next/link';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 
 type LatLong = {
     latitude: number;
     longitude: number;
 }
 
-type Mark = LatLong & {
-    restaurantid: string;
-    restaurantName: string;
-}
 
 type RestaurantMarkers = Array<Restaurant>
 
@@ -38,13 +29,6 @@ type RestaurantMapProps = {
     zoomLevel: number;
 }
 
-// type PopupInfo = {
-//     latitude: string;
-//     longitude: string;
-//     city: string;
-//     state: string;
-//     image: string;
-// }
 export default function RestaurantMap({ restaurantMarkers, currentMarker, zoomLevel = 15 }: RestaurantMapProps) {
     const [viewport, setViewport] = useState({
         latitude: currentMarker.latitude,
@@ -90,7 +74,17 @@ export default function RestaurantMap({ restaurantMarkers, currentMarker, zoomLe
 
             {currentMarker && <Marker longitude={currentMarker.longitude} latitude={currentMarker.latitude}  >
                 <div className="absolute inset-0 -z-10 blur-md rounded-full bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 w-full h-full"></div>
-                <Navigation className='text-red-500' />
+                <TooltipProvider>
+                    <Tooltip>
+                        <TooltipTrigger asChild>
+                            <Navigation className='text-red-500' />
+                        </TooltipTrigger>
+                        <TooltipContent>
+                            <p>This is you...</p>
+                        </TooltipContent>
+                    </Tooltip>
+                </TooltipProvider>
+
             </Marker>}
 
 
