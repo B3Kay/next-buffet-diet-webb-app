@@ -56,3 +56,29 @@ export function getGeolocation(): Promise<GeolocationCoords> {
     }
   });
 }
+
+export function formatDate(isoString: string, short: boolean = false): string {
+  // Parse the ISO string to a Date object
+  const date = new Date(isoString);
+  const today = new Date();
+
+  // Calculate the difference in time and days
+  const oneDay = 24 * 60 * 60 * 1000; // Milliseconds in a day
+  const diffInTime = today.getTime() - date.getTime();
+  const diffInDays = Math.floor(diffInTime / oneDay);
+
+  if (diffInDays === 0) {
+    return "today";
+  } else if (diffInDays === 1) {
+    return "yesterday";
+  } else if (diffInDays <= 7) {
+    return "last week";
+  } else {
+    // If longer ago, return the month and year
+    const options: Intl.DateTimeFormatOptions = {
+      year: 'numeric',
+      month: short ? 'short' : 'long'
+    };
+    return date.toLocaleDateString(undefined, options);
+  }
+}

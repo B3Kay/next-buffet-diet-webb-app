@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import Map, { Marker, NavigationControl, Popup } from 'react-map-gl/maplibre';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import { useTheme } from 'next-themes';
-import { GeolocationCoords } from '@/lib/utils';
+import { formatDate, GeolocationCoords } from '@/lib/utils';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Circle, DollarSign, Heart, MapPin, Navigation } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
@@ -12,10 +12,12 @@ import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { badOptions, foodLabelOption, foodOptions, goodOptions } from '@/components/FoodBadges';
+import { badOptions, foodLabelOption, foodOptions, goodOptions, isBadBadge, isFoodStyleBadge, isGoodBadge } from '@/components/FoodBadges';
 import { Badge } from '@/components/ui/badge';
 import { CircleIcon, StarIcon } from '@radix-ui/react-icons';
 import { Separator } from '@/components/ui/separator';
+import { Restaurant } from '@/services/types';
+import Link from 'next/link';
 
 type LatLong = {
     latitude: number;
@@ -27,7 +29,7 @@ type Mark = LatLong & {
     restaurantName: string;
 }
 
-type RestaurantMarkers = Array<Mark>
+type RestaurantMarkers = Array<Restaurant>
 
 type RestaurantMapProps = {
     restaurantMarkers: RestaurantMarkers;
@@ -49,7 +51,7 @@ export default function RestaurantMap({ restaurantMarkers, currentMarker, zoomLe
         longitude: currentMarker.longitude,
         zoom: zoomLevel
     });
-    const [popupInfo, setPopupInfo] = useState<Mark | null>(null);
+    const [popupInfo, setPopupInfo] = useState<Restaurant | null>(null);
     const { theme } = useTheme()
 
     const tileTheme = theme === 'dark' ? 'dark_all' : 'light_all'
@@ -59,8 +61,6 @@ export default function RestaurantMap({ restaurantMarkers, currentMarker, zoomLe
 
         <Map
             initialViewState={viewport}
-            // viewState={viewport}
-            // {...viewport}
             style={{ width: '100%', height: '100%' }}
             mapStyle={{
                 version: 8,
@@ -87,10 +87,10 @@ export default function RestaurantMap({ restaurantMarkers, currentMarker, zoomLe
                 ],
             }}
         >
-            {/* {!(latitude === 0 && longitude === 0) ? <Marker longitude={longitude} latitude={latitude} color="purple" /> : null} */}
+
             {currentMarker && <Marker longitude={currentMarker.longitude} latitude={currentMarker.latitude} color="red" ><Navigation className='fill-destructive' /></Marker>}
 
-            {/* {userLocation && <Marker longitude={userLocation.longitude} latitude={userLocation.latitude} color="blue" />} */}
+
             {restaurantMarkers.map((restaurantMarker, index) => (
 
                 <Marker onClick={(e) => {
@@ -114,40 +114,43 @@ export default function RestaurantMap({ restaurantMarkers, currentMarker, zoomLe
                     latitude={Number(popupInfo.latitude)}
                     onClose={() => setPopupInfo(null)}
                 >
-                    <Card>
-                        <CardHeader>
-                            <CardTitle className='text-2xl'>Alicjas Buffeteria</CardTitle>
-                            <CardDescription >
-                                Beautifully designed Restaurant where you can eat all you want.
-                                Keto, Carnivore or body builder diet.
-                            </CardDescription>
-                        </CardHeader>
-                        <CardContent className="flex flex-col gap-4">
-                            <div className='flex flex-wrap gap-2'>
-                                {[foodOptions.options[0], goodOptions.options[1], badOptions.options[2]].map(option => <Badge variant={"outline"} key={option.value}>{option.label}</Badge>)}
+                    <Link href={`/restaurants/${popupInfo.id}`}>
+                        <Card>
+                            <CardHeader>
+                                <CardTitle className='text-2xl'>{popupInfo.name}</CardTitle>
+                                <CardDescription >
+                                    {popupInfo.description}
+                                </CardDescription>
+                            </CardHeader>
+                            <CardContent className="flex flex-col gap-4">
+                                <div className='flex flex-wrap gap-2'>
+                                    <Badge variant={"default"} >{popupInfo.type}</Badge>
+                                    {popupInfo.foodBadges.filter(isFoodStyleBadge).map(badge => <Badge variant={"default"} key={badge}>{badge}</Badge>)}
+                                    {popupInfo.foodBadges.filter(isGoodBadge).map(badge => <Badge variant={"outline"} key={badge}>{badge}</Badge>)}
+                                    {popupInfo.foodBadges.filter(isBadBadge).map(badge => <Badge variant={"destructive"} key={badge}>{badge}</Badge>)}
+                                </div>
 
-                            </div>
-
-                        </CardContent>
-                        <CardContent>
-                            {/* Dummy food badges */}
-                            <div className="flex space-x-4 text-sm text-muted-foreground">
-                                <div className="flex items-center">
-                                    <StarIcon className="mr-1 h-3 w-3 fill-red-500 text-red-500" />
-                                    4.1
+                            </CardContent>
+                            <CardContent>
+                                {/* Dummy food badges */}
+                                <div className="flex space-x-4 text-sm text-muted-foreground">
+                                    <div className="flex items-center">
+                                        <StarIcon className="mr-1 h-3 w-3 fill-red-500 text-red-500" />
+                                        {popupInfo.rating}
+                                    </div>
+                                    <div className="flex items-center">
+                                        <Heart className="mr-1 h-3 w-3 text-red-primary" />
+                                        20k
+                                    </div>
+                                    <div className="flex items-center">
+                                        <DollarSign className="mr-1 h-3 w-3  text-primary" />
+                                        {popupInfo.price}
+                                    </div>
+                                    <div>Updated {formatDate(popupInfo.updated, true)}</div>
                                 </div>
-                                <div className="flex items-center">
-                                    <Heart className="mr-1 h-3 w-3 text-red-primary" />
-                                    20k
-                                </div>
-                                <div className="flex items-center">
-                                    <DollarSign className="mr-1 h-3 w-3  text-primary" />
-                                    12.00
-                                </div>
-                                <div>Updated April 2023</div>
-                            </div>
-                        </CardContent>
-                    </Card>
+                            </CardContent>
+                        </Card>
+                    </Link>
                 </Popup>
             )}
             <NavigationControl position="top-right" />

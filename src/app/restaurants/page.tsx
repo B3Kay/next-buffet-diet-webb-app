@@ -80,7 +80,7 @@ export default async function RestaurantsPage({ searchParams }: { searchParams?:
                     {(userLat && userLng) &&
                         <div className='flex-1  w-full sm:hidden md:flex h-full rounded-lg overflow-hidden'>
 
-                            <RestaurantsMap restaurantMarkers={restaurantsMarkers}
+                            <RestaurantsMap restaurantMarkers={filteredRestaurants}
                                 // This should be based on search, current user location
                                 currentMarker={{
                                     latitude: userLat,
