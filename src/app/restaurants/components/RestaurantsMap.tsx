@@ -88,7 +88,10 @@ export default function RestaurantMap({ restaurantMarkers, currentMarker, zoomLe
             }}
         >
 
-            {currentMarker && <Marker longitude={currentMarker.longitude} latitude={currentMarker.latitude} color="red" ><Navigation className='fill-destructive' /></Marker>}
+            {currentMarker && <Marker longitude={currentMarker.longitude} latitude={currentMarker.latitude}  >
+                <div className="absolute inset-0 -z-10 blur-md rounded-full bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 w-full h-full"></div>
+                <Navigation className='text-red-500' />
+            </Marker>}
 
 
             {restaurantMarkers.map((restaurantMarker, index) => (
@@ -99,8 +102,9 @@ export default function RestaurantMap({ restaurantMarkers, currentMarker, zoomLe
                 }}
                     anchor='bottom'
                     key={index} longitude={restaurantMarker.longitude} latitude={restaurantMarker.latitude} color="blue">
-                    {/* This could be price or rating marker */}
-                    <MapPin className='cursor-pointer fill-secondary' />
+
+                    <Badge variant={restaurantMarker.id !== popupInfo?.id ? "default" : "outline"} > <DollarSign className={"mr-1 h-3 w-3 "} />{restaurantMarker.price}</Badge>
+
 
                 </Marker>
             ))}
@@ -132,7 +136,6 @@ export default function RestaurantMap({ restaurantMarkers, currentMarker, zoomLe
 
                             </CardContent>
                             <CardContent>
-                                {/* Dummy food badges */}
                                 <div className="flex space-x-4 text-sm text-muted-foreground">
                                     <div className="flex items-center">
                                         <StarIcon className="mr-1 h-3 w-3 fill-red-500 text-red-500" />
