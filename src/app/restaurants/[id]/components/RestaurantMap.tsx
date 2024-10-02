@@ -10,14 +10,14 @@ import { toast } from '@/hooks/use-toast';
 
 // TODO: Add user location to map
 export default function RestaurantMap({ latitude, longitude }: { latitude: number, longitude: number }) {
+    const { theme } = useTheme()
     const [viewport, setViewport] = useState({
         latitude: latitude,
         longitude: longitude,
         zoom: (latitude === 0 && longitude === 0) ? 0 : 15
     });
-
-
     const { coordinates, error } = useBrowserGeolocation()
+
     if (error) {
         toast({
             variant: "destructive",
@@ -27,8 +27,6 @@ export default function RestaurantMap({ latitude, longitude }: { latitude: numbe
         })
     }
 
-
-    const { theme } = useTheme()
     const tileTheme = theme === 'dark' ? 'dark_all' : 'light_all'
     return (
         <Map

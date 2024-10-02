@@ -13,12 +13,24 @@ export const useBrowserGeolocation = () => {
 
         const handleSuccess = (position: GeolocationPosition) => {
             const { latitude, longitude } = position.coords;
-            setCoordinates({ latitude, longitude });
+            if (latitude >= 0 && longitude >= 0) {
+                setCoordinates({ latitude, longitude });
+            } else {
+                setError('Geolocation is not available.')
+            }
         };
 
 
         const handleError = (error: GeolocationPositionError) => {
-            setError(error.message);
+            if (error.code === error.TIMEOUT) {
+                setError('Geolocation timed out.')
+            } else if (error.code === error.PERMISSION_DENIED) {
+                setError('Geolocation permission denied.')
+            }
+            else {
+                setError('Geolocation error.')
+            }
+
         };
 
 
