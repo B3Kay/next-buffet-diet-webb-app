@@ -50,8 +50,7 @@ export default async function RestaurantPage({ params }: { params: { id: string 
         return notFound();
     }
 
-    // ToDo: This should be done on backend when creating a restaurant.
-    const coordinates = await getCoordinates(restaurant.address)
+    const coordinatesFromAddress = await getCoordinates(restaurant.address)
 
     const images = [restaurant.imageUrl!!]
 
@@ -67,11 +66,12 @@ export default async function RestaurantPage({ params }: { params: { id: string 
                 <RestaurantMap
                     latitude={
                         restaurant.latitude ||
-                        coordinates?.latitude || 0}
+                        coordinatesFromAddress?.latitude || 0}
                     longitude={restaurant.longitude ||
-                        coordinates?.longitude || 0}
+                        coordinatesFromAddress?.longitude || 0}
 
                 />
+
             </div>
         </div >
     );

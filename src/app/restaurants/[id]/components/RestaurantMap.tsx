@@ -1,9 +1,11 @@
 'use client'
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Map, { Marker, NavigationControl } from 'react-map-gl/maplibre';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import { useTheme } from 'next-themes';
+import { useBrowserGeolocation } from '@/components/hooks/useBrowserGeolocation';
+import { toast } from '@/hooks/use-toast';
 
 
 // TODO: Add user location to map
@@ -13,6 +15,18 @@ export default function RestaurantMap({ latitude, longitude }: { latitude: numbe
         longitude: longitude,
         zoom: (latitude === 0 && longitude === 0) ? 0 : 15
     });
+
+
+    const { coordinates, error } = useBrowserGeolocation()
+    if (error) {
+        toast({
+            variant: "destructive",
+            title: "User geolocation not available",
+            description: error,
+
+        })
+    }
+
 
     const { theme } = useTheme()
     const tileTheme = theme === 'dark' ? 'dark_all' : 'light_all'
@@ -45,6 +59,7 @@ export default function RestaurantMap({ latitude, longitude }: { latitude: numbe
                 ],
             }}
         >
+            {coordinates.latitude && coordinates.longitude ? <Marker longitude={coordinates.longitude} latitude={coordinates.latitude} color="purple" /> : null}
             {!(latitude === 0 && longitude === 0) ? <Marker longitude={longitude} latitude={latitude} color="purple" /> : null}
             <NavigationControl position="top-right" />
         </Map>
