@@ -26,7 +26,6 @@ export const RestaurantSearchSection = ({ isAuthenticated }: { isAuthenticated: 
     const [isLocationActive, setLocationActive] = useState(false)
     const [open, setOpen] = useState(false)
 
-    // const [distance, setDistance] = useState(0)
     const router = useRouter()
 
     useEffect(() => {
@@ -105,9 +104,6 @@ export const RestaurantSearchSection = ({ isAuthenticated }: { isAuthenticated: 
                                     />
                                 )}
                             />
-                            {/* <Button type="submit" className="mt-4">
-                                Search
-                            </Button> */}
                         </form>
                     </DialogContent>
                 </DialogPortal>

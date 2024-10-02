@@ -24,15 +24,15 @@ type RestaurantMarkers = Array<Restaurant>
 
 type RestaurantMapProps = {
     restaurantMarkers: RestaurantMarkers;
-    currentMarker: LatLong;
-    // userMarker?: Mark;
+    currentLocationMarker: LatLong;
+
     zoomLevel: number;
 }
 
-export default function RestaurantMap({ restaurantMarkers, currentMarker, zoomLevel = 15 }: RestaurantMapProps) {
+export default function RestaurantMap({ restaurantMarkers, currentLocationMarker, zoomLevel = 15 }: RestaurantMapProps) {
     const [viewport, setViewport] = useState({
-        latitude: currentMarker.latitude,
-        longitude: currentMarker.longitude,
+        latitude: currentLocationMarker.latitude,
+        longitude: currentLocationMarker.longitude,
         zoom: zoomLevel
     });
     const [popupInfo, setPopupInfo] = useState<Restaurant | null>(null);
@@ -71,8 +71,8 @@ export default function RestaurantMap({ restaurantMarkers, currentMarker, zoomLe
                 ],
             }}
         >
-
-            {currentMarker && <Marker longitude={currentMarker.longitude} latitude={currentMarker.latitude}  >
+            {/* TODO: this marked should be a reusable component */}
+            {currentLocationMarker && <Marker longitude={currentLocationMarker.longitude} latitude={currentLocationMarker.latitude}  >
                 <div className="absolute inset-0 -z-10 blur-md rounded-full bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 w-full h-full"></div>
                 <TooltipProvider>
                     <Tooltip>
@@ -89,7 +89,7 @@ export default function RestaurantMap({ restaurantMarkers, currentMarker, zoomLe
 
 
             {restaurantMarkers.map((restaurantMarker, index) => (
-
+                // TODO: this marker should be a reusable component
                 <Marker onClick={(e: any) => {
                     e.originalEvent.stopPropagation();
                     setPopupInfo(restaurantMarker)

@@ -82,7 +82,7 @@ export default async function RestaurantsPage({ searchParams }: { searchParams?:
 
                             <RestaurantsMap restaurantMarkers={filteredRestaurants}
                                 // This should be based on search, current user location
-                                currentMarker={{
+                                currentLocationMarker={{
                                     latitude: userLat,
                                     longitude: userLng,
                                 }} zoomLevel={13} />
