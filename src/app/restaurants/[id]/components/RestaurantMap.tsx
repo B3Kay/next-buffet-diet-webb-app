@@ -1,11 +1,12 @@
 'use client'
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Map, { Marker, NavigationControl } from 'react-map-gl/maplibre';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import { useTheme } from 'next-themes';
 import { useBrowserGeolocation } from '@/components/hooks/useBrowserGeolocation';
 import { toast } from '@/hooks/use-toast';
+import { BrowserMarker } from '../../components/BrowserMarker';
 
 
 // TODO: Add user location to map
@@ -16,7 +17,7 @@ export default function RestaurantMap({ latitude, longitude }: { latitude: numbe
         longitude: longitude,
         zoom: (latitude === 0 && longitude === 0) ? 0 : 15
     });
-    const { coordinates, error } = useBrowserGeolocation()
+    const { coordinates: browserCoordinates, error } = useBrowserGeolocation()
 
     if (error) {
         toast({
@@ -57,7 +58,10 @@ export default function RestaurantMap({ latitude, longitude }: { latitude: numbe
                 ],
             }}
         >
-            {coordinates.latitude && coordinates.longitude ? <Marker longitude={coordinates.longitude} latitude={coordinates.latitude} color="purple" /> : null}
+            {browserCoordinates.latitude && browserCoordinates.longitude ?
+                <BrowserMarker latitude={browserCoordinates.latitude} longitude={browserCoordinates.longitude} />
+                : null
+            }
             {!(latitude === 0 && longitude === 0) ? <Marker longitude={longitude} latitude={latitude} color="purple" /> : null}
             <NavigationControl position="top-right" />
         </Map>

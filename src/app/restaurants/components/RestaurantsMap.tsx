@@ -12,9 +12,10 @@ import { Badge } from '@/components/ui/badge';
 import { StarIcon } from '@radix-ui/react-icons';
 import { Restaurant } from '@/services/types';
 import Link from 'next/link';
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 
-type LatLong = {
+import { BrowserMarker } from './BrowserMarker';
+
+export type LatLong = {
     latitude: number;
     longitude: number;
 }
@@ -72,20 +73,7 @@ export default function RestaurantMap({ restaurantMarkers, currentLocationMarker
             }}
         >
             {/* TODO: this marked should be a reusable component */}
-            {currentLocationMarker && <Marker longitude={currentLocationMarker.longitude} latitude={currentLocationMarker.latitude}  >
-                <div className="absolute inset-0 -z-10 blur-md rounded-full bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 w-full h-full"></div>
-                <TooltipProvider>
-                    <Tooltip>
-                        <TooltipTrigger asChild>
-                            <Navigation className='text-red-500' />
-                        </TooltipTrigger>
-                        <TooltipContent>
-                            <p>This is you...</p>
-                        </TooltipContent>
-                    </Tooltip>
-                </TooltipProvider>
-
-            </Marker>}
+            {currentLocationMarker && <BrowserMarker {...currentLocationMarker} />}
 
 
             {restaurantMarkers.map((restaurantMarker, index) => (
@@ -154,3 +142,4 @@ export default function RestaurantMap({ restaurantMarkers, currentLocationMarker
         </Map>
     );
 }
+
