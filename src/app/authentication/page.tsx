@@ -19,6 +19,9 @@ export default function AuthenticationPage() {
 
     return (
         <>
+            {/* TODO use tabs to select between login and create user 
+        https://ui.shadcn.com/docs/components/tabs
+        */}
             <div className="md:hidden">
                 <Image
                     src="/examples/authentication-light.png"

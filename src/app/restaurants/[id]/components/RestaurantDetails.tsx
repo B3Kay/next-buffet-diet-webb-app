@@ -6,12 +6,14 @@ import { Card, cn } from "reablocks";
 import { Restaurant } from "../../../../services/types";
 import { RestaurantRating } from "../../components/RestaurantCard";
 import { likeRestaurantAction, removeLikeRestaurantAction } from "@/actions/restaurant";
-import { HeartIcon } from "lucide-react";
+import { Bookmark, Globe, HeartIcon, PenBoxIcon, Settings, Signpost, StarIcon } from "lucide-react";
 import { AuthModel, ClientResponseError } from "pocketbase";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 import { Badge } from "@/components/ui/badge";
-import { HeartFilledIcon } from "@radix-ui/react-icons";
+import { BookmarkFilledIcon, HeartFilledIcon } from "@radix-ui/react-icons";
+import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
+import RestaurantReview from "./RestaurantReview";
 
 export const RestaurantDetails = ({ restaurant, images, foodStyleBadges, goodBadges, badBadges, user, like }: { restaurant: Restaurant; images: string[]; foodStyleBadges: string[]; goodBadges: string[]; badBadges: string[], user: AuthModel | false, like: { isLiked: boolean, recordId: string } }) => {
     const { toast } = useToast()
@@ -89,10 +91,26 @@ export const RestaurantDetails = ({ restaurant, images, foodStyleBadges, goodBad
             </div>
 
             {!!user && <>
-                {like.isLiked && <Button variant={'ghost'} size={'icon'} className="ml-auto" onClick={() => handleLikeRestaurant()}><HeartFilledIcon className="w-5 h-5" /></Button>}
-                {!like.isLiked && <Button variant={'ghost'} size={'icon'} className="ml-auto" onClick={() => handleLikeRestaurant()}><HeartIcon className="w-5 h-5" /></Button>}
-            </>}
+                {like.isLiked && <Button variant={'secondary'} size={'icon'} className="ml-auto" onClick={() => handleLikeRestaurant()}><HeartFilledIcon className="w-5 h-5" /></Button>}
+                {!like.isLiked && <Button variant={'secondary'} size={'icon'} className="ml-auto" onClick={() => handleLikeRestaurant()}><HeartIcon className="w-5 h-5" /></Button>}
 
+                <Sheet>
+                    <SheetTrigger asChild>
+                        {/* Review */}
+                        <Button ><PenBoxIcon className="mr-2 h-4 w-4" /> Write a review</Button>
+                    </SheetTrigger>
+                    <SheetContent>
+                        <SheetHeader>
+                            <SheetTitle>Are you absolutely sure?</SheetTitle>
+                            <SheetDescription>
+                                Some text and stuff
+                            </SheetDescription>
+                            <RestaurantReview />
+                        </SheetHeader>
+                    </SheetContent>
+                </Sheet>
+            </>
+            }
         </Card>
 
         <div className="divider"></div>
@@ -112,13 +130,14 @@ export const RestaurantDetails = ({ restaurant, images, foodStyleBadges, goodBad
                 <div className='flex gap-3 mb-4'>
 
                     <a href={restaurant.website} target="_blank" rel="noreferrer">
-                        <button className="btn btn-sm btn-outline rounded-full"><Icon icon="lucide:globe" />Website</button>
+                        <Button variant="secondary"><Globe className="mr-2 h-4 w-4" />Website</Button>
                     </a>
                     <a href={`https://www.google.com/maps/dir/?api=1&destination=${restaurant.website}`} target="_blank" rel="noreferrer">
-                        <button className="btn btn-sm btn-outline rounded-full"><Icon icon="lucide:signpost" />Directions</button>
+                        <Button variant="secondary"><Signpost className="mr-2 h-4 w-4" />Directions</Button>
                     </a>
-                    <button className="btn btn-sm btn-outline rounded-full" disabled><Icon icon="lucide:bookmark" />Save</button>
-                    <button aria-label='Edit restaurant' className="btn btn-sm btn-outline btn-circle" disabled><Icon icon="lucide:settings" /></button>
+                    {!like.isLiked && <Button variant="secondary" onClick={() => handleLikeRestaurant()} > <Bookmark className="mr-2 h-4 w-4" />Save</Button>}
+                    {like.isLiked && <Button variant="secondary" onClick={() => handleLikeRestaurant()} ><BookmarkFilledIcon className="mr-2 h-4 w-4" />Saved</Button>}
+                    <Button variant="secondary" aria-label='Edit restaurant' disabled><Settings className="mr-2 h-4 w-4" /></Button>
 
                 </div>
                 <div className='flex flex-col gap-3  text-sm text-sm text-gray-400 light:text-gray-600 mb-12'>
@@ -127,7 +146,7 @@ export const RestaurantDetails = ({ restaurant, images, foodStyleBadges, goodBad
                     <h4 className='flex items-center'><span className='opacity-100 text-success mr-1'><Icon icon="lucide:clock" className='text-primary inline mr-3' />Open </span> - Closes 20:00</h4>
                 </div>
             </div>
-        </section>
+        </section >
         {/* <div className="badge badge-outline badge-primary">{restaurant.type}</div> */}
 
 
