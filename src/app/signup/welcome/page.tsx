@@ -1,37 +1,33 @@
-'use client'
+import { isUserAuthenticated } from '@/actions/auth';
+import WelcomeContent from './WelcomeContent';
+import { HandPlatterIcon } from 'lucide-react';
 
-import Link from "next/link";
-import { Button } from "reablocks";
+export default async function WelcomePage() {
+    const isLoggedIn = await isUserAuthenticated();
 
-export default function WelcomePage() {
-
-    return <div className="flex flex-row justify-center w-full md:min-w-[960px] min-h-[600px] relative dark:bg-black-pearl p-6">
-        <div className="text-center">
-            <div className="absolute top-0 left-0 z-0 w-full leading-[600px] text-center bg-clip-text text-[200px] opacity-20    0 bg-gradient-to-r from-waterloo to-charade font-bold">
-                WELCOME
+    return (
+        <div className="container relative h-[800px] flex-col items-center justify-center md:grid lg:max-w-none lg:grid-cols-2 lg:px-0">
+            <div className="relative hidden h-full flex-col bg-muted p-10 text-white dark:border-r lg:flex">
+                <div className="absolute inset-0 bg-zinc-900" />
+                <div className="relative z-20 flex items-center text-lg font-medium">
+                    <HandPlatterIcon className="mr-2 h-5 w-5" />
+                    The Buffet Diet
+                </div>
+                <div className="relative z-20 mt-auto">
+                    <blockquote className="space-y-2">
+                        <p className="text-lg">
+                            &ldquo;One week in we let the story begin
+                            We're going out on our first date
+                            But you and me are thrifty, so go all-you-can-eat
+                            Fill up your bag, and I fill up a plate&rdquo;
+                        </p>
+                        <footer className="text-sm">Shape of you, Ed Sheeran</footer>
+                    </blockquote>
+                </div>
             </div>
-            <div className="absolute top-0 left-0 w-full h-full dark:bg-[radial-gradient(circle,rgba(36,36,66,0.3)_2%,rgba(2,2,15,1)_80%)] light:bg-[radial-gradient(circle,rgba(224,224,232,0.3)_2%,rgba(247,247,250,1)_80%)]" />
-            <div className="flex flex-col gap-3 h-full justify-center">
-                <div className="grow" />
-                <div className="text-text-primary z-10 relative font-bold !text-5xl">
-                    New to Buffet Diet?
-                </div>
-                <div className="dark:text-waterloo light:text-charade opacity-80 z-10 relative">
-
-                    This is currently ony a alpha version, so please be patient and enjoy the buffetdiet!
-
-
-                    Go to the login page to see the amazing offering of the buffetdiet!
-                </div>
-
-                <div className="grow flex flex-col justify-center">
-                    <Link href="/login" passHref legacyBehavior>
-                        <Button color="primary" className="z-10 mx-auto relative rounded-sm px-4 py-2 flex items-center gap-2 self-stretch !text-lg bg-button-gradient hover:bg-button-gradient-hover focus:bg-button-gradient-focus light:bg-none light:bg-primary light:hover:bg-none light:hover:bg-primary-hover light:focus:bg-primary-hover focus:outline-none transition-colors font-semibold">
-                            To Login
-                        </Button>
-                    </Link>
-                </div>
+            <div className="lg:p-8">
+                <WelcomeContent isLoggedIn={isLoggedIn} />
             </div>
         </div>
-    </div>
+    );
 }
