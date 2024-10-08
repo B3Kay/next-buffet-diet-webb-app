@@ -157,6 +157,31 @@ export async function likeRestaurant(restaurantId: string, userId: string) {
     }
 }
 
+export async function getLikes(userId: string): Promise<Restaurant[]> {
+    await loadAuthFromCookie();
+
+    try {
+        const data = await db.client.collection('likes').getFullList<LikeV1>({
+            filter: `userId = "${userId}"`,
+        });
+
+        const likedRestaurants: Restaurant[] = [];
+        for (const like of data) {
+            const restaurant = await getRestaurant(like.restaurantId);
+            if (restaurant) {
+                likedRestaurants.push(restaurant);
+            }
+        }
+
+        return likedRestaurants;
+    } catch (error) {
+        console.log('Error fetching liked restaurants:', error);
+        return [];
+    }
+}
+
+
+
 // TODO, Refactor functions to use this error / response pattern
 type SuccessResponse<T> = {
     isError: false;
