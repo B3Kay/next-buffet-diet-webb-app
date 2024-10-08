@@ -14,7 +14,7 @@ import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTr
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuShortcut, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Separator } from "@/components/ui/separator";
 import { Card } from "@/components/ui/card";
-import { HandPlatterIcon, LogIn, LogInIcon, LogOut, MoonIcon, SunIcon } from "lucide-react";
+import { BookmarkIcon, HandPlatterIcon, LogIn, LogInIcon, LogOut, MoonIcon, SunIcon } from "lucide-react";
 
 import { useTheme } from "next-themes";
 import { HamburgerMenuIcon, PlusIcon } from "@radix-ui/react-icons";
@@ -27,6 +27,7 @@ const navLinks = [
         href: "/restaurants",
         target: "_self",
     },
+
     {
         label: "About",
         href: "/about",
@@ -38,7 +39,8 @@ export const Nav = ({ user }: { user: AuthModel | false }) => {
     const [isNavOpen, setIsNavOpen] = useState<boolean>(false);
     const pathName = usePathname();
 
-    const isActive = (path: string) => pathName.startsWith(path);
+    const isActive = (path: string) => pathName === path; // Change to exact match
+
     const { theme, setTheme } = useTheme()
 
 
@@ -84,6 +86,16 @@ export const Nav = ({ user }: { user: AuthModel | false }) => {
                                     title: "Restaurants",
                                     href: "/restaurants",
                                     variant: isActive('/restaurants') ? 'default' : 'ghost',
+                                },
+                                {
+                                    title: "Liked",
+                                    href: "/restaurants/liked",
+                                    variant: isActive('/restaurants/liked') ? 'default' : 'ghost',
+                                },
+                                {
+                                    title: "Add new",
+                                    href: "/restaurants/new",
+                                    variant: isActive('/restaurants/new') ? 'default' : 'ghost', // Corrected path
                                 },
 
                                 {
@@ -160,6 +172,11 @@ export const Nav = ({ user }: { user: AuthModel | false }) => {
                                     <DropdownMenuLabel>My Account</DropdownMenuLabel>
                                     <DropdownMenuSeparator />
                                     <DropdownMenuItem disabled>Profile</DropdownMenuItem>
+                                    <Link href="/restaurants/liked" >
+                                        <DropdownMenuItem >
+                                            <BookmarkIcon className="mr-2 h-4 w-4" />Liked
+                                        </DropdownMenuItem>
+                                    </Link>
                                     <Link href="/restaurants/new" >
                                         <DropdownMenuItem >
                                             <PlusIcon className="mr-2 h-4 w-4"></PlusIcon>Add restaurant
