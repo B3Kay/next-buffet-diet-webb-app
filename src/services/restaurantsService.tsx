@@ -157,16 +157,16 @@ export async function likeRestaurant(restaurantId: string, userId: string) {
     }
 }
 
-export async function getLikes(userId: string): Promise<Restaurant[]> {
+export async function getLikedRestaurants(userId: string): Promise<Restaurant[]> {
     await loadAuthFromCookie();
 
     try {
-        const data = await db.client.collection('likes').getFullList<LikeV1>({
+        const likes = await db.client.collection('likes').getFullList<LikeV1>({
             filter: `userId = "${userId}"`,
         });
 
         const likedRestaurants: Restaurant[] = [];
-        for (const like of data) {
+        for (const like of likes) {
             const restaurant = await getRestaurant(like.restaurantId);
             if (restaurant) {
                 likedRestaurants.push(restaurant);
