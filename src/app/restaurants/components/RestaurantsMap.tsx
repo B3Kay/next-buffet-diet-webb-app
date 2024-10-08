@@ -72,7 +72,7 @@ export default function RestaurantMap({ restaurantMarkers, currentLocationMarker
                 ],
             }}
         >
-            {/* TODO: this marked should be a reusable component */}
+
             {currentLocationMarker && <BrowserMarker {...currentLocationMarker} />}
 
 

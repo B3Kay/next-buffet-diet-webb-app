@@ -9,7 +9,7 @@ import { toast } from '@/hooks/use-toast';
 import { BrowserMarker } from '../../components/BrowserMarker';
 
 
-// TODO: Add user location to map
+
 export default function RestaurantMap({ latitude, longitude }: { latitude: number, longitude: number }) {
     const { theme } = useTheme()
     const [viewport, setViewport] = useState({
