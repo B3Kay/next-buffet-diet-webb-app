@@ -2,6 +2,7 @@ import { getLikedRestaurants } from '@/services/restaurantsService';
 import { Restaurant } from '@/services/types';
 
 import { getUser } from '@/actions/auth';
+import Link from 'next/link';
 
 export default async function LikedRestaurants() {
     const user = await getUser();
@@ -12,19 +13,22 @@ export default async function LikedRestaurants() {
 
 
     return (
-        <div className="container mx-auto p-4">
-            <h1 className="text-2xl font-bold mb-4">Liked Restaurants</h1>
+        <div className="max-w-screen-lg mx-auto">
+            <h1 className="text-2xl font-bold m-5">Liked Restaurants</h1>
             {restaurants.length === 0 ? (
                 <p>No liked restaurants found.</p>
             ) : (
-                <ul className="list-disc pl-5">
+                <ul className="">
                     {restaurants.map((restaurant) => (
+
                         <li key={restaurant.id} className="mb-2">
-                            <div className="p-4 border rounded shadow-sm">
-                                <h2 className="text-xl font-semibold">{restaurant.name}</h2>
-                                <p>{restaurant.description}</p>
-                                <p className="text-sm text-gray-600">{restaurant.address}</p>
-                            </div>
+                            <Link href={`/restaurants/${restaurant.id}`}>
+                                <div className="roup rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-muted/40 bg-card">
+                                    <h2 className="text-xl font-semibold">{restaurant.name}</h2>
+                                    <p>{restaurant.description}</p>
+                                    <p className="text-sm text-gray-600">{restaurant.address}</p>
+                                </div>
+                            </Link>
                         </li>
                     ))}
                 </ul>
