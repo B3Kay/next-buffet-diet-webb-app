@@ -1,6 +1,6 @@
 # The Buffet Diet - Website
 
-The buffet diet is a website that allows you to find buffets and all you can eat buffets in your area.
+The buffet diet is a website that allows you to find buffets and all you can eat places in your area.
 
 [![The Buffet Diet - showcase](./public/showcase.png)](https://buffetdiet.com)
 
@@ -19,11 +19,11 @@ The buffet diet is a website that allows you to find buffets and all you can eat
 
 ## 🔑Key Features
 
-- 🔎 **Find Buffets**: Find Buffets and All you can eat places in your area.
-- ⭐ **Community curated buffet reviews**: Read reviews and contribute to the community.
-- 🍔 **Opinionated Restaurant Details**: View restaurant details, including reviews, ratings, and macronutrient content.
+- 🔎 **Find Buffets**: Find All you can eat places nearby you.
+- ⭐ **Community curated buffet reviews**: The buffets are reviewed and tested by the community.
+- 🍔 **Opinionated Restaurant Details**: No matter what diet you follow or dietary restrictions, here you can find a all you can eat for you. View restaurant details, including reviews, ratings, and macronutrient content.
 
-## Getting Started
+## Getting development Started
 
 Install dependencies
 
