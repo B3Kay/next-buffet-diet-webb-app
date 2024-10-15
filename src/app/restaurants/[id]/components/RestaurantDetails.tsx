@@ -99,7 +99,8 @@ export const RestaurantDetails = ({ restaurant, images, foodStyleBadges, goodBad
                         {/* Review */}
                         <Button ><PenBoxIcon className="mr-2 h-4 w-4" /> Write a review</Button>
                     </SheetTrigger>
-                    <SheetContent>
+                    {/* overflow-x-auto is for scrolling in the dialog sheet */}
+                    <SheetContent className="overflow-x-auto">
                         <SheetHeader>
                             <SheetTitle>Are you absolutely sure?</SheetTitle>
                             <SheetDescription>

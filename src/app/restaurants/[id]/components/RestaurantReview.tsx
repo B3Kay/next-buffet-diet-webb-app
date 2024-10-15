@@ -2,14 +2,11 @@
 
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
-import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Textarea } from "@/components/ui/textarea"
-import { Badge } from "@/components/ui/badge"
-import { X } from "lucide-react"
 import { format } from "date-fns"
 import { Calendar as CalendarIcon } from "lucide-react"
 import { cn } from "@/lib/utils"
@@ -20,32 +17,38 @@ import {
     PopoverTrigger,
 } from "@/components/ui/popover"
 import { SheetClose, SheetFooter } from "@/components/ui/sheet"
+import { MultiSelect } from "@/components/Multi-Select"
+import { badOptions, foodOptions, goodOptions } from "@/components/FoodBadges"
 
 export default function RestaurantReview() {
     const [comment, setComment] = useState("")
     const [rating, setRating] = useState("")
     const [priceRange, setPriceRange] = useState("")
     const [image, setImage] = useState<File | null>(null)
-    const [foodBadges, setFoodBadges] = useState<string[]>([])
-    const [newBadge, setNewBadge] = useState("")
+
+    const [selectedGoodBadges, setSelectedGoodBadges] = useState<string[]>([]);
+    const [selectedBadBadges, setSelectedBadBadges] = useState<string[]>([]);
+    const [selectedFoodOptions, setSelectedFoodOptions] = useState<string[]>([]);
+
     const [date, setDate] = useState<Date | undefined>(new Date())
 
     const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault()
+
         // Here you would typically send the data to your backend
-        console.log({ comment, rating, priceRange, image, foodBadges, date })
+        console.log({ comment, rating, priceRange, image, selectedFoodOptions, date })
     }
 
-    const addBadge = () => {
-        if (newBadge && !foodBadges.includes(newBadge)) {
-            setFoodBadges([...foodBadges, newBadge])
-            setNewBadge("")
-        }
-    }
+    const handleNewGoodBadgeChange = (goodBadges: string[]) => {
+        setSelectedGoodBadges(goodBadges);
+    };
+    const handleNewBadBadgeChange = (badBadges: string[]) => {
+        setSelectedBadBadges(badBadges);
+    };
+    const handleNewFoodBadgeChange = (foodBadges: string[]) => {
+        setSelectedFoodOptions(foodBadges);
+    };
 
-    const removeBadge = (badge: string) => {
-        setFoodBadges(foodBadges.filter((b) => b !== badge))
-    }
+
 
     return (
         <>
@@ -125,36 +128,54 @@ export default function RestaurantReview() {
                 </div>
 
                 <div className="space-y-2">
-                    <Label htmlFor="food-badge">Food Badges</Label>
-                    <div className="flex space-x-2">
-                        <Input
-                            id="food-badge"
-                            placeholder="Add a food badge"
-                            value={newBadge}
-                            onChange={(e) => setNewBadge(e.target.value)}
-                        />
-                        <Button type="button" onClick={addBadge}>
-                            Add
-                        </Button>
-                    </div>
-                    <div className="flex flex-wrap gap-2 mt-2">
-                        {foodBadges.map((badge) => (
-                            <Badge key={badge} variant="secondary" className="flex items-center gap-1">
-                                {badge}
-                                <X className="h-3 w-3 cursor-pointer" onClick={() => removeBadge(badge)} />
-                            </Badge>
-                        ))}
-                    </div>
+
+                    <label className="block text-sm font-medium mb-1" htmlFor="goodBadges">Good Badges</label>
+                    <MultiSelect
+                        options={goodOptions.options}
+                        onValueChange={handleNewGoodBadgeChange}
+                        defaultValue={selectedGoodBadges}
+                        placeholder="Select good things"
+                        variant="inverted"
+                        animation={2}
+                        maxCount={3}
+                    />
+
+                </div>
+                <div className="space-y-2">
+                    <label className="block text-sm font-medium mb-1" htmlFor="badBadges">Bad Badges</label>
+                    <MultiSelect
+                        options={badOptions.options}
+                        onValueChange={handleNewBadBadgeChange}
+                        defaultValue={selectedBadBadges}
+                        placeholder="Select bad things"
+                        variant="inverted"
+                        animation={2}
+                        maxCount={3}
+                    />
+
+                </div>
+                <div className="space-y-2">
+                    <label className="block text-sm font-medium mb-1" htmlFor="foodBadges">Food Types</label>
+                    <MultiSelect
+                        options={foodOptions.options}
+                        onValueChange={handleNewFoodBadgeChange}
+                        defaultValue={selectedFoodOptions}
+                        placeholder="Select food options"
+                        variant="inverted"
+                        animation={2}
+                        maxCount={3}
+                    />
+
                 </div>
 
 
-                {/* </CardFooter> */}
+                <SheetFooter>
+                    <SheetClose asChild>
+                        <Button type="submit" onClick={handleSubmit}>Submit Review</Button>
+
+                    </SheetClose>
+                </SheetFooter>
             </form>
-            <SheetFooter>
-                <SheetClose asChild>
-                    <Button type="submit" onClick={handleSubmit}>Submit Review</Button>
-                </SheetClose>
-            </SheetFooter>{/* <CardFooter> */}
         </>
     )
 }
