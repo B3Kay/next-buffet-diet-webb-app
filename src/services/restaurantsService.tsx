@@ -1,11 +1,9 @@
 import { getBoundingBox, getDistanceBetweenTwoCoordinates } from "@/lib/utils";
 import { RestaurantV2, Restaurant, RestaurantV2Keys, LikeV1, LikeBaseV1 } from "./types";
 
-import PocketBase, { ClientResponseError } from 'pocketbase';
-import { ReadonlyRequestCookies } from "next/dist/server/web/spec-extension/adapters/request-cookies";
+import { ClientResponseError } from 'pocketbase';
 import { loadAuthFromCookie } from "@/actions/auth";
 import db from "@/db/db";
-import { boolean } from "zod";
 
 
 export function makeRestaurantFromV2(restaurantV2: RestaurantV2): Restaurant {
