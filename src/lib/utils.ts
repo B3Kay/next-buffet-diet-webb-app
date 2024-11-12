@@ -48,10 +48,12 @@ export function getGeolocation(): Promise<GeolocationCoords> {
         },
         (error) => {
           console.error('Failed to get geolocation:', error);
+          // TODO: handle error
           reject(new Error('Failed to get geolocation'));
         }
       );
     } else {
+      // TODO: handle error
       reject(new Error('Geolocation is not supported by this browser.'));
     }
   });

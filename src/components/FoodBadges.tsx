@@ -1,11 +1,12 @@
 // Define constants for food style badges
 export const foodStylesBadges = {
     ASIAN: '🍜 Asian',
+    SUSHI: '🍣 Sushi',
     PIZZA: '🍕 Pizza',
     HAMBURGER: '🍔 Hamburger',
     ITALIAN: '🍝 Italian',
     MEXICAN: '🌮 Mexican',
-    AMERICAN: '🍽️ American',
+    AMERICAN: '🍽️ American/BBQ',
     SWEDISH: '🥔 Husmanskost/Swedish',
     PAKISTANI: '🍛 Pakistani',
     ARABIC: '🥙 Arabic',
@@ -29,7 +30,7 @@ export type GoodBadges = (typeof goodBadges)[keyof typeof goodBadges];
 export const badBadges = {
     MEATS_HIDDEN: '🙈 Meats are hidden',
     VEGAN_ONLY: '🥦 Vegan only',
-    COOKS_IN_SEED_OILS: '🌻 Cooks in seed oils',
+    COOKS_IN_SEED_OILS: '🌻 Cooked in seed oils',
     MOSTLY_GRAIN_BASED: '🌾 Mostly grain based',
 } as const;
 export type BadBadges = (typeof badBadges)[keyof typeof badBadges];

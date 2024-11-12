@@ -7,12 +7,13 @@ import { useEffect, useState } from "react"
 
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogOverlay, DialogPortal, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
 import { useRouter } from "next/navigation"
-import { Controller, Form, useForm } from "react-hook-form"
+import { Controller, useForm } from "react-hook-form"
 import * as VisuallyHidden from '@radix-ui/react-visually-hidden';
-import { Toggle, toggleVariants } from "@/components/ui/toggle"
-import { MapPinCheckIcon, MapPinIcon, PinIcon, StarIcon, Wifi } from "lucide-react"
+import { toggleVariants } from "@/components/ui/toggle"
+import { MapPinIcon, PinIcon, StarIcon, Wifi } from "lucide-react"
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
-import { cn, getGeolocation } from "@/lib/utils"
+import { cn, GeolocationCoords, getGeolocation } from "@/lib/utils"
+import { searchRestaurantAction } from "@/actions/searchRestaurant"
 
 
 
@@ -41,9 +42,22 @@ export const RestaurantSearchSection = ({ isAuthenticated }: { isAuthenticated: 
 
 
     const onSubmit = async (formValues: { search: string }) => {
-        const params = await getSearchParams(formValues, isLocationActive)
-        const newUrl = `/restaurants?${params.toString()}`;
-        router.push(newUrl);
+        // 'use server'
+        // const groqResponse = await getLLMParsedQuery(formValues.search);
+        // console.log('groqResponse:', groqResponse)
+
+        // const params = await getSearchParams(formValues, isLocationActive)
+        let userLocation: GeolocationCoords = { latitude: 0, longitude: 0 };
+        try {
+            userLocation = await getGeolocation();
+        } catch (error) {
+            console.error('Failed to get geolocation:', error)
+        }
+
+        await searchRestaurantAction(formValues.search, userLocation);
+
+        // const newUrl = `/restaurants?${params.toString()}`;
+        // router.push(newUrl);
 
         setOpen(false);
     }

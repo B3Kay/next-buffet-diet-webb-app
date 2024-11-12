@@ -7,13 +7,30 @@ import { RestaurantSearchSection } from './components/RestaurantSearchSection';
 import { Restaurant } from '@/services/types';
 import RestaurantsMap from './components/RestaurantsMap';
 import Breadcrumb from '@/components/core/Breadcrumb';
+import { getLLMParsedQuery } from '@/services/groqService';
 
 
-
+// revalidate
+export const revalidate = 10
 
 export default async function RestaurantsPage({ searchParams }: { searchParams?: { [key: string]: string } }) {
     const search = searchParams?.search || '';
     const decodedSearch = decodeURIComponent(search);
+
+
+
+    const location = searchParams?.location || '';
+    const userLocation = Array.isArray(searchParams?.userLocation) ? searchParams.userLocation.join(', ') : searchParams?.userLocation || '';
+    const foodTypes = Array.isArray(searchParams?.foodTypes) ? searchParams.foodTypes.join(', ') : searchParams?.foodTypes || '';
+    const goodBadges = Array.isArray(searchParams?.goodBadges) ? searchParams.goodBadges.join(', ') : searchParams?.goodBadges || '';
+    const badBadges = Array.isArray(searchParams?.badBadges) ? searchParams.badBadges.join(', ') : searchParams?.badBadges || '';
+
+    console.log('THIS IS THE PAGE ---------------')
+    console.log('userLocation:', userLocation)
+    console.log('location:', location)
+    console.log('foodTypes:', foodTypes)
+    console.log('goodBadges:', goodBadges)
+    console.log('badBadges:', badBadges)
 
     let searchQuery: string | undefined;
     if (decodedSearch && decodedSearch.length > 0) {
@@ -29,11 +46,10 @@ export default async function RestaurantsPage({ searchParams }: { searchParams?:
     const userLat = searchParams?.latitude ? Number(searchParams.latitude) : null;
     const userLng = searchParams?.longitude ? Number(searchParams.longitude) : null;
     const hasLatLng = userLat && userLng;
+
     if (hasLatLng) {
-        console.log('Searching by proximity', userLat, userLng);
         restaurants = await getRestaurantsByProximity({ maxDistance: 100, latitude: userLat, longitude: userLng, searchQuery: searchQuery });
     } else {
-        console.log('Searching by text');
         restaurants = await getRestaurants(restaurantQuery);
     }
 
