@@ -64,7 +64,7 @@ export const RestaurantSearchSection = ({ isAuthenticated }: { isAuthenticated: 
 
     return <>
 
-        <header className="flex sm:items-center justify-between flex-col sm:flex-row mb-8 mx-5 gap-3">
+        <header className="flex sm:items-center justify-between flex-col sm:flex-row mb-5 mx-5 gap-3">
             <h1 className="text-2xl font-bold">Restaurant</h1>
             <div className="relative flex flex-1 max-w-md gap-2">
                 <TooltipProvider>

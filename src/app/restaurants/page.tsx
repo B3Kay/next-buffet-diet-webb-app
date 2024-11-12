@@ -1,4 +1,3 @@
-
 import { getRestaurants, getRestaurantsByProximity } from '../../services/restaurantsService';
 import { isUserAuthenticated } from '../../actions/auth';
 import { RestaurantCard } from './components/RestaurantCard';
@@ -8,6 +7,7 @@ import { Restaurant } from '@/services/types';
 import RestaurantsMap from './components/RestaurantsMap';
 import Breadcrumb from '@/components/core/Breadcrumb';
 import { getLLMParsedQuery } from '@/services/groqService';
+import { UrlBadges } from './components/UrlBadges';
 
 
 // revalidate
@@ -20,10 +20,10 @@ export default async function RestaurantsPage({ searchParams }: { searchParams?:
 
 
     const location = searchParams?.location || '';
-    const userLocation = Array.isArray(searchParams?.userLocation) ? searchParams.userLocation.join(', ') : searchParams?.userLocation || '';
-    const foodTypes = Array.isArray(searchParams?.foodTypes) ? searchParams.foodTypes.join(', ') : searchParams?.foodTypes || '';
-    const goodBadges = Array.isArray(searchParams?.goodBadges) ? searchParams.goodBadges.join(', ') : searchParams?.goodBadges || '';
-    const badBadges = Array.isArray(searchParams?.badBadges) ? searchParams.badBadges.join(', ') : searchParams?.badBadges || '';
+    const userLocation = searchParams?.userLocation ? searchParams.userLocation.split(',') : [];
+    const foodTypes = searchParams?.foodTypes ? searchParams.foodTypes.split(',') : [];
+    const goodBadges = searchParams?.goodBadges ? searchParams.goodBadges.split(',') : [];
+    const badBadges = searchParams?.badBadges ? searchParams.badBadges.split(',') : [];
 
     console.log('THIS IS THE PAGE ---------------')
     console.log('userLocation:', userLocation)
@@ -72,6 +72,13 @@ export default async function RestaurantsPage({ searchParams }: { searchParams?:
             <div className={`${!hasLatLng && 'max-w-screen-lg'} w-full`}>
                 <Breadcrumb />
                 <RestaurantSearchSection isAuthenticated={isAuthenticated} />
+                <UrlBadges
+                    location={location}
+                    userLocation={userLocation}
+                    foodStyleBadges={foodTypes}
+                    goodBadges={goodBadges}
+                    badBadges={badBadges}
+                />
                 <div className={`${hasLatLng && 'grid grid-cols-1 md:grid-cols-2 gap-4 h-screen'}`}>
 
 
