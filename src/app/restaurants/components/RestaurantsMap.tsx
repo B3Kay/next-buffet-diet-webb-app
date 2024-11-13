@@ -31,11 +31,7 @@ type RestaurantMapProps = {
 }
 
 export default function RestaurantMap({ restaurantMarkers, currentLocationMarker, zoomLevel = 15 }: RestaurantMapProps) {
-    const [viewport, setViewport] = useState({
-        latitude: currentLocationMarker.latitude,
-        longitude: currentLocationMarker.longitude,
-        zoom: zoomLevel
-    });
+
     const [popupInfo, setPopupInfo] = useState<Restaurant | null>(null);
     const { theme } = useTheme()
 
@@ -45,7 +41,11 @@ export default function RestaurantMap({ restaurantMarkers, currentLocationMarker
     return (
 
         <Map
-            initialViewState={viewport}
+            initialViewState={{
+                latitude: currentLocationMarker.latitude,
+                longitude: currentLocationMarker.longitude,
+                zoom: zoomLevel
+            }}
             style={{ width: '100%', height: '100%' }}
             mapStyle={{
                 version: 8,
