@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { Restaurant, RestaurantV2 } from '../../../services/types';
 
 import { createRestaurant, makeRestV2 } from '../../../services/restaurantsService';
-import { badOptions, foodLabelOption, foodOptions, goodOptions } from '../../../components/FoodBadges';
+import { badOptions, foodLabelOption, foodOptions, goodOptions, restaurantTypes } from '../../../components/FoodBadges';
 import { revalidatePath, revalidateTag } from 'next/cache';
 import { MultiSelect } from '@/components/Multi-Select';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
@@ -93,7 +93,7 @@ export default function CreateRestaurant() {
         }));
     };
 
-    const restaurantTypes = ['🤩All you can eat (Buffet)', '⚖️Weigh in the counter (Buffet)', '📦Take away (Buffet)', '🛑No Buffet, much food', '🫷No Buffet, little food']
+    const restType = Object.values(restaurantTypes);
     const [selectedRestaurantType, setSelectedRestaurantType] = useState<string>();
     const handleSelectedRestaurantTypeChange = (newType: string) => {
         setSelectedRestaurantType(newType);
@@ -143,7 +143,7 @@ export default function CreateRestaurant() {
                             <SelectValue placeholder="Buffet" />
                         </SelectTrigger>
                         <SelectContent>
-                            {restaurantTypes.map(type => <SelectItem key={type} value={type}>{type}</SelectItem>)}
+                            {restType.map(type => <SelectItem key={type} value={type}>{type}</SelectItem>)}
 
                         </SelectContent>
                     </Select>
