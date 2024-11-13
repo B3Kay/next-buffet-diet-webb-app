@@ -72,10 +72,14 @@ export function makeRestV2(restaurant: Restaurant): RestaurantV2 {
 export async function getRestaurants({ page = 1, perPage = 30, sortKey = 'created', sortOrder = 'asc', filterQuery = '' }: { page?: number, perPage?: number, sortKey?: RestaurantV2Keys, sortOrder?: 'asc' | 'desc', filterQuery?: string } = {}): Promise<Restaurant[]> {
     const order = sortOrder === 'desc' ? '+' : '-';
 
-    const data = await db.client.collection('restaurants').getList<RestaurantV2>(page, perPage, { sort: order + sortKey, filter: filterQuery });
-    const restaurants = data.items.map((restV2) => makeRestaurantFromV2(restV2))
-    return restaurants;
-
+    try {
+        const data = await db.client.collection('restaurants').getList<RestaurantV2>(page, perPage, { sort: order + sortKey, filter: filterQuery });
+        const restaurants = data.items.map((restV2) => makeRestaurantFromV2(restV2))
+        return restaurants;
+    } catch (error) {
+        console.error('Error fetching restaurants with filterQuery:', filterQuery, error);
+        throw new Error('Failed to fetch restaurants');
+    }
 }
 
 export async function getRestaurantsByProximity({ latitude, longitude, maxDistance = 10, searchQuery = '', page = 1, perPage = 30 }: { latitude: number, longitude: number, maxDistance?: number, searchQuery?: string, page?: number, perPage?: number }) {
