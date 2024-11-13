@@ -21,7 +21,7 @@ import {
 import { useQuery } from "@tanstack/react-query";
 
 
-export interface NominatimAddress {
+export interface NominatimAddressJSON {
     place_id: number;
     licence: string;
     osm_type: string;
@@ -38,6 +38,7 @@ export interface NominatimAddress {
     address: Address; // Nested address object
     boundingbox: string[]; // Array of strings representing bounding box coordinates
 }
+
 
 export interface Address {
     house_number: string;
@@ -57,13 +58,13 @@ export interface Address {
 export function SelectAddress({
     onSelect,
 }: {
-    onSelect: (value: NominatimAddress) => void;
+    onSelect: (value: NominatimAddressJSON) => void;
 }) {
     const [open, setOpen] = React.useState(false);
-    const [value, setValue] = React.useState<NominatimAddress | null>(null);
+    const [value, setValue] = React.useState<NominatimAddressJSON | null>(null);
     const [inputValue, setInputValue] = React.useState("");
 
-    const { data: addresses, isLoading: loading } = useQuery<NominatimAddress[]>({
+    const { data: addresses, isLoading: loading } = useQuery<NominatimAddressJSON[]>({
         queryKey: ["addresses", inputValue],
         queryFn: async () => {
             const response = await fetch(
@@ -71,7 +72,7 @@ export function SelectAddress({
                     inputValue
                 )}&limit=5&addressdetails=1`
             );
-            const data = await response.json() as NominatimAddress[];
+            const data = await response.json() as NominatimAddressJSON[];
             console.log(data)
             return data;
         },
@@ -114,7 +115,7 @@ export function SelectAddress({
 
                         {!loading && (
                             <CommandGroup forceMount>
-                                {addresses?.map((address: NominatimAddress) => (
+                                {addresses?.map((address: NominatimAddressJSON) => (
                                     <CommandItem
                                         key={address.place_id}
                                         value={address.display_name}

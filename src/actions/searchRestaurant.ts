@@ -10,23 +10,20 @@ export async function searchRestaurantAction(search: string, userLocation: Geolo
     console.log('userLocation:', userLocation);
 
     // Safely handle the groqResponse object and its properties
-    const foodTypes = Array.isArray(groqResponse?.foodTypes) ? groqResponse.foodTypes.join(',') : false;
+    const foodStyles = Array.isArray(groqResponse?.foodStyles) ? groqResponse.foodStyles.join(',') : false;
     const goodBadges = Array.isArray(groqResponse?.goodBadges) ? groqResponse.goodBadges.join(',') : false;
     const badBadges = Array.isArray(groqResponse?.badBadges) ? groqResponse.badBadges.join(',') : false;
 
-    console.log('Food Badges:', foodTypes);
-    console.log('Good Badges:', goodBadges);
-    console.log('Bad Badges:', badBadges);
-    // Construct query parameters
+
     const params = new URLSearchParams();
 
-    if (userLocation && userLocation.latitude !== 0 && userLocation.longitude !== 0) {
-        params.append('userLocation', `${userLocation.latitude},${userLocation.longitude}`);
-    } else {
+    if (groqResponse.location.length > 0) {
         params.append('location', groqResponse.location)
+    } else {
+        params.append('userLocation', `${userLocation.latitude},${userLocation.longitude}`);
     }
-    if (foodTypes) {
-        params.append('foodTypes', foodTypes);
+    if (foodStyles) {
+        params.append('foodStyles', foodStyles);
     }
     if (goodBadges) {
         params.append('goodBadges', goodBadges);
@@ -34,18 +31,12 @@ export async function searchRestaurantAction(search: string, userLocation: Geolo
     if (badBadges) {
         params.append('badBadges', badBadges);
     }
+    if (groqResponse.restaurantType) {
+        params.append('restaurantType', groqResponse.restaurantType);
+    }
 
-    // : {
-    //     location: 'krakow',
-    //     foodTypes: [ 'SUSHI' ],
-    //     goodBadges: [ 'VEGAN_FRIENDLY' ],
-    //     badBadges: [],
-    //     note: 'Vegan sushi specifically mentioned, matching closest food type and adding relevant badge, no other matches found'
-    //   }
 
     const urlWithParams = `/restaurants?${params.toString()}`;
-    // console.log('Redirecting to:', urlWithParams);
 
-    // Perform the redirect
     redirect(urlWithParams);
 }

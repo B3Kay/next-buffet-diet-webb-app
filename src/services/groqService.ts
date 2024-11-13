@@ -1,65 +1,97 @@
-import { badBadges, foodStylesBadges, goodBadges } from "@/components/FoodBadges";
+import { badBadges, foodStylesBadges, goodBadges, restaurantTypes } from "@/components/FoodBadges";
 import Groq from "groq-sdk";
 
 const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
 
 type RestaurantSearch = {
-    foodTypes: string[];
+    foodStyles: string[];
     goodBadges: string[];
     badBadges: string[];
+    restaurantType: string;
+    negativeRestaurantType: string;
     location: string;
     note: string;
 }
 
 const extractRestaurantSearchPrompt = (userQuery: string) => `
-        Respond with a valid JSON object, nothing else.
-        Expected double-quoted property names in JSON.
-        Use the exact names of the food types and badges.
-        Do not forget starting and closing curly braces.
+    This is a prompt to extract the desired location, food type, and any relevant good or bad badges from a user query.
+    The respond should be formated as only a valid JSON object, nothing else. Don't include any other text than the JSON object.
+    Expected double-quoted property names in JSON.
+    Use the exact names of the food types and badges.
+    Do not forget starting and closing curly braces.
+    Double check your answer to make sure you do not set an explicit food type or badge if no matches are found.
+    Try to figure out what the user is looking for and match the restaurantType accordingly.
 
-        Given the following user query: \`${userQuery}\`, extract the desired location, food type, and any relevant good or bad badges, if available.
-        - Valid food types: \`${Object.keys(foodStylesBadges).join(', ')}\`
-        - Valid good badges: \`${Object.keys(goodBadges).join(', ')}\`
-        - Valid bad badges: \`${Object.keys(badBadges).join(', ')}\`
+    Given the following user query: \`${userQuery}\`, extract the desired location, food type, and any relevant good or bad badges, if available.
+    These are the valid food types and badges:
+    - Valid foodStyles: \`${Object.keys(foodStylesBadges).join(', ')}\`
+    - Valid goodBadges: \`${Object.keys(goodBadges).join(', ')}\`
+    - Valid badBadges: \`${Object.keys(badBadges).join(', ')}\`
+    - Valid restaurantTypes: \`${Object.keys(restaurantTypes).join(', ')}\`
 
-        ### Context:
-        1. **Location Extraction**:
-           - If the query includes phrases like "nearby me", "around here", or "my location", set the location to \`"USER_LOCATION"\`.
-           - Otherwise, if a location is explicitly mentioned, extract it. If no location is mentioned, leave the location field empty.
+    ### Context:
+   
 
-        2. **Food Types**:
-           - If no food type is mentioned, leave the food types field empty.
-           - Food types should match valid options if they exist. If an exact match is not found, map to a close equivalent (e.g., map "BBQ" to "American" if "BBQ" is not in the valid list).
-           - The system should handle partial and case-insensitive matches (e.g., "SUSHI", "sushi", or "Sush" should match "sushi").
-           - If it says for example "vegan sushi", it should match "sushi" or whatever the closest match is of the food types, and vegan should be in the good or bad badges, depending on the user's preference.
+    1. **location**:
+       - If the query includes phrases like "nearby me", "around here", or "my location", set the location to \`"USER_LOCATION"\`.
+       - Otherwise, if a location is explicitly mentioned (e.g., "krakow"), extract it directly. If no location is mentioned, leave the location field empty.
+       - Location, could be a city, country, adress, or a specific place, It should figure out what part of the query is a location.
+       - Example: "Rydlowka 27, Krakow" should match "Rydlowka 27, Krakow"
+       - Example: "Rydlowka 27" should match "Rydlowka 27"
+       - Example: "Krakow" should match "Krakow"
+       - Example: "Poland" should match "Poland"
+       - Example: "nearby me" should match "USER_LOCATION"
+       - Example: "all i can eat nearby Stockholm" should match "Sthockholm"
+    
+    2. **foodStyles**:
+       - If a food style is mentioned, extract it. Map it to valid food styles (e.g., map "BBQ" to "American" if "BBQ" is not in the valid list).
+       - The system should handle partial and case-insensitive matches (e.g., "SUSHI", "sushi", or "Sush" should match "sushi").
+       - **Do not assume a food style** unless explicitly mentioned (so "Sweden" should not automatically match "Husmanskost"), then leave the foodStyles field empty.
 
-        3. **Badges**:
-           - Good and bad badges should match entries in the given lists.
-           - Good badges are what the user wants.
-           - Bad badges are what the user wants to avoid.
-           - The system should be smart enough to recognize partial matches (e.g., "lean proteins" should map to "lean protein").
-           - Matches should be case insensitive.
-           - Should not select any dietary restrictions unless they are explicitly mentioned.
+    3. **badges**:
+       - Good badges are preferences the user wants (e.g., "vegan"), and bad badges are things the user wants to avoid.
+       - If the query mentions a specific dietary need (like "vegan"), map that to a "vegan" badge in the good or bad section.
+       - Only add badges if they are explicitly mentioned in the query.
 
-        4. **Error Handling and Notes**:
-           - If no food type or badge matches are found, include a message in the \`note\` field explaining that no matches were found.
-           - The \`note\` field should also include explanations for any fallback matches or clarifications about why certain inputs were not fully matched.
+    4. **restaurantType**:
+       - Restaurant types are the types of restaurants the user is looking for. For example "BUFFET", "COUNTER", etc. what is else is valid restaurantType.
+       - If the query mentions a specific type of restaurant (like "buffet"), map that to a "restaurantType" in the JSON.
+       - Only add restaurantType if it is explicitly mentioned in the query.
+       - Match the restaurantType according to what the user is looking for. For example "all you can eat" should match "BUFFET".
+       - Example: "All i can eat", "all you can eat", "buffet" should match "BUFFET" and "COUNTER".
+       - Example: "I want to eat a lot of food" should match "BUFFET", "COUNTER". 
+       - Example: "place where you can weigh the food and pay accordingly to it" should match to "COUNTER".
 
-        ### JSON Output Format:
-        \`\`\`json
-        {
-            "location": "string",
-            "foodTypes": ["string"],
-            "goodBadges": ["string"],
-            "badBadges": ["string"],
-            "note": "string"
-        }
-        \`\`\`
-    `;
+    5. **negativeRestaurantType**:
+       - If the user is looking for the opposite of a restaurant type, add the negative restaurant type to the JSON. For example, if the user is looking for a restaurant that is not a buffet, add "NO_BUFFET" to the negativeRestaurantType field.
+
+    6. **Error Handling and Notes**:
+       - If no food type or badge matches are found, include a message in the \`note\` field explaining that no matches were found.
+       - The \`note\` field should also include explanations for any fallback matches or clarifications about why certain inputs were not fully matched.
+       - The note should also indicate that only the location was matched if no food type or badges were found.
+
+    ### JSON Output Format:
+    \`\`\`json
+    {
+        "location": "string",
+        "foodStyles": ["string"],
+        "goodBadges": ["string"],
+        "badBadges": ["string"],
+        "restaurantType": "string",
+        "negativeRestaurantType": "string",
+        "note": "string"
+    }
+    \`\`\`
+`;
+
+
+
 
 
 export async function getLLMParsedQuery(userQuery: string, maxRetries: number = 3): Promise<RestaurantSearch> {
     let attempt = 0;
+    const prompt = extractRestaurantSearchPrompt(userQuery);
+    console.log('Prompt:', prompt);
 
     while (attempt < maxRetries) {
         try {
@@ -69,7 +101,7 @@ export async function getLLMParsedQuery(userQuery: string, maxRetries: number = 
                 messages: [
                     {
                         role: "user",
-                        content: extractRestaurantSearchPrompt(userQuery)
+                        content: prompt
                     }
                 ]
             });
@@ -96,24 +128,3 @@ export async function getLLMParsedQuery(userQuery: string, maxRetries: number = 
     throw new Error("Unexpected failure: Unable to parse response");
 }
 
-async function executeWithRetry<T>(fn: () => Promise<T>, maxRetries: number = 3): Promise<T> {
-    let attempt = 0;
-
-    while (attempt < maxRetries) {
-        try {
-            // Attempt to execute the function
-            return await fn();
-        } catch (error) {
-            attempt++;
-            console.error(`Attempt ${attempt} failed:`, (error as Error).message);
-
-            // If it's the last attempt, rethrow the error
-            if (attempt >= maxRetries) {
-                throw new Error(`Failed after ${maxRetries} attempts: ${(error as Error).message}`);
-            }
-        }
-    }
-
-    // If the loop exits without returning, throw a general error
-    throw new Error("Unexpected failure: all attempts failed");
-}
