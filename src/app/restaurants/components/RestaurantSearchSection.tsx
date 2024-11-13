@@ -14,6 +14,7 @@ import { MapPinIcon, PinIcon, StarIcon, Wifi } from "lucide-react"
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
 import { cn, GeolocationCoords, getGeolocation } from "@/lib/utils"
 import { searchRestaurantAction } from "@/actions/searchRestaurant"
+import { useToast } from "@/hooks/use-toast"
 
 
 
@@ -26,6 +27,7 @@ export const RestaurantSearchSection = ({ isAuthenticated }: { isAuthenticated: 
     });
     const [isLocationActive, setLocationActive] = useState(false)
     const [open, setOpen] = useState(false)
+    const { toast } = useToast()
 
     const router = useRouter()
 
@@ -52,6 +54,12 @@ export const RestaurantSearchSection = ({ isAuthenticated }: { isAuthenticated: 
             userLocation = await getGeolocation();
         } catch (error) {
             console.error('Failed to get geolocation:', error)
+            toast({
+                variant: "destructive",
+                title: "Could not get user location",
+                description: 'Failed to get geolocation',
+
+            })
         }
 
         await searchRestaurantAction(formValues.search, userLocation);
