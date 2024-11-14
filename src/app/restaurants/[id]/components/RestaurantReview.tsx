@@ -19,8 +19,12 @@ import {
 import { SheetClose, SheetFooter } from "@/components/ui/sheet"
 import { MultiSelect } from "@/components/Multi-Select"
 import { badOptions, foodOptions, goodOptions } from "@/components/FoodBadges"
+import { useRouter } from 'next/router';
+import { reviewRestaurantAction } from "@/actions/reviewRestaurant"
 
-export default function RestaurantReview() {
+export default function RestaurantReview({ restaurantId }: { restaurantId: string }) {
+
+
     const [comment, setComment] = useState("")
     const [rating, setRating] = useState("")
     const [priceRange, setPriceRange] = useState("")
@@ -35,7 +39,8 @@ export default function RestaurantReview() {
     const handleSubmit = (e: React.FormEvent) => {
 
         // Here you would typically send the data to your backend
-        console.log({ comment, rating, priceRange, image, selectedFoodOptions, date })
+        // console.log({ comment, rating, priceRange, image, selectedFoodOptions, date })
+        reviewRestaurantAction({ comment, rating, priceRange, image, selectedFoodOptions, restaurantId, badBadges: selectedBadBadges, goodBadges: selectedGoodBadges })
     }
 
     const handleNewGoodBadgeChange = (goodBadges: string[]) => {

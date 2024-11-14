@@ -1,5 +1,5 @@
 import { getBoundingBox, getDistanceBetweenTwoCoordinates } from "@/lib/utils";
-import { RestaurantV2, Restaurant, RestaurantV2Keys, LikeV1, LikeBaseV1 } from "./types";
+import { RestaurantV2, Restaurant, RestaurantV2Keys, LikeV1, LikeBaseV1, ReviewV1, ReviewBase } from "./types";
 
 import { ClientResponseError } from 'pocketbase';
 import { loadAuthFromCookie } from "@/actions/auth";
@@ -237,4 +237,13 @@ export async function getIsRestaurantLiked(restaurantId: string, userId: string)
         console.log('Error fetching restaurant:', error);
         return error as ClientResponseError;
     }
+}
+
+
+export async function reviewRestaurant(review: ReviewBase) {
+    await loadAuthFromCookie();
+
+    const resp = await db.client.collection('reviews').create<ReviewBase>({ ...review });
+
+    return resp;
 }

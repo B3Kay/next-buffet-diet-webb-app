@@ -102,11 +102,11 @@ export const RestaurantDetails = ({ restaurant, images, foodStyleBadges, goodBad
                     {/* overflow-x-auto is for scrolling in the dialog sheet */}
                     <SheetContent className="overflow-x-auto">
                         <SheetHeader>
-                            <SheetTitle>Are you absolutely sure?</SheetTitle>
+                            <SheetTitle>Let us know what you think</SheetTitle>
                             <SheetDescription>
-                                Some text and stuff
+                                Was it good? Was it bad? You can even add a photo!
                             </SheetDescription>
-                            <RestaurantReview />
+                            <RestaurantReview restaurantId={restaurant.id} />
                         </SheetHeader>
                     </SheetContent>
                 </Sheet>

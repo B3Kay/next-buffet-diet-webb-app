@@ -6,6 +6,18 @@ interface PocketbaseBase {
     updated: string;
 }
 
+export interface ReviewBase {
+    userId: string;
+    restaurantId: string;
+    comment: string;
+    rating: string;
+    // priceRange: string;
+    // image: File;
+    foodBadges: string[];
+    // date: Date;
+    // badBadges: string[];
+    // goodBadges: string[];
+}
 
 interface RestaurantBase {
     name: string;
@@ -45,3 +57,5 @@ export type LikeBaseV1 = {
 }
 
 export type LikeV1 = LikeBaseV1 & PocketbaseBase;
+
+export type ReviewV1 = ReviewBase & PocketbaseBase;
