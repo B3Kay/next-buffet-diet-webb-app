@@ -31,7 +31,6 @@ type RestaurantMapProps = {
 }
 
 export default function RestaurantMap({ restaurantMarkers, currentLocationMarker, zoomLevel = 15 }: RestaurantMapProps) {
-
     const [popupInfo, setPopupInfo] = useState<Restaurant | null>(null);
     const { theme } = useTheme()
 
@@ -72,8 +71,8 @@ export default function RestaurantMap({ restaurantMarkers, currentLocationMarker
                 ],
             }}
         >
-
-            {currentLocationMarker && <BrowserMarker {...currentLocationMarker} />}
+            {/* TODO: Currently location marker is based on search location, not on user location, this is a bugged introduced when updating to AI smart search */}
+            {/* {currentLocationMarker && <BrowserMarker {...currentLocationMarker} />} */}
 
 
             {restaurantMarkers.map((restaurantMarker, index) => (
