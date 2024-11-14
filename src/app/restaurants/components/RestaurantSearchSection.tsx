@@ -44,31 +44,33 @@ export const RestaurantSearchSection = ({ isAuthenticated }: { isAuthenticated: 
 
 
     const onSubmit = async (formValues: { search: string }) => {
-        // 'use server'
-        // const groqResponse = await getLLMParsedQuery(formValues.search);
-        // console.log('groqResponse:', groqResponse)
-
-        // const params = await getSearchParams(formValues, isLocationActive)
         let userLocation: GeolocationCoords = { latitude: 0, longitude: 0 };
         try {
             userLocation = await getGeolocation();
         } catch (error) {
-            console.error('Failed to get geolocation:', error)
-            toast({
-                variant: "destructive",
-                title: "Could not get user location",
-                description: 'Failed to get geolocation',
-
-            })
+            let message = 'Failed to get geolocation';
+            let variant: 'default' | 'destructive' | null = 'destructive';
+            let description;
+            if (error instanceof GeolocationPositionError) {
+                if (error.code == 1) {
+                    message = 'Geolocation permission denied';
+                    description = 'Please allow location access to search for restaurants near you.';
+                } else if (error.code == 2) {
+                    message = 'Geolocation position unavailable';
+                    description = 'Please check your internet connection and try again.';
+                } else if (error.code == 3) {
+                    message = 'Geolocation Timeout';
+                    description = 'Please try again.';
+                }
+            }
+            console.error('Failed to get geolocation:', error);
+            toast({ variant, title: message, description });
         }
 
+        // This line should be outside the `catch` block.
         await searchRestaurantAction(formValues.search, userLocation);
-
-        // const newUrl = `/restaurants?${params.toString()}`;
-        // router.push(newUrl);
-
         setOpen(false);
-    }
+    };
 
     return <>
 

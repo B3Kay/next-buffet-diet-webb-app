@@ -49,7 +49,7 @@ export function getGeolocation(): Promise<GeolocationCoords> {
         (error) => {
           console.error('Failed to get geolocation:', error);
           // TODO: handle error
-          reject(new Error('Failed to get geolocation'));
+          reject(error);
         }
       );
     } else {
