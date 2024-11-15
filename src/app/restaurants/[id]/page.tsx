@@ -66,7 +66,9 @@ export default async function RestaurantPage({ params }: { params: { id: string 
         <div className="max-w-screen-lg mx-auto">
             <Breadcrumb />
             <RestaurantDetails user={user} like={restaurantLike} restaurant={restaurant} images={images} foodStyleBadges={foodStyleBadges} goodBadges={goodBadges} badBadges={badBadges} reviews={reviews.items} />
-            <RestaurantReviews reviews={reviews.items} />
+            <div className='mx-4'>
+                <RestaurantReviews reviews={reviews.items} />
+            </div>
             <div className='flex-1  w-full sm:hidden md:flex h-[600px]'>
                 <RestaurantMap
                     latitude={
@@ -78,7 +80,6 @@ export default async function RestaurantPage({ params }: { params: { id: string 
                 />
 
             </div>
-            <div className='divider'></div>
         </div >
     );
 }
