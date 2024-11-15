@@ -22,7 +22,7 @@ import { badOptions, foodOptions, goodOptions } from "@/components/FoodBadges"
 import { useRouter } from 'next/router';
 import { reviewRestaurantAction } from "@/actions/reviewRestaurant"
 
-export default function RestaurantReview({ restaurantId }: { restaurantId: string }) {
+export default function ReviewRestaurantFormSection({ restaurantId }: { restaurantId: string }) {
 
 
     const [comment, setComment] = useState("")

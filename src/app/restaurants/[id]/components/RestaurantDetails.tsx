@@ -13,7 +13,7 @@ import { useToast } from "@/hooks/use-toast";
 import { Badge } from "@/components/ui/badge";
 import { BookmarkFilledIcon, HeartFilledIcon } from "@radix-ui/react-icons";
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
-import RestaurantReview from "./RestaurantReview";
+import ReviewRestaurantFormSection from "./ReviewRestaurantFormSection";
 import { getAverageRating } from "@/utils/avarageRating";
 
 export const RestaurantDetails = ({ restaurant, images, foodStyleBadges, goodBadges, badBadges, user, like, reviews }:
@@ -111,7 +111,7 @@ export const RestaurantDetails = ({ restaurant, images, foodStyleBadges, goodBad
                             <SheetDescription>
                                 Was it good? Was it bad? You can even add a photo!
                             </SheetDescription>
-                            <RestaurantReview restaurantId={restaurant.id} />
+                            <ReviewRestaurantFormSection restaurantId={restaurant.id} />
                         </SheetHeader>
                     </SheetContent>
                 </Sheet>
@@ -146,7 +146,7 @@ export const RestaurantDetails = ({ restaurant, images, foodStyleBadges, goodBad
                     <Button variant="secondary" aria-label='Edit restaurant' disabled><Settings className="mr-2 h-4 w-4" /></Button>
 
                 </div>
-                <div className='flex flex-col gap-3  text-sm text-sm text-gray-400 light:text-gray-600 mb-12'>
+                <div className='flex flex-col gap-3  text-sm text-gray-400 light:text-gray-600 mb-12'>
                     <h4 className='flex items-center'><Icon icon="lucide:map-pin" className='inline mr-3 text-primary' />{restaurant.address}</h4>
                     <h4 className='flex items-center '><Icon icon="lucide:phone" className='inline mr-3 text-primary' />031-312 76 77</h4>
                     <h4 className='flex items-center'><span className='opacity-100 text-success mr-1'><Icon icon="lucide:clock" className='text-primary inline mr-3' />Open </span> - Closes 20:00</h4>

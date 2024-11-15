@@ -10,6 +10,7 @@ import { getCoordinates } from '@/components/utils/map';
 import { getUser } from '@/actions/auth';
 import { ClientResponseError } from 'pocketbase';
 import Breadcrumb from '@/components/core/Breadcrumb';
+import { RestaurantReviews } from './components/RestaurantReviws';
 
 export const revalidate = 1
 
@@ -65,6 +66,7 @@ export default async function RestaurantPage({ params }: { params: { id: string 
         <div className="max-w-screen-lg mx-auto">
             <Breadcrumb />
             <RestaurantDetails user={user} like={restaurantLike} restaurant={restaurant} images={images} foodStyleBadges={foodStyleBadges} goodBadges={goodBadges} badBadges={badBadges} reviews={reviews.items} />
+            <RestaurantReviews reviews={reviews.items} />
             <div className='flex-1  w-full sm:hidden md:flex h-[600px]'>
                 <RestaurantMap
                     latitude={
@@ -76,6 +78,7 @@ export default async function RestaurantPage({ params }: { params: { id: string 
                 />
 
             </div>
+            <div className='divider'></div>
         </div >
     );
 }

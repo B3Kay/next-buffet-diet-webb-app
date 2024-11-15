@@ -11,13 +11,13 @@ export interface ReviewBase {
     restaurantId: string;
     comment: string;
     rating: string;
-    // priceRange: string;
-    // image: File;
     foodBadges: string[];
-    // date: Date;
-    // badBadges: string[];
-    // goodBadges: string[];
 }
+// priceRange: string;
+// image: File;
+// date: Date;
+// badBadges: string[];
+// goodBadges: string[];
 
 interface RestaurantBase {
     name: string;
