@@ -25,8 +25,8 @@ export const RestaurantRating = ({ rating, roundedRating, id }: RestaurantRating
             {[...Array(fullStars)].map((_, index) => (
                 <StarFilledIcon key={`${index}_${id}`} className="w-6 h-6 text-red-500" />
             ))}
-            {hasHalfStar ? <StarHalfIcon key={`half_star_${id}`} className="w-6 h-6 text-red-500" /> : <StarIcon key={`${id}`} className="w-6 h-6 text-primary/30" />}
-            {[...Array(emptyStars)].map((_, index) => (
+            {hasHalfStar && <StarHalfIcon key={`half_star_${id}`} className="w-6 h-6 text-red-500" />}
+            {[...Array(5 - fullStars - (hasHalfStar ? 1 : 0))].map((_, index) => (
                 <StarIcon key={`${index}_${id}`} className="w-6 h-6 text-primary/30" />
             ))}
         </div>
