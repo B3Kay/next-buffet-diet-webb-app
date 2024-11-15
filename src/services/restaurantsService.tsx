@@ -1,5 +1,5 @@
 import { getBoundingBox, getDistanceBetweenTwoCoordinates } from "@/lib/utils";
-import { RestaurantV2, Restaurant, RestaurantV2Keys, LikeV1, LikeBaseV1, ReviewV1, ReviewBase } from "./types";
+import { RestaurantV2, Restaurant, RestaurantV2Keys, LikeV1, LikeBaseV1, ReviewV1, ReviewBase, RestaurantWithRatings } from "./types";
 
 import { ClientResponseError } from 'pocketbase';
 import { loadAuthFromCookie } from "@/actions/auth";
@@ -255,4 +255,34 @@ export async function getRestaurantRatings(restaurantId: string, page = 1, perPa
     });
 
     return reviews;
+}
+
+// If we change to a more powerfull db, we can join the reviews table with the restaurants table to fetch reviews for multiple restaurants at once
+export async function getReviewsForRestaurants(restaurantIds: string[]) {
+    const filterQuery = restaurantIds.map(id => `restaurantId="${id}"`).join(' || ');
+    const reviews = await db.client.collection('reviews').getList(1, 1000, {
+        filter: filterQuery
+    });
+    return reviews.items;
+}
+
+export async function mergeRestaurantsWithRatings(restaurants: Restaurant[]): Promise<RestaurantWithRatings[]> {
+
+    const restaurantIds = restaurants.map(restaurant => restaurant.id);
+    const reviews = await getReviewsForRestaurants(restaurantIds);
+
+    const ratingsMap: Record<string, number> = {};
+    restaurantIds.forEach(id => {
+        const restaurantReviews = reviews.filter(review => review.restaurantId === id);
+        const totalRatings = restaurantReviews.reduce((sum, review) => sum + review.rating, 0);
+        const avgRating = restaurantReviews.length > 0 ? totalRatings / restaurantReviews.length : 0;
+        ratingsMap[id] = avgRating;
+    });
+
+    const restaurantsWithRatings = restaurants.map(restaurant => ({
+        ...restaurant,
+        averageRating: ratingsMap[restaurant.id] || 0
+    }));
+
+    return restaurantsWithRatings;
 }

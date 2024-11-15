@@ -49,6 +49,10 @@ export type RestaurantV2 = {
 
 export type Restaurant = RestaurantBase & PocketbaseBase;
 
+export type RestaurantWithRatings = {
+    averageRating: number;
+} & Restaurant;
+
 export type RestaurantV2Keys = keyof RestaurantV2;
 
 export type LikeBaseV1 = {
