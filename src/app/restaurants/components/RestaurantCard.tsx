@@ -40,13 +40,14 @@ export type RestaurantCardProps = {
     description: string;
     price: number;
     rating: number;
+    averageRating: number;
     id: string;
     className?: string;
 }
 
 export function RestaurantCard(restaurant: RestaurantCardProps) {
 
-    const rating = restaurant?.rating ?? 0
+    const rating = restaurant?.averageRating ?? 0
     const roundedRating = Math.round(rating);
     return (
         <Link href={`/restaurants/${restaurant.id}`} >

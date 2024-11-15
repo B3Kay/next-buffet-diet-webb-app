@@ -266,7 +266,7 @@ export async function getReviewsForRestaurants(restaurantIds: string[]) {
     return reviews.items;
 }
 
-export async function mergeRestaurantsWithRatings(restaurants: Restaurant[]): Promise<RestaurantWithRatings[]> {
+export async function getReviewsAndMergeWithRestaurants(restaurants: Restaurant[]): Promise<RestaurantWithRatings[]> {
 
     const restaurantIds = restaurants.map(restaurant => restaurant.id);
     const reviews = await getReviewsForRestaurants(restaurantIds);

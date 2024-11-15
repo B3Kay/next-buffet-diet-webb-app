@@ -1,4 +1,4 @@
-import { getRestaurants, getRestaurantsByProximity } from '../../services/restaurantsService';
+import { getRestaurants, getRestaurantsByProximity, getReviewsAndMergeWithRestaurants } from '../../services/restaurantsService';
 import { isUserAuthenticated } from '../../actions/auth';
 import { RestaurantCard } from './components/RestaurantCard';
 import { RestaurantSearchSection } from './components/RestaurantSearchSection';
@@ -98,6 +98,8 @@ export default async function RestaurantsPage({ searchParams }: { searchParams?:
         restaurants = await getRestaurants({ filterQuery: searchQuery });
     }
 
+    const restaurantsWithRatings = await getReviewsAndMergeWithRestaurants(restaurants);
+
 
     const isAuthenticated = await isUserAuthenticated();
     // Filter out restaurants with latitude or longitude equal to 0
@@ -129,13 +131,13 @@ export default async function RestaurantsPage({ searchParams }: { searchParams?:
 
 
 
-                    {restaurants.length === 0 ?
+                    {restaurantsWithRatings.length === 0 ?
                         <div className='justify-center items-center flex flex-col'>
                             <p className="text-center text-muted-foreground m-12">No restaurants found</p>
                         </div>
                         :
                         <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4">
-                            {restaurants.map((restaurant) => (
+                            {restaurantsWithRatings.map((restaurant) => (
                                 // Show "Open now on the card"
                                 // If you are searching for a restaurant you probably want to eat it now, so is it open now?
                                 <RestaurantCard
