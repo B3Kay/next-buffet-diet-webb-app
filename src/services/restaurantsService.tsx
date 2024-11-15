@@ -247,3 +247,12 @@ export async function reviewRestaurant(review: ReviewBase) {
 
     return resp;
 }
+
+export async function getRestaurantRatings(restaurantId: string, page = 1, perPage = 100) {
+
+    const reviews = await db.client.collection('reviews').getList<ReviewV1>(1, 100, {
+        filter: `restaurantId = "${restaurantId}"`
+    });
+
+    return reviews;
+}

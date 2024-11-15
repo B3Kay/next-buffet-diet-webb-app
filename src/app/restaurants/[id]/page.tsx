@@ -1,7 +1,7 @@
 
 
 
-import { getIsRestaurantLiked, getRestaurant, makeRestaurantFromV2 } from '../../../services/restaurantsService';
+import { getRestaurantRatings, getIsRestaurantLiked, getRestaurant, makeRestaurantFromV2 } from '../../../services/restaurantsService';
 import { isBadBadge, isFoodStyleBadge, isGoodBadge } from '@/components/FoodBadges';
 import RestaurantMap from './components/RestaurantMap';
 import { RestaurantDetails } from './components/RestaurantDetails';
@@ -27,7 +27,7 @@ export default async function RestaurantPage({ params }: { params: { id: string 
     const user = await getUser();
 
     const restaurant = await getRestaurant(params.id);
-
+    const reviews = await getRestaurantRatings(params.id);
 
     var restaurantLike: {
         isLiked: boolean;
@@ -42,6 +42,9 @@ export default async function RestaurantPage({ params }: { params: { id: string 
             console.log('likes', resp)
             restaurantLike = resp
         }
+        // Need error handling here
+
+        // console.log('reviews', reviews)
     }
 
 
@@ -61,7 +64,7 @@ export default async function RestaurantPage({ params }: { params: { id: string 
     return (
         <div className="max-w-screen-lg mx-auto">
             <Breadcrumb />
-            <RestaurantDetails user={user} like={restaurantLike} restaurant={restaurant} images={images} foodStyleBadges={foodStyleBadges} goodBadges={goodBadges} badBadges={badBadges} />
+            <RestaurantDetails user={user} like={restaurantLike} restaurant={restaurant} images={images} foodStyleBadges={foodStyleBadges} goodBadges={goodBadges} badBadges={badBadges} reviews={reviews.items} />
             <div className='flex-1  w-full sm:hidden md:flex h-[600px]'>
                 <RestaurantMap
                     latitude={

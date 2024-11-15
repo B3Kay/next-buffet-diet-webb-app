@@ -3,7 +3,7 @@ import { Images } from "@/components/Images";
 import { formatCurrency } from "@/utils/formatCurrency";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { Card, cn } from "reablocks";
-import { Restaurant } from "../../../../services/types";
+import { Restaurant, ReviewV1 } from "../../../../services/types";
 import { RestaurantRating } from "../../components/RestaurantCard";
 import { likeRestaurantAction, removeLikeRestaurantAction } from "@/actions/restaurant";
 import { Bookmark, Globe, HeartIcon, PenBoxIcon, Settings, Signpost, StarIcon } from "lucide-react";
@@ -14,10 +14,15 @@ import { Badge } from "@/components/ui/badge";
 import { BookmarkFilledIcon, HeartFilledIcon } from "@radix-ui/react-icons";
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import RestaurantReview from "./RestaurantReview";
+import { getAverageRating } from "@/utils/avarageRating";
 
-export const RestaurantDetails = ({ restaurant, images, foodStyleBadges, goodBadges, badBadges, user, like }: { restaurant: Restaurant; images: string[]; foodStyleBadges: string[]; goodBadges: string[]; badBadges: string[], user: AuthModel | false, like: { isLiked: boolean, recordId: string } }) => {
+export const RestaurantDetails = ({ restaurant, images, foodStyleBadges, goodBadges, badBadges, user, like, reviews }:
+    {
+        restaurant: Restaurant; images: string[]; foodStyleBadges: string[]; goodBadges: string[]; badBadges: string[],
+        user: AuthModel | false, like: { isLiked: boolean, recordId: string }, reviews: ReviewV1[]
+    }) => {
     const { toast } = useToast()
-    console.log(like)
+    const averageRating = getAverageRating(reviews)
     const handleLikeRestaurant = async () => {
         if (user && user.id) {
             if (!like.isLiked) {
@@ -81,13 +86,13 @@ export const RestaurantDetails = ({ restaurant, images, foodStyleBadges, goodBad
             <div>
                 <p className='text-sm font-bold opacity-50'>{formatCurrency(restaurant.price!!, 'kronor')}</p>
 
-                <RestaurantRating rating={restaurant.rating!!} roundedRating={Math.round(restaurant.rating!!)} id={restaurant.id!!} />
+                <RestaurantRating rating={averageRating} roundedRating={Math.round(averageRating)} id={restaurant.id!!} />
 
             </div>
             <div className="divider divider-horizontal pointer-events-none" />
             <div className="text-secondary-foreground/30">
-                <p>X</p>
-                <a className="">Reviews</a>
+                <p>{reviews.length}</p>
+                <a className="">{reviews.length === 1 ? 'Review' : 'Reviews'}</a>
             </div>
 
             {!!user && <>
