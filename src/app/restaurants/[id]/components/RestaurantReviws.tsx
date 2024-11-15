@@ -8,8 +8,11 @@ import { formatTimeAgo } from "@/utils/formatDate"
 
 
 export const RestaurantReviews = ({ reviews }: { reviews: ReviewV1[] }) => {
-    return <div className="space-y-4">
+    return <div className="space-y-4 mb-5">
         <h2 className="text-xl font-bold">Customer Reviews</h2>
+        {reviews.length === 0 && <Card className="p-12">
+            <p className="text-center text-muted-foreground"><span >Be the first to review this restaurant!</span></p>
+        </Card>}
         {reviews.map((review, index) => (
             <Card key={index}>
                 <CardHeader className="relative">
