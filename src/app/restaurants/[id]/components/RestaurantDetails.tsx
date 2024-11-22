@@ -84,9 +84,11 @@ export const RestaurantDetails = ({ restaurant, images, foodStyleBadges, goodBad
         <Card className="light:bg-athens-gray flex-1 mt-5" contentClassName="flex flex gap-2 items-center">
 
             <div>
-                <p className='text-sm font-bold opacity-50'>{formatCurrency(restaurant.price!!, 'kronor')}</p>
+                <p className='text-sm font-bold opacity-50'>{formatCurrency(restaurant.price!!, 'kronor') + ' *'}</p>
+                <RestaurantRating rating={averageRating} roundedRating={Math.round(averageRating)} id={restaurant.id!!} /><div className="text-secondary-foreground/30">
 
-                <RestaurantRating rating={averageRating} roundedRating={Math.round(averageRating)} id={restaurant.id!!} />
+                </div>
+                <p className="text-xs opacity-50">* Prices may vary</p>
 
             </div>
             <div className="divider divider-horizontal pointer-events-none" />
