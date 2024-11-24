@@ -4,13 +4,14 @@ import * as React from "react"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { cn } from "@/lib/utils"
 import { Input } from "@/components/ui/input"
-import { Button } from "@/components/ui/button"
+import { Button, buttonVariants } from "@/components/ui/button"
 import { MoonIcon, SunIcon, UpdateIcon } from "@radix-ui/react-icons"
 import { useForm } from "react-hook-form"
 import { login } from "@/actions/auth"
 import { LoginFormSchema } from "@/lib/definitions"
 import { z, ZodObject, ZodString, ZodTypeAny } from "zod"
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
+import Link from "next/link"
 // import { Icons } from "@/components/icons"
 
 interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> { }
@@ -124,6 +125,15 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
                             )}
                             Sign In with Email
                         </Button>
+                        <Link
+                            href="/signup"
+                            className={cn(
+                                buttonVariants({ variant: "outline" }),
+                                "sm:hidden"
+                            )}
+                        >
+                            Sign up
+                        </Link>
                     </div>
                 </form>
                 <div className="relative">

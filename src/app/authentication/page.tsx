@@ -21,7 +21,7 @@ export default function AuthenticationPage() {
             {/* TODO use tabs to select between login and create user 
         https://ui.shadcn.com/docs/components/tabs
         */}
-            <div className="md:hidden">
+            {/* <div className="md:hidden">
                 <Image
                     src="/examples/authentication-light.png"
                     width={1280}
@@ -36,13 +36,13 @@ export default function AuthenticationPage() {
                     alt="Authentication"
                     className="hidden dark:block"
                 />
-            </div>
-            <div className="container relative hidden h-[800px] flex-col items-center justify-center md:grid lg:max-w-none lg:grid-cols-2 lg:px-0">
+            </div> */}
+            <div className="container relative h-[800px] flex-col items-center justify-center md:grid lg:max-w-none lg:grid-cols-2 px-4  lg:px-0">
                 <Link
                     href="/signup"
                     className={cn(
                         buttonVariants({ variant: "ghost" }),
-                        "absolute right-4 top-4 md:right-8 md:top-8"
+                        "absolute right-4 top-4 md:right-8 md:top-8 hidden sm:block"
                     )}
                 >
                     Sign up
