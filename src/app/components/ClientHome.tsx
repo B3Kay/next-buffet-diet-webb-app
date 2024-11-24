@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image'
 import { Hero } from './Hero';
 import { HeroRestaurantParallax } from '@/components/ui/heroParallax';
 import { useViewportDimensions } from '@/hooks/useViewportDimensions';
@@ -17,7 +18,7 @@ export default function ClientHome({ user, isAuthenticated, restaurants }: { use
         <main className="flex  flex-col items-center justify-between p-24 overflow-x-hidden overflow-y-hidden ">
             <HeroRestaurantParallax
                 className={width <= 1024 ? "pointer-events-none" : ""}
-                products={restaurants}
+                products={restaurants.map(restaurant => ({ ...restaurant, averageRating: restaurant.rating }))}
             >
                 <Hero />
             </HeroRestaurantParallax>
@@ -26,10 +27,10 @@ export default function ClientHome({ user, isAuthenticated, restaurants }: { use
             <section className="flex justify-center w-full py-12 md:py-24 lg:py-32 mt-24">
                 <div className="container px-4 md:px-6">
                     <div className="grid gap-6 lg:grid-cols-[1fr_400px] lg:gap-12 xl:grid-cols-[1fr_600px]">
-                        <img
+                        <Image
                             src="/restaurantsview.png"
-                            width="550"
-                            height="550"
+                            width={550}
+                            height={550}
                             alt="restaurantsview"
                             className="mx-auto aspect-video overflow-hidden rounded-xl object-cover sm:w-full lg:order-first lg:aspect-square"
                         />
@@ -90,10 +91,10 @@ export default function ClientHome({ user, isAuthenticated, restaurants }: { use
                                 </Link>
                             </div>
                         </div>
-                        <img
+                        <Image
                             src="/restaurant.png"
-                            width="550"
-                            height="550"
+                            width={550}
+                            height={550}
                             alt="restaurantsview"
                             className="mx-auto aspect-video overflow-hidden rounded-xl object-cover sm:w-full lg:order-last lg:aspect-square"
                         />
@@ -103,12 +104,12 @@ export default function ClientHome({ user, isAuthenticated, restaurants }: { use
             <section className="flex justify-center w-full py-12 md:py-24 lg:py-32">
                 <div className="container px-4 md:px-6">
                     <div className="grid gap-6 lg:grid-cols-[1fr_400px] lg:gap-12 xl:grid-cols-[1fr_600px]">
-                        <img
+                        <Image
                             src="/reviewPhone.png"
-                            // width="550"
-                            // height="550"
+                            width={550}
+                            height={550}
                             alt="restaurantsview"
-                            className=" mx-auto aspect-video overflow-hidden rounded-xl object-contain sm:w-full lg:order-first lg:aspect-square"
+                            className="mx-auto aspect-video overflow-hidden rounded-xl object-contain sm:w-full lg:order-first lg:aspect-square"
                         />
                         <div className="flex flex-col justify-center space-y-4">
                             <div className="space-y-2">

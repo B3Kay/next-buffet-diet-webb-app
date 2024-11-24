@@ -2,6 +2,7 @@ import { Restaurant } from "@/services/types";
 import { formatCurrency } from "@/utils/formatCurrency";
 import { StarFilledIcon, StarIcon } from "@radix-ui/react-icons";
 import { StarHalfIcon } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 
 
@@ -55,13 +56,15 @@ export function RestaurantCard(restaurant: RestaurantCardProps) {
             <div className={"group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-muted/40 bg-card" + " " + restaurant.className}>
                 {restaurant.imageUrl === '' ?
                     <div className="w-full h-48 object-cover object-center rounded-lg overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1524721696987-b9527df9e512?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fGFic3RyYWN0fGVufDB8fDB8fHww"
+                        <Image src="https://images.unsplash.com/photo-1524721696987-b9527df9e512?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fGFic3RyYWN0fGVufDB8fDB8fHww"
                             alt={`${restaurant.name} image`}
+                            width={500}
+                            height={500}
                             className="w-full h-48 object-cover object-center rounded-lg "
                         />
                     </div>
                     :
-                    <img src={restaurant.imageUrl} alt={`${restaurant.name} image`} className="w-full h-48 object-cover object-center rounded-lg" />
+                    <Image width={500} height={192} src={restaurant.imageUrl} alt={`${restaurant.name} image`} className="w-full h-48 object-cover object-center rounded-lg" />
                 }
                 <p className="mt-3 max-w-[30ch] text-sm opacity-50">
                     {restaurant.address}

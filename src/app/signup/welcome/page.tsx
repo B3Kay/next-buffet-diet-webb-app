@@ -17,7 +17,7 @@ export default async function WelcomePage() {
                     <blockquote className="space-y-2">
                         <p className="text-lg">
                             &ldquo;One week in we let the story begin
-                            We're going out on our first date
+                            We&apos;re going out on our first date
                             But you and me are thrifty, so go all-you-can-eat
                             Fill up your bag, and I fill up a plate&rdquo;
                         </p>

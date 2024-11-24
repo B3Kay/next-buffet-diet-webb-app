@@ -1,4 +1,5 @@
-import db from "@/db";
+
+import db from "@/db/db";
 import { NextRequest, NextResponse } from "next/server";
 
 

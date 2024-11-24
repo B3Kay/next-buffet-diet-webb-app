@@ -5,6 +5,7 @@ import { useForm, Controller } from 'react-hook-form';
 import { signup } from "../../actions/auth";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 type FormValues = {
     name: string
@@ -221,7 +222,7 @@ export default function SignupPage() {
             </div>
         </div>
         <div className="hidden md:block w-full h-full overflow-hidden">
-            <img src={'https://images.pexels.com/photos/2983101/pexels-photo-2983101.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'}
+            <Image width={1260} height={750} alt="Signup image" src={'https://images.pexels.com/photos/2983101/pexels-photo-2983101.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'}
                 className="w-auto h-full object-cover" />
         </div>
     </Card >;

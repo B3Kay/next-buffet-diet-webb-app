@@ -1,4 +1,4 @@
-import { ImageGrid } from "@/app/restaurants/[id]/page";
+import Image from "next/image";
 
 const placeholderImageUrl = "https://images.unsplash.com/photo-1524721696987-b9527df9e512?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fGFic3RyYWN0fGVufDB8fDB8fHww";
 const placeholderImageUrls = [
@@ -9,7 +9,10 @@ const placeholderImageUrls = [
 ];
 export const Images = ({ imageUrls, imageAlt }: { imageUrls: Array<string>; imageAlt?: string; }) => {
     const emptyImage = <div className="w-full max-h-96 object-cover object-center rounded-3xl overflow-hidden">
-        <img
+        <Image
+            unoptimized
+            width={500}
+            height={500}
             src={placeholderImageUrl}
             alt={`${imageAlt} image`}
             className='w-full max-h-96 object-cover object-center ' />
@@ -26,7 +29,7 @@ export const Images = ({ imageUrls, imageAlt }: { imageUrls: Array<string>; imag
 
     // Check if there is only one image URL
     if (imageUrls.length === 1) {
-        const singleImage = <img src={imageUrls[0]} alt={`${imageAlt} image`} className="w-full max-h-96 object-cover object-center rounded-3xl" />;
+        const singleImage = <Image unoptimized width={500} height={500} src={imageUrls[0]} alt={`${imageAlt} image`} className="w-full max-h-96 object-cover object-center rounded-3xl" />;
         return singleImage;
     }
     const imageGrid = <ImageGrid images={imageUrls} />;
@@ -34,3 +37,13 @@ export const Images = ({ imageUrls, imageAlt }: { imageUrls: Array<string>; imag
     // If there are multiple image URLs
     return imageGrid;
 };
+
+export const ImageGrid = ({ images: imageUrls }: { images: string[] }) => {
+    return (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {imageUrls.map((image) => (
+                <Image unoptimized key={image} src={image} alt={`image grid image`} className="w-full h-48 object-cover object-center rounded-lg" />
+            ))}
+        </div>
+    );
+}

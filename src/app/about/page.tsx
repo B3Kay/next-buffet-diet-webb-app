@@ -30,8 +30,8 @@ export default function AboutPage() {
             <section className="py-16 px-4 max-w-4xl mx-auto text-center">
                 <h2 className="text-3xl font-bold mb-4">Our Mission</h2>
                 <p className="text-xl text-muted-foreground">
-                    At The Buffet Diet, we're on a mission to help buffet lovers discover the best buffet experiences around the world.
-                    Through honest in details reviews, and a passion for all-you-can-eat delights, we're your trusted guide in
+                    At The Buffet Diet, we&apos;re on a mission to help buffet lovers discover the best buffet experiences around the world.
+                    Through honest in details reviews, and a passion for all-you-can-eat delights, we&apos;re your trusted guide in
                     the world of buffets.
                 </p>
             </section>
@@ -76,7 +76,7 @@ export default function AboutPage() {
                             in Engineering and a passion for diets.
                         </p>
                         <blockquote className="text-xl italic border-l-4 border-primary pl-4">
-                            &ldquo;When you're on a any kind of diet, buffets can feel like a landmine of carbs and seed oils. Google wasn’t counting my macros, so I created The Buffet Diet —because avoiding carbs should be easier than avoiding your ex.&rdquo;
+                            &ldquo;When you&apos;re on a any kind of diet, buffets can feel like a landmine of carbs and seed oils. Google wasn&apos;t counting my macros, so I created The Buffet Diet —because avoiding carbs should be easier than avoiding your ex.&rdquo;
                         </blockquote>
                     </div>
                 </div>

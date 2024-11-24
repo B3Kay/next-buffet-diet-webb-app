@@ -14,15 +14,6 @@ import { RestaurantReviews } from './components/RestaurantReviws';
 
 export const revalidate = 1
 
-export const ImageGrid = ({ images: imageUrls }: { images: string[] }) => {
-    return (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {imageUrls.map((image) => (
-                <img src={image} alt={` image`} className="w-full h-48 object-cover object-center rounded-lg" />
-            ))}
-        </div>
-    );
-}
 
 export default async function RestaurantPage({ params }: { params: { id: string } }) {
     const user = await getUser();

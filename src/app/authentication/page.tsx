@@ -5,7 +5,6 @@ import Link from "next/link"
 import { cn } from "@/lib/utils"
 import { buttonVariants } from "@/components/ui/button"
 import { UserAuthForm } from "./components/user-auth-form"
-import { useForm } from "react-hook-form"
 import { HandPlatterIcon } from "lucide-react"
 
 export const metadata: Metadata = {
@@ -58,7 +57,7 @@ export default function AuthenticationPage() {
                         <blockquote className="space-y-2">
                             <p className="text-lg">
                                 &ldquo;One week in we let the story begin
-                                We're going out on our first date (mm-mm)
+                                We&apos;re going out on our first date (mm-mm)
                                 But you and me are thrifty, so go all-you-can-eat
                                 Fill up your bag, and I fill up a plate (mm-mm)&rdquo;
                             </p>
