@@ -94,7 +94,7 @@ export async function login(values: FieldValues) {
         await db.authenticate(email, password, cookieStore);
 
     } catch (error) {
-        console.error('Authentication error:', error);
+        // console.error('Authentication error:', error);
         return { error: 'Invalid email or password' };
     }
 

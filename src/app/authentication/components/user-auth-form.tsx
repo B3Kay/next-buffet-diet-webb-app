@@ -12,12 +12,14 @@ import { LoginFormSchema } from "@/lib/definitions"
 import { z, ZodObject, ZodString, ZodTypeAny } from "zod"
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import Link from "next/link"
+import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert"
+import { AlertCircle } from "lucide-react"
 // import { Icons } from "@/components/icons"
 
 interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> { }
 
 export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
-    // 1. Define your form.
+
     const form = useForm<z.infer<typeof LoginFormSchema>>({
         resolver: zodResolver(LoginFormSchema),
         defaultValues: {
@@ -26,11 +28,9 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
         },
     })
 
-    // 2. Define a submit handler.
     async function onSubmit(values: z.infer<typeof LoginFormSchema>) {
-        // Do something with the form values.
-        // ✅ This will be type-safe and validated.
         const resp = await login(values);
+        console.log(resp)
         if (resp) {
             if (resp.error && typeof resp.error === 'string') {
                 form.setError('root.serverError', {
@@ -53,17 +53,6 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
             }
         }
     }
-
-
-    // const {
-    //     control,
-    //     handleSubmit,
-    //     setError,
-    //     formState: {
-    //         isSubmitting,
-    //         errors
-    //     }
-    // } = useForm();
 
     return (
         <div className={cn("grid gap-6", className)} {...props}>
@@ -117,7 +106,16 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
                                 </FormItem>
                             )}
                         />
+                        {form.formState.errors.root?.serverError && (
+                            <Alert variant="destructive">
+                                <AlertCircle className="h-4 w-4" />
+                                <AlertTitle>Login Error</AlertTitle>
+                                <AlertDescription>
+                                    {form.formState.errors.root.serverError.message}
+                                </AlertDescription>
 
+                            </Alert>
+                        )}
                         <Button disabled={form.formState.isSubmitting}>
                             {form.formState.isSubmitting && (
                                 <UpdateIcon className="mr-2 h-4 w-4 animate-spin" />
