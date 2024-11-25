@@ -92,19 +92,23 @@ export const RestaurantDetails = ({ restaurant, images, foodStyleBadges, goodBad
 
             </div>
             <div className="divider divider-horizontal pointer-events-none" />
-            <div className="text-secondary-foreground/30">
-                <p>{reviews.length}</p>
-                <a className="">{reviews.length === 1 ? 'Review' : 'Reviews'}</a>
-            </div>
-
-            {!!user && <>
-                {like.isLiked && <Button variant={'secondary'} size={'icon'} className="ml-auto" onClick={() => handleLikeRestaurant()}><HeartFilledIcon className="w-5 h-5" /></Button>}
-                {!like.isLiked && <Button variant={'secondary'} size={'icon'} className="ml-auto" onClick={() => handleLikeRestaurant()}><HeartIcon className="w-5 h-5" /></Button>}
-
-                <Sheet>
+            <Sheet>
+                <div className="flex flex-col gap-2">
+                    <a className="text-secondary-foreground/30">{reviews.length} {reviews.length === 1 ? 'Review' : 'Reviews'}</a>
                     <SheetTrigger asChild>
                         {/* Review */}
-                        <Button ><PenBoxIcon className="mr-2 h-4 w-4" /> Write a review</Button>
+                        <Button className=" sm:hidden flex" ><PenBoxIcon className="mr-2 h-4 w-4" /> Write a review</Button>
+                    </SheetTrigger>
+                </div>
+
+                {!!user && <>
+                    {like.isLiked && <Button variant={'secondary'} size={'icon'} className="ml-auto sm:flex hidden" onClick={() => handleLikeRestaurant()}><HeartFilledIcon className="w-5 h-5" /></Button>}
+                    {!like.isLiked && <Button variant={'secondary'} size={'icon'} className="ml-auto  sm:flex hidden" onClick={() => handleLikeRestaurant()}><HeartIcon className="w-5 h-5" /></Button>}
+
+
+                    <SheetTrigger asChild>
+                        {/* Review */}
+                        <Button className=" sm:flex hidden" ><PenBoxIcon className="mr-2 h-4 w-4" /> Write a review</Button>
                     </SheetTrigger>
                     {/* overflow-x-auto is for scrolling in the dialog sheet */}
                     <SheetContent className="overflow-x-auto">
@@ -116,9 +120,9 @@ export const RestaurantDetails = ({ restaurant, images, foodStyleBadges, goodBad
                             <ReviewRestaurantFormSection restaurantId={restaurant.id} />
                         </SheetHeader>
                     </SheetContent>
-                </Sheet>
-            </>
-            }
+
+                </>
+                }</Sheet>
         </Card>
 
         <div className="divider"></div>
@@ -135,7 +139,7 @@ export const RestaurantDetails = ({ restaurant, images, foodStyleBadges, goodBad
             <div>
 
 
-                <div className='flex gap-3 mb-4'>
+                <div className='hidden sm:flex gap-3 mb-4'>
 
                     <a href={restaurant.website} target="_blank" rel="noreferrer">
                         <Button variant="secondary"><Globe className="mr-2 h-4 w-4" />Website</Button>
@@ -145,9 +149,21 @@ export const RestaurantDetails = ({ restaurant, images, foodStyleBadges, goodBad
                     </a>
                     {!like.isLiked && <Button variant="secondary" onClick={() => handleLikeRestaurant()} > <Bookmark className="mr-2 h-4 w-4" />Save</Button>}
                     {like.isLiked && <Button variant="secondary" onClick={() => handleLikeRestaurant()} ><BookmarkFilledIcon className="mr-2 h-4 w-4" />Saved</Button>}
-                    <Button variant="secondary" aria-label='Edit restaurant' disabled><Settings className="mr-2 h-4 w-4" /></Button>
-
+                    <Button variant="secondary" aria-label='Edit restaurant' size="icon" disabled><Settings className="h-4 w-4" /></Button>
                 </div>
+                <div className="sm:hidden flex gap-1 mb-4">
+
+                    <a href={restaurant.website} target="_blank" rel="noreferrer">
+                        <Button variant="secondary"><Globe className="mr-2 h-4 w-4" />Website</Button>
+                    </a>
+                    <a href={`https://www.google.com/maps/dir/?api=1&destination=${restaurant.website}`} target="_blank" rel="noreferrer">
+                        <Button variant="secondary"><Signpost className="mr-2 h-4 w-4" />Directions</Button>
+                    </a>
+                    {!like.isLiked && <Button variant="secondary" size="icon" onClick={() => handleLikeRestaurant()} > <Bookmark className="h-4 w-4" /></Button>}
+                    {like.isLiked && <Button variant="secondary" size="icon" onClick={() => handleLikeRestaurant()} ><BookmarkFilledIcon className="h-4 w-4" /></Button>}
+                    <Button variant="secondary" aria-label='Edit restaurant' size="icon" disabled><Settings className="h-4 w-4" /></Button>
+                </div>
+
                 <div className='flex flex-col gap-3  text-sm text-gray-400 light:text-gray-600 mb-12'>
                     <h4 className='flex items-center'><Icon icon="lucide:map-pin" className='inline mr-3 text-primary' />{restaurant.address}</h4>
                     <h4 className='flex items-center '><Icon icon="lucide:phone" className='inline mr-3 text-primary' />031-312 76 77</h4>
