@@ -28,12 +28,12 @@ export default function ClientHome({ user, isAuthenticated, restaurants }: { use
                 <div className="container px-4 md:px-6">
                     <div className="grid gap-6 lg:grid-cols-[1fr_400px] lg:gap-12 xl:grid-cols-[1fr_600px]">
                         <Image
-                            src="/restaurantsview.png"
+                            src="/macbook.jpg"
                             width={1100}
                             height={1100}
                             alt="restaurantsview"
                             className="mx-auto aspect-video overflow-hidden rounded-xl object-cover sm:w-full lg:order-first lg:aspect-square"
-                            quality={100}
+                            quality={80}
                         />
                         <div className="flex flex-col justify-center space-y-4">
                             <div className="space-y-2">
@@ -93,10 +93,10 @@ export default function ClientHome({ user, isAuthenticated, restaurants }: { use
                             </div>
                         </div>
                         <Image
-                            src="/restaurant.png"
+                            src="/ihpne_mock_1.jpg"
                             width={1100}
                             height={1100}
-                            quality={100}
+                            quality={80}
                             alt="restaurantsview"
                             className="mx-auto aspect-video overflow-hidden rounded-xl object-cover sm:w-full order-1 md:order-last lg:aspect-square"
                         />
@@ -108,12 +108,12 @@ export default function ClientHome({ user, isAuthenticated, restaurants }: { use
                 <div className="container px-4 md:px-6">
                     <div className="grid gap-6 lg:grid-cols-[1fr_400px] lg:gap-12 xl:grid-cols-[1fr_600px]">
                         <Image
-                            src="/reviewPhone.png"
+                            src="/ihpne_mock_2.jpg"
                             width={1100}
                             height={1100}
-                            quality={100}
+                            quality={80}
                             alt="restaurantsview"
-                            className="mx-auto aspect-video overflow-hidden rounded-xl object-contain sm:w-full lg:order-first lg:aspect-square"
+                            className="mx-auto aspect-video overflow-hidden rounded-xl object-cover sm:w-full lg:order-first lg:aspect-square"
                         />
                         <div className="flex flex-col justify-center space-y-4">
                             <div className="space-y-2">
