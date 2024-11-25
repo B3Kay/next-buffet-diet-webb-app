@@ -65,12 +65,12 @@ export default function ClientHome({ user, isAuthenticated, restaurants }: { use
             <section className="flex justify-center w-full py-12 md:py-24 lg:py-32">
                 <div className="container px-4 md:px-6">
                     <div className="grid gap-6 lg:grid-cols-[1fr_400px] lg:gap-12 xl:grid-cols-[1fr_600px]">
-                        <div className="flex flex-col justify-center space-y-4">
+                        <div className="flex flex-col justify-center space-y-4 order-2 md:order-1">
                             <div className="space-y-2">
                                 <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none">
                                     Make sure it fits your Macros
                                 </h1>
-                                <div className='flex flex-wrap gap-2'>
+                                <div className="flex flex-wrap gap-2">
                                     <Badge>{goodBadges.LEAN_PROTEIN}</Badge>
                                     <Badge>{goodBadges.CARNIVORE_FRIENDLY}</Badge>
                                     <Badge>{goodBadges.KETO_FRIENDLY}</Badge>
@@ -96,9 +96,10 @@ export default function ClientHome({ user, isAuthenticated, restaurants }: { use
                             width={550}
                             height={550}
                             alt="restaurantsview"
-                            className="mx-auto aspect-video overflow-hidden rounded-xl object-cover sm:w-full lg:order-last lg:aspect-square"
+                            className="mx-auto aspect-video overflow-hidden rounded-xl object-cover sm:w-full order-1 md:order-last lg:aspect-square"
                         />
                     </div>
+
                 </div>
             </section>
             <section className="flex justify-center w-full py-12 md:py-24 lg:py-32">
