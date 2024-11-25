@@ -63,14 +63,14 @@ export async function signup(values: FieldValues) {
         }
     } catch (error) {
         if (error instanceof ClientResponseError) {
-            console.log('error statuscode', error.status)
-            if (error.response.data.email.code === 'validation_invalid_email') {
-                return { error: error.response.data.email.message }
+            const emailError = error.response?.data?.email;
+            if (emailError?.code === 'validation_invalid_email') {
+                return { error: emailError.message };
             }
         }
         return { error: 'Could not create user' }
     }
-    redirect('/welcome')
+    redirect('/signup/welcome')
 }
 
 export async function login(values: FieldValues) {
