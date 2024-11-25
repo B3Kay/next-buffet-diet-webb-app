@@ -33,7 +33,7 @@ export async function signup(values: FieldValues) {
     const { email, password, name, passwordConfirm, subscribe } = values;
 
     const validatedFields = SignupFormSchema.safeParse({
-        email: email,
+        email: email.toLowerCase(),
         password: password,
         name: name,
         passwordConfirm: passwordConfirm,
@@ -47,6 +47,7 @@ export async function signup(values: FieldValues) {
     }
 
     try {
+        // TODO: This should definately be somewhere else and auth handling and API needs to be refactored overall to run user action in client.
         const pb = new PocketBase(process.env.POCKET_BASE_URL);
         const userCollection = pb.collection<User>('users');
 
@@ -77,7 +78,7 @@ export async function login(values: FieldValues) {
 
     // Validate input fields
     const validatedFields = LoginFormSchema.safeParse({
-        email: email,
+        email: email.toLowerCase(),
         password: password,
     });
 
