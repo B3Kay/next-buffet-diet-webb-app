@@ -188,7 +188,7 @@ export function SignUpForm() {
                         Sign Up
                     </Button>
                     <Link
-                        href="/login"
+                        href="/authentication"
                         className={cn(
                             buttonVariants({ variant: "outline" }),
                             "sm:hidden"
