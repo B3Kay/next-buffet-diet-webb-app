@@ -1,11 +1,9 @@
 'use client'
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert"
-import { useForm, FormProvider } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { cn } from "@/lib/utils"
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import Image from "next/image";
 import { AlertCircle } from "lucide-react";
 import { UpdateIcon } from "@radix-ui/react-icons";
 import { SignupFormSchema } from "@/lib/definitions";
@@ -14,7 +12,7 @@ import { z } from "zod";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { signup } from "@/actions/auth";
-import { RSC_PREFETCH_SUFFIX } from "next/dist/lib/constants";
+import { Checkbox } from "@/components/ui/checkbox";
 
 
 
@@ -146,6 +144,29 @@ export function SignUpForm() {
                                     Confirm your password.
                                 </FormDescription>
                                 <FormMessage />
+                            </FormItem>
+                        )}
+                    />
+                    <FormField
+                        control={form.control}
+                        name="subscribe"
+                        render={({ field }) => (
+                            <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4 shadow">
+                                <FormControl>
+                                    <Checkbox
+                                        checked={field.value}
+                                        onCheckedChange={field.onChange}
+                                    />
+                                </FormControl>
+                                <div className="space-y-1 leading-none">
+                                    <FormLabel>
+                                        Subscribe to newsletter
+                                    </FormLabel>
+                                    <FormDescription>
+                                        You can manage your newsletter in the{" "}
+                                        <Link href="/examples/forms">app settings</Link> page.
+                                    </FormDescription>
+                                </div>
                             </FormItem>
                         )}
                     />
