@@ -29,7 +29,6 @@ type UserV1 = Partial<{
     avatar: string;
 }>;
 
-
 export async function signup(values: FieldValues) {
     const { email, password, name, passwordConfirm, subscribe } = values;
 
@@ -48,7 +47,7 @@ export async function signup(values: FieldValues) {
     }
 
     try {
-        const pb = new PocketBase('http://127.0.0.1:8090');
+        const pb = new PocketBase(process.env.POCKET_BASE_URL);
         const userCollection = pb.collection<User>('users');
 
         const resp = await userCollection.create<UserV1>({
