@@ -76,7 +76,7 @@ export default function AboutPage() {
                             in Engineering and a passion for diets.
                         </p>
                         <blockquote className="text-xl italic border-l-4 border-primary pl-4">
-                            &ldquo;When you&apos;re on a any kind of diet, buffets can feel like a landmine of carbs and seed oils. Google wasn&apos;t counting my macros, so I created The Buffet Diet —because avoiding carbs should be easier than avoiding your ex.&rdquo;
+                            &ldquo;When you&apos;re on a any kind of diet, buffets can feel like a landmine of carbs and seed oils. Google wasn&apos;t counting my macros, so I created The Buffet Diet —because avoiding carbs should be easier than avoiding trolls on the internet.&rdquo;
                         </blockquote>
                     </div>
                 </div>

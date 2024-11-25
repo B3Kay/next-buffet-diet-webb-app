@@ -92,7 +92,7 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
                                 <FormItem>
                                     <FormLabel>Email</FormLabel>
                                     <FormControl>
-                                        <Input placeholder="benny@example.com" {...field} />
+                                        <Input placeholder="allyoucaneat@buffetdiet.com" {...field} />
                                     </FormControl>
                                     <FormDescription>
                                         This is your email you signed up with.

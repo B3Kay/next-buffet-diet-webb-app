@@ -29,10 +29,11 @@ export default function ClientHome({ user, isAuthenticated, restaurants }: { use
                     <div className="grid gap-6 lg:grid-cols-[1fr_400px] lg:gap-12 xl:grid-cols-[1fr_600px]">
                         <Image
                             src="/restaurantsview.png"
-                            width={550}
-                            height={550}
+                            width={1100}
+                            height={1100}
                             alt="restaurantsview"
                             className="mx-auto aspect-video overflow-hidden rounded-xl object-cover sm:w-full lg:order-first lg:aspect-square"
+                            quality={100}
                         />
                         <div className="flex flex-col justify-center space-y-4">
                             <div className="space-y-2">
@@ -93,8 +94,9 @@ export default function ClientHome({ user, isAuthenticated, restaurants }: { use
                         </div>
                         <Image
                             src="/restaurant.png"
-                            width={550}
-                            height={550}
+                            width={1100}
+                            height={1100}
+                            quality={100}
                             alt="restaurantsview"
                             className="mx-auto aspect-video overflow-hidden rounded-xl object-cover sm:w-full order-1 md:order-last lg:aspect-square"
                         />
@@ -107,8 +109,9 @@ export default function ClientHome({ user, isAuthenticated, restaurants }: { use
                     <div className="grid gap-6 lg:grid-cols-[1fr_400px] lg:gap-12 xl:grid-cols-[1fr_600px]">
                         <Image
                             src="/reviewPhone.png"
-                            width={550}
-                            height={550}
+                            width={1100}
+                            height={1100}
+                            quality={100}
                             alt="restaurantsview"
                             className="mx-auto aspect-video overflow-hidden rounded-xl object-contain sm:w-full lg:order-first lg:aspect-square"
                         />
