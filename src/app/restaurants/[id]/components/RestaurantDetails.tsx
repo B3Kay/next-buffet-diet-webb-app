@@ -97,7 +97,7 @@ export const RestaurantDetails = ({ restaurant, images, foodStyleBadges, goodBad
                     <a className="text-secondary-foreground/30">{reviews.length} {reviews.length === 1 ? 'Review' : 'Reviews'}</a>
                     <SheetTrigger asChild>
                         {/* Review */}
-                        <Button className=" sm:hidden flex" ><PenBoxIcon className="mr-2 h-4 w-4" /> Write a review</Button>
+                        <Button className=" sm:hidden flex" ><PenBoxIcon className="mr-2 h-4 w-4" /> <span className="hidden sm:inline">Write a review</span><span className="sm:hidden inline">Review</span></Button>
                     </SheetTrigger>
                 </div>
 
