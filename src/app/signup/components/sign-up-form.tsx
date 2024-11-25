@@ -194,7 +194,7 @@ export function SignUpForm() {
                             "sm:hidden"
                         )}
                     >
-                        Sign up
+                        To Login
                     </Link>
                 </div>
 
