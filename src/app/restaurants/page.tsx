@@ -1,4 +1,4 @@
-import { getRestaurants, getRestaurantsByProximity, getReviewsAndMergeWithRestaurants } from '../../services/restaurantsService';
+import { getRestaurants, getRestaurantsByProximity, mapRestaurantsWithAvarageReviews } from '../../services/restaurantsService';
 import { isUserAuthenticated } from '../../actions/auth';
 import { RestaurantCard } from './components/RestaurantCard';
 import { RestaurantSearchSection } from './components/RestaurantSearchSection';
@@ -96,9 +96,10 @@ export default async function RestaurantsPage({ searchParams }: { searchParams?:
     } else {
         console.log('No users proximity restaurant query', searchQuery)
         restaurants = await getRestaurants({ filterQuery: searchQuery });
+
     }
 
-    const restaurantsWithRatings = await getReviewsAndMergeWithRestaurants(restaurants);
+    const restaurantsWithRatings = mapRestaurantsWithAvarageReviews(restaurants);
 
 
     const isAuthenticated = await isUserAuthenticated();

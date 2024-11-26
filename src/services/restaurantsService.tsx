@@ -28,6 +28,7 @@ export function makeRestaurantFromV2(restaurantV2: RestaurantV2): Restaurant {
         longitude: restaurantV2.longitude,
         latitude: restaurantV2.latitude,
         foodBadges: foodBadges,
+        reviews: restaurantV2.expand?.reviews_via_restaurantId || [],
         // 
         collectionId: restaurantV2.collectionId,
         collectionName: restaurantV2.collectionName,
@@ -70,16 +71,23 @@ export function makeRestV2(restaurant: Restaurant): RestaurantV2 {
 
 
 export async function getRestaurants({ page = 1, perPage = 30, sortKey = 'created', sortOrder = 'asc', filterQuery = '' }: { page?: number, perPage?: number, sortKey?: RestaurantV2Keys, sortOrder?: 'asc' | 'desc', filterQuery?: string } = {}): Promise<Restaurant[]> {
-    const order = sortOrder === 'desc' ? '+' : '-';
+    const order = sortOrder === 'desc' ? '' : '-'; // Only prepend '-' for descending order
 
+    let data;
     try {
-        const data = await db.client.collection('restaurants').getList<RestaurantV2>(page, perPage, { sort: order + sortKey, filter: filterQuery });
-        const restaurants = data.items.map((restV2) => makeRestaurantFromV2(restV2))
-        return restaurants;
+        data = await db.client.collection('restaurants').getList<RestaurantV2>(page, perPage, {
+            sort: order + sortKey,
+            filter: filterQuery,
+            expand: 'reviews_via_restaurantId'
+        });
+        console.log('Successfully fetched restaurants', data.items[0])
+
     } catch (error) {
         console.error('Error fetching restaurants with filterQuery:', filterQuery, error);
         throw new Error('Failed to fetch restaurants');
     }
+    const restaurants = data.items.map((restV2) => makeRestaurantFromV2(restV2))
+    return restaurants;
 }
 
 export async function getRestaurantsByProximity({ latitude, longitude, maxDistance = 10, searchQuery = '', page = 1, perPage = 30 }: { latitude: number, longitude: number, maxDistance?: number, searchQuery?: string, page?: number, perPage?: number }) {
@@ -94,6 +102,7 @@ export async function getRestaurantsByProximity({ latitude, longitude, maxDistan
         filter: filterQuery,
         sort: 'created',
         sortOrder: '-',
+        expand: 'reviews_via_restaurantId'
     });
 
     if (latitude && longitude) {
@@ -197,6 +206,7 @@ type ErrorResponse = {
 };
 
 type RemoveLikedRestaurantResponse<T> = SuccessResponse<T> | ErrorResponse;
+
 export async function removeLikedRestaurant(recordId: string): Promise<RemoveLikedRestaurantResponse<boolean>> {
 
     await loadAuthFromCookie();
@@ -266,23 +276,19 @@ export async function getReviewsForRestaurants(restaurantIds: string[]) {
     return reviews.items;
 }
 
-export async function getReviewsAndMergeWithRestaurants(restaurants: Restaurant[]): Promise<RestaurantWithRatings[]> {
 
-    const restaurantIds = restaurants.map(restaurant => restaurant.id);
-    const reviews = await getReviewsForRestaurants(restaurantIds);
+export function mapRestaurantsWithAvarageReviews(restaurants: Restaurant[]): RestaurantWithRatings[] {
+    const newRestaurants: RestaurantWithRatings[] = restaurants.map(restaurant => {
+        const reviews = restaurant.reviews || [];
+        const totalRatings = reviews.reduce((sum, review) => sum + (review.rating || 0), 0);
+        const avgRating = reviews.length > 0 ? totalRatings / reviews.length : 0;
 
-    const ratingsMap: Record<string, number> = {};
-    restaurantIds.forEach(id => {
-        const restaurantReviews = reviews.filter(review => review.restaurantId === id);
-        const totalRatings = restaurantReviews.reduce((sum, review) => sum + review.rating, 0);
-        const avgRating = restaurantReviews.length > 0 ? totalRatings / restaurantReviews.length : 0;
-        ratingsMap[id] = avgRating;
+        return {
+            ...restaurant,
+            averageRating: avgRating,
+            reviews: reviews
+        };
     });
 
-    const restaurantsWithRatings = restaurants.map(restaurant => ({
-        ...restaurant,
-        averageRating: ratingsMap[restaurant.id] || 0
-    }));
-
-    return restaurantsWithRatings;
+    return newRestaurants;
 }

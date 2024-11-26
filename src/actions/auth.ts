@@ -103,6 +103,7 @@ export async function login(values: FieldValues) {
 
 export async function signOut() {
     cookies().set('pb_auth', '');
+    db.client.authStore.clear();
     redirect('/');
 }
 

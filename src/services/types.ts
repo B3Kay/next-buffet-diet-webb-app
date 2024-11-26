@@ -10,7 +10,7 @@ export interface ReviewBase {
     userId: string;
     restaurantId: string;
     comment: string;
-    rating: string;
+    rating: number;
     foodBadges: string[];
 }
 // priceRange: string;
@@ -30,6 +30,7 @@ interface RestaurantBase {
     imageUrl: string;
     longitude: number;
     latitude: number;
+    reviews: ReviewBase[];
     foodBadges: Array<string>;
 }
 
@@ -45,6 +46,7 @@ export type RestaurantV2 = {
     foodBadges: string;
     longitude: number;
     latitude: number;
+    expand?: { reviews_via_restaurantId: ReviewV1[] };
 } & PocketbaseBase;
 
 export type Restaurant = RestaurantBase & PocketbaseBase;
