@@ -24,7 +24,7 @@ export const RestaurantReviews = ({ reviews }: { reviews: ReviewV1[] }) => {
                             </Avatar>
                             <div>
                                 <CardTitle className="text-sm">User {review.userId}</CardTitle>
-                                <RestaurantRating rating={parseInt(review.rating)} roundedRating={Math.round(parseInt(review.rating))} id={review.restaurantId} />
+                                <RestaurantRating rating={review.rating} roundedRating={Math.round(review.rating)} id={review.restaurantId} />
                             </div>
                         </div>
 
