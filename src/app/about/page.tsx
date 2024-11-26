@@ -65,18 +65,18 @@ export default function AboutPage() {
             {/* Founder Section */}
             <section className="py-24 px-4">
                 <div className="max-w-4xl mx-auto flex flex-col md:flex-row items-center">
-                    <Avatar className="w-64 h-64 mb-8 md:mb-0 md:mr-8">
-                        <AvatarImage src="/placeholder.svg?height=400&width=400" alt="Founder" />
-                        <AvatarFallback>JD</AvatarFallback>
-                    </Avatar>
-                    <div>
+                    <div className="relative flex shrink-0 overflow-hidden rounded-full w-64 h-64 mb-8 md:mb-0 md:mr-8">
+                        <img src="/founder_portrait.jpg" alt="Founder" className="relative flex w-64 h-64 object-cover shrink-0  rounded-full" />
+                    </div>
+
+                    <div className="text-center md:text-left">
                         <h2 className="text-3xl font-bold mb-4">Meet the Founder</h2>
                         <p className="text-xl text-muted-foreground mb-4">
-                            Benjamin Karlsson, a lifelong biohacker and buffet addict, founded The Buffet Diet in 2020. With a background
+                            Benjamin Karlsson, a lifelong biohacker, entrepreneur, and buffet addict, founded The Buffet Diet in 2020. With a background
                             in Engineering and a passion for diets.
                         </p>
                         <blockquote className="text-xl italic border-l-4 border-primary pl-4">
-                            &ldquo;When you&apos;re on a any kind of diet, buffets can feel like a landmine of carbs and seed oils. Google wasn&apos;t counting my macros, so I created The Buffet Diet —because avoiding carbs should be easier than avoiding trolls on the internet.&rdquo;
+                            &ldquo;As a fasting enthusiast dabbling in 16:8, OMAD, and even 5-day stretches, regular restaurants just didn’t cut it. Enter all-you-can-eat buffets—the ultimate solution I called "The Buffet Diet". But finding them? A challenge. Reliable info? Nonexistent. So, I did what any hungry intellectual would do: I created this site to map the buffet world for fellow feast-seekers.&rdquo;
                         </blockquote>
                     </div>
                 </div>
@@ -92,7 +92,7 @@ export default function AboutPage() {
                         Become a part of our food-loving family. Share your experiences, discover new buffets, and contribute to the community.
                     </p>
                     <Link href="/authentication" passHref legacyBehavior>
-                        <Button size="lg" variant="secondary">
+                        <Button size="lg" variant="secondary" disabled>
                             Sign Up Now
                         </Button>
                     </Link>
