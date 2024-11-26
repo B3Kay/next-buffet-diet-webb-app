@@ -22,7 +22,7 @@ const extractRestaurantSearchPrompt = (userQuery: string) => `
     Double check your answer to make sure you do not set an explicit food type or badge if no matches are found.
     Try to figure out what the user is looking for and match the restaurantType accordingly.
 
-    Given the following user query: \`${userQuery}\`, extract the desired location, food type, and any relevant good or bad badges, if available.
+    Given a user query, extract the desired location, food type, and any relevant good or bad badges, if available.
     These are the valid food types and badges:
     - Valid foodStyles: \`${Object.keys(foodStylesBadges).join(', ')}\`
     - Valid goodBadges: \`${Object.keys(goodBadges).join(', ')}\`
@@ -82,6 +82,8 @@ const extractRestaurantSearchPrompt = (userQuery: string) => `
         "note": "string"
     }
     \`\`\`
+
+    The user query is: \`${userQuery}\`
 `;
 
 
@@ -102,6 +104,10 @@ export async function getLLMParsedQuery(userQuery: string, maxRetries: number = 
                     {
                         role: "user",
                         content: prompt
+                    },
+                    {
+                        role: "assistant",
+                        content: "```json"
                     }
                 ]
             });
