@@ -24,9 +24,9 @@ export default function ClientHome({ user, isAuthenticated, restaurants }: { use
                 <Hero />
             </HeroRestaurantParallax>
 
-            <section className="py-12 md:py-24 lg:py-32">
+            <section className="pb-12 pt-16 md:py-24 lg:py-32">
                 <div className="max-w-6xl mx-auto px-4">
-                    <h2 className="ttext-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none mb-8 text-center">Our focus</h2>
+                    <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none mb-8 text-center">Our focus</h2>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                         {[
                             { icon: Star, title: 'Food Quality', description: 'We believe in highlighting truly exceptional buffet experiences.' },
