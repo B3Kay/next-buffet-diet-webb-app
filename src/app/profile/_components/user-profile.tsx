@@ -18,7 +18,7 @@ export function UserProfile({ user }: { user: User }) {
             <CardContent className="flex items-center space-x-4">
                 <Avatar className="h-20 w-20">
                     <AvatarImage src="/placeholder.svg?height=80&width=80" alt="User's avatar" />
-                    <AvatarFallback>JD</AvatarFallback>
+                    <AvatarFallback>{user.name.split(' ').map(name => name[0]).join('')}</AvatarFallback>
                 </Avatar>
                 <div>
                     <h2 className="text-xl font-semibold">{user.name}</h2>

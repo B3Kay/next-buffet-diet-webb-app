@@ -9,6 +9,7 @@ import { dummyPresetData } from "./dummyPresetData"
 import { handleCeateDummyData } from "@/actions/handleCreateDummyData"
 import { makeRestaurantBaseV2 } from "@/services/restaurantsService"
 import { Restaurant, RestaurantBaseV2 } from "@/services/types"
+import { Badge } from "@/components/ui/badge"
 
 export function AddDummyData() {
     const [dummyData, setDummyData] = useState<string>(JSON.stringify(dummyPresetData, null, 2))
@@ -45,7 +46,7 @@ export function AddDummyData() {
     return (
         <Card>
             <CardHeader>
-                <CardTitle>Add Dummy Data (Admin Only)</CardTitle>
+                <CardTitle>Add Dummy Data <Badge className="ml-2" variant="destructive">Admin Only</Badge></CardTitle>
             </CardHeader>
             <CardContent>
                 <Textarea
