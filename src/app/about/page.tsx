@@ -1,12 +1,11 @@
 
-import { Star, Users, Utensils, } from 'lucide-react'
+import { Star, Users, Utensils } from 'lucide-react'
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import Link from 'next/link'
 
 export default function AboutPage() {
-
 
     return (
         <div className="min-h-screen bg-background">
@@ -18,10 +17,7 @@ export default function AboutPage() {
                     className="absolute inset-0 w-full h-full object-cover"
                 /> */}
                 <div className="absolute inset-0 bg-black/50" />
-                <h1
-
-                    className="text-4xl md:text-6xl font-bold text-white text-center z-10"
-                >
+                <h1 className="text-4xl md:text-6xl font-bold text-white text-center z-10">
                     About The Buffet Diet
                 </h1>
             </section>
@@ -66,7 +62,7 @@ export default function AboutPage() {
             <section className="py-24 px-4">
                 <div className="max-w-4xl mx-auto flex flex-col md:flex-row items-center">
                     <div className="relative flex shrink-0 overflow-hidden rounded-full w-64 h-64 mb-8 md:mb-0 md:mr-8">
-                        <img src="/founder_portrait.jpg" alt="Founder" className="relative flex w-64 h-64 object-cover shrink-0  rounded-full" />
+                        <img src="/founder_portrait.jpg" alt="Founder" className="relative flex w-64 h-64 object-cover shrink-0 rounded-full" />
                     </div>
 
                     <div className="text-center md:text-left">
@@ -76,16 +72,14 @@ export default function AboutPage() {
                             in Engineering and a passion for diets.
                         </p>
                         <blockquote className="text-xl italic border-l-4 border-primary pl-4">
-                            &ldquo;As a fasting enthusiast dabbling in 16:8, OMAD, and even 5-day stretches, regular restaurants just didn’t cut it. Enter all-you-can-eat buffets—the ultimate solution I called "The Buffet Diet". But finding them? A challenge. Reliable info? Nonexistent. So, I did what any hungry intellectual would do: I created this site to map the buffet world for fellow feast-seekers.&rdquo;
+                            &ldquo;As a fasting enthusiast dabbling in 16:8, OMAD, and even 5-day stretches, regular restaurants just didn’t cut it. Enter all-you-can-eat buffets—the ultimate solution I called &quot;The Buffet Diet&quot;. But finding them? A challenge. Reliable info? Nonexistent. So, I did what any hungry intellectual would do: I created this site to map the buffet world for fellow feast-seekers.&rdquo;
                         </blockquote>
                     </div>
                 </div>
             </section>
 
-
-
             {/* Join Us Section */}
-            < section className="py-24 bg-primary text-primary-foreground">
+            <section className="py-24 bg-primary text-primary-foreground">
                 <div className="max-w-4xl mx-auto px-4 text-center">
                     <h2 className="text-3xl font-bold mb-4">Join the The Buffet Diet Community</h2>
                     <p className="text-xl mb-8">
@@ -98,6 +92,6 @@ export default function AboutPage() {
                     </Link>
                 </div>
             </section>
-        </div >
+        </div>
     )
 }

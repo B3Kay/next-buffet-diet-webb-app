@@ -18,7 +18,7 @@ import { SelectAddress } from '../components/SelectAddress';
 
 export default function CreateRestaurant() {
     // Todo: Merge good bad and type badges later
-    const [restaurant, setRestaurant] = useState<Restaurant & { goodBadges: string[], badBadges: string[] }>({
+    const [restaurant, setRestaurant] = useState<Restaurant & { goodBadges: string[], badBadges: string[], foodBadges: string[] }>({
         collectionId: '',
         collectionName: '',
         created: '',

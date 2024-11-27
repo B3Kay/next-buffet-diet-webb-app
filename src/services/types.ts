@@ -30,7 +30,7 @@ interface RestaurantBase {
     imageUrl: string;
     longitude: number;
     latitude: number;
-    reviews: ReviewBase[];
+    reviews?: ReviewBase[];
     foodBadges: Array<string>;
 }
 

@@ -16,7 +16,7 @@ export async function reviewRestaurantAction({
     goodBadges
 }: {
     comment: string,
-    rating: string,
+    rating: number,
     priceRange: string,
     image: File | null,
     selectedFoodOptions: string[],
@@ -31,8 +31,8 @@ export async function reviewRestaurantAction({
     if (!user || !user.id) {
         throw new Error('User not authenticated');
     }
-    console.log(user);
-    console.log(comment, rating, selectedFoodOptions, restaurantId, user.id);
+    // console.log(user);
+    // console.log(comment, rating, selectedFoodOptions, restaurantId, user.id);
     const resp = await reviewRestaurant({ comment, rating, foodBadges: selectedFoodOptions, restaurantId, userId: user.id });
     return resp;
 }

@@ -40,7 +40,7 @@ export default function ReviewRestaurantFormSection({ restaurantId }: { restaura
 
         // Here you would typically send the data to your backend
         // console.log({ comment, rating, priceRange, image, selectedFoodOptions, date })
-        reviewRestaurantAction({ comment, rating, priceRange, image, selectedFoodOptions, restaurantId, badBadges: selectedBadBadges, goodBadges: selectedGoodBadges })
+        reviewRestaurantAction({ comment, rating: Number(rating), priceRange, image, selectedFoodOptions, restaurantId, badBadges: selectedBadBadges, goodBadges: selectedGoodBadges })
     }
 
     const handleNewGoodBadgeChange = (goodBadges: string[]) => {
