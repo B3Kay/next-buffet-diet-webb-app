@@ -13,7 +13,7 @@ import { foodStylesBadges, goodBadges } from '@/components/FoodBadges';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
 
-export default function ClientHome({ user, isAuthenticated, restaurants }: { user: any, isAuthenticated: boolean, restaurants: Restaurant[] }) {
+export default function ClientHome({ user, isAuthenticated, restaurants, totalRestaurants, totalReviews, totalUsers }: { user: any, isAuthenticated: boolean, restaurants: Restaurant[], totalRestaurants: number, totalReviews: number, totalUsers: number }) {
     const { width } = useViewportDimensions();
     return (
         <main className="flex  flex-col items-center justify-between overflow-x-hidden overflow-y-hidden ">
@@ -21,7 +21,7 @@ export default function ClientHome({ user, isAuthenticated, restaurants }: { use
                 className={width <= 1024 ? "pointer-events-none" : ""}
                 products={restaurants.map(restaurant => ({ ...restaurant, averageRating: restaurant.rating }))}
             >
-                <Hero />
+                <Hero totalRestaurants={totalRestaurants} totalReviews={totalReviews} totalUsers={totalUsers} />
             </HeroRestaurantParallax>
 
             <section className="pb-12 pt-16 md:py-24 lg:py-32">

@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { Divider } from "reablocks";
 
-export const Hero = ({ className }: { className?: string }) => (
+export const Hero = ({ className, totalRestaurants, totalReviews, totalUsers }: { className?: string, totalRestaurants: number, totalReviews: number, totalUsers: number }) => (
     <div className={"h-[calc(100vh-300px)] " + className}>
         <section className={`container mt-32 h-full flex-1 px-4 md:px-24`}>
             <div className="relative z-10 flex flex-col gap-4 py-12">
@@ -42,8 +42,8 @@ export const Hero = ({ className }: { className?: string }) => (
                 <div className="flex flex-1 flex-col items-center gap-4 border-r border-[#9091A0] border-opacity-[16%] px-12">
                     <Count
                         className="min-h-9 text-3xl font-bold"
-                        from={10}
-                        to={50}
+                        from={0}
+                        to={totalRestaurants}
                         suffix={"+"}
                     />
                     <motion.h2
@@ -58,7 +58,7 @@ export const Hero = ({ className }: { className?: string }) => (
                     <Count
                         className="min-h-9 text-3xl font-bold"
                         from={0}
-                        to={35}
+                        to={totalReviews}
                         suffix={"+"}
                     />
                     <motion.h2
@@ -73,8 +73,8 @@ export const Hero = ({ className }: { className?: string }) => (
                 <div className="flex flex-1 flex-col items-center gap-4 px-12">
                     <Count
                         className="min-h-9 text-3xl font-bold"
-                        from={120}
-                        to={200}
+                        from={0}
+                        to={totalUsers}
                         suffix={"+"}
                     />
                     <motion.h2

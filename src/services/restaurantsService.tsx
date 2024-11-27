@@ -334,3 +334,13 @@ export function mapRestaurantsWithAvarageReviews(restaurants: Restaurant[]): Res
 
     return newRestaurants;
 }
+
+export async function getTotalRestaurants() {
+    try {
+        const restaurants = await db.client.collection('restaurants').getList(1, 1)
+        return restaurants.totalItems
+    } catch (error) {
+        console.error('Error getting total restaurants', error)
+        return 0
+    }
+}
