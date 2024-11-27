@@ -2,6 +2,7 @@
 
 import { reviewRestaurant } from "@/services/restaurantsService";
 import { getUser } from "./auth";
+import { revalidatePath } from "next/cache";
 
 
 export async function reviewRestaurantAction({
@@ -34,5 +35,7 @@ export async function reviewRestaurantAction({
     // console.log(user);
     // console.log(comment, rating, selectedFoodOptions, restaurantId, user.id);
     const resp = await reviewRestaurant({ comment, rating, foodBadges: selectedFoodOptions, restaurantId, userId: user.id });
+
+    revalidatePath(`/restaurants`)
     return resp;
 }
