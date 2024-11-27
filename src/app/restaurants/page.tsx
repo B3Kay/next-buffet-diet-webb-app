@@ -151,7 +151,7 @@ export default async function RestaurantsPage({ searchParams }: { searchParams?:
                         </div>
                     }
                     {(userLat && userLng) &&
-                        <div className='flex-1  w-full sm:hidden md:flex h-[calc(100vh-76px)] sticky top-[76px] rounded-lg overflow-hidden'>
+                        <div className='flex-1  w-full md:flex h-[50vh] md:h-[calc(100vh-76px)] sticky top-[76px] rounded-lg overflow-hidden'>
 
                             <RestaurantsMap restaurantMarkers={filteredRestaurants}
                                 // Key is necessary to re-render the map when the user location changes

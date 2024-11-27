@@ -60,7 +60,7 @@ export default async function RestaurantPage({ params }: { params: { id: string 
             <div className='mx-4'>
                 <RestaurantReviews reviews={reviews.items} />
             </div>
-            <div className='flex-1  w-full sm:hidden md:flex h-[600px]'>
+            <div className='flex-1  w-full sm:hidden md:flex h-[600px] max-h-[50vh]'>
                 <RestaurantMap
                     latitude={
                         restaurant.latitude ||
