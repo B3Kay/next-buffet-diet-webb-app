@@ -5,35 +5,34 @@ import { Button } from "@/components/ui/button"
 import { Textarea } from "@/components/ui/textarea"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { toast } from "@/hooks/use-toast"
+import { dummyPresetData } from "./dummyPresetData"
+import { handleCeateDummyData } from "@/actions/handleCreateDummyData"
+import { makeRestaurantBaseV2 } from "@/services/restaurantsService"
+import { Restaurant, RestaurantBaseV2 } from "@/services/types"
 
 export function AddDummyData() {
-    const [dummyData, setDummyData] = useState<string>(`[
-  {
-    "name": "Golden Buffet",
-    "cuisine": "Chinese",
-    "rating": 4.5
-  },
-  {
-    "name": "Sushi Paradise",
-    "cuisine": "Japanese",
-    "rating": 4.8
-  },
-  {
-    "name": "BBQ Heaven",
-    "cuisine": "American",
-    "rating": 4.2
-  }
-]`)
+    const [dummyData, setDummyData] = useState<string>(JSON.stringify(dummyPresetData, null, 2))
 
-    const handleAddDummyData = () => {
+    const handleAddDummyData = async () => {
+        console.log('handleAddDummyData');
         try {
-            const parsedData = JSON.parse(dummyData)
+            const parsedData: RestaurantBaseV2[] = JSON.parse(dummyData)
+
+            const restV2 = parsedData.map(rest => makeRestaurantBaseV2(rest as unknown as Restaurant));
             // Here you would typically send this data to your backend
             // For now, we'll just show a success message
+            const { created, messages } = await handleCeateDummyData(restV2);
+
             toast({
                 title: "Dummy data added successfully",
-                description: `Added ${parsedData.length} restaurants to the database.`,
+                description: `Added ${created} restaurants to the database.`,
             })
+            if (messages && messages.length > 0) {
+                toast({
+                    title: "Some restaurants were not added",
+                    description: messages.join('\n\n'),
+                })
+            }
         } catch (error) {
             toast({
                 title: "Error adding dummy data",

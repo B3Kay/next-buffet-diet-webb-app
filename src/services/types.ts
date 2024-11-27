@@ -19,7 +19,18 @@ export interface ReviewBase {
 // badBadges: string[];
 // goodBadges: string[];
 
-interface RestaurantBase {
+interface location {
+    city: string
+    street: string
+    streetNumber: string
+    country: string
+    geoloc: {
+        lat: string
+        lan: string
+    }
+}
+
+export interface RestaurantBase {
     name: string;
     description: string;
     address: string;
@@ -34,7 +45,7 @@ interface RestaurantBase {
     foodBadges: Array<string>;
 }
 
-export type RestaurantV2 = {
+export type RestaurantBaseV2 = {
     name: string;
     description: string;
     address: string;
@@ -47,7 +58,9 @@ export type RestaurantV2 = {
     longitude: number;
     latitude: number;
     expand?: { reviews_via_restaurantId: ReviewV1[] };
-} & PocketbaseBase;
+};
+
+export type RestaurantV2 = RestaurantBaseV2 & PocketbaseBase;
 
 export type Restaurant = RestaurantBase & PocketbaseBase;
 

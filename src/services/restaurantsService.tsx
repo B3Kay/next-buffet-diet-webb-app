@@ -1,5 +1,5 @@
 import { getBoundingBox, getDistanceBetweenTwoCoordinates } from "@/lib/utils";
-import { RestaurantV2, Restaurant, RestaurantV2Keys, LikeV1, LikeBaseV1, ReviewV1, ReviewBase, RestaurantWithRatings } from "./types";
+import { RestaurantV2, Restaurant, RestaurantV2Keys, LikeV1, LikeBaseV1, ReviewV1, ReviewBase, RestaurantWithRatings, RestaurantBase, RestaurantBaseV2 } from "./types";
 
 import { ClientResponseError } from 'pocketbase';
 import { loadAuthFromCookie } from "@/actions/auth";
@@ -48,7 +48,6 @@ export function makeRestV2(restaurant: Restaurant): RestaurantV2 {
     }
 
     return {
-        id: restaurant.id || '',
         name: restaurant.name || '',
         description: restaurant.description || '',
         address: restaurant.address || '',
@@ -61,6 +60,7 @@ export function makeRestV2(restaurant: Restaurant): RestaurantV2 {
         longitude: restaurant.longitude || 0,
         latitude: restaurant.latitude || 0,
         // 
+        id: restaurant.id || '',
         collectionId: restaurant.collectionId || '',
         collectionName: restaurant.collectionName || '',
         created: restaurant.created || '',
@@ -68,6 +68,28 @@ export function makeRestV2(restaurant: Restaurant): RestaurantV2 {
     };
 }
 
+export function makeRestaurantBaseV2(restaurant: Restaurant): RestaurantBaseV2 {
+    let foodBadgesV2: string;
+    try {
+        foodBadgesV2 = JSON.stringify(restaurant.foodBadges);
+    } catch (error) {
+        foodBadgesV2 = '';
+    }
+
+    return {
+        name: restaurant.name || '',
+        description: restaurant.description || '',
+        address: restaurant.address || '',
+        type: restaurant.type || '',
+        price: restaurant.price || 0,
+        rating: restaurant.rating || 0,
+        website: restaurant.website || '',
+        imageUrl: restaurant.imageUrl || '',
+        foodBadges: foodBadgesV2 || '',
+        longitude: restaurant.longitude || 0,
+        latitude: restaurant.latitude || 0,
+    };
+}
 
 
 export async function getRestaurants({ page = 1, perPage = 30, sortKey = 'created', sortOrder = 'asc', filterQuery = '' }: { page?: number, perPage?: number, sortKey?: RestaurantV2Keys, sortOrder?: 'asc' | 'desc', filterQuery?: string } = {}): Promise<Restaurant[]> {
@@ -120,6 +142,21 @@ export async function getRestaurantsByProximity({ latitude, longitude, maxDistan
     return restaurantsV2InBoundingBox.items.map((restV2) => makeRestaurantFromV2(restV2));
 }
 
+export const doesRestaurantExist = async (restaurantName: string): Promise<boolean> => {
+    try {
+        // Query the collection to check if a restaurant with this name exists
+        const existingRestaurant = await db.client.collection('restaurants').getFirstListItem(`name="${restaurantName}"`);
+
+        // If we found a restaurant with the same name, return true (it exists)
+        return !!existingRestaurant;
+    } catch (error) {
+        // If an error occurs, such as no restaurant found, return false
+        console.error('Error checking for existing restaurant', error);
+        return false;
+    }
+};
+
+
 export async function getRestaurant(restaurantId: string): Promise<Restaurant | null> {
     try {
         const data = await db.client.collection('restaurants').getOne<RestaurantV2>(restaurantId);
@@ -139,11 +176,16 @@ export async function getRestaurant(restaurantId: string): Promise<Restaurant | 
 
 
 
-export async function createRestaurant(restaurant: RestaurantV2) {
+export async function createRestaurant(restaurant: RestaurantBaseV2) {
     try {
-        const collection = db.client.collection<RestaurantV2>('restaurants');
+        const existAlready = await doesRestaurantExist(restaurant.name);
 
-        const resp = await collection.create<RestaurantV2>(restaurant);
+        if (existAlready) {
+            return Error(`Restaurant with name ${restaurant.name} already exists`);
+        }
+        const collection = db.client.collection<RestaurantBaseV2>('restaurants');
+
+        const resp = await collection.create<RestaurantBaseV2>(restaurant, { requestKey: restaurant.name });
         return resp;
     } catch (error) {
         // Todo: Handle error better
