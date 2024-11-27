@@ -1,7 +1,15 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 
-export function UserProfile() {
+export type User = {
+    id: string
+    name: string
+    email: string
+    created: string
+    isAdmin: boolean
+}
+
+export function UserProfile({ user }: { user: User }) {
     return (
         <Card>
             <CardHeader>
@@ -13,10 +21,11 @@ export function UserProfile() {
                     <AvatarFallback>JD</AvatarFallback>
                 </Avatar>
                 <div>
-                    <h2 className="text-xl font-semibold">John Doe</h2>
-                    <p className="text-sm text-muted-foreground">john.doe@example.com</p>
-                    <p className="text-sm text-muted-foreground">Joined: January 2023</p>
-                    <p className="text-sm font-medium">Reviews: 15</p>
+                    <h2 className="text-xl font-semibold">{user.name}</h2>
+                    <p className="text-sm text-muted-foreground">{user.email}</p>
+                    <p className="text-sm text-muted-foreground">Joined: {new Date(user.created).toLocaleDateString()}</p>
+                    {user.isAdmin && <p className="text-sm font-medium">Admin</p>}
+                    {/* <p className="text-sm font-medium">Reviews: 15</p> */}
                 </div>
             </CardContent>
         </Card>
