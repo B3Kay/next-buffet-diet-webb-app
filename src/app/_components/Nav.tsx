@@ -14,7 +14,7 @@ import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTr
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuShortcut, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Separator } from "@/components/ui/separator";
 import { Card } from "@/components/ui/card";
-import { BookmarkIcon, HandPlatterIcon, LogIn, LogInIcon, LogOut, MoonIcon, SunIcon } from "lucide-react";
+import { BookmarkIcon, HandPlatterIcon, LogIn, LogInIcon, LogOut, MoonIcon, SunIcon, UserIcon } from "lucide-react";
 
 import { useTheme } from "next-themes";
 import { HamburgerMenuIcon, PlusIcon } from "@radix-ui/react-icons";
@@ -110,6 +110,12 @@ export const Nav = ({ user }: { user: AuthModel | false }) => {
                             <Separator />
                             <NavElements isCollapsed={false} links={[
                                 {
+                                    title: "Profile",
+                                    href: "/profile",
+                                    icon: UserIcon,
+                                    variant: 'ghost',
+                                },
+                                {
                                     title: "Toggle Theme",
                                     onClick: () => setTheme(theme === 'dark' ? 'light' : 'dark'),
                                     icon: theme === 'dark' ? MoonIcon : SunIcon,
@@ -171,7 +177,12 @@ export const Nav = ({ user }: { user: AuthModel | false }) => {
                                 <DropdownMenuContent>
                                     <DropdownMenuLabel>My Account</DropdownMenuLabel>
                                     <DropdownMenuSeparator />
-                                    <DropdownMenuItem disabled>Profile</DropdownMenuItem>
+
+                                    <Link href="/profile" >
+                                        <DropdownMenuItem >
+                                            <UserIcon className="mr-2 h-4 w-4" />Profile
+                                        </DropdownMenuItem>
+                                    </Link>
                                     <Link href="/restaurants/liked" >
                                         <DropdownMenuItem >
                                             <BookmarkIcon className="mr-2 h-4 w-4" />Liked
