@@ -7,9 +7,10 @@ import { HeroRestaurantParallax } from '@/components/ui/heroParallax';
 import { useViewportDimensions } from '@/hooks/useViewportDimensions';
 
 import { Restaurant } from '@/services/types';
-import { HandPlatterIcon, MapPinCheckIcon, PlusIcon, StarIcon } from 'lucide-react';
+import { HandPlatterIcon, MapPinCheckIcon, PlusIcon, Star, StarIcon, Users, Utensils } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { foodStylesBadges, goodBadges } from '@/components/FoodBadges';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
 
 export default function ClientHome({ user, isAuthenticated, restaurants }: { user: any, isAuthenticated: boolean, restaurants: Restaurant[] }) {
@@ -23,8 +24,32 @@ export default function ClientHome({ user, isAuthenticated, restaurants }: { use
                 <Hero />
             </HeroRestaurantParallax>
 
+            <section className="py-12 md:py-24 lg:py-32">
+                <div className="max-w-6xl mx-auto px-4">
+                    <h2 className="ttext-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none mb-8 text-center">Our focus</h2>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        {[
+                            { icon: Star, title: 'Food Quality', description: 'We believe in highlighting truly exceptional buffet experiences.' },
+                            { icon: Utensils, title: 'Dietary Needs', description: 'We celebrate the rich diversity diets out there' },
+                            { icon: Users, title: 'Community Driven', description: 'Our strength lies in our diverse community of food enthusiasts.' }
+                        ].map((value, index) => (
+                            <Card key={index}>
+                                <CardHeader>
+                                    <CardTitle className="flex items-center">
+                                        <value.icon className="w-6 h-6 mr-2" />
+                                        {value.title}
+                                    </CardTitle>
+                                </CardHeader>
+                                <CardContent>
+                                    <p className="text-muted-foreground">{value.description}</p>
+                                </CardContent>
+                            </Card>
+                        ))}
+                    </div>
+                </div>
+            </section>
 
-            <section className="flex justify-center w-full py-12 md:py-24 lg:py-32 mt-24">
+            <section className="flex justify-center w-full py-12 md:py-24 lg:py-32">
                 <div className="container px-4 md:px-6">
                     <div className="grid gap-6 lg:grid-cols-[1fr_400px] lg:gap-12 xl:grid-cols-[1fr_600px]">
                         <Image
@@ -146,6 +171,7 @@ export default function ClientHome({ user, isAuthenticated, restaurants }: { use
                     </div>
                 </div>
             </section>
+
         </main >
     );
 }

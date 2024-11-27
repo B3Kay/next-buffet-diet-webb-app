@@ -23,7 +23,7 @@ export default function AboutPage() {
             </section>
 
             {/* Mission Statement */}
-            <section className="py-16 px-4 max-w-4xl mx-auto text-center">
+            <section className="py-16 px-4 max-w-4xl mx-auto text-left md:text-center">
                 <h2 className="text-3xl font-bold mb-4">Our Mission</h2>
                 <p className="text-xl text-muted-foreground">
                     At The Buffet Diet, we&apos;re on a mission to help buffet lovers discover the best buffet experiences around the world.
@@ -38,9 +38,9 @@ export default function AboutPage() {
                     <h2 className="text-3xl font-bold mb-8 text-center">Our Values</h2>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                         {[
-                            { icon: Star, title: 'Quality', description: 'We believe in highlighting truly exceptional buffet experiences.' },
-                            { icon: Users, title: 'Community', description: 'Our strength lies in our diverse community of food enthusiasts.' },
-                            { icon: Utensils, title: 'Variety', description: 'We celebrate the rich diversity of cuisines in buffets worldwide.' }
+                            { icon: Star, title: 'Food Quality', description: 'We believe in highlighting truly exceptional buffet experiences.' },
+                            { icon: Users, title: 'Community Driven', description: 'Our strength lies in our diverse community of food enthusiasts.' },
+                            { icon: Utensils, title: 'Dietary Needs', description: 'We celebrate the rich diversity diets out there' }
                         ].map((value, index) => (
                             <Card key={index}>
                                 <CardHeader>
@@ -65,7 +65,7 @@ export default function AboutPage() {
                         <img src="/founder_portrait.jpg" alt="Founder" className="relative flex w-64 h-64 object-cover shrink-0 rounded-full" />
                     </div>
 
-                    <div className="text-center md:text-left">
+                    <div className="text-left">
                         <h2 className="text-3xl font-bold mb-4">Meet the Founder</h2>
                         <p className="text-xl text-muted-foreground mb-4">
                             Benjamin Karlsson, a lifelong biohacker, entrepreneur, and buffet addict, founded The Buffet Diet in 2020. With a background
