@@ -1,14 +1,14 @@
 import { getRestaurants, getRestaurantsByProximity, mapRestaurantsWithAvarageReviews } from '../../services/restaurantsService';
 import { isUserAuthenticated } from '../../actions/auth';
-import { RestaurantCard } from './components/RestaurantCard';
-import { RestaurantSearchSection } from './components/RestaurantSearchSection';
+import { RestaurantCard } from './_components/RestaurantCard';
+import { RestaurantSearchSection } from './_components/RestaurantSearchSection';
 
 import { Restaurant } from '@/services/types';
-import RestaurantsMap from './components/RestaurantsMap';
+import RestaurantsMap from './_components/RestaurantsMap';
 import Breadcrumb from '@/components/core/Breadcrumb';
 import { getLLMParsedQuery } from '@/services/groqService';
-import { UrlBadges } from './components/UrlBadges';
-import { NominatimAddressJSON } from './components/SelectAddress';
+import { UrlBadges } from './_components/UrlBadges';
+import { NominatimAddressJSON } from './_components/SelectAddress';
 
 
 // revalidate

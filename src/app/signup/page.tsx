@@ -1,4 +1,4 @@
-import { SignUpForm } from "./components/sign-up-form";
+import { SignUpForm } from "./_components/sign-up-form";
 import Link from "next/link";
 import { HandPlatterIcon } from "lucide-react";
 import { buttonVariants } from "@/components/ui/button";

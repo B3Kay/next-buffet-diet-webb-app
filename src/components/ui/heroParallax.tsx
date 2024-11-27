@@ -1,5 +1,5 @@
 "use client";
-import { RestaurantCard, RestaurantCardProps } from "@/app/restaurants/components/RestaurantCard";
+import { RestaurantCard, RestaurantCardProps } from "@/app/restaurants/_components/RestaurantCard";
 import { useViewportDimensions } from "@/hooks/useViewportDimensions";
 import {
     MotionValue,

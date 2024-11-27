@@ -1,16 +1,16 @@
 
 
 
-import { getRestaurantRatings, getIsRestaurantLiked, getRestaurant, makeRestaurantFromV2 } from '../../../services/restaurantsService';
+import { getRestaurantRatings, getIsRestaurantLiked, getRestaurant } from '../../../services/restaurantsService';
 import { isBadBadge, isFoodStyleBadge, isGoodBadge } from '@/components/FoodBadges';
-import RestaurantMap from './components/RestaurantMap';
-import { RestaurantDetails } from './components/RestaurantDetails';
+import RestaurantMap from './_components/RestaurantMap';
+import { RestaurantDetails } from './_components/RestaurantDetails';
 import { notFound } from 'next/navigation';
 import { getCoordinates } from '@/components/utils/map';
 import { getUser } from '@/actions/auth';
 import { ClientResponseError } from 'pocketbase';
 import Breadcrumb from '@/components/core/Breadcrumb';
-import { RestaurantReviews } from './components/RestaurantReviws';
+import { RestaurantReviews } from './_components/RestaurantReviws';
 
 export const revalidate = 1
 

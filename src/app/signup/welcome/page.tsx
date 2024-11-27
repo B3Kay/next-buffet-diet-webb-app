@@ -1,5 +1,5 @@
 import { isUserAuthenticated } from '@/actions/auth';
-import WelcomeContent from './WelcomeContent';
+import WelcomeContent from '../_components/WelcomeContent';
 import { HandPlatterIcon } from 'lucide-react';
 
 export default async function WelcomePage() {

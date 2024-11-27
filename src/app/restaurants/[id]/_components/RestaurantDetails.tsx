@@ -4,7 +4,7 @@ import { formatCurrency } from "@/utils/formatCurrency";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { Card, cn } from "reablocks";
 import { Restaurant, ReviewV1 } from "../../../../services/types";
-import { RestaurantRating } from "../../components/RestaurantCard";
+import { RestaurantRating } from "../../_components/RestaurantCard";
 import { likeRestaurantAction, removeLikeRestaurantAction } from "@/actions/restaurant";
 import { Bookmark, Globe, HeartIcon, PenBoxIcon, Settings, Signpost, StarIcon } from "lucide-react";
 import { AuthModel, ClientResponseError } from "pocketbase";

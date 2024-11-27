@@ -1,5 +1,5 @@
 
-import ClientHome from './components/ClientHome';
+import ClientHome from './_components/ClientHome';
 
 import { getUser, isUserAuthenticated } from '../actions/auth';
 

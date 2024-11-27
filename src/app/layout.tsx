@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import Footer from "./components/Footer";
+import Footer from "./_components/Footer";
 import Providers from "../components/Providers";
 
-import { Nav } from "./components/Nav";
+import { Nav } from "./_components/Nav";
 import { getUser } from "@/actions/auth";
 import { Toaster } from "@/components/ui/toaster";
 

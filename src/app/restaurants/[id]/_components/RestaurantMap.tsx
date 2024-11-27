@@ -6,7 +6,7 @@ import 'maplibre-gl/dist/maplibre-gl.css';
 import { useTheme } from 'next-themes';
 import { useBrowserGeolocation } from '@/components/hooks/useBrowserGeolocation';
 import { toast } from '@/hooks/use-toast';
-import { BrowserMarker } from '../../components/BrowserMarker';
+import { BrowserMarker } from '../../_components/BrowserMarker';
 
 
 

@@ -14,7 +14,7 @@ import { Input } from '@/components/ui/input';
 import { PlusIcon } from '@radix-ui/react-icons';
 import { Textarea } from '@/components/ui/textarea';
 import { createRestaurantAction } from '@/actions/restaurant';
-import { SelectAddress } from '../components/SelectAddress';
+import { SelectAddress } from '../_components/SelectAddress';
 
 export default function CreateRestaurant() {
     // Todo: Merge good bad and type badges later

@@ -3,7 +3,7 @@ import { Badge } from "@/components/ui/badge"
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { ReviewV1 } from "@/services/types"
 
-import { RestaurantRating } from "../../components/RestaurantCard"
+import { RestaurantRating } from "../../_components/RestaurantCard"
 import { formatTimeAgo } from "@/utils/formatDate"
 
 

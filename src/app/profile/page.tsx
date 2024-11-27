@@ -1,7 +1,7 @@
-import { AddDummyData } from "./components/add-dummy-data";
-import { EditProfileForm } from "./components/edit-profile-form";
-import { RecentReviews } from "./components/recent-reviews";
-import { UserProfile } from "./components/user-profile";
+import { AddDummyData } from "./_components/add-dummy-data";
+import { EditProfileForm } from "./_components/edit-profile-form";
+import { RecentReviews } from "./_components/recent-reviews";
+import { UserProfile } from "./_components/user-profile";
 
 export default function DashboardPage() {
     return (
