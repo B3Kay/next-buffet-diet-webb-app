@@ -11,7 +11,7 @@ import { BrowserMarker } from '../../_components/BrowserMarker';
 
 
 export default function RestaurantMap({ latitude, longitude }: { latitude: number, longitude: number }) {
-    const { theme } = useTheme()
+    const { theme, systemTheme } = useTheme()
     const [viewport, setViewport] = useState({
         latitude: latitude,
         longitude: longitude,
@@ -27,8 +27,9 @@ export default function RestaurantMap({ latitude, longitude }: { latitude: numbe
 
         })
     }
+    const currentTheme = theme === 'system' ? systemTheme : theme
+    const tileTheme = currentTheme === 'dark' ? 'dark_all' : 'light_all'
 
-    const tileTheme = theme === 'dark' ? 'dark_all' : 'light_all'
     return (
         <Map
             initialViewState={viewport}

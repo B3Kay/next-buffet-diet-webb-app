@@ -32,8 +32,6 @@ export async function reviewRestaurantAction({
     if (!user || !user.id) {
         throw new Error('User not authenticated');
     }
-    // console.log(user);
-    // console.log(comment, rating, selectedFoodOptions, restaurantId, user.id);
     const resp = await reviewRestaurant({ comment, rating, foodBadges: selectedFoodOptions, restaurantId, userId: user.id });
 
     revalidatePath(`/restaurants`)

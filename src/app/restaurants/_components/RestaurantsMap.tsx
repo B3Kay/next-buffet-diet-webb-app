@@ -10,7 +10,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { isBadBadge, isFoodStyleBadge, isGoodBadge } from '@/components/FoodBadges';
 import { Badge } from '@/components/ui/badge';
 import { StarIcon } from '@radix-ui/react-icons';
-import { Restaurant, RestaurantWithRatings } from '@/services/types';
+import { RestaurantWithRatings } from '@/services/types';
 import Link from 'next/link';
 
 
@@ -29,9 +29,10 @@ type RestaurantMapProps = {
 
 export default function RestaurantMap({ restaurantMarkers, currentLocationMarker, zoomLevel = 15 }: RestaurantMapProps) {
     const [popupInfo, setPopupInfo] = useState<RestaurantWithRatings | null>(null);
-    const { theme } = useTheme()
+    const { theme, systemTheme } = useTheme()
 
-    const tileTheme = theme === 'dark' ? 'dark_all' : 'light_all'
+    const currentTheme = theme === 'system' ? systemTheme : theme
+    const tileTheme = currentTheme === 'dark' ? 'dark_all' : 'light_all'
 
 
     return (
