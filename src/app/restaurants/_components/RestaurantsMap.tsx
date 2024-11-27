@@ -10,10 +10,9 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { isBadBadge, isFoodStyleBadge, isGoodBadge } from '@/components/FoodBadges';
 import { Badge } from '@/components/ui/badge';
 import { StarIcon } from '@radix-ui/react-icons';
-import { Restaurant } from '@/services/types';
+import { Restaurant, RestaurantWithRatings } from '@/services/types';
 import Link from 'next/link';
 
-import { BrowserMarker } from './BrowserMarker';
 
 export type LatLong = {
     latitude: number;
@@ -21,17 +20,15 @@ export type LatLong = {
 }
 
 
-type RestaurantMarkers = Array<Restaurant>
-
 type RestaurantMapProps = {
-    restaurantMarkers: RestaurantMarkers;
+    restaurantMarkers: RestaurantWithRatings[];
     currentLocationMarker: LatLong;
 
     zoomLevel: number;
 }
 
 export default function RestaurantMap({ restaurantMarkers, currentLocationMarker, zoomLevel = 15 }: RestaurantMapProps) {
-    const [popupInfo, setPopupInfo] = useState<Restaurant | null>(null);
+    const [popupInfo, setPopupInfo] = useState<RestaurantWithRatings | null>(null);
     const { theme } = useTheme()
 
     const tileTheme = theme === 'dark' ? 'dark_all' : 'light_all'
@@ -120,11 +117,11 @@ export default function RestaurantMap({ restaurantMarkers, currentLocationMarker
                                 <div className="flex space-x-4 text-sm text-muted-foreground">
                                     <div className="flex items-center">
                                         <StarIcon className="mr-1 h-3 w-3 fill-red-500 text-red-500" />
-                                        {popupInfo.rating}
+                                        {popupInfo.averageRating}
                                     </div>
                                     <div className="flex items-center">
                                         <Heart className="mr-1 h-3 w-3 text-red-primary" />
-                                        20k
+                                        {popupInfo.reviews?.length ?? 0}
                                     </div>
                                     <div className="flex items-center">
                                         <DollarSign className="mr-1 h-3 w-3  text-primary" />

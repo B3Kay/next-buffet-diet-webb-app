@@ -3,7 +3,7 @@ export const restaurantTypes = {
     BUFFET: '🤩All you can eat (Buffet)',
     COUNTER: '⚖️Weigh in the counter (Buffet)',
     TAKE_AWAY_BUFFET: '📦Take away (Buffet)',
-    NO_BUFFET_MUCH_FOOD: '🛑No Buffet, much food',
+    NO_BUFFET_MUCH_FOOD: '🗻No Buffet, much food',
     NO_BUFFET_LITTLE_FOOD: '🫷No Buffet, little food',
 } as const;
 export type RestaurantTypes = (typeof restaurantTypes)[keyof typeof restaurantTypes];

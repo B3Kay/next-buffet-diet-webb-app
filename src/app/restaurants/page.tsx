@@ -104,9 +104,10 @@ export default async function RestaurantsPage({ searchParams }: { searchParams?:
 
     const isAuthenticated = await isUserAuthenticated();
     // Filter out restaurants with latitude or longitude equal to 0
-    const filteredRestaurants = restaurants.filter(restaurant =>
+    const filteredRestaurants = restaurantsWithRatings.filter(restaurant =>
         restaurant.latitude !== 0 && restaurant.longitude !== 0
     );
+
     const restaurantsMarkers = filteredRestaurants.map(restaurant => ({
         latitude: restaurant.latitude || 0,
         longitude: restaurant.longitude || 0,
@@ -128,7 +129,7 @@ export default async function RestaurantsPage({ searchParams }: { searchParams?:
                     goodBadges={goodBadges}
                     badBadges={badBadges}
                 />
-                <div className={`${hasLatLng && 'grid grid-cols-1 md:grid-cols-2 gap-4 h-screen'}`}>
+                <div className={`${hasLatLng && 'grid grid-cols-1 md:grid-cols-2 gap-4'}`}>
 
 
 
@@ -150,7 +151,7 @@ export default async function RestaurantsPage({ searchParams }: { searchParams?:
                         </div>
                     }
                     {(userLat && userLng) &&
-                        <div className='flex-1  w-full sm:hidden md:flex h-full rounded-lg overflow-hidden'>
+                        <div className='flex-1  w-full sm:hidden md:flex h-[calc(100vh-76px)] sticky top-[76px] rounded-lg overflow-hidden'>
 
                             <RestaurantsMap restaurantMarkers={filteredRestaurants}
                                 // Key is necessary to re-render the map when the user location changes
