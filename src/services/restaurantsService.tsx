@@ -5,6 +5,10 @@ import { ClientResponseError } from 'pocketbase';
 import { loadAuthFromCookie } from "@/actions/auth";
 import db from "@/db/db";
 
+type Result<T> =
+    | { success: true; data: T }
+    | { success: false; error: string };
+
 
 export function makeRestaurantFromV2(restaurantV2: RestaurantV2): Restaurant {
 
@@ -173,28 +177,25 @@ export async function getRestaurant(restaurantId: string): Promise<Restaurant | 
 
 }
 
-
-
-
-export async function createRestaurant(restaurant: RestaurantBaseV2) {
+export async function createRestaurant(restaurant: RestaurantBaseV2): Promise<Result<RestaurantBaseV2>> {
     try {
         const existAlready = await doesRestaurantExist(restaurant.name);
 
         if (existAlready) {
-            return Error(`Restaurant with name ${restaurant.name} already exists`);
+            return { success: false, error: `Restaurant with name ${restaurant.name} already exists` };
         }
-        const collection = db.client.collection<RestaurantBaseV2>('restaurants');
 
+        const collection = db.client.collection<RestaurantBaseV2>('restaurants');
         const resp = await collection.create<RestaurantBaseV2>(restaurant, { requestKey: restaurant.name });
-        return resp;
+
+        return { success: true, data: resp };
     } catch (error) {
-        // Todo: Handle error better
         console.log('Error creating restaurant:', error);
 
-        return error;
+        return { success: false, error: 'Error creating restaurant' };
     }
-
 }
+
 
 export async function likeRestaurant(restaurantId: string, userId: string) {
 

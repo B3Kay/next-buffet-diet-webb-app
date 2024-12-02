@@ -15,6 +15,7 @@ import { PlusIcon } from '@radix-ui/react-icons';
 import { Textarea } from '@/components/ui/textarea';
 import { createRestaurantAction } from '@/actions/restaurant';
 import { SelectAddress } from '../_components/SelectAddress';
+import { useToast } from '@/hooks/use-toast';
 
 export default function CreateRestaurant() {
     // Todo: Merge good bad and type badges later
@@ -40,6 +41,7 @@ export default function CreateRestaurant() {
     });
 
     const router = useRouter();
+    const { toast } = useToast()
 
     const create = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -48,12 +50,28 @@ export default function CreateRestaurant() {
         // Todo: This should be moved to server action with validation
         // Todo: Should check if restaurant already exists! Then add error message
         const restV2 = makeRestV2({ ...restaurant, foodBadges: [...restaurant.badBadges, ...restaurant.goodBadges, ...restaurant.foodBadges] });
-        const collection = await createRestaurantAction(restV2);
-        console.log(collection)
+
+        try {
+            const collection = await createRestaurantAction(restV2);
+            router.push('/restaurants');
+            toast({
+                title: `${collection.data.name} was created successfully!`,
+                description: 'Redirecting to restaurants page...',
+            })
+            // router.push('/restaurants');
+        } catch (error) {
+            console.log('Error creating restaurant:', error)
+            // TODO: Show error message to user
+            toast({
+                variant: 'destructive',
+                title: 'Error creating restaurant',
+                description: 'Please try again later',
+            })
+        }
 
         // Todo: Revalidation can only be done on server side, eg: Action
         // revalidatePath('/restaurants');
-        router.push('/restaurants');
+
     };
 
     const handleInputChange = (value: string, id: string) => {
@@ -104,7 +122,7 @@ export default function CreateRestaurant() {
         }));
     };
 
-    const [value, setValue] = useState<string | null>(null);
+
     return (
         <div className="p-6 max-w-lg mx-auto">
             <h1 className="text-2xl font-bold mb-4">Create Restaurant</h1>

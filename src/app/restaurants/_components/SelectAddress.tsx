@@ -73,14 +73,14 @@ export function SelectAddress({
                 )}&limit=5&addressdetails=1`
             );
             const data = await response.json() as NominatimAddressJSON[];
-            console.log(data)
+            // console.log(data)
             return data;
         },
 
         enabled: inputValue.length >= 2,
     });
 
-    console.log(value);
+    // console.log(value);
 
     return (
         <Popover open={open} onOpenChange={setOpen}>
