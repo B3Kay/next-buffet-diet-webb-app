@@ -183,6 +183,13 @@ export async function getRestaurant(restaurantId: string): Promise<Restaurant | 
 
 export async function createRestaurant(restaurant: RestaurantBaseV2): Promise<Result<RestaurantBaseV2>> {
     try {
+        await loadAuthFromCookie();
+    } catch (error) {
+        console.log('Error loading auth from cookie:', error);
+        return { success: false, error: 'Error loading auth from cookie' };
+    }
+
+    try {
         const existAlready = await doesRestaurantExist(restaurant.name);
 
         if (existAlready) {
