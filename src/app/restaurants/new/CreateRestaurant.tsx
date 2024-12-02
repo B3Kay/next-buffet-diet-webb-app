@@ -11,7 +11,7 @@ import { MultiSelect } from '@/components/Multi-Select';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { PlusIcon } from '@radix-ui/react-icons';
+import { PlusIcon, UpdateIcon } from '@radix-ui/react-icons';
 import { Textarea } from '@/components/ui/textarea';
 import { createRestaurantAction } from '@/actions/restaurant';
 import { SelectAddress } from '../_components/SelectAddress';
@@ -42,10 +42,11 @@ export default function CreateRestaurant() {
 
     const router = useRouter();
     const { toast } = useToast()
+    const [isLoading, setIsLoading] = useState(false);
 
     const create = async (e: React.FormEvent) => {
         e.preventDefault();
-
+        setIsLoading(true);
         // console.log("restaurant:", restaurant);
         // Todo: This should be moved to server action with validation
         // Todo: Should check if restaurant already exists! Then add error message
@@ -54,6 +55,7 @@ export default function CreateRestaurant() {
         try {
             const collection = await createRestaurantAction(restV2);
             router.push('/restaurants');
+            setIsLoading(false);
             toast({
                 title: `${collection.data.name} was created successfully!`,
                 description: 'Redirecting to restaurants page...',
@@ -62,6 +64,7 @@ export default function CreateRestaurant() {
         } catch (error) {
             console.log('Error creating restaurant:', error)
             // TODO: Show error message to user
+            setIsLoading(false);
             toast({
                 variant: 'destructive',
                 title: 'Error creating restaurant',
@@ -287,7 +290,7 @@ export default function CreateRestaurant() {
 
 
                 >
-                    <PlusIcon className="mr-2 h-4 w-4" />Create Restaurant
+                    {isLoading ? <><UpdateIcon className="mr-2 h-4 w-4 animate-spin" />Creating...</> : <><PlusIcon className="mr-2 h-4 w-4" />Create Restaurant</>}
                 </Button>
             </form>
         </div >
