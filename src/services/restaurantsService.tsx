@@ -155,6 +155,10 @@ export const doesRestaurantExist = async (restaurantName: string): Promise<boole
         return !!existingRestaurant;
     } catch (error) {
         // If an error occurs, such as no restaurant found, return false
+        if (error instanceof ClientResponseError && error.status === 404) {
+            // No restaurant found
+            return false;
+        }
         console.error('Error checking for existing restaurant', error);
         return false;
     }
@@ -186,6 +190,7 @@ export async function createRestaurant(restaurant: RestaurantBaseV2): Promise<Re
         }
 
         const collection = db.client.collection<RestaurantBaseV2>('restaurants');
+        console.log('Creating restaurant:', restaurant)
         const resp = await collection.create<RestaurantBaseV2>(restaurant, { requestKey: restaurant.name });
 
         return { success: true, data: resp };
