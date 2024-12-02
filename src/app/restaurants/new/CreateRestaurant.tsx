@@ -223,7 +223,7 @@ export default function CreateRestaurant() {
                         handleInputChange(addressString, 'address')
                     }} />
                 </div>
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 gap-4">
 
 
                     <div>
@@ -240,7 +240,7 @@ export default function CreateRestaurant() {
                             min="0"
                         />
                     </div>
-                    <div>
+                    {/* <div>
                         <label className="block text-sm font-medium mb-1" htmlFor="rating">Rating</label>
                         <Input
                             id="rating"
@@ -254,7 +254,7 @@ export default function CreateRestaurant() {
                             min="0"
                             max="5"
                         />
-                    </div>
+                    </div> */}
                 </div>
 
                 <div>
