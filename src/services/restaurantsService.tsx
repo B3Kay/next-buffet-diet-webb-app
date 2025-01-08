@@ -1,5 +1,5 @@
 import { getBoundingBox, getDistanceBetweenTwoCoordinates } from "@/lib/utils";
-import { RestaurantV2, Restaurant, RestaurantV2Keys, LikeV1, LikeBaseV1, ReviewV1, ReviewBase, RestaurantWithRatings, RestaurantBase, RestaurantBaseV2 } from "./types";
+import type { RestaurantV2, Restaurant, RestaurantV2Keys, LikeV1, LikeBaseV1, ReviewV1, ReviewBase, RestaurantWithRatings, RestaurantBaseV2 } from "./types";
 
 import { ClientResponseError } from 'pocketbase';
 import { loadAuthFromCookie } from "@/actions/auth";
@@ -98,22 +98,18 @@ export function makeRestaurantBaseV2(restaurant: Restaurant): RestaurantBaseV2 {
 
 export async function getRestaurants({ page = 1, perPage = 30, sortKey = 'created', sortOrder = 'asc', filterQuery = '' }: { page?: number, perPage?: number, sortKey?: RestaurantV2Keys, sortOrder?: 'asc' | 'desc', filterQuery?: string } = {}): Promise<Restaurant[]> {
     const order = sortOrder === 'desc' ? '' : '-'; // Only prepend '-' for descending order
-
-    let data;
     try {
-        data = await db.client.collection('restaurants').getList<RestaurantV2>(page, perPage, {
+        const data = await db.client.collection('restaurants').getList<RestaurantV2>(page, perPage, {
             sort: order + sortKey,
             filter: filterQuery,
             expand: 'reviews_via_restaurantId'
         });
         console.log('Successfully fetched restaurants', data.items[0])
-
+        return data.items.map((restV2) => makeRestaurantFromV2(restV2))
     } catch (error) {
         console.error('Error fetching restaurants with filterQuery:', filterQuery, error);
         throw new Error('Failed to fetch restaurants');
     }
-    const restaurants = data.items.map((restV2) => makeRestaurantFromV2(restV2))
-    return restaurants;
 }
 
 export async function getRestaurantsByProximity({ latitude, longitude, maxDistance = 10, searchQuery = '', page = 1, perPage = 30 }: { latitude: number, longitude: number, maxDistance?: number, searchQuery?: string, page?: number, perPage?: number }) {
@@ -350,7 +346,7 @@ export function mapRestaurantsWithAvarageReviews(restaurants: Restaurant[]): Res
 
 export async function getTotalRestaurants() {
     try {
-        const restaurants = await db.client.collection('restaurants').getList(1, 1)
+        const restaurants = await db.client.collection('restaurants').getList(1, 1, { requestKey: null })
         return restaurants.totalItems
     } catch (error) {
         console.error('Error getting total restaurants', error)

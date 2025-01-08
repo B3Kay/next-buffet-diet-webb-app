@@ -2,12 +2,11 @@
 import { Images } from "@/components/Images";
 import { formatCurrency } from "@/utils/formatCurrency";
 import { Icon } from "@iconify/react/dist/iconify.js";
-import { Card, cn } from "reablocks";
-import { Restaurant, ReviewV1 } from "../../../../services/types";
+import type { Restaurant, ReviewV1 } from "../../../../services/types";
 import { RestaurantRating } from "../../_components/RestaurantCard";
 import { likeRestaurantAction, removeLikeRestaurantAction } from "@/actions/restaurant";
-import { Bookmark, Globe, HeartIcon, PenBoxIcon, Settings, Signpost, StarIcon } from "lucide-react";
-import { AuthModel, ClientResponseError } from "pocketbase";
+import { Bookmark, Globe, HeartIcon, PenBoxIcon, Settings, Signpost } from "lucide-react";
+import { type AuthModel, ClientResponseError } from "pocketbase";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 import { Badge } from "@/components/ui/badge";
@@ -15,7 +14,7 @@ import { BookmarkFilledIcon, HeartFilledIcon } from "@radix-ui/react-icons";
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import ReviewRestaurantFormSection from "./ReviewRestaurantFormSection";
 import { getAverageRating } from "@/utils/avarageRating";
-
+import { Card } from "@/components/ui/card";
 export const RestaurantDetails = ({ restaurant, images, foodStyleBadges, goodBadges, badBadges, user, like, reviews }:
     {
         restaurant: Restaurant; images: string[]; foodStyleBadges: string[]; goodBadges: string[]; badBadges: string[],
@@ -24,6 +23,7 @@ export const RestaurantDetails = ({ restaurant, images, foodStyleBadges, goodBad
     const { toast } = useToast()
     const averageRating = getAverageRating(reviews)
     const handleLikeRestaurant = async () => {
+        // biome-ignore lint/complexity/useOptionalChain: <explanation>
         if (user && user.id) {
             if (!like.isLiked) {
                 console.log('like restaurant', user)
@@ -64,28 +64,28 @@ export const RestaurantDetails = ({ restaurant, images, foodStyleBadges, goodBad
             <Badge variant='outline'>{restaurant.type}</Badge>
             {foodStyleBadges.map((badge, index) => (
 
-                <Badge key={`foodStyleBadge-${index}`} variant="secondary">
+                <Badge key={`foodStyleBadge-${badge}`} variant="secondary">
                     {badge}
                 </Badge>
             ))}
             {goodBadges.map((badge, index) => (
 
-                <Badge key={`goodBadge-${index}`} variant="default">
+                <Badge key={`goodBadge-${badge}`} variant="default">
                     {badge}
                 </Badge>
             ))}
             {badBadges.map((badge, index) => (
 
-                <Badge key={`badBadge-${index}`} variant="destructive">
+                <Badge key={`badBadge-${badge}`} variant="destructive">
                     {badge}
                 </Badge>
             ))}
         </section>
-        <Card className="light:bg-athens-gray flex-1 mt-5" contentClassName="flex flex gap-2 items-center">
+        <Card className="light:bg-athens-gray flex-1 mt-5 flex gap-2 items-center p-5">
 
             <div>
-                <p className='text-sm font-bold opacity-50'>{formatCurrency(restaurant.price!!, 'kronor') + ' *'}</p>
-                <RestaurantRating rating={averageRating} roundedRating={Math.round(averageRating)} id={restaurant.id!!} /><div className="text-secondary-foreground/30">
+                <p className='text-sm font-bold opacity-50'>{`${formatCurrency(restaurant.price, 'kronor')} *`}</p>
+                <RestaurantRating rating={averageRating} roundedRating={Math.round(averageRating)} id={restaurant.id} /><div className="text-secondary-foreground/30">
 
                 </div>
                 <p className="text-xs opacity-50">* Prices may vary</p>
@@ -94,7 +94,7 @@ export const RestaurantDetails = ({ restaurant, images, foodStyleBadges, goodBad
             <div className="divider divider-horizontal pointer-events-none" />
             <Sheet>
                 <div className="flex flex-col gap-2">
-                    <a className="text-secondary-foreground/30">{reviews.length} {reviews.length === 1 ? 'Review' : 'Reviews'}</a>
+                    <span className="text-secondary-foreground/30">{reviews.length} {reviews.length === 1 ? 'Review' : 'Reviews'}</span>
                     <SheetTrigger asChild>
                         {/* Review */}
                         <Button className=" sm:hidden flex" ><PenBoxIcon className="mr-2 h-4 w-4" /> <span className="hidden sm:inline">Write a review</span><span className="sm:hidden inline">Review</span></Button>
@@ -125,9 +125,8 @@ export const RestaurantDetails = ({ restaurant, images, foodStyleBadges, goodBad
                 }</Sheet>
         </Card>
 
-        <div className="divider"></div>
-        {/* Description  section*/}
-        <section className="mb-4 flex flex-col md:flex-row gap-3 justify-between">
+
+        <section className="mb-4 mt-8 flex flex-col md:flex-row gap-3 justify-between">
             <div className="">
                 <h3 className='text-lg mb-2 font-bold'>Description</h3>
                 <p className="m-0 md:max-w-[30ch] lg:max-w-[50ch] text-base opacity-50 ">
@@ -135,10 +134,8 @@ export const RestaurantDetails = ({ restaurant, images, foodStyleBadges, goodBad
                 </p>
 
             </div>
-            <div className="divider"></div>
+
             <div>
-
-
                 <div className='hidden sm:flex gap-3 mb-4'>
 
                     <a href={restaurant.website} target="_blank" rel="noreferrer">
@@ -172,13 +169,5 @@ export const RestaurantDetails = ({ restaurant, images, foodStyleBadges, goodBad
             </div>
         </section >
         {/* <div className="badge badge-outline badge-primary">{restaurant.type}</div> */}
-
-
-
-
-
-
-
-
     </div >;
 };

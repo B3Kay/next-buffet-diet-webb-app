@@ -9,7 +9,7 @@ import { notFound } from 'next/navigation';
 import { getCoordinates } from '@/components/utils/map';
 import { getUser } from '@/actions/auth';
 import { ClientResponseError } from 'pocketbase';
-import Breadcrumb from '@/components/core/Breadcrumb';
+import RestaurantBreadcrumb from '@/components/core/Breadcrumb';
 import { RestaurantReviews } from './_components/RestaurantReviws';
 
 export const revalidate = 1
@@ -21,11 +21,12 @@ export default async function RestaurantPage({ params }: { params: { id: string 
     const restaurant = await getRestaurant(params.id);
     const reviews = await getRestaurantRatings(params.id);
 
-    var restaurantLike: {
+    let restaurantLike: {
         isLiked: boolean;
         recordId: string;
     } = { isLiked: false, recordId: '' };
 
+    // biome-ignore lint/complexity/useOptionalChain: <explanation>
     if (user && user.id) {
         const resp = await getIsRestaurantLiked(params.id, user.id);
         if (resp instanceof ClientResponseError) {
@@ -47,7 +48,7 @@ export default async function RestaurantPage({ params }: { params: { id: string 
 
     const coordinatesFromAddress = await getCoordinates(restaurant.address)
 
-    const images = [restaurant.imageUrl!!]
+    const images = [restaurant.imageUrl]
 
     const foodStyleBadges = restaurant.foodBadges.filter(isFoodStyleBadge);
     const goodBadges = restaurant.foodBadges.filter(isGoodBadge);
@@ -55,7 +56,7 @@ export default async function RestaurantPage({ params }: { params: { id: string 
 
     return (
         <div className="max-w-screen-lg mx-auto">
-            <Breadcrumb />
+            <RestaurantBreadcrumb />
             <RestaurantDetails user={user} like={restaurantLike} restaurant={restaurant} images={images} foodStyleBadges={foodStyleBadges} goodBadges={goodBadges} badBadges={badBadges} reviews={reviews.items} />
             <div className='mx-4'>
                 <RestaurantReviews reviews={reviews.items} />

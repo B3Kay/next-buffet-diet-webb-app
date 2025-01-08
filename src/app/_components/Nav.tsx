@@ -5,8 +5,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import getInitals from "name-initials";
-import { AuthModel } from "pocketbase";
-import { List, ListItem, Menu } from "reablocks";
+import type { AuthModel } from "pocketbase";
 import { useRef, useState } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button, } from "@/components/ui/button";
@@ -44,7 +43,6 @@ export const Nav = ({ user }: { user: AuthModel | false }) => {
     const { theme, setTheme } = useTheme()
 
 
-    const [openProfile, setProfileOpen] = useState(false);
     const buttonRef = useRef(null);
 
     return (
@@ -106,7 +104,7 @@ export const Nav = ({ user }: { user: AuthModel | false }) => {
                                     variant: isActive('/about') ? 'default' : 'ghost',
                                 },
 
-                            ]}></NavElements>
+                            ]} />
                             <Separator />
                             <NavElements isCollapsed={false} links={[
                                 {
@@ -136,7 +134,7 @@ export const Nav = ({ user }: { user: AuthModel | false }) => {
                                         icon: LogIn,
                                         variant: 'ghost',
                                     },
-                            ]}></NavElements>
+                            ]} />
                         </SheetContent>
                     </Sheet>
 
@@ -148,7 +146,7 @@ export const Nav = ({ user }: { user: AuthModel | false }) => {
                             href={href}
                             className={`text-base font-semibold leading-6 text-content-secondary transition-colors hover:text-content-primary ${isActive(href) && ''}`}
                             target={target}
-                            key={`nav-link-${label}-${index}`}
+                            key={`nav-link-${label}-${target}`}
                             legacyBehavior
                             passHref
                         >
@@ -190,7 +188,7 @@ export const Nav = ({ user }: { user: AuthModel | false }) => {
                                     </Link>
                                     <Link href="/restaurants/new" >
                                         <DropdownMenuItem >
-                                            <PlusIcon className="mr-2 h-4 w-4"></PlusIcon>Add restaurant
+                                            <PlusIcon className="mr-2 h-4 w-4" />Add restaurant
                                         </DropdownMenuItem>
                                     </Link>
                                     <DropdownMenuSeparator />
@@ -210,14 +208,6 @@ export const Nav = ({ user }: { user: AuthModel | false }) => {
                         </Link>
                     }
 
-                    <Menu open={openProfile} onClose={() => setProfileOpen(false)} reference={buttonRef}>
-                        <Card>
-                            <List>
-                                <ListItem onClick={() => signOut()}>Sign out</ListItem>
-
-                            </List>
-                        </Card>
-                    </Menu>
                     <motion.div initial={{ opacity: 0, y: -50 }}
                         animate={{ opacity: 1, y: 0, transition: { delay: 0.1 * 4 } }}>
                         <ThemeToggle />
@@ -229,7 +219,7 @@ export const Nav = ({ user }: { user: AuthModel | false }) => {
                         <div className="flex w-full flex-col gap-2 pt-6">
                             {navLinks.map(({ label, href, target }, index) => (
                                 <motion.div
-                                    key={`nav-link-mobile-${label}-${index}`}
+                                    key={`nav-link-mobile-${label}-${target}`}
                                     initial={{ opacity: 0, x: -50 }}
                                     animate={{ opacity: 1, x: 0, transition: { delay: 0.1 * index } }}
                                 >
@@ -243,6 +233,7 @@ export const Nav = ({ user }: { user: AuthModel | false }) => {
                                     </Link>
                                 </motion.div>
                             ))}
+                            {/* biome-ignore lint/a11y/useKeyWithClickEvents: <explanation> */}
                             <div
                                 className="text-content-secondary transition-colors hover:text-content-primary lg:inline-block"
 

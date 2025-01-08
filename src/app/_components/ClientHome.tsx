@@ -6,14 +6,14 @@ import { Hero } from './Hero';
 import { HeroRestaurantParallax } from '@/components/ui/heroParallax';
 import { useViewportDimensions } from '@/hooks/useViewportDimensions';
 
-import { Restaurant } from '@/services/types';
+import type { Restaurant } from '@/services/types';
 import { HandPlatterIcon, MapPinCheckIcon, PlusIcon, Star, StarIcon, Users, Utensils } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { foodStylesBadges, goodBadges } from '@/components/FoodBadges';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
 
-export default function ClientHome({ user, isAuthenticated, restaurants, totalRestaurants, totalReviews, totalUsers }: { user: any, isAuthenticated: boolean, restaurants: Restaurant[], totalRestaurants: number, totalReviews: number, totalUsers: number }) {
+export default function ClientHome({ restaurants, totalRestaurants, totalReviews, totalUsers }: { restaurants: Restaurant[], totalRestaurants: number, totalReviews: number, totalUsers: number }) {
     const { width } = useViewportDimensions();
     return (
         <main className="flex  flex-col items-center justify-between overflow-x-hidden overflow-y-hidden ">
@@ -32,8 +32,8 @@ export default function ClientHome({ user, isAuthenticated, restaurants, totalRe
                             { icon: Star, title: 'Food Quality', description: 'We believe in highlighting truly exceptional buffet experiences.' },
                             { icon: Utensils, title: 'Dietary Needs', description: 'We celebrate the rich diversity diets out there' },
                             { icon: Users, title: 'Community Driven', description: 'Our strength lies in our diverse community of food enthusiasts.' }
-                        ].map((value, index) => (
-                            <Card key={index}>
+                        ].map((value) => (
+                            <Card key={value.title}>
                                 <CardHeader>
                                     <CardTitle className="flex items-center">
                                         <value.icon className="w-6 h-6 mr-2" />
@@ -79,7 +79,7 @@ export default function ClientHome({ user, isAuthenticated, restaurants, totalRe
                                 <Link
                                     href="/restaurants"
                                     className="inline-flex h-10 items-center justify-center rounded-md bg-primary px-8 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
-                                    prefetch={false}
+                                    prefetch={true}
                                 >
                                     Find Buffets
                                 </Link>
@@ -111,7 +111,7 @@ export default function ClientHome({ user, isAuthenticated, restaurants, totalRe
                                 <Link
                                     href="/restaurants"
                                     className="inline-flex h-10 items-center justify-center rounded-md bg-primary px-8 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
-                                    prefetch={false}
+                                    prefetch={true}
                                 >
                                     Explore
                                 </Link>
@@ -162,7 +162,7 @@ export default function ClientHome({ user, isAuthenticated, restaurants, totalRe
                                 <Link
                                     href="/authentication"
                                     className="inline-flex h-10 items-center justify-center rounded-md bg-primary px-8 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
-                                    prefetch={false}
+                                    prefetch={true}
                                 >
                                     <PlusIcon className='mr-2 h-4 w-4' />Add restaurant
                                 </Link>

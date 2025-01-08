@@ -1,13 +1,13 @@
 'use client'
 import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
 import { Count } from "@/components/utils/Count/Count";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { Divider } from "reablocks";
 
 export const Hero = ({ className, totalRestaurants, totalReviews, totalUsers }: { className?: string, totalRestaurants: number, totalReviews: number, totalUsers: number }) => (
-    <div className={"h-[calc(100vh-300px)] " + className}>
-        <section className={`container mt-32 h-full flex-1 px-4 md:px-24`}>
+    <div className={`h-[calc(100vh-300px)] ${className}`}>
+        <section className={"container mt-32 h-full flex-1 px-4 md:px-24"}>
             <div className="relative z-10 flex flex-col gap-4 py-12">
                 <div className="relative flex flex-1 flex-col gap-4">
                     <motion.h1
@@ -36,7 +36,7 @@ export const Hero = ({ className, totalRestaurants, totalReviews, totalUsers }: 
                 </motion.div>
             </div>
         </section >
-        <Divider className="absolute left-0 z-10 hidden md:block" />
+        <Separator className="absolute left-0 z-10 hidden md:block" />
         <section className="relative z-10 flex w-full justify-center px-0 md:px-24 md:py-10">
             <div className="grid w-full grid-cols-2 grid-rows-2 gap-4 md:grid-cols-4 md:grid-rows-1">
                 <div className="flex flex-1 flex-col items-center gap-4 border-r border-[#9091A0] border-opacity-[16%] px-12">
@@ -98,6 +98,6 @@ export const Hero = ({ className, totalRestaurants, totalReviews, totalUsers }: 
                 </div>
             </div>
         </section>
-        <Divider className="absolute left-0 z-10 hidden md:block" />
+        <Separator className="absolute left-0 z-10 hidden md:block" />
     </div >
 );

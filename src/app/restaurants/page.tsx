@@ -3,12 +3,12 @@ import { isUserAuthenticated } from '../../actions/auth';
 import { RestaurantCard } from './_components/RestaurantCard';
 import { RestaurantSearchSection } from './_components/RestaurantSearchSection';
 
-import { Restaurant } from '@/services/types';
+import type { Restaurant } from '@/services/types';
 import RestaurantsMap from './_components/RestaurantsMap';
-import Breadcrumb from '@/components/core/Breadcrumb';
+import RestaurantBreadcrumb from '@/components/core/Breadcrumb';
 import { getLLMParsedQuery } from '@/services/groqService';
 import { UrlBadges } from './_components/UrlBadges';
-import { NominatimAddressJSON } from './_components/SelectAddress';
+import type { NominatimAddressJSON } from './_components/SelectAddress';
 
 
 // revalidate
@@ -119,7 +119,7 @@ export default async function RestaurantsPage({ searchParams }: { searchParams?:
     return (
         <div className="flex flex-col items-center justify-center pb-24">
             <div className={`${!hasLatLng && 'max-w-screen-lg'} w-full`}>
-                <Breadcrumb />
+                <RestaurantBreadcrumb />
                 <RestaurantSearchSection isAuthenticated={isAuthenticated} />
                 <UrlBadges
                     location={location}

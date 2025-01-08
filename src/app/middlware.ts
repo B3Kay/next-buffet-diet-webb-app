@@ -1,12 +1,13 @@
 
 import db from "@/db/db";
-import { NextRequest, NextResponse } from "next/server";
+import { type NextRequest, NextResponse } from "next/server";
 
 
 export async function middleware(request: NextRequest) {
     console.log(`[middleware] ${request.method} ${request.url}`);
+    // biome-ignore lint/suspicious/noExplicitAny: <explanation>
     const isLoggedIn = await db.isAuthenticated(request.cookies as any);
-    if (request.nextUrl.pathname && request.nextUrl.pathname.startsWith("/auth")) {
+    if (request.nextUrl.pathname?.startsWith("/auth")) {
         if (isLoggedIn) {
             return NextResponse.redirect(new URL("/", request.url));
         }
