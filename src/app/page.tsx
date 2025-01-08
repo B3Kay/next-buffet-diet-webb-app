@@ -3,7 +3,6 @@ import ClientHome from './_components/ClientHome';
 
 import { getRestaurants, mapRestaurantsWithAvarageReviews, getTotalRestaurants } from '@/services/restaurantsService';
 import { getTotalReviews } from '@/services/reviewsService';
-import type { InferGetStaticPropsType } from 'next/types';
 
 
 

@@ -34,7 +34,7 @@ export async function reviewRestaurantAction({
     }
     const resp = await reviewRestaurant({ comment, rating, foodBadges: selectedFoodOptions, restaurantId, userId: user.id });
 
-    revalidatePath(`/restaurants`)
-    revalidatePath(`/`)
+    revalidatePath("/restaurants")
+    revalidatePath("/")
     return resp;
 }

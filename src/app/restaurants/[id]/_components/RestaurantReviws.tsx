@@ -1,7 +1,7 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { ReviewV1 } from "@/services/types"
+import type { ReviewV1 } from "@/services/types"
 
 import { RestaurantRating } from "../../_components/RestaurantCard"
 import { formatTimeAgo } from "@/utils/formatDate"
@@ -13,8 +13,8 @@ export const RestaurantReviews = ({ reviews }: { reviews: ReviewV1[] }) => {
         {reviews.length === 0 && <Card className="p-12">
             <p className="text-center text-muted-foreground"><span >Be the first to review this restaurant!</span></p>
         </Card>}
-        {reviews.map((review, index) => (
-            <Card key={index}>
+        {reviews.map((review) => (
+            <Card key={review.id}>
                 <CardHeader className="relative">
                     <div className="flex items-center justify-between">
                         <div className="flex items-center space-x-4">
