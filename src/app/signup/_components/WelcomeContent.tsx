@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -23,9 +23,7 @@ export default function WelcomeContent({ isLoggedIn }: WelcomeContentProps) {
             {isLoggedIn ? (
                 <div className="space-y-4 ">
                     <Link href="/explore" passHref>
-                        <Button className="w-full">
-                            Explore Buffets
-                        </Button>
+                        <Button className="w-full">Explore Buffets</Button>
                     </Link>
                     <Link href="/create" passHref>
                         <Button className="w-full mt-2" variant="outline">
@@ -36,10 +34,11 @@ export default function WelcomeContent({ isLoggedIn }: WelcomeContentProps) {
             ) : (
                 <div className="space-y-4 grid gap-1">
                     <Link href="/authentication" passHref>
-                        <Button className="w-full">
+                        <Button className="w-full ">
                             Log In
                         </Button>
                     </Link>
+                    <div className="text-center text-sm text-muted-foreground">or</div>
                     <Link href="/signup" passHref>
                         <Button className="w-full mt-2" variant="outline">
                             Sign Up
@@ -49,11 +48,17 @@ export default function WelcomeContent({ isLoggedIn }: WelcomeContentProps) {
             )}
             <p className="px-8 text-center text-sm text-muted-foreground">
                 By continuing, you agree to our{" "}
-                <Link href="/terms" className="underline underline-offset-4 hover:text-primary">
+                <Link
+                    href="/terms"
+                    className="underline underline-offset-4 hover:text-primary"
+                >
                     Terms of Service
                 </Link>{" "}
                 and{" "}
-                <Link href="/privacy" className="underline underline-offset-4 hover:text-primary">
+                <Link
+                    href="/privacy"
+                    className="underline underline-offset-4 hover:text-primary"
+                >
                     Privacy Policy
                 </Link>
                 .

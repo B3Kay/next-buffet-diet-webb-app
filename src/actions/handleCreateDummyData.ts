@@ -1,8 +1,8 @@
 'use server'
 
-import { RestaurantBaseV2 } from "@/services/types";
-import { getUser, isUserAuthenticated } from "./auth";
-import db from "@/db/db";
+import type { RestaurantBaseV2 } from "@/services/types";
+import { isUserAuthenticated } from "./auth";
+
 import { createRestaurant } from "@/services/restaurantsService";
 
 
@@ -26,7 +26,7 @@ export const handleCeateDummyData = async (restaurantsV2: RestaurantBaseV2[]) =>
     // const c
     // Map restaurants to promises
     let created = 0;
-    let messages: string[] = [];
+    const messages: string[] = [];
     const restaurantPromises = restaurantsV2.map(async (restaurant) => {
         try {
             const result = await createRestaurant(restaurant);

@@ -69,7 +69,7 @@ function NavLink({ href, children }: React.ComponentPropsWithoutRef<typeof Link>
 
 export default function Footer() {
     return (
-        <footer className=" py-8">
+        <footer className="pb-8">
             <Separator className="mb-8" />
             <div className="container mx-auto px-4">
                 <div className="flex flex-col items-center space-y-6">

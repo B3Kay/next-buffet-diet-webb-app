@@ -1,5 +1,5 @@
 'use server'
-import { GeolocationCoords } from "@/lib/utils";
+import type { GeolocationCoords } from "@/lib/utils";
 import { getLLMParsedQuery } from "@/services/groqService";
 import { redirect } from "next/navigation";
 

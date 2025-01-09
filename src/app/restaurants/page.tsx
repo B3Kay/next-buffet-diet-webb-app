@@ -115,8 +115,6 @@ export default async function RestaurantsPage({ searchParams }: { searchParams?:
         restaurantName: restaurant.name
     }));
 
-    // For debugging in live
-    console.log(JSON.stringify(restaurantsWithRatings, null, 2));
     return (
         <div className="flex flex-col items-center justify-center pb-24">
             <div className={`${!hasLatLng && 'max-w-screen-lg'} w-full`}>

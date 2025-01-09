@@ -1,5 +1,6 @@
-import PocketBase from 'pocketbase';
-import { ReadonlyRequestCookies } from 'next/dist/server/web/spec-extension/adapters/request-cookies';
+import PocketBase from "pocketbase";
+import type { ReadonlyRequestCookies } from "next/dist/server/web/spec-extension/adapters/request-cookies";
+import { signOut } from "@/actions/auth";
 
 export const POCKET_BASE_URL = process.env.POCKET_BASE_URL;
 
@@ -10,18 +11,29 @@ export class DatabaseClient {
         this.client = new PocketBase(POCKET_BASE_URL);
     }
 
-    async authenticate(email: string, password: string, cookieStore: ReadonlyRequestCookies) {
+    async authenticate(
+        email: string,
+        password: string,
+        cookieStore: ReadonlyRequestCookies,
+    ) {
         try {
-            const result = await this.client.collection("users").authWithPassword(email, password);
-            console.log('authenticate result:', result);
-            const { record, token } = result
+            const result = await this.client
+                .collection("users")
+                .authWithPassword(email, password);
+            console.log("authenticate result:", result);
+            const { record, token } = result;
             record.token = token;
-            cookieStore.set('pb_auth', db.client.authStore.exportToCookie());
+
+            cookieStore.set("pb_auth", db.client.authStore.exportToCookie({ httpOnly: true }), {
+                httpOnly: true,
+                path: "/",
+                sameSite: "lax",
+                secure: true,
+            });
 
             if (!result?.token) {
                 throw new Error("Invalid email or password");
             }
-
 
             return result;
         } catch (err) {
@@ -47,32 +59,59 @@ export class DatabaseClient {
     }
 
     async isAuthenticated(cookieStore: ReadonlyRequestCookies) {
-        const cookie = cookieStore.get('pb_auth');
+        const cookie = cookieStore.get("pb_auth");
         if (!cookie) {
             return false;
         }
 
-        this.client.authStore.loadFromCookie(cookie?.value || '');
+        this.client.authStore.loadFromCookie(cookie?.value || "");
 
-        if (this.client.authStore.isValid === false) return false
+        if (this.client.authStore.isValid === false) {
+            console.error(
+                "Session is invalid or expired:",
+                this.client.authStore.isValid,
+            );
+            return false;
+        }
 
         try {
-            await this.client.collection('users').authRefresh(); // Refresh session if needed
+            await this.client.collection("users").authRefresh(); // Refresh session if needed
             return true;
         } catch (err) {
             console.error("Session is invalid or expired:", err);
             return false;
         }
+    }
 
+    async refreshSession(cookieStore: ReadonlyRequestCookies) {
+        const cookie = cookieStore.get("pb_auth");
+        if (!cookie) {
+            return false;
+        }
+        this.client.authStore.loadFromCookie(cookie?.value || "");
+
+        try {
+            await this.client.collection("users").authRefresh(); // Refresh session if needed
+
+            cookieStore.set("pb_auth", db.client.authStore.exportToCookie({ httpOnly: true }), {
+                httpOnly: true,
+                path: "/",
+                sameSite: "lax",
+                secure: true,
+            });
+        } catch (err) {
+            console.error("Session is invalid or expired:", err);
+            signOut()
+        }
     }
 
     async getUser(cookieStore: ReadonlyRequestCookies) {
-        const cookie = cookieStore.get('pb_auth');
+        const cookie = cookieStore.get("pb_auth");
         if (!cookie) {
             return false;
         }
 
-        this.client.authStore.loadFromCookie(cookie?.value || '');
+        this.client.authStore.loadFromCookie(cookie?.value || "");
         return this.client.authStore.model;
     }
 }

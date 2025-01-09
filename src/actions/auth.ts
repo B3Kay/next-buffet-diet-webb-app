@@ -1,5 +1,5 @@
 'use server'
-import { FieldValues } from "react-hook-form";
+import type { FieldValues } from "react-hook-form";
 import PocketBase, { ClientResponseError } from 'pocketbase';
 import { SignupFormSchema, LoginFormSchema } from '@/lib/definitions'
 import { redirect } from "next/navigation";

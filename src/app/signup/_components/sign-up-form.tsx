@@ -8,7 +8,7 @@ import { AlertCircle } from "lucide-react";
 import { UpdateIcon } from "@radix-ui/react-icons";
 import { SignupFormSchema } from "@/lib/definitions";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
+import type { z } from "zod";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { signup } from "@/actions/auth";

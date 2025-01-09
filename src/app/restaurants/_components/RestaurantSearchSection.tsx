@@ -10,9 +10,9 @@ import { useRouter } from "next/navigation"
 import { Controller, useForm } from "react-hook-form"
 import * as VisuallyHidden from '@radix-ui/react-visually-hidden';
 import { toggleVariants } from "@/components/ui/toggle"
-import { MapPinIcon, PinIcon, StarIcon, Wifi } from "lucide-react"
+import { MapPinIcon } from "lucide-react"
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
-import { cn, GeolocationCoords, getGeolocation } from "@/lib/utils"
+import { cn, type GeolocationCoords, getGeolocation } from "@/lib/utils"
 import { searchRestaurantAction } from "@/actions/searchRestaurant"
 import { useToast } from "@/hooks/use-toast"
 
