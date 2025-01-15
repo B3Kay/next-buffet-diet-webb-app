@@ -8,6 +8,8 @@ export const dummyPresetData: RestaurantBase[] = [
         address: "101 Market St, San Francisco, CA 94105, USA",
         type: "BUFFET",  // Type changed here
         price: 50,
+        lunchPrice: 40,
+        eveningPrice: 60,
         rating: 4.8,
         website: "https://gourmetkitchen.com",
         imageUrl: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?q=80&w=3870&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",

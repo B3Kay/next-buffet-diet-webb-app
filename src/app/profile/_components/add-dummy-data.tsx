@@ -5,14 +5,22 @@ import { Button } from "@/components/ui/button"
 import { Textarea } from "@/components/ui/textarea"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { toast } from "@/hooks/use-toast"
-import { dummyPresetData } from "./dummyPresetData"
+import { dummyPresetData } from "./dummyData/dummyPresetData"
 import { handleCeateDummyData } from "@/actions/handleCreateDummyData"
 import { makeRestaurantBaseV2 } from "@/services/restaurantsService"
-import { Restaurant, RestaurantBaseV2 } from "@/services/types"
+import type { Restaurant, RestaurantBaseV2 } from "@/services/types"
 import { Badge } from "@/components/ui/badge"
+import { malmöData, norrlandsData } from "./dummyData/otherCitiesData"
+import { initialRestaurantDataStockholm } from "./dummyData/initialRestaurantDataStockholm"
+import { InitialRestaurantGöteborgData } from "./dummyData/initialRestaurantDataGoteborg"
 
 export function AddDummyData() {
-    const [dummyData, setDummyData] = useState<string>(JSON.stringify(dummyPresetData, null, 2))
+    const [dummyData, setDummyData] = useState<string>(JSON.stringify([
+        // ...malmöData,
+        // ...norrlandsData,
+        // ...initialRestaurantDataStockholm,
+        ...InitialRestaurantGöteborgData
+    ], null, 2))
 
     const handleAddDummyData = async () => {
         console.log('handleAddDummyData');
