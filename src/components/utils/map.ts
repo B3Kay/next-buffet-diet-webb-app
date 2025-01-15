@@ -15,14 +15,13 @@ export async function getCoordinates(address: string) {
         if (data.length > 0) {
             const { lat, lon } = data[0];
 
-            const latitude = parseFloat(lat);
-            const longitude = parseFloat(lon);
+            const latitude = Number.parseFloat(lat);
+            const longitude = Number.parseFloat(lon);
 
             return { latitude: latitude, longitude: longitude };
-        } else {
-            console.log('No results found');
-            return {};
         }
+        console.log('No results found');
+        return {};
     } catch (error) {
         console.error('Error fetching coordinates:', error);
         return {};

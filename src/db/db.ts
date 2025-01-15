@@ -78,7 +78,7 @@ export class DatabaseClient {
             await this.client.collection("users").authRefresh(); // Refresh session if needed
             return true;
         } catch (err) {
-            console.error("Session is invalid or expired:", err);
+            console.error("Session could not be refreshed:", err);
             return false;
         }
     }

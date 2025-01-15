@@ -136,11 +136,4 @@ export async function loadAuthFromCookie() {
         throw new Error('User is not authenticated');
     }
 
-    try {
-        await db.client.collection('users').authRefresh(); // Refresh session if needed
-    } catch (err) {
-        console.error("Session is invalid or expired:", err);
-        throw new Error('Session is invalid or expired');
-    }
-    console.log('CLient is authenticated')
 }

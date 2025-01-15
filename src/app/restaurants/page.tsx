@@ -12,7 +12,7 @@ import type { NominatimAddressJSON } from './_components/SelectAddress';
 
 
 // revalidate
-export const revalidate = 10
+export const revalidate = 60
 
 export default async function RestaurantsPage({ searchParams }: { searchParams?: { [key: string]: string } }) {
     const search = searchParams?.search || '';

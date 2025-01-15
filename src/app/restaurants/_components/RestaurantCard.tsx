@@ -4,6 +4,8 @@ import { StarFilledIcon, StarIcon } from "@radix-ui/react-icons";
 import { StarHalfIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { revalidate } from "../page";
+
 
 interface RestaurantRating {
     rating: number;
@@ -81,12 +83,12 @@ export function RestaurantCard(restaurant: RestaurantCardProps) {
                         />
                     </div>
                 ) : (
-                    <Image
+                    <img
                         width={500}
                         height={192}
-                        placeholder="data:image/placeholder.svg"
+                        // placeholder="data:image/placeholder.svg"
                         src={restaurant.imageUrl}
-                        alt={`${restaurant.name} image`}
+                        alt={`${restaurant.name} restaurant view`}
                         className="w-full h-48 object-cover object-center rounded-lg"
                     />
                 )}

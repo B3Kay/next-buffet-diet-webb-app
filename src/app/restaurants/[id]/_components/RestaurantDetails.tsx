@@ -1,4 +1,5 @@
 'use client';
+
 import { Images } from "@/components/Images";
 import { formatCurrency } from "@/utils/formatCurrency";
 import { Icon } from "@iconify/react/dist/iconify.js";
