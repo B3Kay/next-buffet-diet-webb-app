@@ -4,6 +4,8 @@ import type { RestaurantBaseV2 } from "@/services/types";
 import { isUserAuthenticated } from "./auth";
 
 import { createRestaurant } from "@/services/restaurantsService";
+import { revalidate } from "@/app/restaurants/page";
+import { revalidatePath } from "next/cache";
 
 
 
@@ -47,5 +49,6 @@ export const handleCeateDummyData = async (restaurantsV2: RestaurantBaseV2[]) =>
     // // Wait for all restaurant creation promises to resolve
     await Promise.all(restaurantPromises);
 
+    revalidatePath('/restaurants')
     return { created, messages }
 }

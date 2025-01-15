@@ -36,9 +36,14 @@ export interface RestaurantBase {
     address: string;
     type: string;
     price: number;
+    breakfastPrice?: number;
+    lunchPrice?: number;
+    eveningPrice?: number;
+    weekendPrice?: number;
     rating: number;
     website: string;
     imageUrl: string;
+    imageUrls?: Array<string>;
     longitude: number;
     latitude: number;
     reviews?: ReviewBase[];

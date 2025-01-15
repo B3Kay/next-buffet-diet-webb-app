@@ -6,23 +6,33 @@ export const restaurantTypes = {
     NO_BUFFET_MUCH_FOOD: '🗻No Buffet, much food',
     NO_BUFFET_LITTLE_FOOD: '🫷No Buffet, little food',
 } as const;
-export type RestaurantTypes = (typeof restaurantTypes)[keyof typeof restaurantTypes];
 
 // Define constants for food style badges
 export const foodStylesBadges = {
     ASIAN: '🍜 Asian',
     SUSHI: '🍣 Sushi',
+    THAI: '🍜 Thai',
+    MONGOLIAN: '🍔 Mongolian',
+    SEAFOOD: '🍤 Seafood',
+    FRENCH: '🍔 French',
     PIZZA: '🍕 Pizza',
     HAMBURGER: '🍔 Hamburger',
     ITALIAN: '🍝 Italian',
     MEXICAN: '🌮 Mexican',
     AMERICAN: '🍽️ American/BBQ',
-    SWEDISH: '🥔 Husmanskost/Swedish',
+    SWEDISH: '🥔 Husmanskost',
     PAKISTANI: '🍛 Pakistani',
+    MIDDLEEAST: '🧆 Middle eastern',
+    BRAZILIAN: '🥩 Brazilian',
+    ETIOPEAN: '🥚 Etiopean',
     ARABIC: '🥙 Arabic',
     INDIAN: '🍛 Indian',
+    VEGETARIAN: '🌱 Vegetarian',
+    BREAKFAST: '🥓 Breakfast',
+    BRUNCH: '🍔 Brunch',
+    GOURMET: '🥘 Gourmet',
+    MEDITERRANEAN: '🍕 Mediterranean'
 } as const;
-export type FoodStylesBadges = (typeof foodStylesBadges)[keyof typeof foodStylesBadges];
 // Define constants for good badges
 export const goodBadges = {
     LEAN_PROTEIN: '💪 Lean protein',
@@ -34,8 +44,8 @@ export const goodBadges = {
     GLUTEN_FREE: '🌾 Gluten free',
     LOW_FAT_OPTIONS: '🏃 Low fat options',
     ANIMAL_BASED_FATS: '🐄 Animal based fats',
+    EKOLOGIC: '🌿 Ekologic',
 } as const;
-export type GoodBadges = (typeof goodBadges)[keyof typeof goodBadges];
 // Define constants for bad badges
 export const badBadges = {
     MEATS_HIDDEN: '🙈 Meats are hidden',
@@ -43,6 +53,11 @@ export const badBadges = {
     COOKS_IN_SEED_OILS: '🌻 Cooked in seed oils',
     MOSTLY_GRAIN_BASED: '🌾 Mostly grain based',
 } as const;
+
+
+export type FoodStylesBadges = (typeof foodStylesBadges)[keyof typeof foodStylesBadges];
+export type GoodBadges = (typeof goodBadges)[keyof typeof goodBadges];
+export type RestaurantTypes = (typeof restaurantTypes)[keyof typeof restaurantTypes];
 export type BadBadges = (typeof badBadges)[keyof typeof badBadges];
 // Interfaces
 interface BadgeOption<T> {
@@ -96,11 +111,10 @@ export function isBadBadge(value: any): value is BadBadges {
 const getBadgeStyle = (value: string, foodStyleStyles: string, goodBadges: string, badBadges: string): string => {
     if (isFoodStyleBadge(value)) {
         return foodStyleStyles;
-    } else if (isGoodBadge(value)) {
+    } if (isGoodBadge(value)) {
         return goodBadges;
-    } else if (isBadBadge(value)) {
+    } if (isBadBadge(value)) {
         return badBadges;
-    } else {
-        return '';
     }
+    return '';
 };
