@@ -28,7 +28,7 @@ export default function AboutPage() {
                 <p className="text-xl text-muted-foreground">
                     At The Buffet Diet, we&apos;re on a mission to help buffet lovers discover the best buffet experiences around the world.
                     Through honest in details reviews, and a passion for all-you-can-eat delights, we&apos;re your trusted guide in
-                    the world of buffets.
+                    the world of buffets!
                 </p>
             </section>
 
