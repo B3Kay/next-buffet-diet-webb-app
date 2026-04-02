@@ -66,12 +66,23 @@ export default function CreateRestaurant() {
     const { toast } = useToast();
     const [isLoading, setIsLoading] = useState(false);
 
+    const [errors, setErrors] = useState<Record<string, string>>({});
+
+    const validate = (): boolean => {
+        const newErrors: Record<string, string> = {};
+        if (!restaurant.name.trim()) newErrors.name = "Restaurant name is required";
+        if (restaurant.name.trim().length < 2) newErrors.name = "Name must be at least 2 characters";
+        if (!restaurant.address.trim()) newErrors.address = "Address is required";
+        if (!restaurant.type) newErrors.type = "Restaurant type is required";
+        if (restaurant.price <= 0) newErrors.price = "Price must be greater than 0";
+        setErrors(newErrors);
+        return Object.keys(newErrors).length === 0;
+    };
+
     const create = async (e: React.FormEvent) => {
         e.preventDefault();
+        if (!validate()) return;
         setIsLoading(true);
-        // console.log("restaurant:", restaurant);
-        // Todo: This should be moved to server action with validation
-        // Todo: Should check if restaurant already exists! Then add error message
         const restV2 = makeRestV2({
             ...restaurant,
             foodBadges: [
@@ -171,6 +182,7 @@ export default function CreateRestaurant() {
                         value={restaurant.name}
                         onChange={(e) => handleInputChange(e.target.value, "name")}
                     />
+                    {errors.name && <p className="text-sm text-destructive mt-1">{errors.name}</p>}
                 </div>
                 <div>
                     <label
@@ -204,6 +216,7 @@ export default function CreateRestaurant() {
                             ))}
                         </SelectContent>
                     </Select>
+                    {errors.type && <p className="text-sm text-destructive mt-1">{errors.type}</p>}
                 </div>
                 <div>
                     <label className="block text-sm font-medium mb-1" htmlFor="badges">
@@ -261,12 +274,11 @@ export default function CreateRestaurant() {
                     /> */}
                     <SelectAddress
                         onSelect={(address) => {
-                            // TODO: this can be refactored to have unique fields in db, like adress, city, country etc instead of single string
-                            // And then format this in the frontend instead of saving an formated string. Different countries have different formats
                             const addressString = `${address.address.road} ${address.address.house_number}, ${address.address.city}, ${address.address.country}`;
                             handleInputChange(addressString, "address");
                         }}
                     />
+                    {errors.address && <p className="text-sm text-destructive mt-1">{errors.address}</p>}
                 </div>
                 <div className="grid grid-cols-1 gap-4">
                     <div>
@@ -282,8 +294,64 @@ export default function CreateRestaurant() {
                             step="0.01"
                             min="0"
                         />
+                        {errors.price && <p className="text-sm text-destructive mt-1">{errors.price}</p>}
                     </div>
 
+                </div>
+
+                <div className="grid grid-cols-2 gap-4">
+                    <div>
+                        <label className="block text-sm font-medium mb-1" htmlFor="breakfastPrice">
+                            Breakfast Price
+                        </label>
+                        <Input
+                            id="breakfastPrice"
+                            type="number"
+                            placeholder="Optional"
+                            onChange={(e) => handleInputChange(e.target.value, "breakfastPrice")}
+                            step="0.01"
+                            min="0"
+                        />
+                    </div>
+                    <div>
+                        <label className="block text-sm font-medium mb-1" htmlFor="lunchPrice">
+                            Lunch Price
+                        </label>
+                        <Input
+                            id="lunchPrice"
+                            type="number"
+                            placeholder="Optional"
+                            onChange={(e) => handleInputChange(e.target.value, "lunchPrice")}
+                            step="0.01"
+                            min="0"
+                        />
+                    </div>
+                    <div>
+                        <label className="block text-sm font-medium mb-1" htmlFor="eveningPrice">
+                            Evening Price
+                        </label>
+                        <Input
+                            id="eveningPrice"
+                            type="number"
+                            placeholder="Optional"
+                            onChange={(e) => handleInputChange(e.target.value, "eveningPrice")}
+                            step="0.01"
+                            min="0"
+                        />
+                    </div>
+                    <div>
+                        <label className="block text-sm font-medium mb-1" htmlFor="weekendPrice">
+                            Weekend Price
+                        </label>
+                        <Input
+                            id="weekendPrice"
+                            type="number"
+                            placeholder="Optional"
+                            onChange={(e) => handleInputChange(e.target.value, "weekendPrice")}
+                            step="0.01"
+                            min="0"
+                        />
+                    </div>
                 </div>
 
                 <div>
@@ -321,6 +389,19 @@ export default function CreateRestaurant() {
 
                         Then paste the link here.
                     </p>
+                </div>
+                <div>
+                    <label className="block text-sm font-medium mb-1" htmlFor="additional_images">
+                        Additional Image URLs (one per line)
+                    </label>
+                    <Textarea
+                        id="additional_images"
+                        placeholder="Paste additional image URLs, one per line"
+                        onChange={(e) => {
+                            const urls = e.target.value.split('\n').filter(url => url.trim() !== '');
+                            setRestaurant(prev => ({ ...prev, imageUrls: urls }));
+                        }}
+                    />
                 </div>
                 <Button
                     // variant='filled'

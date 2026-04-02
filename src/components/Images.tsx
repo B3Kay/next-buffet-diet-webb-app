@@ -1,12 +1,12 @@
+'use client'
+
 import Image from "next/image";
+import { useState } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import { Button } from "./ui/button";
 
 const placeholderImageUrl = "https://images.unsplash.com/photo-1524721696987-b9527df9e512?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fGFic3RyYWN0fGVufDB8fDB8fHww";
-const placeholderImageUrls = [
-    'https://images.unsplash.com/photo-1605321995625-c77c7204cd70?q=80&w=1635&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    'https://images.unsplash.com/photo-1533142146849-4620b8191531?q=80&w=1742&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    'https://images.unsplash.com/photo-1524932326868-56e1f1ede465?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    'https://images.unsplash.com/photo-1687254351560-b8fb47e2bdff?q=80&w=1487&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
-];
+
 export const Images = ({ imageUrls, imageAlt }: { imageUrls: Array<string>; imageAlt?: string; }) => {
     const emptyImage = <div className="w-full max-h-96 object-cover object-center rounded-3xl overflow-hidden">
         <Image
@@ -17,33 +17,67 @@ export const Images = ({ imageUrls, imageAlt }: { imageUrls: Array<string>; imag
             alt={`${imageAlt} image`}
             className='w-full max-h-96 object-cover object-center ' />
     </div>;
-    // Check if the array is empty
-    if (imageUrls.length === 0) {
+
+    // Filter out empty strings
+    const validUrls = imageUrls.filter(url => url && url.trim() !== '');
+
+    if (validUrls.length === 0) {
         return emptyImage;
     }
 
-    // Check if the first element is an empty stringF
-    if (imageUrls.length === 1 && imageUrls[0] === '') {
-        return emptyImage;
+    if (validUrls.length === 1) {
+        return <Image unoptimized width={500} height={500} src={validUrls[0]} alt={`${imageAlt} image`} className="w-full max-h-96 object-cover object-center rounded-3xl" />;
     }
 
-    // Check if there is only one image URL
-    if (imageUrls.length === 1) {
-        const singleImage = <Image unoptimized width={500} height={500} src={imageUrls[0]} alt={`${imageAlt} image`} className="w-full max-h-96 object-cover object-center rounded-3xl" />;
-        return singleImage;
-    }
-    const imageGrid = <ImageGrid images={imageUrls} />;
-
-    // If there are multiple image URLs
-    return imageGrid;
+    return <ImageSlideshow images={validUrls} imageAlt={imageAlt} />;
 };
 
-export const ImageGrid = ({ images: imageUrls }: { images: string[] }) => {
+const ImageSlideshow = ({ images, imageAlt }: { images: string[], imageAlt?: string }) => {
+    const [currentIndex, setCurrentIndex] = useState(0);
+
+    const goToPrevious = () => {
+        setCurrentIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
+    };
+
+    const goToNext = () => {
+        setCurrentIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
+    };
+
     return (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {imageUrls.map((image) => (
-                <Image unoptimized key={image} src={image} alt={`image grid image`} className="w-full h-48 object-cover object-center rounded-lg" />
-            ))}
+        <div className="relative w-full max-h-96 rounded-3xl overflow-hidden">
+            <Image
+                unoptimized
+                width={500}
+                height={500}
+                src={images[currentIndex]}
+                alt={`${imageAlt} image ${currentIndex + 1}`}
+                className="w-full max-h-96 object-cover object-center"
+            />
+            <Button
+                variant="secondary"
+                size="icon"
+                className="absolute left-2 top-1/2 -translate-y-1/2 opacity-80 hover:opacity-100"
+                onClick={goToPrevious}
+            >
+                <ChevronLeft className="h-4 w-4" />
+            </Button>
+            <Button
+                variant="secondary"
+                size="icon"
+                className="absolute right-2 top-1/2 -translate-y-1/2 opacity-80 hover:opacity-100"
+                onClick={goToNext}
+            >
+                <ChevronRight className="h-4 w-4" />
+            </Button>
+            <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5">
+                {images.map((_, index) => (
+                    <button
+                        key={index}
+                        className={`w-2 h-2 rounded-full transition-colors ${index === currentIndex ? 'bg-white' : 'bg-white/50'}`}
+                        onClick={() => setCurrentIndex(index)}
+                    />
+                ))}
+            </div>
         </div>
     );
-}
+};

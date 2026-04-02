@@ -1,10 +1,17 @@
 import { Restaurant } from "@/services/types";
 import { formatCurrency } from "@/utils/formatCurrency";
 import { StarFilledIcon, StarIcon } from "@radix-ui/react-icons";
-import { StarHalfIcon } from "lucide-react";
+import { Clock, StarHalfIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { Badge } from "@/components/ui/badge";
 import { revalidate } from "../page";
+
+function isOpenNow(): boolean {
+    const now = new Date();
+    const hour = now.getHours();
+    return hour >= 10 && hour < 22;
+}
 
 
 interface RestaurantRating {
@@ -107,9 +114,20 @@ export function RestaurantCard(restaurant: RestaurantCardProps) {
                     {restaurant.description}
                 </p>
 
-                <p className="mt-5 text-sm font-bold opacity-50">
-                    {formatCurrency(restaurant.price, "kronor")}
-                </p>
+                <div className="flex items-center gap-2 mt-5">
+                    <p className="text-sm font-bold opacity-50">
+                        {formatCurrency(restaurant.price, "kronor")}
+                    </p>
+                    {isOpenNow() ? (
+                        <Badge variant="default" className="bg-green-600 text-xs">
+                            <Clock className="mr-1 h-3 w-3" />Open
+                        </Badge>
+                    ) : (
+                        <Badge variant="secondary" className="text-xs">
+                            <Clock className="mr-1 h-3 w-3" />Closed
+                        </Badge>
+                    )}
+                </div>
                 <div className="flex justify-between  gap-2">
                     <RestaurantRating
                         rating={rating}

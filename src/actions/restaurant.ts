@@ -1,8 +1,8 @@
 'use server'
 
 import { getCoordinates } from '@/components/utils/map';
-import { createRestaurant, likeRestaurant, removeLikedRestaurant } from '@/services/restaurantsService';
-import type { RestaurantV2 } from '@/services/types';
+import { createRestaurant, updateRestaurant, deleteRestaurant, likeRestaurant, removeLikedRestaurant } from '@/services/restaurantsService';
+import type { RestaurantBaseV2, RestaurantV2 } from '@/services/types';
 import { revalidatePath } from 'next/cache'
 import { ClientResponseError } from 'pocketbase';
 
@@ -26,6 +26,44 @@ export async function createRestaurantAction(restaurantV2: RestaurantV2) {
     }
 }
 
+
+export async function updateRestaurantAction(restaurantId: string, restaurantV2: Partial<RestaurantBaseV2>) {
+    try {
+        // Re-geocode if address changed
+        if (restaurantV2.address) {
+            const { latitude, longitude } = await getCoordinates(restaurantV2.address);
+            restaurantV2.latitude = latitude || 0;
+            restaurantV2.longitude = longitude || 0;
+        }
+
+        const result = await updateRestaurant(restaurantId, restaurantV2);
+
+        if (result.success) {
+            revalidatePath('/restaurants');
+            revalidatePath(`/restaurants/${restaurantId}`);
+            return { success: true, data: result.data };
+        }
+        throw new Error(result.error);
+    } catch (error) {
+        console.error('Error in updateRestaurantAction:', error);
+        throw new Error(error instanceof Error ? error.message : 'Unexpected error occurred');
+    }
+}
+
+export async function deleteRestaurantAction(restaurantId: string) {
+    try {
+        const result = await deleteRestaurant(restaurantId);
+
+        if (result.success) {
+            revalidatePath('/restaurants');
+            return { success: true };
+        }
+        throw new Error(result.error);
+    } catch (error) {
+        console.error('Error in deleteRestaurantAction:', error);
+        throw new Error(error instanceof Error ? error.message : 'Unexpected error occurred');
+    }
+}
 
 export async function likeRestaurantAction(restaurantId: string, userId: string) {
     const resp = await likeRestaurant(restaurantId, userId);

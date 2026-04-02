@@ -1,4 +1,4 @@
-import { getRestaurants, getRestaurantsByProximity, mapRestaurantsWithAvarageReviews } from '../../services/restaurantsService';
+import { getRestaurants, getRestaurantsByProximity, getRestaurantsPaginated, mapRestaurantsWithAvarageReviews } from '../../services/restaurantsService';
 import { isUserAuthenticated } from '../../actions/auth';
 import { RestaurantCard } from './_components/RestaurantCard';
 import { RestaurantSearchSection } from './_components/RestaurantSearchSection';
@@ -6,9 +6,10 @@ import { RestaurantSearchSection } from './_components/RestaurantSearchSection';
 import type { Restaurant } from '@/services/types';
 import RestaurantsMap from './_components/RestaurantsMap';
 import RestaurantBreadcrumb from '@/components/core/Breadcrumb';
-import { getLLMParsedQuery } from '@/services/groqService';
 import { UrlBadges } from './_components/UrlBadges';
 import type { NominatimAddressJSON } from './_components/SelectAddress';
+import { RestaurantFilters } from './_components/RestaurantFilters';
+import { Pagination } from './_components/Pagination';
 
 
 // revalidate
@@ -16,10 +17,6 @@ export const revalidate = 60
 
 export default async function RestaurantsPage({ searchParams }: { searchParams?: { [key: string]: string } }) {
     const search = searchParams?.search || '';
-    const decodedSearch = decodeURIComponent(search);
-
-
-
     const location = searchParams?.location || '';
     const restaurantType = searchParams?.restaurantType || '';
     const userLocation = searchParams?.userLocation ? searchParams.userLocation.split(',') : [];
@@ -27,20 +24,15 @@ export default async function RestaurantsPage({ searchParams }: { searchParams?:
     const goodBadges = searchParams?.goodBadges ? searchParams.goodBadges.split(',') : [];
     const badBadges = searchParams?.badBadges ? searchParams.badBadges.split(',') : [];
 
-    console.log('THIS IS THE PAGE ---------------')
-    console.log('userLocation:', userLocation)
-    console.log('location:', location)
-    console.log('foodStyles:', foodStyles)
-    console.log('goodBadges:', goodBadges)
-    console.log('badBadges:', badBadges)
-
-
+    // New filter params
+    const nameFilter = searchParams?.name || '';
+    const typeFilter = searchParams?.type || '';
+    const sortParam = searchParams?.sort || 'created';
+    const currentPage = Number(searchParams?.page) || 1;
 
     let searchQuery: string | undefined;
 
     if (foodStyles?.length || goodBadges?.length || badBadges?.length) {
-        // Construct the individual parts of the query
-
         const foodStylesQuery = Array.isArray(foodStyles)
             ? foodStyles.map(foodType => `foodBadges ~ "${foodType}"`).join(' || ')
             : '';
@@ -53,29 +45,37 @@ export default async function RestaurantsPage({ searchParams }: { searchParams?:
             ? badBadges.map(badge => `foodBadges ~ "${badge}"`).join(' || ')
             : '';
 
-        // Combine the parts into a single query with '&&' between non-empty sections
         const searchQueryParts = [foodStylesQuery, goodBadgesQuery, badBadgesQuery].filter(Boolean);
         searchQuery = searchQueryParts.join(' && ');
-
-        console.log('searchQuery:', searchQuery);
     }
 
+    // Build additional filter query from name/type filters
+    const filterParts: string[] = [];
+    if (searchQuery) filterParts.push(searchQuery);
+    if (nameFilter) filterParts.push(`name ~ "${nameFilter}"`);
+    if (typeFilter) filterParts.push(`type = "${typeFilter}"`);
+    const combinedFilter = filterParts.join(' && ');
 
-
-    // console.log('restaurantQuery:', searchQuery, searchQuery && searchQuery.length > 0, { filterQuery: searchQuery });
-    // const restaurantQuery = searchQuery && searchQuery.length > 0 ? { filterQuery: searchQuery } : {};
+    // Determine sort
+    let sortKey = 'created';
+    let sortOrder: 'asc' | 'desc' = 'asc';
+    if (sortParam.startsWith('-')) {
+        sortKey = sortParam.slice(1);
+        sortOrder = 'desc';
+    } else if (sortParam === 'rating') {
+        sortKey = 'rating';
+        sortOrder = 'desc';
+    } else {
+        sortKey = sortParam;
+        sortOrder = sortParam === 'price' ? 'asc' : 'asc';
+    }
 
     let restaurants: Restaurant[];
-    // These user lat sould be either location or userLocation
+    let totalPages = 1;
 
-
-    // let userLat = searchParams?.latitude ? Number(searchParams.latitude) : null;
-    // let userLng = searchParams?.longitude ? Number(searchParams.longitude) : null;
     let userLat = null;
     let userLng = null;
 
-    // If we have a location string but no coordinates, try to geocode it
-    // const locationCoordinates: { latitude: number | null, longitude: number | null } = { latitude: null, longitude: null };
     if (location) {
         try {
             const coordinates = await getLocationLongLat(location);
@@ -83,37 +83,31 @@ export default async function RestaurantsPage({ searchParams }: { searchParams?:
             userLng = Number(coordinates.longitude);
         } catch (error) {
             console.error('Failed to get coordinates for location:', error);
-            // You might want to show this error to the user
-            // For now, we'll continue with null coordinates
         }
     }
 
     const hasLatLng = userLat && userLng;
 
     if (hasLatLng && userLat && userLng) {
-        console.log('Users proximity query', searchQuery)
-        restaurants = await getRestaurantsByProximity({ maxDistance: 100, latitude: userLat, longitude: userLng, searchQuery: searchQuery });
+        restaurants = await getRestaurantsByProximity({ maxDistance: 100, latitude: userLat, longitude: userLng, searchQuery: combinedFilter });
     } else {
-        console.log('No users proximity restaurant query', searchQuery)
-        restaurants = await getRestaurants({ filterQuery: searchQuery });
-
+        const result = await getRestaurantsPaginated({
+            filterQuery: combinedFilter,
+            page: currentPage,
+            perPage: 12,
+            sortKey: sortKey as any,
+            sortOrder,
+        });
+        restaurants = result.items;
+        totalPages = result.totalPages;
     }
 
     const restaurantsWithRatings = mapRestaurantsWithAvarageReviews(restaurants);
 
-
     const isAuthenticated = await isUserAuthenticated();
-    // Filter out restaurants with latitude or longitude equal to 0
     const filteredRestaurants = restaurantsWithRatings.filter(restaurant =>
         restaurant.latitude !== 0 && restaurant.longitude !== 0
     );
-
-    const restaurantsMarkers = filteredRestaurants.map(restaurant => ({
-        latitude: restaurant.latitude || 0,
-        longitude: restaurant.longitude || 0,
-        restaurantid: restaurant.id,
-        restaurantName: restaurant.name
-    }));
 
     return (
         <div className="flex flex-col items-center justify-center pb-24">
@@ -128,32 +122,30 @@ export default async function RestaurantsPage({ searchParams }: { searchParams?:
                     goodBadges={goodBadges}
                     badBadges={badBadges}
                 />
+                <RestaurantFilters />
                 <div className={`${hasLatLng && 'grid grid-cols-1 md:grid-cols-2 gap-4'}`}>
-
-
 
                     {restaurantsWithRatings.length === 0 ?
                         <div className='justify-center items-center flex flex-col'>
                             <p className="text-center text-muted-foreground m-12">No restaurants found</p>
                         </div>
                         :
-                        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4">
-                            {restaurantsWithRatings.map((restaurant) => (
-                                // Show "Open now on the card"
-                                // If you are searching for a restaurant you probably want to eat it now, so is it open now?
-                                <RestaurantCard
-                                    key={restaurant.id}
-                                    {...restaurant}
-                                />
-                            ))}
-
+                        <div>
+                            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4">
+                                {restaurantsWithRatings.map((restaurant) => (
+                                    <RestaurantCard
+                                        key={restaurant.id}
+                                        {...restaurant}
+                                    />
+                                ))}
+                            </div>
+                            {!hasLatLng && <Pagination currentPage={currentPage} totalPages={totalPages} />}
                         </div>
                     }
                     {(userLat && userLng) &&
                         <div className='flex-1  w-full md:flex h-[50vh] md:h-[calc(100vh-76px)] sticky top-[76px] rounded-lg overflow-hidden'>
 
                             <RestaurantsMap restaurantMarkers={filteredRestaurants}
-                                // Key is necessary to re-render the map when the user location changes
                                 key={`${userLat}-${userLng}`}
                                 currentLocationMarker={{
                                     latitude: userLat,
