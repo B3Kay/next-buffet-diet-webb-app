@@ -7,10 +7,28 @@ import { HeroRestaurantParallax } from '@/components/ui/heroParallax';
 import { useViewportDimensions } from '@/hooks/useViewportDimensions';
 
 import type { Restaurant } from '@/services/types';
-import { HandPlatterIcon, MapPinCheckIcon, PlusIcon, Star, StarIcon, Users, Utensils } from 'lucide-react';
+import { HandPlatterIcon, MapPinCheckIcon, PlusIcon, Quote, Star, StarIcon, Users, Utensils } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { foodStylesBadges, goodBadges } from '@/components/FoodBadges';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+
+const testimonials = [
+    {
+        quote: "Jag brukar hetsa mina barn att äta mer å så mycket ni kan så att de inte behöver äta sedan! Buffé dieten är som klippt och skuren för mig",
+        name: "Jenny Boberg",
+        detail: "Buffet Diet enthusiast",
+    },
+    {
+        quote: "70 pounds of vegetables a month! I got down to 3% body fat with the Buffet Diet.",
+        name: "Omar, DIF",
+        detail: "Athlete",
+    },
+    {
+        quote: "Everything in a single window dropped my fat percentage. Oboy!",
+        name: "Bransen Johnsson",
+        detail: "Community member",
+    },
+];
 
 
 export default function ClientHome({ restaurants, totalRestaurants, totalReviews, totalUsers }: { restaurants: Restaurant[], totalRestaurants: number, totalReviews: number, totalUsers: number }) {
@@ -42,6 +60,38 @@ export default function ClientHome({ restaurants, totalRestaurants, totalReviews
                                 </CardHeader>
                                 <CardContent>
                                     <p className="text-muted-foreground">{value.description}</p>
+                                </CardContent>
+                            </Card>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            <section className="py-12 md:py-24 lg:py-32 bg-muted/50">
+                <div className="max-w-6xl mx-auto px-4">
+                    <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none mb-4 text-center">
+                        What our community says
+                    </h2>
+                    <p className="text-muted-foreground text-center mb-12 max-w-2xl mx-auto md:text-lg">
+                        Real stories from real buffet enthusiasts who transformed their eating habits.
+                    </p>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        {testimonials.map((t) => (
+                            <Card key={t.name} className="relative">
+                                <CardContent className="pt-8 pb-6">
+                                    <Quote className="w-8 h-8 text-primary/20 mb-4" />
+                                    <blockquote className="text-base italic leading-relaxed mb-6">
+                                        &ldquo;{t.quote}&rdquo;
+                                    </blockquote>
+                                    <div className="flex items-center gap-3">
+                                        <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-sm font-bold text-primary">
+                                            {t.name.split(' ').map(n => n[0]).join('')}
+                                        </div>
+                                        <div>
+                                            <p className="font-semibold text-sm">{t.name}</p>
+                                            <p className="text-xs text-muted-foreground">{t.detail}</p>
+                                        </div>
+                                    </div>
                                 </CardContent>
                             </Card>
                         ))}
