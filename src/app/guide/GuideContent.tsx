@@ -194,37 +194,36 @@ export function GuideContent() {
 
           <Separator className="mb-16" />
 
-          {/* Chapter 2 */}
+          <Separator className="mb-16" />
+
           <section className="mb-16 print:break-before-page">
             <div className="flex items-center gap-3 mb-6">
               <div className="flex items-center justify-center w-10 h-10 rounded-full bg-primary text-primary-foreground font-bold text-lg">
                 2
               </div>
               <h2 className="text-3xl md:text-4xl font-bold">
-                The Problem with Normal Eating
+                Why Your Current Food System Is Broken
               </h2>
             </div>
 
-            <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-              Before I explain the solution, I want to make sure you understand the problem. Because
-              most people don&apos;t realize how absurd their current eating situation is. They&apos;ve
-              been doing it their whole life, so it feels normal. It is not normal. It is, when you actually
-              examine it, a logistical nightmare that we have all collectively agreed to never question.
+            <p className="text-lg text-muted-foreground mb-4 leading-relaxed">
+              Let&apos;s be honest about what normal eating actually is. Not what the food pyramid said it should be. Not what the wellness influencer says it is. What it actually is.
+            </p>
+
+            <p className="text-lg text-muted-foreground mb-4 leading-relaxed">
+              The food pyramid was a psyop. Six small meals a day is propaganda invented by the snack industry. Breakfast being the most important meal of the day was a marketing slogan from a cereal company. Nobody is talking about this.
+            </p>
+
+            <p className="text-lg text-muted-foreground mb-4 leading-relaxed">
+              Here&apos;s your current protocol whether you chose it or not. Wake up. Eat something (or skip it and feel guilty about it, as if toast is a moral obligation). Go to work. Eat a sad desk lunch from a container you packed the night before in a ritual you call &quot;meal prep&quot; but which is more accurately described as packing a school lunchbox for yourself as a grown adult. Come home. Stare into the fridge for ten minutes as if the ingredients might spontaneously assemble. Cook something mediocre. Or order $28 of pad thai from an app. Clean up. Sleep. Repeat forever.
+            </p>
+
+            <p className="text-lg text-muted-foreground mb-4 leading-relaxed">
+              Your great-great-grandfather didn&apos;t have a meal prep container. He didn&apos;t have a weekly grocery run scheduled in his calendar. He didn&apos;t have a 6-meal-a-day protocol. He ate when there was food. He didn&apos;t eat when there wasn&apos;t. He was fine. You will also be fine.
             </p>
 
             <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-              The average person wakes up, eats breakfast (or skips it and feels guilty — as if toast is a moral obligation).
-              They go to work. They eat a sad desk lunch, possibly from a container they packed the night before
-              in a ritual they describe as &quot;meal prep&quot; but which more closely resembles packing a school
-              lunchbox for yourself as an adult. They come home exhausted, stare into the fridge for ten minutes
-              as if the ingredients might spontaneously assemble into a meal, and then cook something mediocre or
-              order $28 worth of pad thai from an app. Then they clean up. Then they do it all again tomorrow.
-              And the day after. And the day after that. For the rest of their lives.
-            </p>
-
-            <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-              I want to show you the real numbers, because until you see them written down,
-              you will not believe how much of your life you are currently donating to food logistics:
+              Here are the real numbers. Until you see them in writing you will not believe how much of your life you are donating to food logistics:
             </p>
 
             <Card className="mb-6">
@@ -232,27 +231,27 @@ export function GuideContent() {
                 <div className="flex gap-3">
                   <Clock className="w-6 h-6 text-orange-500 flex-shrink-0 mt-1" />
                   <div>
-                    <p className="font-semibold mb-3">The Time Tax of Cooking (Per Week)</p>
+                    <p className="font-semibold mb-3">The Time Tax of Normal Eating (Per Week)</p>
                     <ul className="space-y-2 text-muted-foreground">
                       <li className="flex justify-between">
-                        <span>Meal planning & recipe research</span>
-                        <span className="font-mono">1-2 hours</span>
+                        <span>Meal planning &amp; recipe scrolling</span>
+                        <span className="font-mono">1–2 hours</span>
                       </li>
                       <li className="flex justify-between">
-                        <span>Grocery shopping</span>
-                        <span className="font-mono">2-3 hours</span>
+                        <span>Grocery shopping (including transit)</span>
+                        <span className="font-mono">2–3 hours</span>
                       </li>
                       <li className="flex justify-between">
-                        <span>Food prep & cooking (3 meals/day)</span>
-                        <span className="font-mono">7-10 hours</span>
+                        <span>Prep &amp; cooking (3 meals/day)</span>
+                        <span className="font-mono">7–10 hours</span>
                       </li>
                       <li className="flex justify-between">
-                        <span>Cleaning, dishes, putting away</span>
-                        <span className="font-mono">3-5 hours</span>
+                        <span>Dishes, cleaning, putting things away</span>
+                        <span className="font-mono">3–5 hours</span>
                       </li>
                       <li className="flex justify-between border-t pt-2 font-semibold">
                         <span>Total</span>
-                        <span className="font-mono text-primary">13-20 hours/week</span>
+                        <span className="font-mono text-primary">13–20 hours/week</span>
                       </li>
                     </ul>
                   </div>
@@ -260,77 +259,83 @@ export function GuideContent() {
               </CardContent>
             </Card>
 
-            <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-              Read that again. <strong>Thirteen to twenty hours per week</strong>. That&apos;s almost a
-              part-time job — just to feed yourself. And what do you get in return? The same rotation
-              of 5-7 meals you&apos;ve been making for the last three years, eaten standing over the
-              kitchen counter while scrolling your phone.
+            <p className="text-lg text-muted-foreground mb-4 leading-relaxed">
+              Read that again. <strong>Thirteen to twenty hours a week.</strong> That is a part-time job. You are working a part-time job whose entire output is feeding yourself the same 6 meals on rotation. Every week. Until you die.
             </p>
 
-            <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-              Now let&apos;s talk about <strong>meal prepping</strong>. The fitness industry&apos;s favorite
-              solution. Oh, you don&apos;t enjoy eating? Just spend your entire Sunday cooking 21 meals,
-              stack them in identical plastic containers, and eat the same reheated chicken breast for 7
-              days straight! What fun! What variety! What a life!
-            </p>
+            <Card className="mb-6 border-destructive/20 bg-destructive/5">
+              <CardContent className="pt-6">
+                <div className="flex gap-3">
+                  <AlertTriangle className="w-6 h-6 text-destructive flex-shrink-0 mt-1" />
+                  <div>
+                    <p className="font-semibold mb-1">Meal Prep Is Cope</p>
+                    <p className="text-muted-foreground">
+                      The fitness industry sold you this: spend your entire Sunday cooking 21 identical meals, stack them in plastic containers, eat the same reheated chicken breast for 7 days straight. This is presented as discipline. It is actually misery with a macros spreadsheet. Nobody who genuinely enjoys their life is doing this long-term.
+                    </p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
 
-            <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-              And then there&apos;s eating out at <em>regular</em> restaurants. Sure, someone else cooks for you.
-              But you&apos;re paying $20-40 per meal for a portion that was designed by an accountant, not a chef.
-              You get exactly 200 grams of protein, a decorative sprig of parsley, and the privilege of tipping
-              20% for someone to bring it to you. Three meals a day at restaurants? That&apos;s $60-120 per day.
-              That&apos;s $1,800-3,600 per month. Nobody is doing that.
+            <p className="text-lg text-muted-foreground mb-4 leading-relaxed">
+              Eating at regular restaurants isn&apos;t the answer either. You&apos;re paying $20–40 per meal for a portion designed by an accountant. Exactly 200g of protein. A decorative sprig of parsley. The privilege of tipping 20% for someone to carry it 8 metres. Three meals a day at restaurants is $60–120 per day. $1,800–3,600 per month. Nobody is doing that.
             </p>
 
             <p className="text-lg text-muted-foreground leading-relaxed">
-              There has to be a better way, right? <em>Right?</em>
+              The current system wastes your time, wastes your money, and still somehow produces mediocre food. Every single day. This is the problem. Keep reading.
             </p>
           </section>
 
           <Separator className="mb-16" />
 
-          {/* Chapter 3 */}
           <section className="mb-16 print:break-before-page">
             <div className="flex items-center gap-3 mb-6">
               <div className="flex items-center justify-center w-10 h-10 rounded-full bg-primary text-primary-foreground font-bold text-lg">
                 3
               </div>
               <h2 className="text-3xl md:text-4xl font-bold">
-                Why Buffets Are the Ultimate Life Hack
+                The Buffet Protocol
               </h2>
             </div>
 
+            <p className="text-lg text-primary font-medium mb-6 italic">
+              The system hiding in plain sight.
+            </p>
+
+            <p className="text-lg text-muted-foreground mb-4 leading-relaxed">
+              Buffets solve every problem from the previous chapter. Every single one. Not partially. Completely. Let&apos;s go through the stack.
+            </p>
+
             <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-              Here&apos;s where things get beautiful. Buffets solve literally every problem we just talked about.
-              Every. Single. One. Let me count the ways:
+              Most people think buffets are where you go to overeat garbage and feel terrible. That&apos;s because most people go to buffets wrong. They are playing a different game — the eat-until-physically-immobile game. We are not playing that game. We are playing the high-protein, maximum-value, zero-cooking-overhead game. Completely different.
             </p>
 
             <div className="grid gap-4 mb-8">
               {[
                 {
                   icon: ChefHat,
-                  title: "Zero Cooking",
-                  desc: "Walk in, food is ready. Walk out. That's it. No shopping, no prep, no cooking, no cleaning. You just saved 15+ hours per week. You're welcome.",
+                  title: "Zero Cooking Overhead",
+                  desc: "Walk in. Food exists. Walk out. No shopping list. No grocery run. No prep. No cooking. No dishes. No putting things away. You just eliminated the 13–20 hour weekly time tax in a single move. This is not a small thing.",
                 },
                 {
                   icon: Utensils,
-                  title: "Infinite Variety",
-                  desc: "Sushi today? Sure. Roast beef tomorrow? Why not. Indian curry on Thursday? Go for it. All from the same buffet. Your meal prep chicken breast could never.",
+                  title: "Infinite Variety on Demand",
+                  desc: "Sushi. Roast beef. Grilled salmon. Brazilian churrasco. Korean BBQ. Indian curry. All from the same location. On rotation. Your meal prep chicken breast cannot compete. Variety is not a luxury — dietary variety means micronutrient completeness. The buffet handles this automatically.",
                 },
                 {
                   icon: Target,
-                  title: "YOU Control the Portions",
-                  desc: "This is the key that everyone misses. At a buffet, YOU decide what goes on your plate. Want 500g of salmon and a mountain of vegetables? Done. No waiter giving you a judgment look.",
+                  title: "You Control the Portions",
+                  desc: "This is the one everyone misses. At a regular restaurant, a cost-conscious kitchen controls your macros. At a buffet, you do. Want 600g of salmon and zero carbohydrates? Done. Want to run a high-protein, carnivore-style feast? Go stack the plate. Nobody is stopping you. No judgment. Just food.",
                 },
                 {
                   icon: Users,
-                  title: "Social Friendly",
-                  desc: "Bring your friends, your date, your business partner, your mom. Everyone finds something they like. It's the universal restaurant. No more 'where do you want to eat?' debates.",
+                  title: "Zero Social Friction",
+                  desc: "Bring your friend who eats vegan. Bring your carnivore training partner. Bring your business contact. Bring your mom. Everyone finds something. The buffet is the universal restaurant. The 'where should we eat?' debate is over.",
                 },
                 {
                   icon: Star,
-                  title: "Quality Options Exist",
-                  desc: "We're not talking about the sad pizza buffet at the highway rest stop. Sushi buffets. Brazilian steakhouses. Hotel brunch buffets. Korean BBQ. These are legitimate fine dining experiences.",
+                  title: "Quality Exists at the Top End",
+                  desc: "We are not talking about the sad pizza carousel at a highway rest stop. We are talking about sushi buffets. Brazilian steakhouses. Hotel brunch spreads. Korean BBQ. These are legitimate high-quality meals. Find the right buffet and the quality-per-dollar ratio is genuinely absurd.",
                 },
               ].map((item, i) => (
                 <Card key={i}>
@@ -347,54 +352,55 @@ export function GuideContent() {
               ))}
             </div>
 
-            <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-              Let&apos;s do the time math. With the Buffet Diet, your food-related time commitment looks like this:
-              walk to buffet (10 min), eat (30-45 min), walk back (10 min). Total: about <strong>1 hour per day</strong>.
-              Compare that to the 2-3 hours per day the average person spends on food prep and cooking.
-              That&apos;s <strong>10+ hours per week</strong> you just got back. What are you going to do with
-              an extra 10 hours every week? Start a business? Learn a language? Finally read that book?
-              The world is your oyster — which, coincidentally, is also available at the buffet.
+            <p className="text-lg text-muted-foreground mb-4 leading-relaxed">
+              Time math. Buffet Diet food commitment: walk there (10 min), eat (30–45 min), walk back (10 min). Roughly <strong>1 hour per eating event</strong>. Normal eating: 2–3 hours per day minimum. That&apos;s <strong>10+ hours a week</strong> back in your life. Every week.
             </p>
 
-            <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-              &quot;But Benjamin,&quot; I hear you saying, &quot;buffets are where people go to get fat!&quot;
-              And you&apos;re right — if you eat like most people eat at buffets. If you load up on bread rolls,
-              pasta, fried rice, and desserts, yes, you will get fat. But that&apos;s not what we&apos;re doing here.
-              We&apos;re playing a completely different game. We&apos;re playing <em>the Buffet Diet game</em>.
-              And in this game, we <strong>win</strong>.
+            <Card className="mb-6 border-primary/20 bg-primary/5">
+              <CardContent className="pt-6">
+                <div className="flex gap-3">
+                  <Zap className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
+                  <div>
+                    <p className="font-semibold mb-1">You vs. the Buffet&apos;s Business Model</p>
+                    <p className="text-muted-foreground">
+                      The buffet makes money when you fill up on bread rolls, pasta, fried rice, and dessert. High volume, low cost ingredients. That is their margin. You win by ignoring all of that entirely. Stack the protein. Salmon, beef, eggs, shrimp. Hit the high-value items first before your stomach fills. Play offense from plate one. The buffet built a business on the assumption that you would eat cheap carbs. Prove them wrong.
+                    </p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            <p className="text-lg text-muted-foreground leading-relaxed">
+              This is a game. Two engineers sitting across from each other at a $15 buffet, figuring out how to extract maximum protein per dollar, is how this protocol got stress-tested. The strategies in the rest of this guide came from that process. It works.
             </p>
           </section>
 
           <Separator className="mb-16" />
 
-          {/* Chapter 4 */}
           <section className="mb-16 print:break-before-page">
             <div className="flex items-center gap-3 mb-6">
               <div className="flex items-center justify-center w-10 h-10 rounded-full bg-primary text-primary-foreground font-bold text-lg">
                 4
               </div>
               <h2 className="text-3xl md:text-4xl font-bold">
-                The Fasting Connection
+                Fasting + Buffets = The Stack Nobody Sees
               </h2>
             </div>
-            <p className="text-lg text-primary font-medium mb-8 italic">
-              Where the Magic Happens
+
+            <p className="text-lg text-primary font-medium mb-6 italic">
+              This is where the whole thing clicks.
+            </p>
+
+            <p className="text-lg text-muted-foreground mb-4 leading-relaxed">
+              The buffet alone is already a strong protocol. But combined with fasting, it becomes something else entirely. This is the stack. This is why it works so well that it sounds made up when you explain it to people.
+            </p>
+
+            <p className="text-lg text-muted-foreground mb-4 leading-relaxed">
+              Intermittent fasting is not a diet. It is a timing protocol. Not about what you eat — about when. You cycle between eating and not eating. That&apos;s it. Humans have been doing this for the entire history of the species. Your great-great-great-grandfather didn&apos;t have a fridge full of snacks. He ate when food existed. He fasted when it didn&apos;t. His body was built for exactly this pattern. So is yours. Nobody is talking about this.
             </p>
 
             <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-              Now we get to the secret sauce (which, unlike the buffet&apos;s actual sauce, is calorie-free).
-              The Buffet Diet isn&apos;t just about eating at buffets. It&apos;s about combining buffets with{" "}
-              <strong>intermittent fasting</strong>. This is where the whole thing goes from &quot;interesting
-              idea&quot; to &quot;actual life-changing strategy.&quot;
-            </p>
-
-            <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-              If you&apos;re not familiar with intermittent fasting, here&apos;s the quick rundown. It&apos;s not
-              about <em>what</em> you eat — it&apos;s about <em>when</em> you eat. You cycle between periods
-              of eating and periods of not eating. Simple. Humans have been doing this for literally all of
-              history. Your great-great-great-grandpa didn&apos;t have a refrigerator full of snacks. He ate
-              when food was available, and fasted when it wasn&apos;t. His body was designed for exactly this pattern.
-              So is yours.
+              The carnivore path naturally compresses the eating window. You stop wanting to snack. One thing leads to another. You try 24 hours. Then 3 days. Then 5 days. Then you realize you have a half marathon in 2 days and you run it anyway. The body adapts. It always does.
             </p>
 
             <div className="grid gap-4 mb-8">
@@ -403,10 +409,9 @@ export function GuideContent() {
                   <div className="flex gap-3">
                     <Timer className="w-6 h-6 text-blue-500 flex-shrink-0 mt-1" />
                     <div>
-                      <p className="font-semibold mb-1">16:8 — The Gateway</p>
+                      <p className="font-semibold mb-1">16:8 — Entry Level</p>
                       <p className="text-muted-foreground">
-                        Fast for 16 hours, eat within an 8-hour window. Basically just skip breakfast.
-                        This is baby&apos;s first fast. If you can&apos;t do this, we need to talk.
+                        Fast 16 hours. Eat within an 8-hour window. Mechanically: skip breakfast. Eat lunch and dinner. That&apos;s it. This is the minimum viable dose. If this feels hard, the problem is not fasting — the problem is dependence on snacks and the psychological weight of three mandatory meals a day. That conditioning breaks fast.
                       </p>
                     </div>
                   </div>
@@ -419,8 +424,7 @@ export function GuideContent() {
                     <div>
                       <p className="font-semibold mb-1">OMAD — One Meal A Day</p>
                       <p className="text-muted-foreground">
-                        24-hour fast. One meal per day. This is where the Buffet Diet really starts to shine.
-                        One meal, and it better be worth it. Enter: the buffet.
+                        24-hour fast. One meal. This is where the Buffet Diet becomes obvious. If you only eat once a day, that meal needs to be worth it. Not a sad bowl of soup. A real feast. High-protein, high-variety, fully satisfying. Enter: the all-you-can-eat. The protocol snaps together perfectly here.
                       </p>
                     </div>
                   </div>
@@ -431,10 +435,9 @@ export function GuideContent() {
                   <div className="flex gap-3">
                     <Zap className="w-6 h-6 text-yellow-500 flex-shrink-0 mt-1" />
                     <div>
-                      <p className="font-semibold mb-1">48-Hour Fast — The Warrior Mode</p>
+                      <p className="font-semibold mb-1">48-Hour Fast — The Full Stack</p>
                       <p className="text-muted-foreground">
-                        Eat every other day. One massive feast every 48 hours. This is the final boss of the
-                        Buffet Diet. Not for beginners, but the rewards are extraordinary.
+                        Eat every other day. One serious feast every 48 hours. This is the configuration that cuts food costs in half while maximizing everything fasting has to offer. Not for day one. But it is absolutely achievable and the time and money returns are remarkable. All that recovered time goes back into work and training.
                       </p>
                     </div>
                   </div>
@@ -442,12 +445,8 @@ export function GuideContent() {
               </Card>
             </div>
 
-            <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-              Here&apos;s why fasting and buffets are the perfect marriage. When you fast for 24 or even
-              48 hours, you <em>deserve</em> a proper feast. Not a sad 400-calorie salad. Not a protein shake.
-              A <strong>feast</strong>. A glorious, varied, protein-rich, culturally diverse explosion of food.
-              And where do you get that? At a regular restaurant that gives you a portion the size of your fist?
-              No. You get that at an <strong>all-you-can-eat buffet</strong>.
+            <p className="text-lg text-muted-foreground mb-4 leading-relaxed">
+              Here is why fasting and buffets are the perfect pairing. When you have fasted for 24 or 48 hours, you have earned a real feast. Not a 400-calorie salad. Not a protein shake. A <strong>feast</strong>. Varied. Protein-dense. Satisfying in every dimension. A regular restaurant gives you a fist-sized portion and charges $35 for it. That is the wrong tool. An all-you-can-eat buffet is the exact right tool.
             </p>
 
             <Card className="mb-6 border-primary/20 bg-primary/5">
@@ -455,23 +454,23 @@ export function GuideContent() {
                 <div className="flex gap-3">
                   <Brain className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
                   <div>
-                    <p className="font-semibold mb-2">The Science (Briefly)</p>
+                    <p className="font-semibold mb-2">The Science. Briefly. Without Apology.</p>
                     <ul className="space-y-2 text-muted-foreground">
                       <li className="flex gap-2">
                         <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0 mt-1" />
-                        <span><strong>Autophagy</strong> — Your body starts cleaning up damaged cells during extended fasts. It&apos;s like a cellular deep-clean.</span>
+                        <span><strong>Autophagy</strong> — Your cells start eating their own damaged components during extended fasts. Literally cellular housekeeping. The trash gets taken out. It kicks in around 16–24 hours. This is real and documented.</span>
                       </li>
                       <li className="flex gap-2">
                         <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0 mt-1" />
-                        <span><strong>Insulin Sensitivity</strong> — Fasting improves how your body handles sugar. When you do eat, your body uses the fuel more efficiently.</span>
+                        <span><strong>Insulin Sensitivity</strong> — Fasting resets your insulin response. When you do eat, your body handles the fuel efficiently. The feast after the fast is metabolically different from eating the same food in a constant-fed state.</span>
                       </li>
                       <li className="flex gap-2">
                         <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0 mt-1" />
-                        <span><strong>Metabolic Flexibility</strong> — Your body gets better at switching between burning carbs and burning fat. You become a hybrid engine.</span>
+                        <span><strong>Metabolic Flexibility</strong> — Your body learns to switch between burning glucose and burning fat without drama. You stop being dependent on constant food input to function. This is called being a metabolic adult.</span>
                       </li>
                       <li className="flex gap-2">
                         <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0 mt-1" />
-                        <span><strong>Growth Hormone</strong> — Fasting can boost human growth hormone levels, which helps preserve muscle mass and burn fat.</span>
+                        <span><strong>Growth Hormone</strong> — HGH spikes significantly during fasting. This helps preserve lean muscle mass while burning fat. Relevant if you are training hard and care about the body composition side of this protocol.</span>
                       </li>
                     </ul>
                   </div>
@@ -480,15 +479,10 @@ export function GuideContent() {
             </Card>
 
             <p className="text-lg text-muted-foreground leading-relaxed">
-              Remember: you&apos;re not starving. You&apos;re <strong>strategically not eating</strong>.
-              There&apos;s a huge difference. Starving is when you have no food. Strategic fasting is when you
-              have a fridge full of food but you choose not to eat because you know that in 6 hours you&apos;re
-              going to absolutely annihilate a sushi buffet. That&apos;s not deprivation — that&apos;s delayed gratification.
-              That&apos;s discipline. That&apos;s the Buffet Diet.
+              You are not starving. Starving is having no food. This is choosing not to eat because in a few hours you are going to sit down at an all-you-can-eat buffet and have the best meal of your week. That is not deprivation. That is anticipation. That is the stack.
             </p>
           </section>
 
-          <Separator className="mb-16" />
 
           {/* Chapter 5 */}
           <section className="mb-16 print:break-before-page">
@@ -497,31 +491,45 @@ export function GuideContent() {
                 5
               </div>
               <h2 className="text-3xl md:text-4xl font-bold">
-                The Math That Will Blow Your Mind
+                The Math (This Is Where It Gets Stupid)
               </h2>
             </div>
 
-            <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-              Okay, let&apos;s talk numbers. Because when you actually sit down and do the math, the Buffet Diet
-              doesn&apos;t just make sense — it makes <em>dollars and cents</em>. (I&apos;m sorry for that joke.
-              I&apos;m not really sorry.)
+            <p className="text-lg text-muted-foreground mb-4 leading-relaxed">
+              Nobody is talking about this. The financial case for the Buffet Diet is so obvious it&apos;s embarrassing. Drop the numbers. Let them hit.
             </p>
 
-            <Card className="mb-6 border-green-500/20 bg-green-500/5">
+            <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
+              Your grocery bill is a lie you&apos;ve accepted. $500-800/month. Plus the time tax. Meal prep is cope — it&apos;s just outsourcing misery to Sunday-you so weekday-you can eat cold sad chicken. There&apos;s a better protocol.
+            </p>
+
+            <Card className="mb-6 border-green-500/30 bg-green-500/5">
               <CardContent className="pt-6">
                 <div className="flex gap-3">
                   <DollarSign className="w-6 h-6 text-green-500 flex-shrink-0 mt-1" />
                   <div>
-                    <p className="font-semibold mb-3">Scenario 1: OMAD Buffet (One Meal A Day)</p>
+                    <p className="font-semibold text-lg mb-3">Scenario 1: OMAD Protocol</p>
+                    <p className="text-sm text-muted-foreground uppercase tracking-wide mb-3 font-medium">One meal a day. That meal is a buffet. Period.</p>
                     <div className="space-y-2 text-muted-foreground">
-                      <p>Average lunch buffet price: <strong>$15-20</strong></p>
-                      <p>You eat once per day: <strong>$15-20/day</strong></p>
-                      <p>Monthly cost: <strong>$450-600/month</strong></p>
-                      <Separator className="my-3" />
-                      <p className="text-sm">Compare to average US grocery bill: <strong>$500-800/month</strong></p>
-                      <p className="text-sm">Plus meal prep time valued at $20/hr: <strong>$800-1,600/month</strong></p>
-                      <p className="font-semibold text-green-600 mt-2">
-                        You&apos;re spending LESS than groceries alone, with ZERO time investment in cooking.
+                      <div className="flex justify-between items-center py-1 border-b border-muted">
+                        <span>Buffet entry fee</span>
+                        <span className="font-mono font-bold">$15–20/day</span>
+                      </div>
+                      <div className="flex justify-between items-center py-1 border-b border-muted">
+                        <span>Monthly cost</span>
+                        <span className="font-mono font-bold">$450–600</span>
+                      </div>
+                      <div className="flex justify-between items-center py-1 border-b border-muted">
+                        <span>Average US grocery bill</span>
+                        <span className="font-mono font-bold text-red-500">$500–800</span>
+                      </div>
+                      <div className="flex justify-between items-center py-1 border-b border-muted">
+                        <span>Your cooking time cost (@ $20/hr)</span>
+                        <span className="font-mono font-bold text-red-500">$800–1,600</span>
+                      </div>
+                      <Separator className="my-2" />
+                      <p className="font-bold text-green-600 text-base pt-1">
+                        You spend LESS than groceries alone. Zero cooking. Zero cleaning. Zero Sunday meal prep.
                       </p>
                     </div>
                   </div>
@@ -529,24 +537,32 @@ export function GuideContent() {
               </CardContent>
             </Card>
 
-            <Card className="mb-6 border-yellow-500/20 bg-yellow-500/5">
+            <Card className="mb-6 border-yellow-500/30 bg-yellow-500/5">
               <CardContent className="pt-6">
                 <div className="flex gap-3">
                   <TrendingDown className="w-6 h-6 text-yellow-600 flex-shrink-0 mt-1" />
                   <div>
-                    <p className="font-semibold mb-3">Scenario 2: 48-Hour Fast (Eat Every Other Day)</p>
+                    <p className="font-semibold text-lg mb-3">Scenario 2: 48-Hour Protocol</p>
+                    <p className="text-sm text-muted-foreground uppercase tracking-wide mb-3 font-medium">Warrior Mode. Eat every other day. One feast every 48 hours.</p>
                     <div className="space-y-2 text-muted-foreground">
-                      <p>Same buffet price: <strong>$15-20</strong></p>
-                      <p>You eat every other day: <strong>~15 meals/month</strong></p>
-                      <p>Monthly cost: <strong>$225-300/month</strong></p>
-                      <Separator className="my-3" />
-                      <p className="font-semibold text-yellow-600">
-                        That&apos;s $225-300/month for ALL your food. Read that again.
+                      <div className="flex justify-between items-center py-1 border-b border-muted">
+                        <span>Meals per month</span>
+                        <span className="font-mono font-bold">~15</span>
+                      </div>
+                      <div className="flex justify-between items-center py-1 border-b border-muted">
+                        <span>Monthly food cost</span>
+                        <span className="font-mono font-bold text-yellow-600">$225–300</span>
+                      </div>
+                      <div className="flex justify-between items-center py-1 border-b border-muted">
+                        <span>Daily average</span>
+                        <span className="font-mono font-bold text-yellow-600">$8–10</span>
+                      </div>
+                      <Separator className="my-2" />
+                      <p className="font-bold text-yellow-600 text-base pt-1">
+                        $225-300/month for ALL your food. Read that again. Slower this time.
                       </p>
-                      <p className="text-sm mt-2">
-                        You&apos;re spending less than half what most people spend on groceries.
-                        AND you&apos;re losing weight. AND you have zero cooking time. AND you&apos;re
-                        eating better food than 90% of people.
+                      <p className="text-sm mt-1">
+                        Less than half what most people pay for groceries. And you&apos;re eating premium proteins. And you&apos;re losing fat. This is the stack.
                       </p>
                     </div>
                   </div>
@@ -555,33 +571,25 @@ export function GuideContent() {
             </Card>
 
             <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-              Let that settle in for a moment. On the 48-hour protocol, you&apos;re feeding yourself for
-              about <strong>$8-10 per day</strong> on average. With world-class food. With zero time spent
-              cooking or cleaning. No grocery bills. No food waste. No expired vegetables turning into
-              science experiments in the back of your fridge.
+              Here&apos;s where it gets interesting. The buffet&apos;s entire business model assumes you&apos;re an average customer. Average customers fill up on bread. On fried rice. On pasta. That stuff costs them $0.30 a serving. That&apos;s where they make their margin.
             </p>
 
             <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-              And here&apos;s the part that makes me smile every time: the buffet is <strong>losing money
-              on you</strong>. Their entire business model is built on the assumption that people will fill
-              up on cheap carbs — bread, rice, pasta, noodles. That&apos;s the stuff that costs them pennies.
-              But you? You&apos;re walking in after a 24-48 hour fast and heading straight for the premium
-              proteins. The sashimi. The prime rib. The crab legs. You are extracting maximum value.
-              You are <em>winning</em> the buffet game. The buffet thought it was getting your money.
-              Instead, you got their food. More food than you paid for. That&apos;s not just a diet —
-              that&apos;s a <strong>value arbitrage strategy</strong>.
+              You&apos;re not an average customer. You waltz in after a 24-48 hour fast and head directly for the premium proteins. Sashimi: costs them $8-12 per plate. Prime rib: $10+ per slice. Crab legs: pure loss for them. You are not a customer. You are a liability on their balance sheet.
             </p>
 
-            <Card className="mb-6 border-primary/20">
+            <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
+              This is value arbitrage. You pay $15. You extract $30-40 worth of food. The buffet thought it was winning. It was not winning. You were winning. You were always winning.
+            </p>
+
+            <Card className="border-primary/20 bg-primary/5">
               <CardContent className="pt-6">
                 <div className="flex gap-3">
-                  <Trophy className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
+                  <Trophy className="w-6 h-6 text-yellow-500 flex-shrink-0 mt-1" />
                   <div>
-                    <p className="font-semibold mb-1">The Bottom Line</p>
+                    <p className="font-semibold text-lg mb-2">Bottom Line</p>
                     <p className="text-muted-foreground">
-                      Less money spent. More time saved. Better food quality. Weight loss included.
-                      The Buffet Diet isn&apos;t just a diet — it&apos;s the single most efficient way
-                      to feed a human being in a modern city. Fight me.
+                      Less money. Better food. Zero cooking time. Active fat loss. The Buffet Diet isn&apos;t a diet hack — it&apos;s the only rational nutritional strategy for anyone who values their time and their money. Everything else is cope.
                     </p>
                   </div>
                 </div>
@@ -591,171 +599,141 @@ export function GuideContent() {
 
           <Separator className="mb-16" />
 
-          {/* Chapter 6 - NEW: Know Your Enemy */}
+          {/* Chapter 6 */}
           <section className="mb-16 print:break-before-page">
             <div className="flex items-center gap-3 mb-6">
               <div className="flex items-center justify-center w-10 h-10 rounded-full bg-primary text-primary-foreground font-bold text-lg">
                 6
               </div>
               <h2 className="text-3xl md:text-4xl font-bold">
-                Know Your Enemy — The Tricks Buffets Use Against You
+                Buffet Counter-Intelligence
               </h2>
             </div>
 
-            <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-              Before we get into our battle plan, you need to understand what you&apos;re up against.
-              Buffets are <strong>not your friend</strong>. They are a business. A business that has spent
-              decades perfecting the art of making you fill up on cheap food while thinking you&apos;re
-              getting an amazing deal. They have tricks. They have strategies. They have literal psychologists
-              consulting on layout design. But once you know their playbook, you can beat them at their own game.
+            <p className="text-lg text-muted-foreground mb-3 leading-relaxed">
+              They have a playbook. You need to know it.
+            </p>
+            <p className="text-lg text-muted-foreground mb-3 leading-relaxed">
+              Buffets are not charities. They are engineered environments. Decades of behavioral psychology baked into the floor plan. Every tray placement is a calculated move. The dessert section looks like that on purpose. Nothing is an accident.
+            </p>
+            <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
+              This is a tactical briefing. Study it. Internalize it. Walk into your next buffet like a professional.
             </p>
 
-            <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-              Welcome to <strong>Buffet Counter-Intelligence 101</strong>.
-            </p>
-
-            <div className="space-y-6 mb-8">
-              <Card className="border-red-500/20">
+            <div className="space-y-5 mb-8">
+              <Card className="border-red-500/30">
                 <CardContent className="pt-6">
                   <div className="flex gap-3">
                     <AlertTriangle className="w-6 h-6 text-red-500 flex-shrink-0 mt-1" />
                     <div>
-                      <p className="font-semibold text-lg mb-2">Trick #1: The Bread & Carb Wall</p>
-                      <p className="text-muted-foreground mb-2">
-                        Ever noticed how the first things you encounter at a buffet are always the bread rolls,
-                        pasta salads, rice dishes, and noodles? That&apos;s not an accident. Carbs are dirt cheap — a
-                        tray of bread rolls costs the buffet about $2. If you fill up on bread before you reach the
-                        proteins, you&apos;ve just saved them $15 worth of steak. They put the cheap stuff first because
-                        your plate is empty and you&apos;re hungry. They&apos;re counting on you loading up.
+                      <p className="font-bold text-lg mb-1">Trick 1: The Bread &amp; Carb Wall</p>
+                      <p className="text-muted-foreground mb-3">
+                        First items you see: bread rolls, pasta salad, fried rice, noodles. Not an accident. A tray of bread rolls costs them $2. A tray of prime rib costs them $40. They front-load the cheap stuff because you&apos;re hungry and your plate is empty and your brain is offline. You load up on carbs, hit satiety early, never reach the protein station. They win. You lose. You drove here for that.
                       </p>
                       <p className="text-sm font-semibold text-green-600">
-                        Counter-move: Walk PAST all the carbs. Don&apos;t even look at them. Head straight for the protein station. Your first plate should have zero bread, zero rice, zero noodles.
+                        Counter-move: Walk past all of it. Eyes forward. First plate is protein-only. The bread section does not exist.
                       </p>
                     </div>
                   </div>
                 </CardContent>
               </Card>
 
-              <Card className="border-red-500/20">
+              <Card className="border-red-500/30">
                 <CardContent className="pt-6">
                   <div className="flex gap-3">
                     <AlertTriangle className="w-6 h-6 text-red-500 flex-shrink-0 mt-1" />
                     <div>
-                      <p className="font-semibold text-lg mb-2">Trick #2: Small Plates, Big Margins</p>
-                      <p className="text-muted-foreground mb-2">
-                        Notice the plate sizes at buffets? They&apos;re getting smaller every year. Many buffets now use
-                        plates that are 20-30% smaller than a standard dinner plate. Smaller plate = less food per trip =
-                        you feel like you&apos;ve &quot;had enough plates&quot; sooner. It&apos;s a psychological trick.
-                        Three small plates feel like three full meals, even if the total food is barely one real serving.
+                      <p className="font-bold text-lg mb-1">Trick 2: Small Plates</p>
+                      <p className="text-muted-foreground mb-3">
+                        Buffet plates are shrinking. Intentionally. A smaller plate feels full faster. Three small plates psychologically register as &quot;three full meals.&quot; Your brain counts plates, not macros. Three small plates of fried rice is not the same as three full plates of protein. But your dopamine system doesn&apos;t know that. They&apos;re exploiting the gap.
                       </p>
                       <p className="text-sm font-semibold text-green-600">
-                        Counter-move: Don&apos;t count plates. Count protein. You need 100-150g+ of protein in this meal. Go back as many times as needed. Stack that protein high and proud. Nobody is judging you — and if they are, they&apos;re the ones with a full plate of bread rolls.
+                        Counter-move: Don&apos;t count plates. Count grams of protein. Target 100-150g minimum. Go back as many times as it takes. Stack it high. Nobody cares.
                       </p>
                     </div>
                   </div>
                 </CardContent>
               </Card>
 
-              <Card className="border-red-500/20">
+              <Card className="border-red-500/30">
                 <CardContent className="pt-6">
                   <div className="flex gap-3">
                     <AlertTriangle className="w-6 h-6 text-red-500 flex-shrink-0 mt-1" />
                     <div>
-                      <p className="font-semibold text-lg mb-2">Trick #3: The Soda Sugar Trap</p>
-                      <p className="text-muted-foreground mb-2">
-                        Many buffets offer &quot;free&quot; sodas, juices, or sweet tea. How generous! Except it&apos;s
-                        not generous at all. A large glass of soda has 200+ calories of pure sugar. Two or three glasses
-                        and you&apos;ve consumed 600+ empty calories that do nothing to fill you up but absolutely wreck
-                        your appetite for real food. You drink the sugar, you feel temporarily full, you eat less protein.
-                        The buffet saves money. You lose. And then you&apos;re hungry again an hour later.
+                      <p className="font-bold text-lg mb-1">Trick 3: The Soda Sugar Trap</p>
+                      <p className="text-muted-foreground mb-3">
+                        &quot;Free&quot; soda. What a gift. One large soda: 200+ calories of pure glucose. Two glasses and you&apos;ve torched 400 calories of stomach space on liquid that has zero protein, zero satiety effect, and spikes insulin before you&apos;ve touched a single piece of food. The buffet loves this. You&apos;re full on sugar. They serve you less real food. Perfect trade — for them.
                       </p>
                       <p className="text-sm font-semibold text-green-600">
-                        Counter-move: Water. Sparkling water if you feel fancy. Black coffee or tea after the meal. That&apos;s the complete beverage list. Save your stomach capacity for the food that matters.
+                        Counter-move: Water. Full stop. Sparkling if you need the ritual. Black coffee after. That&apos;s the entire beverage stack.
                       </p>
                     </div>
                   </div>
                 </CardContent>
               </Card>
 
-              <Card className="border-red-500/20">
+              <Card className="border-red-500/30">
                 <CardContent className="pt-6">
                   <div className="flex gap-3">
                     <AlertTriangle className="w-6 h-6 text-red-500 flex-shrink-0 mt-1" />
                     <div>
-                      <p className="font-semibold text-lg mb-2">Trick #4: The Dessert Showstopper</p>
-                      <p className="text-muted-foreground mb-2">
-                        The dessert section is always the most visually stunning part of the buffet. Towers of cakes.
-                        Chocolate fountains. Colorful pastries. They make it look like a magazine cover. Why? Because
-                        desserts are <em>incredibly cheap</em> to produce — mostly flour, sugar, and butter — but they
-                        fill you up fast and look like high value. If you eat three slices of cake, you just consumed
-                        1,500 calories of ingredients that cost the buffet about $1.50. They literally want you at the
-                        dessert station.
+                      <p className="font-bold text-lg mb-1">Trick 4: The Dessert Showstopper</p>
+                      <p className="text-muted-foreground mb-3">
+                        The dessert station is always the most visually dramatic section of the buffet. Towers of cake. Chocolate fountains. Mochi. Macarons. It&apos;s theater. A magazine cover. They make it look expensive because it <em>looks</em> like value. It is not value. Flour, sugar, butter. Costs them $1.50. Fills you with 1,500 calories of nothing. They actively want you to spend 20 minutes here.
                       </p>
                       <p className="text-sm font-semibold text-green-600">
-                        Counter-move: Desserts are your victory lap, not your main event. If you want something sweet, have ONE small piece AFTER you&apos;ve had your protein and vegetables. Or skip it entirely — your post-fast body doesn&apos;t need a sugar bomb.
+                        Counter-move: Desserts are a victory lap. One small piece, after protein and vegetables are done. Or skip it. Your post-fast body does not need a sugar bomb.
                       </p>
                     </div>
                   </div>
                 </CardContent>
               </Card>
 
-              <Card className="border-red-500/20">
+              <Card className="border-red-500/30">
                 <CardContent className="pt-6">
                   <div className="flex gap-3">
                     <AlertTriangle className="w-6 h-6 text-red-500 flex-shrink-0 mt-1" />
                     <div>
-                      <p className="font-semibold text-lg mb-2">Trick #5: The Hidden Premium Zone</p>
-                      <p className="text-muted-foreground mb-2">
-                        The best items at a buffet — the carving station, the sashimi bar, the fresh seafood — are
-                        almost always tucked away in corners, behind other stations, or at the very end of the line.
-                        This is by design. Most people fill their plates before they even discover these stations.
-                        The buffet is literally hiding the expensive stuff from you. Some places even put the sushi
-                        bar in a separate room or have the carving station in a back corner with no signage.
+                      <p className="font-bold text-lg mb-1">Trick 5: The Hidden Premium Zone</p>
+                      <p className="text-muted-foreground mb-3">
+                        Sashimi bar in the back corner. Carving station tucked behind the salad section. Fresh seafood counter with no signage. They hide the expensive stuff. By the time most customers find the prime rib, their plate is already loaded with fried noodles. The layout is adversarial. It is designed against you specifically.
                       </p>
                       <p className="text-sm font-semibold text-green-600">
-                        Counter-move: The Recon Walk. ALWAYS walk the entire buffet before picking up a plate. Scout every corner, every station, every hidden counter. Know where the premium items are BEFORE you start loading up. This one habit separates amateurs from Buffet Diet warriors.
+                        Counter-move: Recon Walk — mandatory. Scout the entire buffet before picking up a plate. You need the full map before you start executing.
                       </p>
                     </div>
                   </div>
                 </CardContent>
               </Card>
 
-              <Card className="border-red-500/20">
+              <Card className="border-red-500/30">
                 <CardContent className="pt-6">
                   <div className="flex gap-3">
                     <AlertTriangle className="w-6 h-6 text-red-500 flex-shrink-0 mt-1" />
                     <div>
-                      <p className="font-semibold text-lg mb-2">Trick #6: The Sauce & Dressing Calorie Bomb</p>
-                      <p className="text-muted-foreground mb-2">
-                        Sauces, gravies, and dressings are calorie nightmares that hide in plain sight. That innocent-looking
-                        ranch dressing? 200 calories per serving. The sweet teriyaki glaze on the chicken? Pure sugar.
-                        The creamy alfredo on the pasta? More calories than the pasta itself. Buffets drown food in sauces
-                        because sauces are cheap and they make mediocre food taste better. But those hidden calories add
-                        up fast and push you toward that overstuffed, sluggish feeling.
+                      <p className="font-bold text-lg mb-1">Trick 6: The Sauce &amp; Dressing Calorie Bomb</p>
+                      <p className="text-muted-foreground mb-3">
+                        Ranch dressing: 200 calories per ladle. Teriyaki glaze: pure sugar syrup with a protein costume. Creamy alfredo: more calories than the pasta underneath. Sauces are cheap, they make mediocre food taste good, and they demolish your macro stack without you noticing. They don&apos;t label calories on the sauce station. That is not an oversight.
                       </p>
                       <p className="text-sm font-semibold text-green-600">
-                        Counter-move: Go for grilled, roasted, or steamed items. Choose proteins that don&apos;t need sauce to taste good — sashimi, roast beef, grilled chicken. If you want sauce, use it sparingly on the side. Your protein should be the star, not a vehicle for ranch dressing.
+                        Counter-move: Grilled, roasted, steamed. Protein that tastes good without sauce — sashimi, roast beef, tandoori chicken. Sauce on the side if necessary. Never drowned.
                       </p>
                     </div>
                   </div>
                 </CardContent>
               </Card>
 
-              <Card className="border-red-500/20">
+              <Card className="border-red-500/30">
                 <CardContent className="pt-6">
                   <div className="flex gap-3">
                     <AlertTriangle className="w-6 h-6 text-red-500 flex-shrink-0 mt-1" />
                     <div>
-                      <p className="font-semibold text-lg mb-2">Trick #7: The Time Pressure</p>
-                      <p className="text-muted-foreground mb-2">
-                        Some buffets have time limits — 60 or 90 minutes. This creates a rush mentality. You feel
-                        the clock ticking so you eat faster, grab more, and make worse choices. You pile food on your plate
-                        in a panic. You eat quickly without really tasting anything. You end up overeating on the wrong
-                        things because you didn&apos;t take time to be strategic. The buffet knows that panicked eaters
-                        grab the cheap stuff first.
+                      <p className="font-bold text-lg mb-1">Trick 7: The Time Pressure</p>
+                      <p className="text-muted-foreground mb-3">
+                        60-minute limit. 90-minute limit. The clock creates panic. Panic creates bad decisions. Panicked eaters grab the first thing they see — bread, fried rice, anything in arm&apos;s reach. They pile their plate in a sprint. They eat fast, don&apos;t chew properly, register fullness late, and leave without having hit a single premium item. The buffet counted on exactly this.
                       </p>
                       <p className="text-sm font-semibold text-green-600">
-                        Counter-move: Even with a time limit, take the first 5 minutes for your recon walk. It&apos;s an investment that pays off for the remaining 55-85 minutes. Eat slowly, chew properly, and focus on protein. You&apos;ll get more value from 3 strategic plates than 6 frantic ones.
+                        Counter-move: The first 5 minutes are always the Recon Walk. Non-negotiable. Three strategic plates beat six panicked ones every single time.
                       </p>
                     </div>
                   </div>
@@ -766,14 +744,11 @@ export function GuideContent() {
             <Card className="border-primary/20 bg-primary/5">
               <CardContent className="pt-6">
                 <div className="flex gap-3">
-                  <Trophy className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
+                  <Trophy className="w-6 h-6 text-yellow-500 flex-shrink-0 mt-1" />
                   <div>
-                    <p className="font-semibold mb-2">The Bottom Line</p>
+                    <p className="font-semibold text-lg mb-2">Bottom Line</p>
                     <p className="text-muted-foreground">
-                      The buffet is a business, and their goal is to make money from you eating as much cheap food
-                      as possible. Your goal is the opposite: extract maximum nutritional value per dollar, focusing
-                      on premium proteins and real food. Now that you know their tricks, you&apos;re no longer a
-                      regular customer — you&apos;re a Buffet Diet strategist. And <strong>they should be scared of you</strong>.
+                      The buffet is running a counter-operation against your wallet and your waistline. Now you know the playbook. You&apos;re no longer a customer. You&apos;re an operative. Walk in with a protocol. Execute the protocol. Walk out having extracted maximum value from a business that bet against you. They should be scared of you.
                     </p>
                   </div>
                 </div>
@@ -783,239 +758,239 @@ export function GuideContent() {
 
           <Separator className="mb-16" />
 
-          {/* Chapter 7 (was 6) */}
+          {/* Chapter 7 */}
           <section className="mb-16 print:break-before-page">
             <div className="flex items-center gap-3 mb-6">
               <div className="flex items-center justify-center w-10 h-10 rounded-full bg-primary text-primary-foreground font-bold text-lg">
                 7
               </div>
               <h2 className="text-3xl md:text-4xl font-bold">
-                How to Win the Buffet Game
+                How to Win the Buffet Game — The Strategy Guide
               </h2>
             </div>
-            <p className="text-lg text-primary font-medium mb-8 italic">
-              The Strategy Guide
+
+            <p className="text-lg text-muted-foreground mb-4 leading-relaxed">
+              Going to a buffet without a protocol is like going to a gym and wandering around. You&apos;re there. The equipment exists. Nothing is happening.
+            </p>
+            <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
+              Eight rules. Memorize them. Execute them in order. Every time.
             </p>
 
-            <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-              This is the chapter where we go full tactical. Because going to a buffet without a strategy
-              is like going to war without a plan. You&apos;ll survive, but you won&apos;t <em>win</em>.
-              And we&apos;re here to win. We are the special forces of buffet dining. Here are the rules of engagement:
-            </p>
+            <div className="space-y-8">
+              <div>
+                <h3 className="text-xl font-bold mb-3 flex items-center gap-2">
+                  <Target className="w-5 h-5 text-primary flex-shrink-0" />
+                  Rule 1: The Recon Walk
+                </h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  Before you touch a plate, walk the entire buffet. Every section. Every corner. Every station they hid behind the salad bar. Full reconnaissance. This takes 3-5 minutes. It saves you from loading up on fried rice and discovering the carving station when your plate is already full. Amateurs grab the first thing they see. You gather intel first.
+                </p>
+              </div>
 
-            <h3 className="text-2xl font-bold mb-4 flex items-center gap-2">
-              <Target className="w-6 h-6 text-primary" />
-              Rule 1: The Recon Walk
-            </h3>
-            <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-              Before you put a single item on your plate, walk the <strong>entire buffet line</strong>.
-              All of it. Every station. Every corner. Every sneaky little section they hid behind the
-              salad bar. This is your reconnaissance mission. You need to know what you&apos;re working with.
-              Most amateurs grab the first thing they see — usually bread rolls or a sad caesar salad —
-              and then discover the carving station with the prime rib three sections later when their plate
-              is already full. Don&apos;t be that person. Scout first, eat second.
-            </p>
+              <div>
+                <h3 className="text-xl font-bold mb-3 flex items-center gap-2">
+                  <ShieldCheck className="w-5 h-5 text-primary flex-shrink-0" />
+                  Rule 2: Protein First Protocol
+                </h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  Your first plate is 100% protein. Meat. Fish. Seafood. Eggs. Non-negotiable. This is the protocol. Protein is the most expensive item for the buffet to provide. When you load it first, you maximize value extracted per dollar. Their accountant feels it. Also: protein is the most satiating macro. It keeps you full. It protects muscle. It is the entire point. First plate is protein. No exceptions.
+                </p>
+              </div>
 
-            <h3 className="text-2xl font-bold mb-4 flex items-center gap-2">
-              <ShieldCheck className="w-6 h-6 text-primary" />
-              Rule 2: Protein First Protocol
-            </h3>
-            <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-              Your first plate is <strong>100% protein</strong>. Meat, fish, seafood, eggs. This is non-negotiable.
-              Here&apos;s why: protein is the most expensive item for the buffet to provide. When you load up on
-              protein, you are maximizing the value you extract per dollar spent. The buffet <em>hates</em> this.
-              Their accountant is somewhere crying. But more importantly, protein is the most satiating
-              macronutrient — it keeps you full longer and supports muscle retention while you&apos;re losing fat.
-              It&apos;s a win-win. Well, a win for you. A loss for the buffet. Even better.
-            </p>
-
-            <h3 className="text-2xl font-bold mb-4 flex items-center gap-2">
-              <DollarSign className="w-6 h-6 text-primary" />
-              Rule 3: The Value Stack
-            </h3>
-            <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-              Eat the high-value items. This means: sushi/sashimi, steak, roast beef, shrimp, crab legs,
-              lamb chops, salmon, tuna. These are the items that would cost you $30-50 at a regular restaurant.
-              At the buffet? Included in your $15-20 ticket. That&apos;s the value stack. Meanwhile,{" "}
-              <strong>skip the fillers</strong>: bread, rice, pasta, noodles, french fries. The buffet wants
-              you to fill up on these because they cost pennies. A plate of rice costs them about $0.30.
-              A plate of sashimi costs them $8-12. You do the math. You know which one to reach for.
-            </p>
-
-            <h3 className="text-2xl font-bold mb-4 flex items-center gap-2">
-              <Scale className="w-6 h-6 text-primary" />
-              Rule 4: The Plate Method
-            </h3>
-            <Card className="mb-6">
-              <CardContent className="pt-6">
-                <div className="space-y-4">
-                  <div className="flex gap-3 items-start">
-                    <Badge className="mt-1 bg-red-500">Plate 1</Badge>
-                    <p className="text-muted-foreground">
-                      <strong>Pure Protein.</strong> Sashimi, grilled chicken, roast beef, shrimp, eggs.
-                      This is your foundation. Build it strong.
-                    </p>
+              <div>
+                <h3 className="text-xl font-bold mb-3 flex items-center gap-2">
+                  <DollarSign className="w-5 h-5 text-primary flex-shrink-0" />
+                  Rule 3: The Value Stack
+                </h3>
+                <p className="text-muted-foreground mb-3 leading-relaxed">
+                  Eat the items that would cost you $30-50 at a normal restaurant. At the buffet, they&apos;re included. This is the value stack. Execute it every time.
+                </p>
+                <div className="grid grid-cols-2 gap-3">
+                  <div className="p-3 rounded-lg bg-green-500/10 border border-green-500/20">
+                    <p className="font-semibold text-green-700 dark:text-green-400 text-sm mb-1">Eat this</p>
+                    <p className="text-sm text-muted-foreground">Sashimi, steak, prime rib, crab legs, shrimp, lamb, salmon, tuna</p>
                   </div>
-                  <div className="flex gap-3 items-start">
-                    <Badge className="mt-1 bg-green-500">Plate 2</Badge>
-                    <p className="text-muted-foreground">
-                      <strong>Vegetables & Healthy Fats.</strong> Grilled vegetables, salads (go easy on dressing),
-                      avocado if they have it, olives, nuts. Color is king here.
-                    </p>
-                  </div>
-                  <div className="flex gap-3 items-start">
-                    <Badge className="mt-1 bg-blue-500">Plate 3</Badge>
-                    <p className="text-muted-foreground">
-                      <strong>The Wildcard.</strong> You earned it. Want a small dessert? Go for it.
-                      Curious about that curry? Have some. This is your victory lap plate. Keep it moderate
-                      — you&apos;re the boss, not the buffet.
-                    </p>
+                  <div className="p-3 rounded-lg bg-red-500/10 border border-red-500/20">
+                    <p className="font-semibold text-red-700 dark:text-red-400 text-sm mb-1">Skip this</p>
+                    <p className="text-sm text-muted-foreground">Bread, fried rice, pasta, noodles, french fries, anything beige</p>
                   </div>
                 </div>
-              </CardContent>
-            </Card>
+                <p className="text-sm text-muted-foreground mt-3">A plate of rice costs them $0.30. A plate of sashimi costs them $8-12. You know which one to reach for.</p>
+              </div>
 
-            <h3 className="text-2xl font-bold mb-4 flex items-center gap-2">
-              <AlertTriangle className="w-6 h-6 text-primary" />
-              Rule 5: The Hydration Hack
-            </h3>
-            <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-              Drink <strong>water</strong>. Not soda. Not juice. Not the bottomless sugary iced tea.
-              Water. Here&apos;s why: first, drinks are where buffets make a huge margin. That $3 soda costs
-              them $0.05. Second, sugary drinks add empty calories that sabotage your fat loss. Third,
-              water actually helps you digest better and feel more satisfied. Some buffets include drinks;
-              many charge extra. Either way, water is the power move. Stay hydrated, stay lean, stay winning.
-            </p>
+              <div>
+                <h3 className="text-xl font-bold mb-3 flex items-center gap-2">
+                  <Scale className="w-5 h-5 text-primary flex-shrink-0" />
+                  Rule 4: The Plate Method
+                </h3>
+                <Card>
+                  <CardContent className="pt-6">
+                    <div className="space-y-4">
+                      <div className="flex gap-3 items-start">
+                        <Badge className="mt-0.5 bg-red-500 flex-shrink-0">Plate 1</Badge>
+                        <p className="text-muted-foreground">
+                          <strong>Pure Protein.</strong> Sashimi, grilled chicken, roast beef, shrimp, eggs. The foundation. Build it heavy.
+                        </p>
+                      </div>
+                      <div className="flex gap-3 items-start">
+                        <Badge className="mt-0.5 bg-green-600 flex-shrink-0">Plate 2</Badge>
+                        <p className="text-muted-foreground">
+                          <strong>Vegetables.</strong> Grilled, steamed, roasted. Salad with minimal dressing. Avocado if available. Color is the signal.
+                        </p>
+                      </div>
+                      <div className="flex gap-3 items-start">
+                        <Badge className="mt-0.5 bg-blue-500 flex-shrink-0">Plate 3</Badge>
+                        <p className="text-muted-foreground">
+                          <strong>The Wildcard.</strong> You earned it. Curious about the curry? Go. Want one dessert item? Fine. This is your victory lap. Keep it moderate — you&apos;re the one running this protocol, not the buffet.
+                        </p>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
 
-            <h3 className="text-2xl font-bold mb-4 flex items-center gap-2">
-              <Clock className="w-6 h-6 text-primary" />
-              Rule 6: Timing is Everything
-            </h3>
-            <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-              Go at <strong>lunch</strong>, not dinner. Lunch buffets are typically $5-10 cheaper than dinner,
-              and the food quality is often identical. Go slightly <strong>off-peak</strong> (11:30 AM or 1:30 PM)
-              for fresher food and fewer crowds. The food at peak hours has been sitting longer and the good stuff
-              gets picked clean. Show up at 11:30 when they&apos;re putting out fresh trays and you&apos;re first
-              in line for the premium items. This is not a drill. This is strategic dining.
-            </p>
+              <div>
+                <h3 className="text-xl font-bold mb-3 flex items-center gap-2">
+                  <AlertTriangle className="w-5 h-5 text-primary flex-shrink-0" />
+                  Rule 5: Hydration Hack
+                </h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  Water only. That&apos;s the stack. Not soda. Not juice. Not the &quot;complimentary&quot; sweet tea that has more sugar than a candy bar. Water before eating helps signal satiety. Water during keeps digestion moving. Sugary drinks spike insulin before you&apos;ve eaten a single gram of protein, torch your stomach capacity, and cost the buffet $0.05 while charging you $3. It&apos;s a trap. Don&apos;t walk into the trap.
+                </p>
+              </div>
 
-            <h3 className="text-2xl font-bold mb-4 flex items-center gap-2">
-              <Star className="w-6 h-6 text-primary" />
-              Rule 7: Choose Your Buffet Wisely
-            </h3>
-            <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-              Not all buffets are created equal. This is so important that we dedicated an entire chapter to it next.
-              But the short version: prioritize <strong>protein quality</strong> over everything else when choosing your buffet.
-              A buffet with amazing sashimi and a carving station is worth $5 more than a buffet that&apos;s 90% fried rice.
-            </p>
+              <div>
+                <h3 className="text-xl font-bold mb-3 flex items-center gap-2">
+                  <Clock className="w-5 h-5 text-primary flex-shrink-0" />
+                  Rule 6: Timing
+                </h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  Lunch buffet. Not dinner. Lunch is $5-10 cheaper and the food quality is identical. Go at 11:30 AM — off-peak, fresh trays, first access to premium items before the crowd picks them clean. The person showing up at 1 PM on a Friday gets the dried-out salmon and the empty sashimi tray. You show up at 11:30 and get the fresh cut. Timing is a free advantage. Use it.
+                </p>
+              </div>
 
-            <h3 className="text-2xl font-bold mb-4 flex items-center gap-2">
-              <Target className="w-6 h-6 text-primary" />
-              Rule 8: The Macro Play
-            </h3>
-            <p className="text-lg text-muted-foreground leading-relaxed">
-              Here&apos;s a secret most people don&apos;t realize: you can actually <strong>hit your macros
-              perfectly</strong> at a buffet. Need 150g of protein? Load up on chicken and fish. Need healthy
-              fats? Grab some salmon and avocado. Want to keep carbs low? Just skip the rice and bread sections.
-              A buffet is essentially a macro-flexible meal prep station where someone else did all the work.
-              Track it in your app if you want, or just follow the Plate Method above and you&apos;ll be in
-              the ballpark every time.
-            </p>
+              <div>
+                <h3 className="text-xl font-bold mb-3 flex items-center gap-2">
+                  <Star className="w-5 h-5 text-primary flex-shrink-0" />
+                  Rule 7: Choose Your Buffet Wisely
+                </h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  The buffet is your kitchen. You don&apos;t stock your kitchen with junk. Don&apos;t pick a junk buffet. Protein quality is the only metric that matters. A $20 buffet with excellent sashimi and a carving station is worth infinitely more than a $12 buffet that&apos;s 90% fried rice. Chapter 8 covers this in full. Read it. It matters.
+                </p>
+              </div>
+
+              <div>
+                <h3 className="text-xl font-bold mb-3 flex items-center gap-2">
+                  <Target className="w-5 h-5 text-primary flex-shrink-0" />
+                  Rule 8: The Macro Play
+                </h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  Nobody is talking about this. You can hit your macros perfectly at a buffet. Need 150g protein? Load chicken and fish. Need more fat? Salmon and eggs. Staying low-carb? Skip the entire bread and rice section — it&apos;s not hard, it&apos;s just a choice. The buffet is a macro-flexible meal prep station where someone else did all the work and cleaned up after. Track it in your app or just follow the Plate Method and you&apos;ll land in range every time. No meal prep. No plastic containers. No reheated chicken breast at your desk. Just the protocol.
+                </p>
+              </div>
+            </div>
           </section>
 
           <Separator className="mb-16" />
 
-          {/* Chapter 8 - NEW: How to Select a Good Buffet */}
+          {/* Chapter 8 */}
           <section className="mb-16 print:break-before-page">
             <div className="flex items-center gap-3 mb-6">
               <div className="flex items-center justify-center w-10 h-10 rounded-full bg-primary text-primary-foreground font-bold text-lg">
                 8
               </div>
               <h2 className="text-3xl md:text-4xl font-bold">
-                How to Select a Good Buffet
+                How to Select a Good Buffet — Your Buffet Is Your Kitchen
               </h2>
             </div>
-            <p className="text-lg text-primary font-medium mb-8 italic">
-              Your Buffet is Your Kitchen — Choose It Wisely
+
+            <p className="text-lg text-muted-foreground mb-4 leading-relaxed">
+              This is your kitchen now. Act like it.
+            </p>
+            <p className="text-lg text-muted-foreground mb-4 leading-relaxed">
+              You wouldn&apos;t stock your home kitchen with junk food and call it meal prep. So don&apos;t pick a junk buffet and call it the Buffet Diet. The buffet you choose determines 90% of your results. Selection is the protocol.
+            </p>
+            <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
+              Here&apos;s the tier list. Ranked by protein quality, value, and how much the buffet will regret your presence.
             </p>
 
-            <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-              If you&apos;re going to live the Buffet Diet lifestyle, your choice of buffet is the single most important
-              decision you&apos;ll make. This is your kitchen now. This is where your nutrition comes from. You wouldn&apos;t
-              stock your home kitchen with junk, so don&apos;t pick a junk buffet. Here&apos;s how to think about it, what to
-              look for, and what to avoid.
-            </p>
-
-            <h3 className="text-2xl font-bold mb-4 flex items-center gap-2">
+            <h3 className="text-2xl font-bold mb-5 flex items-center gap-2">
               <Star className="w-6 h-6 text-primary" />
               The Buffet Tier List
             </h3>
-            <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-              Not all buffets are created equal. Here&apos;s how I rank them for Buffet Diet purposes — based on
-              protein quality, value, and how much the buffet will hate you for eating there:
-            </p>
-            <div className="grid gap-3 mb-8">
-              <div className="p-4 rounded-lg bg-yellow-500/10 border border-yellow-500/20">
-                <div className="flex items-center gap-3 mb-2">
-                  <Badge variant="outline" className="border-yellow-500 text-yellow-600 text-base px-3">S-Tier</Badge>
-                  <span className="font-semibold">The Gold Standard</span>
+
+            <div className="grid gap-4 mb-10">
+              <div className="p-5 rounded-lg bg-yellow-500/10 border-2 border-yellow-500/40">
+                <div className="flex items-center gap-3 mb-3">
+                  <Badge variant="outline" className="border-yellow-500 text-yellow-600 font-bold text-sm px-3 py-1">S-Tier</Badge>
+                  <span className="font-bold text-lg">The Gold Standard</span>
                 </div>
-                <p className="text-muted-foreground mb-2">
-                  <strong>Brazilian Rodizio / Churrascaria</strong> — They literally bring unlimited meat to your table and
-                  carve it in front of you. Picanha, lamb, chicken hearts, sausages. This is the Buffet Diet dream.
-                  Protein delivery on a sword. It doesn&apos;t get better than this.
-                </p>
-                <p className="text-muted-foreground mb-2">
-                  <strong>High-end Sushi Buffets</strong> — All-you-can-eat sashimi is pure protein heaven. Salmon, tuna,
-                  yellowtail, shrimp. Minimal carbs, maximum protein, insane value if you skip the tempura rolls.
-                </p>
-                <p className="text-muted-foreground">
-                  <strong>Premium Hotel Brunch Buffets</strong> — The Sunday brunch at a nice hotel often has a carving station,
-                  fresh seafood, omelette station, and quality everything. Pricier ($25-40) but the quality is unmatched.
+                <div className="space-y-3">
+                  <div>
+                    <p className="font-semibold mb-1">Brazilian Rodizio / Churrascaria</p>
+                    <p className="text-muted-foreground text-sm">
+                      They bring unlimited meat to your table. On a sword. They carve it in front of you. Picanha, lamb chops, chicken hearts, sausages. Protein delivery on a blade. This is the Buffet Diet endgame. The business model is literally designed to lose money to high-protein eaters. You are the target demographic they fear.
+                    </p>
+                  </div>
+                  <div>
+                    <p className="font-semibold mb-1">High-End Sushi Buffets</p>
+                    <p className="text-muted-foreground text-sm">
+                      All-you-can-eat sashimi. Salmon, tuna, yellowtail, shrimp. Pure protein with near-zero carbs if you skip the tempura rolls. One of the highest protein-per-dollar ratios available to a human being in a modern city. Nobody is talking about this.
+                    </p>
+                  </div>
+                  <div>
+                    <p className="font-semibold mb-1">Premium Hotel Brunch Buffets</p>
+                    <p className="text-muted-foreground text-sm">
+                      Sunday brunch at a decent hotel: carving station, fresh seafood, omelette station, smoked salmon, quality everything. Yes, it&apos;s $25-40. It&apos;s also the finest meal you will eat all week. Worth it. Do the math.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="p-5 rounded-lg bg-blue-500/10 border-2 border-blue-500/30">
+                <div className="flex items-center gap-3 mb-3">
+                  <Badge variant="outline" className="border-blue-500 text-blue-600 font-bold text-sm px-3 py-1">A-Tier</Badge>
+                  <span className="font-bold text-lg">Excellent Choices</span>
+                </div>
+                <div className="space-y-3">
+                  <div>
+                    <p className="font-semibold mb-1">Korean BBQ Buffets</p>
+                    <p className="text-muted-foreground text-sm">
+                      You grill your own meat. Bulgogi, pork belly, short ribs, chicken thighs. You control the cook. High protein, interactive, legitimately fun. The banchan sides add variety. Strong protocol fit.
+                    </p>
+                  </div>
+                  <div>
+                    <p className="font-semibold mb-1">Chinese Hot Pot Buffets</p>
+                    <p className="text-muted-foreground text-sm">
+                      Choose your proteins — thinly sliced beef, shrimp, fish balls, pork — cook them in broth. Skip the noodles entirely. This format is almost custom-designed for the Buffet Diet. Maximum protein control, zero filler obligation.
+                    </p>
+                  </div>
+                  <div>
+                    <p className="font-semibold mb-1">Indian Buffets with Tandoori</p>
+                    <p className="text-muted-foreground text-sm">
+                      Tandoori chicken, lamb seekh kebabs, paneer tikka. If the tandoor is active, this is A-tier without question. Watch the naan trap and the heavy curry gravies — they&apos;re designed to fill you up on carbs and fat. Navigate around them. Focus on the grill.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="p-5 rounded-lg bg-green-500/10 border-2 border-green-500/30">
+                <div className="flex items-center gap-3 mb-3">
+                  <Badge variant="outline" className="border-green-500 text-green-600 font-bold text-sm px-3 py-1">B-Tier</Badge>
+                  <span className="font-bold text-lg">Solid Options</span>
+                </div>
+                <p className="text-muted-foreground text-sm">
+                  General Asian buffets with a sushi section. Mediterranean buffets. Seafood buffets. Any buffet with a functioning carving station or grill. These work. They require more selectivity — protein exists but is surrounded by carb-heavy filler. Execute the protocol and you&apos;ll be fine. Don&apos;t autopilot.
                 </p>
               </div>
 
-              <div className="p-4 rounded-lg bg-blue-500/10 border border-blue-500/20">
-                <div className="flex items-center gap-3 mb-2">
-                  <Badge variant="outline" className="border-blue-500 text-blue-600 text-base px-3">A-Tier</Badge>
-                  <span className="font-semibold">Excellent Choices</span>
+              <div className="p-5 rounded-lg bg-red-500/10 border-2 border-red-500/30">
+                <div className="flex items-center gap-3 mb-3">
+                  <Badge variant="outline" className="border-red-500 text-red-600 font-bold text-sm px-3 py-1">Avoid</Badge>
+                  <span className="font-bold text-lg">Not Worth Your Fast</span>
                 </div>
-                <p className="text-muted-foreground mb-2">
-                  <strong>Korean BBQ Buffets</strong> — You grill your own meat. Bulgogi, pork belly, chicken, short ribs.
-                  High protein, interactive, and you control the cooking. Plus the banchan (side dishes) add great variety.
-                </p>
-                <p className="text-muted-foreground mb-2">
-                  <strong>Chinese Hot Pot Buffets</strong> — Choose your own meats, seafood, and vegetables, cook them in broth.
-                  Extremely protein-friendly. Skip the noodles, load up on thinly sliced beef and shrimp.
-                </p>
-                <p className="text-muted-foreground">
-                  <strong>Indian Buffets with Tandoori</strong> — Tandoori chicken, lamb kebabs, paneer tikka. Indian buffets
-                  can be excellent if they have a good tandoor selection. Watch out for the heavy curry gravies and naan bread traps though.
-                </p>
-              </div>
-
-              <div className="p-4 rounded-lg bg-green-500/10 border border-green-500/20">
-                <div className="flex items-center gap-3 mb-2">
-                  <Badge variant="outline" className="border-green-500 text-green-600 text-base px-3">B-Tier</Badge>
-                  <span className="font-semibold">Solid Options</span>
-                </div>
-                <p className="text-muted-foreground">
-                  General Asian buffets with sushi section, Mediterranean buffets, Seafood buffets, and any buffet with a
-                  decent carving station or grill. These work well for the Buffet Diet but require more selectivity —
-                  the protein options exist but are mixed in with a lot of carb-heavy fillers.
-                </p>
-              </div>
-
-              <div className="p-4 rounded-lg bg-red-500/10 border border-red-500/20">
-                <div className="flex items-center gap-3 mb-2">
-                  <Badge variant="outline" className="border-red-500 text-red-600 text-base px-3">Avoid</Badge>
-                  <span className="font-semibold">Not Worth Your Fast</span>
-                </div>
-                <p className="text-muted-foreground">
-                  Pizza buffets. Cheap steam table joints where everything is drowning in oil and cornstarch. Buffets that
-                  are 90% fried food and bread. Any place where the &quot;protein&quot; is mystery meat in a brown sauce.
-                  If you can&apos;t identify what animal the meat came from, walk out. You fasted for 24 hours — you
-                  deserve better than this.
+                <p className="text-muted-foreground text-sm">
+                  Pizza buffets. Cheap steam table joints. Anything that is 90% fried food, bread, and cornstarch-thickened mystery sauces. If you cannot identify what animal the &quot;protein&quot; came from, you walk out. Full stop. You fasted 24 hours for this meal. It is a feast. Treat it like one.
                 </p>
               </div>
             </div>
@@ -1024,70 +999,82 @@ export function GuideContent() {
               <CheckCircle className="w-6 h-6 text-primary" />
               The Buffet Selection Checklist
             </h3>
-            <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-              Before you commit to a buffet as your regular spot, run through this checklist. You want to score
-              at least 6 out of 8 to make it Buffet Diet approved:
+            <p className="text-lg text-muted-foreground mb-5 leading-relaxed">
+              Eight checkpoints. Score at least 6/8 before committing to a spot as your regular kitchen. Non-negotiable.
             </p>
 
             <Card className="mb-8">
               <CardContent className="pt-6">
-                <div className="space-y-3">
-                  {[
-                    {
-                      q: "Does it have a dedicated protein station?",
-                      detail: "Carving station, sushi bar, grill, or seafood counter. If the only proteins are buried inside fried rice and pasta dishes, it's a red flag."
-                    },
-                    {
-                      q: "Is the protein fresh and high quality?",
-                      detail: "Look at the sashimi — is it glistening or dried out? Is the roast beef pink or grey? Is the chicken grilled or sitting in a pool of oil? Trust your eyes and nose."
-                    },
-                    {
-                      q: "Does it have a solid vegetable selection?",
-                      detail: "Steamed, grilled, or roasted vegetables. Not just iceberg lettuce drowning in ranch. Real vegetables that were cooked with care."
-                    },
-                    {
-                      q: "Is it clean and well-maintained?",
-                      detail: "Check the bathroom (seriously). Check the serving area. Are the trays fresh or crusty? Is the staff replacing empty dishes promptly? Cleanliness = food safety."
-                    },
-                    {
-                      q: "Is it reasonably priced for the protein quality?",
-                      detail: "A $15 buffet with good sashimi is better value than a $25 buffet with mediocre everything. Price per gram of quality protein is your real metric."
-                    },
-                    {
-                      q: "Is it conveniently located?",
-                      detail: "You'll be going here almost daily. If it's a 40-minute drive, that kills the time-saving benefit. Within 15 minutes of your home or office is ideal."
-                    },
-                    {
-                      q: "Does it have reasonable hours that fit your schedule?",
-                      detail: "Lunch buffet hours (11 AM - 2:30 PM) work for most OMAD schedules. Make sure your chosen protocol timing aligns with their service hours."
-                    },
-                    {
-                      q: "Do they refresh the food regularly?",
-                      detail: "Visit at different times. A great buffet at 11:30 AM might be a wasteland at 2 PM if they don't replenish. You want a place that keeps the trays stocked and fresh."
-                    },
-                  ].map((item, i) => (
-                    <div key={i} className="flex gap-3 items-start p-2 rounded hover:bg-muted/50">
-                      <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
-                      <div>
-                        <p className="font-medium">{item.q}</p>
-                        <p className="text-sm text-muted-foreground">{item.detail}</p>
-                      </div>
+                <div className="space-y-4">
+                  <div className="flex gap-3 items-start">
+                    <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
+                    <div>
+                      <p className="font-semibold">Dedicated protein station?</p>
+                      <p className="text-sm text-muted-foreground">Carving station, sushi bar, live grill, or seafood counter. If the only protein is buried inside fried rice, that&apos;s a red flag not a buffet.</p>
                     </div>
-                  ))}
+                  </div>
+                  <div className="flex gap-3 items-start">
+                    <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
+                    <div>
+                      <p className="font-semibold">Protein quality — fresh, not abused?</p>
+                      <p className="text-sm text-muted-foreground">Sashimi should glisten. Roast beef should be pink, not grey. Chicken should be grilled, not floating in a pool of oil. Trust your eyes. Trust your nose.</p>
+                    </div>
+                  </div>
+                  <div className="flex gap-3 items-start">
+                    <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
+                    <div>
+                      <p className="font-semibold">Solid vegetable selection?</p>
+                      <p className="text-sm text-muted-foreground">Steamed, grilled, or roasted. Not just iceberg lettuce drowning in ranch. Real vegetables cooked by someone who respected them.</p>
+                    </div>
+                  </div>
+                  <div className="flex gap-3 items-start">
+                    <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
+                    <div>
+                      <p className="font-semibold">Clean and well-maintained?</p>
+                      <p className="text-sm text-muted-foreground">Check the bathroom. Non-negotiable diagnostic. Are trays fresh or crusty? Is staff replacing empty dishes promptly? Cleanliness is food safety. Food safety is not optional.</p>
+                    </div>
+                  </div>
+                  <div className="flex gap-3 items-start">
+                    <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
+                    <div>
+                      <p className="font-semibold">Price-to-protein ratio makes sense?</p>
+                      <p className="text-sm text-muted-foreground">A $15 buffet with excellent sashimi beats a $25 buffet with mediocre everything. Price per gram of quality protein is your only real metric.</p>
+                    </div>
+                  </div>
+                  <div className="flex gap-3 items-start">
+                    <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
+                    <div>
+                      <p className="font-semibold">Conveniently located?</p>
+                      <p className="text-sm text-muted-foreground">You&apos;re going here almost every day. A 40-minute drive destroys the time-saving advantage. Within 15 minutes of home or office. That&apos;s the threshold.</p>
+                    </div>
+                  </div>
+                  <div className="flex gap-3 items-start">
+                    <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
+                    <div>
+                      <p className="font-semibold">Hours align with your protocol?</p>
+                      <p className="text-sm text-muted-foreground">Lunch service 11 AM – 2:30 PM covers most OMAD windows. Verify before you commit. A buffet that closes at 1 PM on weekdays is useless to you.</p>
+                    </div>
+                  </div>
+                  <div className="flex gap-3 items-start">
+                    <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
+                    <div>
+                      <p className="font-semibold">Do they refresh food regularly?</p>
+                      <p className="text-sm text-muted-foreground">Visit at different times. A great buffet at 11:30 AM can be a wasteland at 2 PM. You need a place that keeps premium trays stocked throughout service. Test it before committing.</p>
+                    </div>
+                  </div>
                 </div>
               </CardContent>
             </Card>
 
             <h3 className="text-2xl font-bold mb-4 flex items-center gap-2">
-              <Target className="w-6 h-6 text-primary" />
-              The Multi-Buffet Rotation Strategy
+              <Users className="w-6 h-6 text-primary" />
+              Multi-Buffet Rotation Strategy
             </h3>
+            <p className="text-lg text-muted-foreground mb-4 leading-relaxed">
+              Don&apos;t rely on a single buffet. Find 2-3 solid spots and rotate. This is not optional — this is the advanced protocol.
+            </p>
             <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-              Here&apos;s a pro tip: don&apos;t rely on just one buffet. Find <strong>2-3 solid options</strong> and
-              rotate between them. Why? First, variety — different buffets have different cuisines and specialties.
-              Second, freshness — if you go to the same place every day, you start noticing when they&apos;re having an
-              off day. Third, leverage — if the staff at your regular spot starts recognizing you and giving you smaller
-              plates or side-eye at the sashimi station (it happens), you rotate to your backup spot and come back in a week.
+              Variety keeps the diet sustainable. Rotation means you notice when one spot has an off week. And here&apos;s the tactical reason nobody talks about: if you hit the same buffet every day, staff start recognizing you. You become known as &quot;the person who only eats sashimi.&quot; Suddenly your sashimi tray is restocked slower. Your portion carves get smaller. You rotate. You return in a week. Problem solved. This is not paranoia. This is game theory.
             </p>
 
             <Card className="mb-6 border-primary/20 bg-primary/5">
@@ -1095,14 +1082,9 @@ export function GuideContent() {
                 <div className="flex gap-3">
                   <Zap className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
                   <div>
-                    <p className="font-semibold mb-2">Pro Move: The Review Scout</p>
+                    <p className="font-semibold text-lg mb-2">Pro Move: Use the Community Finder</p>
                     <p className="text-muted-foreground">
-                      Before visiting any new buffet, check our community at{" "}
-                      <strong>The Buffet Diet restaurant finder</strong>. Fellow Buffet Dieters rate restaurants
-                      specifically for protein quality, value, and dietary compatibility. Look for tags like
-                      &quot;Lean Protein,&quot; &quot;Carnivore Friendly,&quot; and &quot;Keto Friendly.&quot;
-                      This saves you from wasting a precious fast-breaking meal on a bad buffet. Your fast is sacred —
-                      don&apos;t break it at a place that scores 2 stars.
+                      Before breaking a fast at a new buffet, check <strong>The Buffet Diet restaurant finder</strong>. Other protocol runners have already rated these spots specifically for protein quality, value, and diet compatibility. Look for &quot;Lean Protein,&quot; &quot;Carnivore Friendly,&quot; &quot;Keto Friendly&quot; tags. Don&apos;t waste a 24-hour fast on a 2-star buffet. Your fast is sacred. Your break-fast meal should be worthy of it.
                     </p>
                   </div>
                 </div>
@@ -1110,17 +1092,13 @@ export function GuideContent() {
             </Card>
 
             <p className="text-lg text-muted-foreground leading-relaxed">
-              Think of it this way: a regular person picks a restaurant based on cravings and convenience.
-              A Buffet Dieter picks their buffet like an athlete picks their training facility. It needs to have
-              the right equipment (protein stations), the right environment (clean and fresh), the right price
-              (sustainable daily), and the right location (convenient). This isn&apos;t just eating out.
-              This is <strong>strategic nutrition sourcing</strong>. And you&apos;re about to become an expert at it.
+              A normal person picks a restaurant based on cravings and whatever is nearby. You pick your buffet like an athlete picks a training facility. Right equipment. Right environment. Right price. Right location. This is not just eating out. This is strategic nutrition sourcing. And once you lock in your rotation, you&apos;ll never think about where to eat again. The protocol runs itself.
             </p>
           </section>
 
           <Separator className="mb-16" />
 
-          {/* Chapter 9 (was 7) */}
+          {/* Chapter 9 */}
           <section className="mb-16 print:break-before-page">
             <div className="flex items-center gap-3 mb-6">
               <div className="flex items-center justify-center w-10 h-10 rounded-full bg-primary text-primary-foreground font-bold text-lg">
@@ -1131,118 +1109,103 @@ export function GuideContent() {
               </h2>
             </div>
 
+            <p className="text-lg text-muted-foreground mb-4 leading-relaxed">
+              Think of these as difficulty settings. Pick your level. Play to win.
+            </p>
             <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
-              Not everyone is ready to jump straight into eating every 48 hours. That&apos;s fine. The Buffet Diet
-              has protocols for every level. Pick the one that fits your life, and upgrade when you&apos;re ready.
-              Think of these like difficulty settings in a video game. Everyone starts at Easy, and some absolute
-              legends eventually play on Nightmare mode.
+              No wrong answer. The right protocol is the one you actually run. Start where you are. Upgrade when you&apos;re ready.
             </p>
 
-            <Card className="mb-6 border-green-500/20">
+            <Card className="mb-6 border-green-500/30">
               <CardContent className="pt-6">
                 <div className="flex gap-3">
                   <div className="flex-shrink-0">
-                    <Badge className="bg-green-500">Protocol 1</Badge>
+                    <Badge className="bg-green-500 text-white">Protocol 1</Badge>
                   </div>
                   <div>
-                    <p className="font-semibold text-xl mb-2">The Starter</p>
+                    <p className="font-bold text-xl mb-1">The Starter</p>
                     <p className="text-muted-foreground mb-3">
-                      <strong>Fasting: 16:8</strong> — Skip breakfast. Eat your first meal at noon.
+                      <strong>Fasting: 16:8.</strong> Skip breakfast. Buffet at noon. Small dinner if you need it.
                     </p>
-                    <p className="text-muted-foreground mb-3">
-                      One buffet meal at lunch (12-1 PM). One small meal or snack in the evening.
-                      This is the entry-level protocol. You&apos;re still getting most of the benefits —
-                      time savings, reduced cooking, the buffet experience — without the intensity of
-                      longer fasts. Great for beginners and people who like to eat dinner with their family.
+                    <p className="text-muted-foreground mb-4">
+                      Entry level. Still get 80% of the benefits. Zero meal prep during the day. Kitchen stays clean. You can still eat dinner with your family. Your oven will start to feel neglected. Good.
                     </p>
-                    <div className="text-sm text-muted-foreground bg-muted/50 rounded p-3">
-                      <strong>Weekly Schedule:</strong> Mon-Fri buffet lunch + light dinner. Weekends flexible.
-                      <br /><strong>Monthly Cost:</strong> ~$350-500 (buffet) + ~$100-150 (light dinners)
-                      <br /><strong>Difficulty:</strong> Easy
+                    <div className="text-sm text-muted-foreground bg-muted/50 rounded-lg p-3 space-y-1">
+                      <p><strong>Schedule:</strong> Mon–Fri buffet lunch + light dinner. Weekends flexible.</p>
+                      <p><strong>Monthly cost:</strong> ~$350–500 buffet + ~$100–150 light dinners.</p>
+                      <p><strong>Difficulty:</strong> Easy. This is the tutorial level.</p>
                     </div>
                   </div>
                 </div>
               </CardContent>
             </Card>
 
-            <Card className="mb-6 border-blue-500/20">
+            <Card className="mb-6 border-blue-500/30">
               <CardContent className="pt-6">
                 <div className="flex gap-3">
                   <div className="flex-shrink-0">
-                    <Badge className="bg-blue-500">Protocol 2</Badge>
+                    <Badge className="bg-blue-500 text-white">Protocol 2</Badge>
                   </div>
                   <div>
-                    <p className="font-semibold text-xl mb-2">The OMAD Buffet</p>
+                    <p className="font-bold text-xl mb-1">The OMAD</p>
                     <p className="text-muted-foreground mb-3">
-                      <strong>Fasting: 24 hours</strong> — One meal per day. That meal is at a buffet. Period.
+                      <strong>Fasting: 24 hours.</strong> One buffet meal. Per day. That&apos;s it. That&apos;s the protocol.
                     </p>
-                    <p className="text-muted-foreground mb-3">
-                      This is the sweet spot for most Buffet Dieters. You fast for roughly 23-24 hours,
-                      then have one glorious buffet feast. You follow the Plate Method, load up on protein,
-                      get your vegetables, and leave feeling satisfied and slightly smug. Your kitchen
-                      becomes purely decorative at this point. Your oven might file a missing persons report.
+                    <p className="text-muted-foreground mb-4">
+                      This is the sweet spot. Most people live here permanently. Lunch at noon. Eat like a champion. Walk out. Do your life. No dinner. No decisions. Your kitchen is now a storage room. The oven is a decorative appliance. You have reclaimed 2 hours of your day. Every day. Do the math.
                     </p>
-                    <div className="text-sm text-muted-foreground bg-muted/50 rounded p-3">
-                      <strong>Weekly Schedule:</strong> Buffet lunch every day at 12-1 PM. Nothing else.
-                      <br /><strong>Monthly Cost:</strong> ~$450-600 total
-                      <br /><strong>Difficulty:</strong> Medium
+                    <div className="text-sm text-muted-foreground bg-muted/50 rounded-lg p-3 space-y-1">
+                      <p><strong>Schedule:</strong> Buffet lunch daily. Nothing else.</p>
+                      <p><strong>Monthly cost:</strong> ~$450–600 total. All-in.</p>
+                      <p><strong>Difficulty:</strong> Medium. Your hunger cues will adapt in 3–5 days.</p>
                     </div>
                   </div>
                 </div>
               </CardContent>
             </Card>
 
-            <Card className="mb-6 border-orange-500/20">
+            <Card className="mb-6 border-orange-500/30">
               <CardContent className="pt-6">
                 <div className="flex gap-3">
                   <div className="flex-shrink-0">
-                    <Badge className="bg-orange-500">Protocol 3</Badge>
+                    <Badge className="bg-orange-500 text-white">Protocol 3</Badge>
                   </div>
                   <div>
-                    <p className="font-semibold text-xl mb-2">The Warrior</p>
+                    <p className="font-bold text-xl mb-1">The Warrior</p>
                     <p className="text-muted-foreground mb-3">
-                      <strong>Fasting: 48 hours</strong> — Eat every other day. Maximum savings. Maximum results.
+                      <strong>Fasting: 48 hours.</strong> Eat every other day. This is the final boss.
                     </p>
-                    <p className="text-muted-foreground mb-3">
-                      This is the protocol that breaks people&apos;s brains when they hear about it.
-                      &quot;You only eat every other day?!&quot; Yes. And on the day you eat, you eat
-                      at a buffet, and you eat like a champion. This protocol delivers the most dramatic
-                      weight loss, the most money saved, and the most time freed up. It&apos;s not for everyone,
-                      but for those who can handle it, it&apos;s transformative. You spend roughly $225-300/month
-                      on food. That&apos;s less than most people spend on coffee.
+                    <p className="text-muted-foreground mb-4">
+                      Not for everyone. Built for the serious. You eat Mon, Wed, Fri, Sun. You fast Tue, Thu, Sat. On eating days you go to the buffet and you eat. Protein first. Everything else second. On fast days you drink water and you get things done. Cost? $225–300 a month. For food. Total. Less than most people&apos;s Spotify, Netflix, gym membership, and coffee budget combined. The results are dramatic. The savings are insane. The time reclaimed is obscene. If you make it here, the buffet manager will know your name.
                     </p>
-                    <div className="text-sm text-muted-foreground bg-muted/50 rounded p-3">
-                      <strong>Weekly Schedule:</strong> Buffet on Mon, Wed, Fri, Sun. Fast on Tue, Thu, Sat.
-                      <br /><strong>Monthly Cost:</strong> ~$225-300 total
-                      <br /><strong>Difficulty:</strong> Hard (but rewarding)
+                    <div className="text-sm text-muted-foreground bg-muted/50 rounded-lg p-3 space-y-1">
+                      <p><strong>Schedule:</strong> Mon/Wed/Fri/Sun buffet. Tue/Thu/Sat fast.</p>
+                      <p><strong>Monthly cost:</strong> ~$225–300. Total. Yes really.</p>
+                      <p><strong>Difficulty:</strong> Hard. Rewarding. Final boss energy.</p>
                     </div>
                   </div>
                 </div>
               </CardContent>
             </Card>
 
-            <Card className="mb-6 border-purple-500/20">
+            <Card className="mb-6 border-purple-500/30">
               <CardContent className="pt-6">
                 <div className="flex gap-3">
                   <div className="flex-shrink-0">
-                    <Badge className="bg-purple-500">Protocol 4</Badge>
+                    <Badge className="bg-purple-500 text-white">Protocol 4</Badge>
                   </div>
                   <div>
-                    <p className="font-semibold text-xl mb-2">The Social</p>
+                    <p className="font-bold text-xl mb-1">The Social</p>
                     <p className="text-muted-foreground mb-3">
-                      <strong>Fasting: 5:2 style</strong> — Buffet on weekdays, cook on weekends with family/friends.
+                      <strong>Fasting: 5:2 style.</strong> Buffet weekdays. Cook with people you like on weekends.
                     </p>
-                    <p className="text-muted-foreground mb-3">
-                      This is the protocol for people who have a social life that involves cooking together.
-                      Maybe you have a partner who loves cooking Sunday brunch. Maybe you do family dinners
-                      on Saturdays. That&apos;s cool — the Buffet Diet isn&apos;t a cult (yet). Use buffets
-                      as your weekday time-saver, and keep weekends for social cooking. You still save
-                      massive amounts of time during the work week when you need it most.
+                    <p className="text-muted-foreground mb-4">
+                      For people who have a partner who cooks. Or family dinners on Saturday. Or Sunday brunch is sacred. Fine. The protocol bends. Run OMAD buffet Mon–Fri. Reclaim your entire work week. Then do the social cooking thing on weekends. You still save 10+ hours a week. You still spend half what everyone else does. And you get to have the dinner thing. Best of both stacks.
                     </p>
-                    <div className="text-sm text-muted-foreground bg-muted/50 rounded p-3">
-                      <strong>Weekly Schedule:</strong> Mon-Fri OMAD buffet. Sat-Sun cook at home.
-                      <br /><strong>Monthly Cost:</strong> ~$350-450 (buffet) + ~$100-200 (weekend groceries)
-                      <br /><strong>Difficulty:</strong> Easy-Medium
+                    <div className="text-sm text-muted-foreground bg-muted/50 rounded-lg p-3 space-y-1">
+                      <p><strong>Schedule:</strong> Mon–Fri OMAD buffet. Sat–Sun cook at home.</p>
+                      <p><strong>Monthly cost:</strong> ~$350–450 buffet + ~$100–200 weekend groceries.</p>
+                      <p><strong>Difficulty:</strong> Easy–Medium. Socially compatible.</p>
                     </div>
                   </div>
                 </div>
@@ -1259,94 +1222,99 @@ export function GuideContent() {
                 10
               </div>
               <h2 className="text-3xl md:text-4xl font-bold">
-                Health Benefits (Seriously Though)
+                The Science (For People Who Need Permission)
               </h2>
             </div>
 
-            <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-              I know what you might be thinking: &quot;This is fun and all, but is this actually healthy?&quot;
-              Fair question. Let me put on my serious biohacker hat for a moment. (It&apos;s a very cool hat, by the way.)
-            </p>
-
-            <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-              The Buffet Diet works for weight loss for one simple, almost boringly straightforward reason:
-              <strong> caloric restriction through meal frequency reduction</strong>. When you eat once a day
-              or once every two days, even if you eat a lot at that meal, it is incredibly difficult to consume
-              the same number of calories as someone eating three meals plus snacks. Your stomach has a physical
-              limit. Even at an all-you-can-eat buffet, you will hit that limit. Studies consistently show that
-              people who practice intermittent fasting end up consuming fewer total calories — even when given
-              unlimited access to food during their eating windows.
+            <p className="text-lg text-muted-foreground mb-4 leading-relaxed">
+              Fine. You want citations. Here&apos;s the science. Keep up.
             </p>
 
             <div className="grid gap-4 mb-8">
-              {[
-                {
-                  icon: TrendingDown,
-                  title: "Weight Loss Through Natural Caloric Deficit",
-                  desc: "Even eating 'a lot' at one meal, you'll typically consume 1,200-2,000 calories. That's less than most people eat across three meals and snacks. The math does the work for you.",
-                },
-                {
-                  icon: Brain,
-                  title: "Mental Clarity & Focus",
-                  desc: "Many fasters report dramatically improved focus and productivity during fasting periods. No post-lunch food coma. No mid-afternoon energy crash. Your brain runs clean on ketones.",
-                },
-                {
-                  icon: Heart,
-                  title: "Cardiovascular Health",
-                  desc: "Intermittent fasting has been shown to improve blood pressure, cholesterol levels, and inflammatory markers. Your heart sends its thanks.",
-                },
-                {
-                  icon: Zap,
-                  title: "Nutrient Diversity from Buffets",
-                  desc: "A well-chosen buffet provides a wider variety of nutrients than most home-cooked rotations. Different proteins, vegetables, cooking methods, and cuisines in a single meal.",
-                },
-                {
-                  icon: Flame,
-                  title: "Enhanced Fat Burning",
-                  desc: "Extended fasting periods push your body into fat-burning mode. By the time you walk into that buffet, your body has been running on stored fat for hours. That's the whole point.",
-                },
-              ].map((item, i) => (
-                <Card key={i}>
-                  <CardContent className="pt-6">
-                    <div className="flex gap-3">
-                      <item.icon className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
-                      <div>
-                        <p className="font-semibold mb-1">{item.title}</p>
-                        <p className="text-muted-foreground">{item.desc}</p>
-                      </div>
+              <Card>
+                <CardContent className="pt-6">
+                  <div className="flex gap-3">
+                    <TrendingDown className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
+                    <div>
+                      <p className="font-bold mb-1">Weight Loss Through Natural Caloric Deficit</p>
+                      <p className="text-muted-foreground">
+                        Your stomach has a physical size. Even at an all-you-can-eat buffet, one meal caps out at 1,200–2,000 calories. Three meals plus snacks? That&apos;s 2,500–3,500+. The math runs itself. You eat less without counting anything. No apps. No macros. No meal prep containers labeled by day. Just physics.
+                      </p>
                     </div>
-                  </CardContent>
-                </Card>
-              ))}
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card>
+                <CardContent className="pt-6">
+                  <div className="flex gap-3">
+                    <Brain className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
+                    <div>
+                      <p className="font-bold mb-1">Mental Clarity &amp; Focus</p>
+                      <p className="text-muted-foreground">
+                        No post-lunch food coma. Ever again. Ketones. Your brain runs on them during a fast. Cleaner than glucose. Sharper. No 2 PM crash. No mid-meeting fog. People ask what nootropic stack you&apos;re running. The answer is: not eating.
+                      </p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card>
+                <CardContent className="pt-6">
+                  <div className="flex gap-3">
+                    <Heart className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
+                    <div>
+                      <p className="font-bold mb-1">Cardiovascular Health</p>
+                      <p className="text-muted-foreground">
+                        Intermittent fasting improves blood pressure. Improves cholesterol profiles. Reduces inflammatory markers. Peer-reviewed. Published. Boring to read but the results aren&apos;t boring. Your heart is doing better. Your doctor will be confused but impressed.
+                      </p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card>
+                <CardContent className="pt-6">
+                  <div className="flex gap-3">
+                    <Star className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
+                    <div>
+                      <p className="font-bold mb-1">Nutrient Diversity from Buffets</p>
+                      <p className="text-muted-foreground">
+                        Your home cooking rotation has 8 meals in it. Maybe 10 if you&apos;re adventurous. A buffet visit hits 15–20 different preparations. Different proteins. Different cooking methods. Different micronutrient profiles. The variety you get from one buffet meal beats a week of meal prep. This is not an opinion. It&apos;s arithmetic.
+                      </p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card>
+                <CardContent className="pt-6">
+                  <div className="flex gap-3">
+                    <Flame className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
+                    <div>
+                      <p className="font-bold mb-1">Enhanced Fat Burning</p>
+                      <p className="text-muted-foreground">
+                        Autophagy. Look it up. Your cells literally clean house when you fast. By the time you walk into the buffet you&apos;ve been running on stored fat for 16–48 hours. That&apos;s the entire point. You eat. You feast. Then you burn it all down. Then you do it again. This is the ancestral cycle. It works because it&apos;s what humans are built for.
+                      </p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
             </div>
 
-            <Card className="mb-6 border-primary/20 bg-primary/5">
+            <Card className="border-orange-500/30 bg-orange-500/5">
               <CardContent className="pt-6">
                 <div className="flex gap-3">
                   <AlertTriangle className="w-6 h-6 text-orange-500 flex-shrink-0 mt-1" />
                   <div>
-                    <p className="font-semibold mb-2">Real Talk: A Quick Disclaimer</p>
+                    <p className="font-bold mb-1">Disclaimer</p>
                     <p className="text-muted-foreground">
-                      I&apos;m a buffet enthusiast, not a doctor. If you have medical conditions, eating disorders,
-                      or take medications that require eating at regular intervals, please talk to a healthcare
-                      professional before trying any fasting protocol. The Buffet Diet is meant for generally
-                      healthy adults who want to optimize their eating lifestyle. Don&apos;t be stupid about this.
-                      Be smart. Like someone who eats at buffets strategically.
+                      I&apos;m not a doctor. I&apos;m a software engineer who eats at buffets every day. If you have medical conditions, medications that require food, or a history of eating disorders — talk to a healthcare professional before running any fasting protocol. Don&apos;t be stupid about this. Be smart. Like someone who eats at buffets strategically.
                     </p>
                   </div>
                 </div>
               </CardContent>
             </Card>
-
-            <p className="text-lg text-muted-foreground leading-relaxed">
-              &quot;But won&apos;t I just overeat at the buffet and gain weight?&quot; Here&apos;s the
-              interesting thing: research on fasting shows that people who fast for extended periods
-              do <em>not</em> fully compensate by overeating when they break their fast. Yes, you&apos;ll
-              eat a big meal. But you won&apos;t eat 48 hours worth of food in one sitting. Your body has
-              satiety signals. Protein is highly satiating. After your first plate of protein-rich food,
-              your body starts telling you &quot;okay, we&apos;re good.&quot; Trust it. The Buffet Diet
-              works <em>with</em> your biology, not against it.
-            </p>
           </section>
 
           <Separator className="mb-16" />
@@ -1358,81 +1326,56 @@ export function GuideContent() {
                 11
               </div>
               <h2 className="text-3xl md:text-4xl font-bold">
-                Common Objections (And Why They&apos;re Wrong)
+                Things People Say Before They Try It
               </h2>
             </div>
 
             <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
-              Every time I tell someone about the Buffet Diet, I get the same reactions. Here they are,
-              along with my responses, so you can handle the doubters in your life too. You&apos;re welcome.
+              Every objection. Addressed. You&apos;re welcome.
             </p>
 
-            <div className="space-y-6">
+            <div className="space-y-5">
               <Card>
                 <CardContent className="pt-6">
-                  <p className="font-semibold text-lg mb-2 text-red-500">&quot;Buffets are unhealthy!&quot;</p>
+                  <p className="font-bold text-lg mb-2 text-red-500">&quot;Buffets are unhealthy!&quot;</p>
                   <p className="text-muted-foreground">
-                    Incorrect. <em>Eating poorly at buffets</em> is unhealthy. A buffet is just a delivery mechanism
-                    for food. It&apos;s morally neutral. If you walk up to a buffet and grab grilled salmon, steamed
-                    vegetables, and a side salad — that&apos;s healthier than 90% of what people eat at home.
-                    The buffet doesn&apos;t force fried chicken onto your plate. That&apos;s a choice. And we make better choices.
-                    A buffet is literally a restaurant where YOU are in complete control of your portions and selections.
-                    That&apos;s more control than you have at any regular restaurant where a chef decides what and how much goes on your plate.
+                    A buffet is morally neutral. It&apos;s a delivery mechanism. YOU control the plate. No one is forcing fried dough into your hand. You walk up. You choose grilled salmon and steamed vegetables. That&apos;s healthier than 90% of what people cook at home. The buffet didn&apos;t make you eat the dessert station. That was a personal decision. Make better decisions.
                   </p>
                 </CardContent>
               </Card>
 
               <Card>
                 <CardContent className="pt-6">
-                  <p className="font-semibold text-lg mb-2 text-red-500">&quot;Fasting is dangerous!&quot;</p>
+                  <p className="font-bold text-lg mb-2 text-red-500">&quot;Fasting is dangerous!&quot;</p>
                   <p className="text-muted-foreground">
-                    Humans have fasted for literally all of recorded history. Every major religion includes fasting.
-                    Your great-grandparents didn&apos;t eat six small meals a day with snacks in between — that&apos;s
-                    a modern invention created by the food industry to sell more food. Your body is specifically
-                    designed to function during periods without food. It has an entire metabolic pathway (ketosis)
-                    dedicated to running efficiently on stored energy. Fasting isn&apos;t dangerous; our modern
-                    pattern of constant eating is the experiment. The science backs this up — intermittent fasting
-                    has been studied extensively and shown to be safe and beneficial for healthy adults.
+                    Humans fasted for 200,000 years. Six small meals a day is the experiment. Not fasting. Every major religion on earth includes fasting. Your body has an entire metabolic pathway — ketosis — specifically designed to run efficiently without food. The dangerous thing is the modern pattern of constant eating. Fasting is the baseline. &quot;Three meals plus snacks&quot; is the anomaly.
                   </p>
                 </CardContent>
               </Card>
 
               <Card>
                 <CardContent className="pt-6">
-                  <p className="font-semibold text-lg mb-2 text-red-500">&quot;That&apos;s too extreme!&quot;</p>
+                  <p className="font-bold text-lg mb-2 text-red-500">&quot;That&apos;s too extreme!&quot;</p>
                   <p className="text-muted-foreground">
-                    Is it though? Let me tell you what&apos;s extreme. Spending 15-20 hours a week on food preparation.
-                    Spending $600-800 a month on groceries. Throwing away 30-40% of the food you buy because it
-                    went bad before you could eat it. Eating the same five meals on rotation for your entire adult
-                    life. Washing dishes every single day until you die. THAT is extreme. Eating one amazing meal
-                    a day at a place where someone else does all the work? That&apos;s called being <em>efficient</em>.
+                    You know what&apos;s extreme? Spending 15–20 hours a week on food prep. Washing dishes every day until you die. Throwing away 30% of your groceries because they went bad before you used them. Eating the same chicken and broccoli on repeat while calling it &quot;clean eating.&quot; One buffet meal a day is not extreme. It&apos;s called being efficient. There&apos;s a difference.
                   </p>
                 </CardContent>
               </Card>
 
               <Card>
                 <CardContent className="pt-6">
-                  <p className="font-semibold text-lg mb-2 text-red-500">&quot;What about variety? Won&apos;t you get bored?&quot;</p>
+                  <p className="font-bold text-lg mb-2 text-red-500">&quot;Won&apos;t you get bored?&quot;</p>
                   <p className="text-muted-foreground">
-                    This might be my favorite objection because it&apos;s so backwards. You know what&apos;s boring?
-                    Your meal prep chicken and broccoli. You know what has variety? A BUFFET. A single buffet visit
-                    might include sushi, roast beef, grilled fish, stir-fry, salads, soups, and a dozen vegetable
-                    preparations. You can eat completely different combinations every single day from the same buffet.
-                    And if you rotate between 2-3 different buffets? The variety is practically infinite. Your home
-                    kitchen could never compete.
+                    Your meal prep chicken and broccoli is boring. Your Tuesday pasta is boring. Your sad desk lunch in a Tupperware container is boring. A buffet has infinite variety. Sashimi. Roast beef. Stir-fry. Crab legs. Grilled fish. Soup. Salads with 12 toppings. A completely different combination every single day. Rotate between 2–3 buffets and the variety is literally infinite. Your kitchen could never.
                   </p>
                 </CardContent>
               </Card>
 
               <Card>
                 <CardContent className="pt-6">
-                  <p className="font-semibold text-lg mb-2 text-red-500">&quot;My friends will think I&apos;m weird.&quot;</p>
+                  <p className="font-bold text-lg mb-2 text-red-500">&quot;My friends will think I&apos;m weird.&quot;</p>
                   <p className="text-muted-foreground">
-                    Your friends are spending $800/month on groceries, 15 hours a week cooking, and eating the same
-                    sad chicken pasta on repeat. You&apos;re spending $300-600/month, saving 10+ hours per week,
-                    eating premium sushi and steak daily, and losing weight. When they see your results — the time
-                    freedom, the savings, the physique — they won&apos;t think you&apos;re weird. They&apos;ll ask
-                    you for the guide. And you&apos;ll send them this one. You&apos;re welcome.
+                    Your friends spend $800/month on groceries and throw away 30% of it. You spend $300 eating steak and sashimi daily. Your friends spend 15 hours a week in the kitchen. You spend 45 minutes at a table being served. Give it 90 days. When they see the physique, the energy, the bank account — they won&apos;t think you&apos;re weird. They&apos;ll want the guide. Send them this one.
                   </p>
                 </CardContent>
               </Card>
@@ -1448,92 +1391,67 @@ export function GuideContent() {
                 12
               </div>
               <h2 className="text-3xl md:text-4xl font-bold">
-                Getting Started — Your First Week
+                Week 1 Protocol — Just Start
               </h2>
             </div>
 
             <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
-              Enough theory. Let&apos;s get you started. Here&apos;s your step-by-step plan for Week 1
-              of the Buffet Diet. Follow this, and by next week you&apos;ll wonder why you ever spent
-              time in a kitchen.
+              Theory is done. Here&apos;s exactly what you do. Day by day. No excuses.
             </p>
 
             <div className="space-y-6">
               <div className="flex gap-4">
                 <div className="flex-shrink-0 w-20 text-center">
-                  <div className="bg-primary text-primary-foreground rounded-lg p-2 font-bold">
-                    Day 1-2
+                  <div className="bg-blue-500 text-white rounded-lg p-2 font-bold text-sm">
+                    Day 1–2
                   </div>
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold mb-2">The Recon Phase</h3>
+                  <h3 className="text-xl font-bold mb-2">Recon Phase</h3>
                   <p className="text-muted-foreground leading-relaxed">
-                    Find your buffets. Search for all-you-can-eat restaurants within a reasonable distance from
-                    your home or office. You want 3-5 options. Check Google reviews, look at photos of the food,
-                    check prices. Look specifically for places with good protein options — sushi buffets, Brazilian
-                    rodizio, Asian buffets with a sushi bar, hotel buffets. Rate them on: protein quality, cleanliness,
-                    price, and convenience. Pick your top 2. Visit them both. Eat normally — this is a scouting
-                    mission, not a diet day. Take mental notes. Which one has better sashimi? Which one has a
-                    carving station? Where&apos;s the good stuff?
+                    Find 3–5 buffets within range. Google Maps. Check reviews. Look at photos of the actual food not the interior. Scout for protein quality — sushi bar, carving station, grill section. Visit your top 2. Eat normally — this is intelligence gathering, not a protocol day. You&apos;re building the stack. You&apos;re picking your arena. Where&apos;s the sashimi? Is the salmon fresh? What&apos;s the protein-to-filler ratio? Take notes. Pick your primary.
                   </p>
                 </div>
               </div>
 
               <div className="flex gap-4">
                 <div className="flex-shrink-0 w-20 text-center">
-                  <div className="bg-primary text-primary-foreground rounded-lg p-2 font-bold">
-                    Day 3-4
+                  <div className="bg-green-500 text-white rounded-lg p-2 font-bold text-sm">
+                    Day 3–4
                   </div>
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold mb-2">The 16:8 Intro</h3>
+                  <h3 className="text-xl font-bold mb-2">16:8 Intro</h3>
                   <p className="text-muted-foreground leading-relaxed">
-                    Start gentle. Skip breakfast (just have coffee or tea if you need it — black, no sugar).
-                    Eat your first meal at noon at your chosen buffet. Follow the Plate Method: Plate 1 protein,
-                    Plate 2 vegetables, Plate 3 wildcard. Have a light dinner at home if you&apos;re hungry (a
-                    small salad, some nuts, maybe some yogurt). That&apos;s it. Notice how much time you have
-                    in the morning without breakfast prep. Notice how satisfied you feel after a proper buffet lunch.
-                    Notice how little you actually need for dinner. Your body is already adapting.
+                    Skip breakfast. Coffee is fine. Black. No sugar. No milk. First meal is buffet lunch at noon. Run the Plate Method. Protein first. Vegetables second. Wildcard third. Light dinner at home if you need it — keep it small. Notice what happens in the morning without breakfast prep. Notice how 2 free hours appear. Notice how satisfied you feel after a proper lunch. Notice how little you actually need for dinner. Your body is already adapting. Let it.
                   </p>
                 </div>
               </div>
 
               <div className="flex gap-4">
                 <div className="flex-shrink-0 w-20 text-center">
-                  <div className="bg-primary text-primary-foreground rounded-lg p-2 font-bold">
-                    Day 5-6
+                  <div className="bg-orange-500 text-white rounded-lg p-2 font-bold text-sm">
+                    Day 5–6
                   </div>
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold mb-2">The OMAD Test</h3>
+                  <h3 className="text-xl font-bold mb-2">OMAD Test</h3>
                   <p className="text-muted-foreground leading-relaxed">
-                    Ready to level up? Try a full OMAD day. No breakfast. No dinner. Just one magnificent
-                    buffet lunch. Apply all the rules: recon walk, protein first, value stack, water only.
-                    Eat until you&apos;re comfortably full (not stuffed — there&apos;s a difference). Then
-                    go about your day. Notice how you feel at 3 PM. At 6 PM. At 9 PM. Most people are
-                    surprised at how NOT hungry they are. That big protein-rich meal keeps you satisfied
-                    for way longer than you&apos;d expect. If you struggle, that&apos;s totally fine — go
-                    back to 16:8 for a few more days and try again.
+                    Level up. Try a full OMAD day. No breakfast. No dinner. One buffet meal. Apply the full protocol — recon walk, protein first, value stack, water only. Eat until comfortably full. Not stuffed. There&apos;s a difference. Then observe. Check in at 3 PM. Are you hungry or just thinking about food? Check at 6 PM. Check at 9 PM. Most people are surprised. The big protein meal holds. Your body is burning. Trust it.
                   </p>
                 </div>
               </div>
 
               <div className="flex gap-4">
                 <div className="flex-shrink-0 w-20 text-center">
-                  <div className="bg-primary text-primary-foreground rounded-lg p-2 font-bold">
+                  <div className="bg-purple-500 text-white rounded-lg p-2 font-bold text-sm">
                     Day 7
                   </div>
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold mb-2">Reflect & Plan</h3>
+                  <h3 className="text-xl font-bold mb-2">Reflect &amp; Pick Your Protocol</h3>
                   <p className="text-muted-foreground leading-relaxed">
-                    Take stock. How do you feel? How much time did you save this week? How much money did you
-                    save compared to a normal week? Weigh yourself if you want (though one week isn&apos;t enough
-                    for dramatic changes). Most importantly: decide which protocol you want to follow going forward.
-                    The Starter? The OMAD? Something in between? There&apos;s no wrong answer. The best protocol
-                    is the one you can stick with. Week 2 and beyond: settle into your chosen protocol. Find your
-                    rhythm. Rotate between your top 2-3 buffets for variety. Track your weight, energy, and savings
-                    if you&apos;re into data. Or don&apos;t. Just enjoy the ride.
+                    One week in. How do you feel? Time saved — add it up. Money saved — check the math. Energy levels — better, worse, same? Weigh yourself if you want. Now decide: which protocol are you running going forward? Starter, OMAD, Warrior, or Social. There&apos;s no wrong answer. The best protocol is the one you can run indefinitely. Pick it. Commit. Week 2 starts tomorrow.
                   </p>
                 </div>
               </div>
@@ -1544,14 +1462,14 @@ export function GuideContent() {
                 <div className="flex gap-3">
                   <CheckCircle className="w-6 h-6 text-green-500 flex-shrink-0 mt-1" />
                   <div>
-                    <p className="font-semibold mb-2">What to Track (If You Want)</p>
-                    <div className="grid grid-cols-2 gap-2 text-muted-foreground text-sm">
-                      <span>Body weight (weekly)</span>
-                      <span>Energy levels (daily, 1-10)</span>
-                      <span>Hours saved from cooking</span>
-                      <span>Money spent on food</span>
-                      <span>How you feel overall</span>
-                      <span>Buffet quality scores</span>
+                    <p className="font-bold mb-3">What to Track</p>
+                    <div className="grid grid-cols-2 gap-y-2 gap-x-4 text-muted-foreground text-sm">
+                      <span className="flex items-center gap-1"><Scale className="w-3 h-3" /> Body weight — weekly</span>
+                      <span className="flex items-center gap-1"><Zap className="w-3 h-3" /> Energy levels — daily, 1–10</span>
+                      <span className="flex items-center gap-1"><Clock className="w-3 h-3" /> Hours saved from cooking</span>
+                      <span className="flex items-center gap-1"><Target className="w-3 h-3" /> Money spent on food</span>
+                      <span className="flex items-center gap-1"><Heart className="w-3 h-3" /> How you feel overall</span>
+                      <span className="flex items-center gap-1"><Star className="w-3 h-3" /> Buffet quality scores</span>
                     </div>
                   </div>
                 </div>
@@ -1561,77 +1479,40 @@ export function GuideContent() {
 
           <Separator className="mb-16" />
 
-          {/* Closing */}
+          {/* Closing Section */}
           <section className="mb-16 print:break-before-page">
-            <div className="text-center mb-12">
-              <Trophy className="w-16 h-16 text-primary mx-auto mb-6" />
+            <div className="text-center mb-10">
+              <Trophy className="w-14 h-14 text-primary mx-auto mb-5" />
               <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                A Final Word
+                See You at the Buffet
               </h2>
             </div>
 
-            <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-              When I tell people about the Buffet Diet, I can see the exact moment their brain short-circuits.
-              Their eyes go slightly unfocused. Their mouth opens a little. They look at me the way you might
-              look at someone who just told you the earth is flat — except then I show them the spreadsheets,
-              and the weight loss photos, and the monthly food expenses, and slowly their expression changes
-              from &quot;this man needs help&quot; to &quot;wait, actually, hold on.&quot;
-            </p>
-
-            <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-              I understand the skepticism. I do. The first time I explained this to my mother, she was silent
-              for about fifteen seconds and then asked if I was eating enough vegetables. (I am, Mom. The buffet
-              has an excellent salad bar.) My business partner thought it was a joke for three weeks, until he
-              noticed I had lost 8 kilos and asked me to explain the system in detail during a two-hour meeting
-              where no other work got done.
-            </p>
-
-            <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-              But here is what I know to be true, based on personal experience, basic arithmetic, and the
-              visible discomfort of buffet managers who have watched me eat:
+            <p className="text-lg text-muted-foreground mb-5 leading-relaxed">
+              The protocol works. The math works. The science works. You now have all three.
             </p>
 
             <Card className="mb-6 border-primary/20 bg-primary/5">
               <CardContent className="pt-6">
                 <div className="space-y-3 text-muted-foreground">
-                  <p className="flex gap-2"><CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" /> I have not used my oven since March 2019. The spider is still there. We have an understanding.</p>
-                  <p className="flex gap-2"><CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" /> My monthly food expenditure is lower than most people&apos;s grocery bill alone.</p>
-                  <p className="flex gap-2"><CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" /> I have reclaimed approximately 10-15 hours per week that I previously spent on food logistics.</p>
-                  <p className="flex gap-2"><CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" /> I eat a wider variety of high-quality protein than anyone I know who cooks at home.</p>
-                  <p className="flex gap-2"><CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" /> I have maintained a healthy body composition that my doctor has described as &quot;surprisingly good, considering.&quot;</p>
-                  <p className="flex gap-2"><CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" /> At least two buffet restaurants in Stockholm have menus that I am confident were redesigned partly in response to my dining habits.</p>
+                  <p className="flex gap-2"><CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" /> Has not used his oven since March 2019. The spider is still there. They have an understanding.</p>
+                  <p className="flex gap-2"><CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" /> Monthly food cost is lower than most people&apos;s grocery bill alone.</p>
+                  <p className="flex gap-2"><CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" /> 10–15 hours per week reclaimed. Every week. Compounding.</p>
+                  <p className="flex gap-2"><CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" /> Wider variety of high-quality protein than anyone cooking at home.</p>
+                  <p className="flex gap-2"><CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" /> Healthy body composition. Doctor described it as &quot;surprisingly good, considering.&quot;</p>
                 </div>
               </CardContent>
             </Card>
 
-            <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-              The Buffet Diet is a diet. It is a lifestyle. It is an economic strategy disguised as a nutrition
-              plan, or possibly a nutrition plan disguised as an economic strategy. I am genuinely not sure anymore.
-              What I am sure of is that it works. I have the data. I have the results. I have a kitchen that could
-              be featured in an architectural magazine because nothing in it has been moved in five years.
+            <p className="text-lg text-muted-foreground mb-5 leading-relaxed">
+              People will tell you this is crazy. These are the same people spending $800/month on groceries and throwing away 30% of it. They eat the same four meals on rotation and call it cooking. You&apos;re sitting down at a clean table, eating world-class sashimi and prime rib for $15, and walking out. One of us is crazy. It&apos;s not you anymore.
             </p>
 
-            <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-              People will tell you this is crazy. These are the same people who spend $800 a month on groceries,
-              throw away 30% of their food, wash dishes every day, and eat the same four meals on rotation while
-              calling it &quot;cooking.&quot; I sit down at a clean table, eat world-class sashimi and prime rib
-              for $15, walk out, and go about my day. One of us is crazy. I no longer think it&apos;s me.
-            </p>
-
-            <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
-              Go find your buffet. Do the recon walk. Load up on protein. Skip the bread. Drink water. Trust the
-              process. And when your friends ask why you look different — leaner, more energetic, suspiciously
-              well-fed for someone who claims to fast — send them this guide.
-            </p>
-
-            <div className="text-center mb-8">
-              <p className="text-xl font-semibold mb-2">See you at the buffet.</p>
-              <p className="text-muted-foreground italic mb-6">
-                — Benjamin Karlsson
-              </p>
-              <p className="text-sm text-muted-foreground/60">
-                Founder of The Buffet Diet. Bio Hacker. Entrepreneur.
-                <br />The Man Who Hasn&apos;t Used His Oven Since 2019.
+            <div className="text-center mt-10">
+              <p className="text-2xl font-bold mb-3">See you at the buffet.</p>
+              <p className="text-muted-foreground italic mb-2">— Benjamin Karlsson</p>
+              <p className="text-sm text-muted-foreground/70">
+                Software Engineer. Carnivore. The guy who eats at a buffet every day.
               </p>
             </div>
           </section>
@@ -1643,8 +1524,7 @@ export function GuideContent() {
             <div className="text-center py-12">
               <h2 className="text-3xl font-bold mb-4">Ready to Find Your Buffet?</h2>
               <p className="text-lg text-muted-foreground mb-8 max-w-xl mx-auto">
-                Use our community-driven restaurant finder to discover the best quality buffets near you.
-                Rated by fellow Buffet Dieters for protein quality, value, and overall experience.
+                Use our community-driven restaurant finder to discover the best quality buffets near you. Rated by fellow Buffet Dieters for protein quality, value, and overall experience.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center no-print">
                 <Link href="/restaurants">
@@ -1661,11 +1541,12 @@ export function GuideContent() {
                 </Link>
               </div>
               <div className="mt-12 text-muted-foreground text-sm">
-                <p className="mb-2">Follow the Buffet Diet Community</p>
+                <p className="mb-2">Join the Buffet Diet Community</p>
                 <p>thebuffetdiet.com</p>
               </div>
             </div>
           </section>
+
 
           {/* Download CTA at bottom */}
           <div className="no-print sticky bottom-4 flex justify-center mt-8 mb-4">
