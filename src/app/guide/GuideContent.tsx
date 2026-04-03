@@ -86,18 +86,18 @@ export function GuideContent() {
               THE BUFFET DIET
             </h1>
             <p className="text-xl md:text-2xl text-muted-foreground mb-4 font-medium">
-              How One Man Discovered You Can Lose Weight by Eating at All-You-Can-Eat Buffets
+              The Protocol Nobody Is Talking About
             </p>
             <p className="text-lg md:text-xl text-muted-foreground/80 mb-4 max-w-2xl mx-auto">
-              A Comprehensive Protocol for Strategic Fasting, Nutritional Optimization, and Making the Buffet Industry Regret Its Business Model
+              Lose fat. Save money. Eat like a king. Skip the meal prep. The ancestral eating strategy hiding in plain sight at your local all-you-can-eat.
             </p>
             <p className="text-base text-muted-foreground/60 mb-8 max-w-lg mx-auto italic">
-              &quot;The most important dietary breakthrough since someone realized you could eat the lobster.&quot;
+              &quot;I did a 5-day water fast and then remembered I had a half marathon in two days. That was the beginning.&quot;
             </p>
             <div className="flex items-center justify-center gap-2 mb-10 text-muted-foreground">
               <BookOpen className="w-5 h-5" />
               <span className="text-sm">
-                By <strong>Benjamin Karlsson</strong> — Founder of The Buffet Diet, Bio Hacker, Entrepreneur, and the Man Who Hasn&apos;t Used His Oven Since 2019
+                By <strong>Benjamin Karlsson</strong> — Software Engineer, Carnivore, Weighted Calisthenics Enjoyer, and the Guy Who Eats at a Buffet Every Day
               </span>
             </div>
             <Button
@@ -116,10 +116,10 @@ export function GuideContent() {
           {/* Foreword */}
           <section className="mb-16">
             <p className="text-lg text-muted-foreground mb-4 leading-relaxed italic">
-              &quot;I graduated from one of Sweden&apos;s top engineering programs. I&apos;ve built software companies.
-              I&apos;ve read over 200 books on nutrition, productivity, and human optimization.
-              And I&apos;m here to tell you that the single greatest life hack I&apos;ve ever discovered
-              is eating lunch at a $15 all-you-can-eat buffet.&quot;
+              &quot;I train weighted calisthenics 4x a week. Gymnastics 3x. I eat carnivore.
+              I fast for days at a time. I build software companies. And the single greatest
+              optimization I&apos;ve ever made to my life is eating at a $15 all-you-can-eat buffet.
+              This is not a joke. I am being completely serious.&quot;
             </p>
             <p className="text-base text-muted-foreground text-right">— Benjamin Karlsson</p>
           </section>
@@ -133,84 +133,44 @@ export function GuideContent() {
                 1
               </div>
               <h2 className="text-3xl md:text-4xl font-bold">
-                How I Accidentally Invented the Buffet Diet
+                How This Started (It&apos;s Stupidly Obvious)
               </h2>
             </div>
 
-            <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-              In 2019, I was running two startups simultaneously, sleeping five hours a night, and living in a
-              studio apartment in Stockholm with a kitchen so small that the refrigerator door hit the stove
-              when you opened it. I was, by most conventional measures, not taking great care of myself.
+            <p className="text-lg text-muted-foreground mb-4 leading-relaxed">
+              I&apos;m a software engineer. I build startups. I train weighted calisthenics 3-4 times a week and gymnastics 3 times a week. I eat carnivore. These are not separate hobbies. This is just the operating system.
             </p>
 
-            <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-              I had been experimenting with intermittent fasting — the 16:8 protocol at first, then OMAD
-              (one meal a day), then pushing it further. 36 hours. 48 hours. At one point I did a 5-day water fast
-              just to see what would happen. (What happened was I became extremely aware of how many restaurants
-              there are in Stockholm.) The fasting was going well. The problem was the <em>eating</em>.
+            <p className="text-lg text-muted-foreground mb-4 leading-relaxed">
+              The carnivore diet did something unexpected. It naturally compressed my eating window. You stop snacking. You stop thinking about food every 2 hours. You eat meat. You feel full for a long time. One day you realize you haven&apos;t eaten since yesterday and you feel completely fine. That&apos;s when you start experimenting.
             </p>
 
-            <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-              When you fast for 24-48 hours, you don&apos;t want a normal meal. You want a <strong>feast</strong>.
-              Your body has been running on stored energy for two days and it expects to be rewarded. But I was
-              a busy entrepreneur — I didn&apos;t have time to cook elaborate meals. So I would break my fast with
-              whatever was in the fridge, which was usually a sad piece of chicken breast I&apos;d cooked three
-              days ago and some wilted spinach. I had been fasting like a monk and eating like a prisoner. Something
-              had to change.
-            </p>
-
-            <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-              Then one afternoon in March — 31 hours into a fast — I was walking past an all-you-can-eat
-              sushi restaurant near my office. I had walked past it hundreds of times. But on this day, in my
-              fasted state, I had what I can only describe as a <em>vision</em>. I stopped on the sidewalk.
-              I looked at the sign. I looked at the price: 149 SEK (about $15). And a thought entered my mind
-              that would change the entire trajectory of my life:
+            <p className="text-lg text-muted-foreground mb-4 leading-relaxed">
+              First fast: 24 hours. Easy. Then 3 days. Then 5 days. Water only. I did a 5-day water fast just to see what happened. What happened was I felt weirdly good and then remembered I had a half marathon in 2 days.
             </p>
 
             <Card className="mb-6 border-primary/20 bg-primary/5">
               <CardContent className="pt-6">
                 <p className="text-xl text-center italic font-medium">
-                  &quot;What if I just... ate here every day?&quot;
+                  I ran it anyway. Felt fine. Nobody is talking about this.
                 </p>
               </CardContent>
             </Card>
 
-            <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-              I walked in. I sat down. And over the next 45 minutes, I consumed what I later calculated to be
-              approximately 1,800 calories of premium sashimi, grilled salmon, edamame, miso soup, and a small
-              amount of rice. The retail value of the sashimi alone, if purchased at the grocery store, would have
-              been roughly $35-40. I paid $15. I had no dishes to wash. I had no groceries to buy. I had no food
-              to prep. I walked in hungry. I walked out satisfied, nourished, and — though I didn&apos;t realize
-              it yet — on my way to losing 12 kilograms over the next three months.
+            <p className="text-lg text-muted-foreground mb-4 leading-relaxed">
+              Here&apos;s the actual problem. Eating carnivore while training hard means you need a <strong>lot</strong> of meat. Like 1.5kg of steak a day. Cooking that while running companies wasn&apos;t happening. And buying that volume of quality meat? Expensive. The protocol was right. The logistics were broken.
             </p>
 
-            <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-              I went back the next day. And the day after. And the day after that. By week two, the staff
-              recognized me. By week three, I noticed my clothes were fitting differently. By month two,
-              I had to buy new pants. My grocery bill had dropped to essentially zero. My kitchen was so unused
-              that a spider had built a web between the toaster and the wall. (I left it. The spider was paying
-              about as much rent as me and bothering no one.)
+            <p className="text-lg text-muted-foreground mb-4 leading-relaxed">
+              There were two all-you-can-eat buffets on each side of the road next to my office. I had walked past them every day for months. Then one day — 36 hours into a fast — I walked in. Sat down. Ate an absurd amount of protein for $15. Walked out. Didn&apos;t need to eat anything else that day.
             </p>
 
-            <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-              I started tracking everything. The weight loss. The cost savings. The time saved. The macros.
-              I built spreadsheets. I made charts. I became, without intending to, the world&apos;s foremost
-              researcher on the intersection of intermittent fasting and all-you-can-eat dining.
-              A field that, as far as I can tell, I am the only person working in.
+            <p className="text-lg text-muted-foreground mb-4 leading-relaxed">
+              I have a best friend. Overweight. I challenged him. &quot;Come eat with me every day. We&apos;re going to turn this into a game.&quot; He said yes. We started eating together daily. We started figuring out strategies. How do you maximize protein per dollar? How do you &quot;win&quot; against the buffet&apos;s business model? It became a competitive sport between two engineers with too much time and not enough food.
             </p>
 
-            <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-              People started asking me what I was doing differently. I told them. Most of them stared at me
-              in silence for several seconds. A few laughed. One person asked if I was feeling okay. But the
-              ones who actually tried it? They came back a month later with the same look on their face that
-              I must have had that first day outside the sushi restaurant. The look that says: <em>&quot;Wait.
-              This actually works. This actually, genuinely works.&quot;</em>
-            </p>
-
-            <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-              I decided someone needed to write this down properly. To create a protocol. A system.
-              A guide that takes what I had stumbled onto by accident and turns it into something anyone
-              can follow. So I did. You&apos;re reading it.
+            <p className="text-lg text-muted-foreground mb-4 leading-relaxed">
+              Then I checked my bank statement. I wasn&apos;t spending more money on food. I was spending <strong>less</strong>. Then the obvious thought hit: if I eat every 2nd day, I cut costs in half. Same food. Half the price. I tried every other day. Then every 3rd day. Three days was the limit — beyond that it stops being strategic and starts being something else. Every other day wasn&apos;t the most fun. But the savings in time and money were insane.
             </p>
 
             <Card className="mb-6 border-primary/20">
@@ -218,12 +178,9 @@ export function GuideContent() {
                 <div className="flex gap-3">
                   <Zap className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
                   <div>
-                    <p className="font-semibold mb-1">The Core Discovery</p>
+                    <p className="font-semibold mb-1">The Reframe Nobody Does</p>
                     <p className="text-muted-foreground">
-                      Combine intermittent fasting with strategic all-you-can-eat buffet dining. You eat less
-                      frequently but better. You spend less money but get more food. You lose weight while eating at a
-                      place literally designed for overeating. It sounds impossible. It is not. I have the spreadsheets
-                      to prove it.
+                      All that time NOT thinking about food, NOT cooking, NOT cleaning — it goes back into the business. Into training. Into actually living. Your ancestors didn&apos;t meal prep. They ate when there was food. Then they went and did things that mattered. The protocol is that simple.
                     </p>
                   </div>
                 </div>
@@ -231,10 +188,7 @@ export function GuideContent() {
             </Card>
 
             <p className="text-lg text-muted-foreground leading-relaxed">
-              This guide is for entrepreneurs, students, busy professionals, and anyone who has looked at the
-              amount of time and money they spend on food and thought: &quot;There has to be a better way.&quot;
-              There is. It involves a $15 buffet and the willingness to ignore the concerned looks from your friends
-              and family. At least until they see your results. Then they&apos;ll want the guide too.
+              This guide is the system I built from that experiment. Written for builders, athletes, and anyone who looked at how they were spending time and money on food and thought: there has to be a better way. There is. It&apos;s $15 and it&apos;s across the street.
             </p>
           </section>
 
