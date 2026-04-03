@@ -86,15 +86,18 @@ export function GuideContent() {
               THE BUFFET DIET
             </h1>
             <p className="text-xl md:text-2xl text-muted-foreground mb-4 font-medium">
-              The Ultimate Life Hack for Busy People Who Love Food
+              How One Man Discovered You Can Lose Weight by Eating at All-You-Can-Eat Buffets
             </p>
-            <p className="text-lg md:text-xl text-muted-foreground/80 mb-8 max-w-2xl mx-auto">
-              How to Lose Weight, Save Time, and Beat the Buffet at Its Own Game
+            <p className="text-lg md:text-xl text-muted-foreground/80 mb-4 max-w-2xl mx-auto">
+              A Comprehensive Protocol for Strategic Fasting, Nutritional Optimization, and Making the Buffet Industry Regret Its Business Model
+            </p>
+            <p className="text-base text-muted-foreground/60 mb-8 max-w-lg mx-auto italic">
+              &quot;The most important dietary breakthrough since someone realized you could eat the lobster.&quot;
             </p>
             <div className="flex items-center justify-center gap-2 mb-10 text-muted-foreground">
               <BookOpen className="w-5 h-5" />
               <span className="text-sm">
-                By <strong>Benjamin Karlsson</strong> — Buffet Diet Guru, Bio Hacker, Entrepreneur
+                By <strong>Benjamin Karlsson</strong> — Founder of The Buffet Diet, Bio Hacker, Entrepreneur, and the Man Who Hasn&apos;t Used His Oven Since 2019
               </span>
             </div>
             <Button
@@ -109,35 +112,105 @@ export function GuideContent() {
         </section>
 
         <div className="guide-container max-w-3xl mx-auto px-4 py-12 md:py-16">
-          {/* Chapter 1 */}
+
+          {/* Foreword */}
+          <section className="mb-16">
+            <p className="text-lg text-muted-foreground mb-4 leading-relaxed italic">
+              &quot;I graduated from one of Sweden&apos;s top engineering programs. I&apos;ve built software companies.
+              I&apos;ve read over 200 books on nutrition, productivity, and human optimization.
+              And I&apos;m here to tell you that the single greatest life hack I&apos;ve ever discovered
+              is eating lunch at a $15 all-you-can-eat buffet.&quot;
+            </p>
+            <p className="text-base text-muted-foreground text-right">— Benjamin Karlsson</p>
+          </section>
+
+          <Separator className="mb-16" />
+
+          {/* Chapter 1: The Origin Story */}
           <section className="mb-16 print:break-before-page">
             <div className="flex items-center gap-3 mb-6">
               <div className="flex items-center justify-center w-10 h-10 rounded-full bg-primary text-primary-foreground font-bold text-lg">
                 1
               </div>
               <h2 className="text-3xl md:text-4xl font-bold">
-                What the Hell is the Buffet Diet?
+                How I Accidentally Invented the Buffet Diet
               </h2>
             </div>
 
             <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-              Alright, let me paint you a picture. It&apos;s a Tuesday afternoon. You&apos;ve just crushed a 24-hour fast.
-              Your body is in full-on fat-burning, autophagy-cranking beast mode. You walk into an all-you-can-eat
-              buffet. The staff smiles at you, blissfully unaware that you&apos;re about to absolutely
-              <em> demolish</em> their profit margins.
+              In 2019, I was running two startups simultaneously, sleeping five hours a night, and living in a
+              studio apartment in Stockholm with a kitchen so small that the refrigerator door hit the stove
+              when you opened it. I was, by most conventional measures, not taking great care of myself.
             </p>
 
             <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-              Welcome to <strong>The Buffet Diet</strong>. It&apos;s not just a diet. It&apos;s a lifestyle. It&apos;s a
-              philosophy. It&apos;s a movement. Okay fine, it&apos;s also a little bit of a joke — but here&apos;s the
-              thing: <em>it actually works</em>.
+              I had been experimenting with intermittent fasting — the 16:8 protocol at first, then OMAD
+              (one meal a day), then pushing it further. 36 hours. 48 hours. At one point I did a 5-day water fast
+              just to see what would happen. (What happened was I became extremely aware of how many restaurants
+              there are in Stockholm.) The fasting was going well. The problem was the <em>eating</em>.
             </p>
 
             <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-              The concept is beautifully simple: you combine <strong>intermittent fasting</strong> with{" "}
-              <strong>eating at all-you-can-eat buffets</strong>. That&apos;s it. That&apos;s the whole thing.
-              You fast, you feast, you repeat. No meal prep. No grocery shopping. No washing seventeen
-              tupperware containers on a Sunday night while questioning your life choices.
+              When you fast for 24-48 hours, you don&apos;t want a normal meal. You want a <strong>feast</strong>.
+              Your body has been running on stored energy for two days and it expects to be rewarded. But I was
+              a busy entrepreneur — I didn&apos;t have time to cook elaborate meals. So I would break my fast with
+              whatever was in the fridge, which was usually a sad piece of chicken breast I&apos;d cooked three
+              days ago and some wilted spinach. I had been fasting like a monk and eating like a prisoner. Something
+              had to change.
+            </p>
+
+            <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
+              Then one afternoon in March — 31 hours into a fast — I was walking past an all-you-can-eat
+              sushi restaurant near my office. I had walked past it hundreds of times. But on this day, in my
+              fasted state, I had what I can only describe as a <em>vision</em>. I stopped on the sidewalk.
+              I looked at the sign. I looked at the price: 149 SEK (about $15). And a thought entered my mind
+              that would change the entire trajectory of my life:
+            </p>
+
+            <Card className="mb-6 border-primary/20 bg-primary/5">
+              <CardContent className="pt-6">
+                <p className="text-xl text-center italic font-medium">
+                  &quot;What if I just... ate here every day?&quot;
+                </p>
+              </CardContent>
+            </Card>
+
+            <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
+              I walked in. I sat down. And over the next 45 minutes, I consumed what I later calculated to be
+              approximately 1,800 calories of premium sashimi, grilled salmon, edamame, miso soup, and a small
+              amount of rice. The retail value of the sashimi alone, if purchased at the grocery store, would have
+              been roughly $35-40. I paid $15. I had no dishes to wash. I had no groceries to buy. I had no food
+              to prep. I walked in hungry. I walked out satisfied, nourished, and — though I didn&apos;t realize
+              it yet — on my way to losing 12 kilograms over the next three months.
+            </p>
+
+            <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
+              I went back the next day. And the day after. And the day after that. By week two, the staff
+              recognized me. By week three, I noticed my clothes were fitting differently. By month two,
+              I had to buy new pants. My grocery bill had dropped to essentially zero. My kitchen was so unused
+              that a spider had built a web between the toaster and the wall. (I left it. The spider was paying
+              about as much rent as me and bothering no one.)
+            </p>
+
+            <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
+              I started tracking everything. The weight loss. The cost savings. The time saved. The macros.
+              I built spreadsheets. I made charts. I became, without intending to, the world&apos;s foremost
+              researcher on the intersection of intermittent fasting and all-you-can-eat dining.
+              A field that, as far as I can tell, I am the only person working in.
+            </p>
+
+            <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
+              People started asking me what I was doing differently. I told them. Most of them stared at me
+              in silence for several seconds. A few laughed. One person asked if I was feeling okay. But the
+              ones who actually tried it? They came back a month later with the same look on their face that
+              I must have had that first day outside the sushi restaurant. The look that says: <em>&quot;Wait.
+              This actually works. This actually, genuinely works.&quot;</em>
+            </p>
+
+            <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
+              I decided someone needed to write this down properly. To create a protocol. A system.
+              A guide that takes what I had stumbled onto by accident and turns it into something anyone
+              can follow. So I did. You&apos;re reading it.
             </p>
 
             <Card className="mb-6 border-primary/20">
@@ -145,33 +218,23 @@ export function GuideContent() {
                 <div className="flex gap-3">
                   <Zap className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
                   <div>
-                    <p className="font-semibold mb-1">The Core Idea</p>
+                    <p className="font-semibold mb-1">The Core Discovery</p>
                     <p className="text-muted-foreground">
-                      Fast strategically. Eat at buffets. Get lean. Save time. Save money. Live your best life.
-                      The buffet thinks it&apos;s making money off you. You know better.
+                      Combine intermittent fasting with strategic all-you-can-eat buffet dining. You eat less
+                      frequently but better. You spend less money but get more food. You lose weight while eating at a
+                      place literally designed for overeating. It sounds impossible. It is not. I have the spreadsheets
+                      to prove it.
                     </p>
                   </div>
                 </div>
               </CardContent>
             </Card>
 
-            <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-              This guide is for <strong>entrepreneurs</strong>, <strong>students</strong>,{" "}
-              <strong>busy professionals</strong>, and basically anyone who has better things to do than
-              spend 2 hours a day in the kitchen. If you&apos;re the kind of person who values your time,
-              loves good food, and thinks outside the box — you&apos;re in the right place.
-            </p>
-
-            <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-              Let me be real with you: when I first stumbled onto this concept, I thought I was losing my mind.
-              &quot;Eat at buffets... to lose weight?&quot; It sounds backwards. It sounds like something a
-              madman would say. But after trying it myself, tracking the numbers, and watching the results roll
-              in — I realized I wasn&apos;t crazy. I was a <em>genius</em>. (Okay, maybe a little crazy too.)
-            </p>
-
             <p className="text-lg text-muted-foreground leading-relaxed">
-              You&apos;re not getting fat at buffets. You&apos;re getting <strong>lean</strong> at buffets.
-              Let that sink in. Now let me show you how.
+              This guide is for entrepreneurs, students, busy professionals, and anyone who has looked at the
+              amount of time and money they spend on food and thought: &quot;There has to be a better way.&quot;
+              There is. It involves a $15 buffet and the willingness to ignore the concerned looks from your friends
+              and family. At least until they see your results. Then they&apos;ll want the guide too.
             </p>
           </section>
 
@@ -189,14 +252,25 @@ export function GuideContent() {
             </div>
 
             <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-              Let&apos;s talk about how most people eat. They wake up, eat breakfast (or skip it and feel guilty).
-              They go to work, eat a sad desk lunch. They come home exhausted, stare into the fridge for 10
-              minutes, and then either cook something mediocre or order takeout. Then they clean up.
-              Then they do it all again tomorrow. And the day after. And the day after that. Forever.
+              Before I explain the solution, I want to make sure you understand the problem. Because
+              most people don&apos;t realize how absurd their current eating situation is. They&apos;ve
+              been doing it their whole life, so it feels normal. It is not normal. It is, when you actually
+              examine it, a logistical nightmare that we have all collectively agreed to never question.
             </p>
 
             <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-              Let&apos;s actually break down the hidden cost of &quot;normal&quot; eating:
+              The average person wakes up, eats breakfast (or skips it and feels guilty — as if toast is a moral obligation).
+              They go to work. They eat a sad desk lunch, possibly from a container they packed the night before
+              in a ritual they describe as &quot;meal prep&quot; but which more closely resembles packing a school
+              lunchbox for yourself as an adult. They come home exhausted, stare into the fridge for ten minutes
+              as if the ingredients might spontaneously assemble into a meal, and then cook something mediocre or
+              order $28 worth of pad thai from an app. Then they clean up. Then they do it all again tomorrow.
+              And the day after. And the day after that. For the rest of their lives.
+            </p>
+
+            <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
+              I want to show you the real numbers, because until you see them written down,
+              you will not believe how much of your life you are currently donating to food logistics:
             </p>
 
             <Card className="mb-6">
@@ -1538,48 +1612,72 @@ export function GuideContent() {
             <div className="text-center mb-12">
               <Trophy className="w-16 h-16 text-primary mx-auto mb-6" />
               <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                Welcome to the Buffet Diet Life
+                A Final Word
               </h2>
             </div>
 
             <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-              If you&apos;ve read this far, congratulations — you&apos;re now part of an elite group of people
-              who have figured out what the rest of the world hasn&apos;t. While everyone else is stuck in the
-              endless cycle of grocery shopping, meal prepping, cooking, cleaning, and repeating — you&apos;ve
-              found the exit door. And it leads directly to an all-you-can-eat buffet.
+              When I tell people about the Buffet Diet, I can see the exact moment their brain short-circuits.
+              Their eyes go slightly unfocused. Their mouth opens a little. They look at me the way you might
+              look at someone who just told you the earth is flat — except then I show them the spreadsheets,
+              and the weight loss photos, and the monthly food expenses, and slowly their expression changes
+              from &quot;this man needs help&quot; to &quot;wait, actually, hold on.&quot;
             </p>
 
             <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-              While others are eating sad tupperware lunches at their desk, you&apos;re feasting like a king
-              on sashimi and prime rib. While they&apos;re spending $800/month on groceries and 15 hours a week
-              in the kitchen, you&apos;re spending half that with zero cooking time. While they&apos;re gaining
-              weight from constant snacking and three-meal-a-day habits, you&apos;re getting leaner through
-              strategic fasting and protein-focused buffet meals.
+              I understand the skepticism. I do. The first time I explained this to my mother, she was silent
+              for about fifteen seconds and then asked if I was eating enough vegetables. (I am, Mom. The buffet
+              has an excellent salad bar.) My business partner thought it was a joke for three weeks, until he
+              noticed I had lost 8 kilos and asked me to explain the system in detail during a two-hour meeting
+              where no other work got done.
             </p>
 
             <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-              The buffet doesn&apos;t know what hit it. You walked in with a plan, a strategy, and an empty stomach.
-              You loaded up on the premium proteins. You skipped the cheap fillers. You drank water instead of soda.
-              You extracted maximum value per dollar. The buffet expected you to fill up on rice and bread.
-              Instead, you ate $40 worth of sashimi for a $15 ticket. <strong>You didn&apos;t just eat at the buffet.
-              You won the buffet.</strong>
+              But here is what I know to be true, based on personal experience, basic arithmetic, and the
+              visible discomfort of buffet managers who have watched me eat:
+            </p>
+
+            <Card className="mb-6 border-primary/20 bg-primary/5">
+              <CardContent className="pt-6">
+                <div className="space-y-3 text-muted-foreground">
+                  <p className="flex gap-2"><CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" /> I have not used my oven since March 2019. The spider is still there. We have an understanding.</p>
+                  <p className="flex gap-2"><CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" /> My monthly food expenditure is lower than most people&apos;s grocery bill alone.</p>
+                  <p className="flex gap-2"><CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" /> I have reclaimed approximately 10-15 hours per week that I previously spent on food logistics.</p>
+                  <p className="flex gap-2"><CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" /> I eat a wider variety of high-quality protein than anyone I know who cooks at home.</p>
+                  <p className="flex gap-2"><CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" /> I have maintained a healthy body composition that my doctor has described as &quot;surprisingly good, considering.&quot;</p>
+                  <p className="flex gap-2"><CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" /> At least two buffet restaurants in Stockholm have menus that I am confident were redesigned partly in response to my dining habits.</p>
+                </div>
+              </CardContent>
+            </Card>
+
+            <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
+              The Buffet Diet is a diet. It is a lifestyle. It is an economic strategy disguised as a nutrition
+              plan, or possibly a nutrition plan disguised as an economic strategy. I am genuinely not sure anymore.
+              What I am sure of is that it works. I have the data. I have the results. I have a kitchen that could
+              be featured in an architectural magazine because nothing in it has been moved in five years.
             </p>
 
             <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-              This is the Buffet Diet. It&apos;s a diet. It&apos;s a lifestyle. It&apos;s a philosophy.
-              It&apos;s a little bit absurd. And it absolutely, genuinely works. I&apos;ve lived it.
-              I&apos;ve loved it. And now I&apos;m sharing it with you.
+              People will tell you this is crazy. These are the same people who spend $800 a month on groceries,
+              throw away 30% of their food, wash dishes every day, and eat the same four meals on rotation while
+              calling it &quot;cooking.&quot; I sit down at a clean table, eat world-class sashimi and prime rib
+              for $15, walk out, and go about my day. One of us is crazy. I no longer think it&apos;s me.
             </p>
 
             <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
-              Go find your buffet. Scout the line. Load up on protein. Save your time. Save your money.
-              Get lean. Get free. And remember — <em>the buffet thinks it&apos;s winning. But you know better.</em>
+              Go find your buffet. Do the recon walk. Load up on protein. Skip the bread. Drink water. Trust the
+              process. And when your friends ask why you look different — leaner, more energetic, suspiciously
+              well-fed for someone who claims to fast — send them this guide.
             </p>
 
             <div className="text-center mb-8">
               <p className="text-xl font-semibold mb-2">See you at the buffet.</p>
-              <p className="text-muted-foreground italic">
-                — Benjamin Karlsson, Buffet Diet Guru, Bio Hacker, Entrepreneur
+              <p className="text-muted-foreground italic mb-6">
+                — Benjamin Karlsson
+              </p>
+              <p className="text-sm text-muted-foreground/60">
+                Founder of The Buffet Diet. Bio Hacker. Entrepreneur.
+                <br />The Man Who Hasn&apos;t Used His Oven Since 2019.
               </p>
             </div>
           </section>
