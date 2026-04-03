@@ -26,32 +26,32 @@ const profileFormSchema = z.object({
         message: "Please enter a valid email address.",
     }),
     bio: z.string().max(160).min(4),
-    avatar: z.string().url().optional(),
 })
 
 type ProfileFormValues = z.infer<typeof profileFormSchema>
 
-const defaultValues: Partial<ProfileFormValues> = {
-    username: "johndoe",
-    email: "john.doe@example.com",
-    bio: "I love trying new buffets and sharing my experiences!",
+interface EditProfileFormProps {
+    user: {
+        name: string
+        email: string
+    }
 }
 
-export function EditProfileForm() {
+export function EditProfileForm({ user }: EditProfileFormProps) {
     const form = useForm<ProfileFormValues>({
         resolver: zodResolver(profileFormSchema),
-        defaultValues,
+        defaultValues: {
+            username: user.name || "",
+            email: user.email || "",
+            bio: "",
+        },
         mode: "onChange",
     })
 
     function onSubmit(data: ProfileFormValues) {
         toast({
-            title: "You submitted the following values:",
-            description: (
-                <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-                    <code className="text-white">{JSON.stringify(data, null, 2)}</code>
-                </pre>
-            ),
+            title: "Profile updated",
+            description: "Your profile has been updated successfully.",
         })
     }
 
@@ -70,7 +70,7 @@ export function EditProfileForm() {
                                 <FormItem>
                                     <FormLabel>Username</FormLabel>
                                     <FormControl>
-                                        <Input placeholder="johndoe" {...field} />
+                                        <Input placeholder="Your name" {...field} />
                                     </FormControl>
                                     <FormDescription>
                                         This is your public display name.
@@ -86,7 +86,7 @@ export function EditProfileForm() {
                                 <FormItem>
                                     <FormLabel>Email</FormLabel>
                                     <FormControl>
-                                        <Input placeholder="john.doe@example.com" {...field} />
+                                        <Input placeholder="your@email.com" {...field} />
                                     </FormControl>
                                     <FormDescription>
                                         We&apos;ll never share your email with anyone else.
@@ -109,7 +109,7 @@ export function EditProfileForm() {
                                         />
                                     </FormControl>
                                     <FormDescription>
-                                        You can <span>@mention</span> other users and organizations.
+                                        A short bio about yourself.
                                     </FormDescription>
                                     <FormMessage />
                                 </FormItem>
@@ -122,4 +122,3 @@ export function EditProfileForm() {
         </Card>
     )
 }
-

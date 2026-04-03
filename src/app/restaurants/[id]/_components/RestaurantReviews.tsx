@@ -2,6 +2,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import type { ReviewV1 } from "@/services/types"
+import { isBadBadge, isFoodStyleBadge, isGoodBadge } from "@/components/FoodBadges"
 
 import { RestaurantRating } from "../../_components/RestaurantCard"
 import { formatTimeAgo } from "@/utils/formatDate"
@@ -38,32 +39,22 @@ export const RestaurantReviews = ({ reviews }: { reviews: ReviewV1[] }) => {
                 </CardContent>
                 <CardFooter>
                     <div className="flex flex-wrap gap-2">
-                        {/* {review.foodBadges && review.foodBadges.map((badge, badgeIndex) => (
-                            <Badge key={badgeIndex} variant="secondary">{badge}</Badge>
-                        ))} */}
-                        <Badge variant="outline">⏱️ Badges will come soon</Badge>
+                        {review.foodBadges && review.foodBadges.map((badge, badgeIndex) => {
+                            if (isFoodStyleBadge(badge)) {
+                                return <Badge key={badgeIndex} variant="secondary">{badge}</Badge>
+                            }
+                            if (isGoodBadge(badge)) {
+                                return <Badge key={badgeIndex} variant="default">{badge}</Badge>
+                            }
+                            if (isBadBadge(badge)) {
+                                return <Badge key={badgeIndex} variant="destructive">{badge}</Badge>
+                            }
+                            return <Badge key={badgeIndex} variant="outline">{badge}</Badge>
+                        })}
+                        {(!review.foodBadges || review.foodBadges.length === 0) && (
+                            <span className="text-xs text-muted-foreground">No badges</span>
+                        )}
                     </div>
-                    {/* <section className='flex flex-wrap gap-3 '>
-                        <Badge variant='outline'>{restaurant.type}</Badge>
-                        {foodStyleBadges.map((badge, index) => (
-
-                            <Badge key={`foodStyleBadge-${index}`} variant="secondary">
-                                {badge}
-                            </Badge>
-                        ))}
-                        {goodBadges.map((badge, index) => (
-
-                            <Badge key={`goodBadge-${index}`} variant="default">
-                                {badge}
-                            </Badge>
-                        ))}
-                        {badBadges.map((badge, index) => (
-
-                            <Badge key={`badBadge-${index}`} variant="destructive">
-                                {badge}
-                            </Badge>
-                        ))}
-                    </section> */}
                 </CardFooter>
             </Card>
         ))}

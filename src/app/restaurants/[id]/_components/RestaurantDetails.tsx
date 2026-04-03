@@ -6,7 +6,7 @@ import { Icon } from "@iconify/react/dist/iconify.js";
 import type { Restaurant, ReviewV1 } from "../../../../services/types";
 import { RestaurantRating } from "../../_components/RestaurantCard";
 import { likeRestaurantAction, removeLikeRestaurantAction } from "@/actions/restaurant";
-import { Bookmark, Globe, HeartIcon, PenBoxIcon, Settings, Signpost } from "lucide-react";
+import { Bookmark, Globe, HeartIcon, PenBoxIcon, Pencil, Signpost } from "lucide-react";
 import { type AuthModel, ClientResponseError } from "pocketbase";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
@@ -16,6 +16,7 @@ import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTr
 import ReviewRestaurantFormSection from "./ReviewRestaurantFormSection";
 import { getAverageRating } from "@/utils/avarageRating";
 import { Card } from "@/components/ui/card";
+import Link from "next/link";
 export const RestaurantDetails = ({ restaurant, images, foodStyleBadges, goodBadges, badBadges, user, like, reviews }:
     {
         restaurant: Restaurant; images: string[]; foodStyleBadges: string[]; goodBadges: string[]; badBadges: string[],
@@ -63,29 +64,43 @@ export const RestaurantDetails = ({ restaurant, images, foodStyleBadges, goodBad
         <h1 className='mb-4 mt-5 text-3xl font-bold'>{restaurant.name}</h1>
         <section className='flex flex-wrap gap-3 '>
             <Badge variant='outline'>{restaurant.type}</Badge>
-            {foodStyleBadges.map((badge, index) => (
-
-                <Badge key={`foodStyleBadge-${badge}`} variant="secondary">
-                    {badge}
-                </Badge>
-            ))}
-            {goodBadges.map((badge, index) => (
-
-                <Badge key={`goodBadge-${badge}`} variant="default">
-                    {badge}
-                </Badge>
-            ))}
-            {badBadges.map((badge, index) => (
-
-                <Badge key={`badBadge-${badge}`} variant="destructive">
-                    {badge}
-                </Badge>
-            ))}
+            {foodStyleBadges.map((badge) => {
+                const count = reviews.filter(r => r.foodBadges?.includes(badge)).length;
+                return (
+                    <Badge key={`foodStyleBadge-${badge}`} variant="secondary">
+                        {badge}{count > 0 && ` (${count})`}
+                    </Badge>
+                );
+            })}
+            {goodBadges.map((badge) => {
+                const count = reviews.filter(r => r.foodBadges?.includes(badge)).length;
+                return (
+                    <Badge key={`goodBadge-${badge}`} variant="default">
+                        {badge}{count > 0 && ` (${count})`}
+                    </Badge>
+                );
+            })}
+            {badBadges.map((badge) => {
+                const count = reviews.filter(r => r.foodBadges?.includes(badge)).length;
+                return (
+                    <Badge key={`badBadge-${badge}`} variant="destructive">
+                        {badge}{count > 0 && ` (${count})`}
+                    </Badge>
+                );
+            })}
         </section>
         <Card className="light:bg-athens-gray flex-1 mt-5 flex gap-2 items-center p-5">
 
             <div>
                 <p className='text-sm font-bold opacity-50'>{`${formatCurrency(restaurant.price, 'kronor')} *`}</p>
+                {(restaurant.breakfastPrice || restaurant.lunchPrice || restaurant.eveningPrice || restaurant.weekendPrice) && (
+                    <div className="flex flex-wrap gap-x-3 text-xs opacity-50 mt-1">
+                        {restaurant.breakfastPrice ? <span>Breakfast: {formatCurrency(restaurant.breakfastPrice, 'kronor')}</span> : null}
+                        {restaurant.lunchPrice ? <span>Lunch: {formatCurrency(restaurant.lunchPrice, 'kronor')}</span> : null}
+                        {restaurant.eveningPrice ? <span>Evening: {formatCurrency(restaurant.eveningPrice, 'kronor')}</span> : null}
+                        {restaurant.weekendPrice ? <span>Weekend: {formatCurrency(restaurant.weekendPrice, 'kronor')}</span> : null}
+                    </div>
+                )}
                 <RestaurantRating rating={averageRating} roundedRating={Math.round(averageRating)} id={restaurant.id} /><div className="text-secondary-foreground/30">
 
                 </div>
@@ -142,24 +157,32 @@ export const RestaurantDetails = ({ restaurant, images, foodStyleBadges, goodBad
                     <a href={restaurant.website} target="_blank" rel="noreferrer">
                         <Button variant="secondary"><Globe className="mr-2 h-4 w-4" />Website</Button>
                     </a>
-                    <a href={`https://www.google.com/maps/dir/?api=1&destination=${restaurant.website}`} target="_blank" rel="noreferrer">
+                    <a href={`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(restaurant.address)}`} target="_blank" rel="noreferrer">
                         <Button variant="secondary"><Signpost className="mr-2 h-4 w-4" />Directions</Button>
                     </a>
                     {!like.isLiked && <Button variant="secondary" onClick={() => handleLikeRestaurant()} > <Bookmark className="mr-2 h-4 w-4" />Save</Button>}
                     {like.isLiked && <Button variant="secondary" onClick={() => handleLikeRestaurant()} ><BookmarkFilledIcon className="mr-2 h-4 w-4" />Saved</Button>}
-                    <Button variant="secondary" aria-label='Edit restaurant' size="icon" disabled><Settings className="h-4 w-4" /></Button>
+                    {user && user.isAdmin && (
+                        <Link href={`/restaurants/${restaurant.id}/edit`}>
+                            <Button variant="secondary" aria-label='Edit restaurant' size="icon"><Pencil className="h-4 w-4" /></Button>
+                        </Link>
+                    )}
                 </div>
                 <div className="sm:hidden flex gap-1 mb-4">
 
                     <a href={restaurant.website} target="_blank" rel="noreferrer">
                         <Button variant="secondary"><Globe className="mr-2 h-4 w-4" />Website</Button>
                     </a>
-                    <a href={`https://www.google.com/maps/dir/?api=1&destination=${restaurant.website}`} target="_blank" rel="noreferrer">
+                    <a href={`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(restaurant.address)}`} target="_blank" rel="noreferrer">
                         <Button variant="secondary"><Signpost className="mr-2 h-4 w-4" />Directions</Button>
                     </a>
                     {!like.isLiked && <Button variant="secondary" size="icon" onClick={() => handleLikeRestaurant()} > <Bookmark className="h-4 w-4" /></Button>}
                     {like.isLiked && <Button variant="secondary" size="icon" onClick={() => handleLikeRestaurant()} ><BookmarkFilledIcon className="h-4 w-4" /></Button>}
-                    <Button variant="secondary" aria-label='Edit restaurant' size="icon" disabled><Settings className="h-4 w-4" /></Button>
+                    {user && user.isAdmin && (
+                        <Link href={`/restaurants/${restaurant.id}/edit`}>
+                            <Button variant="secondary" aria-label='Edit restaurant' size="icon"><Pencil className="h-4 w-4" /></Button>
+                        </Link>
+                    )}
                 </div>
 
                 <div className='flex flex-col gap-3  text-sm text-gray-400 light:text-gray-600 mb-12'>

@@ -69,8 +69,18 @@ export default function RestaurantMap({ restaurantMarkers, currentLocationMarker
                 ],
             }}
         >
-            {/* TODO: Currently location marker is based on search location, not on user location, this is a bugged introduced when updating to AI smart search */}
-            {/* {currentLocationMarker && <BrowserMarker {...currentLocationMarker} />} */}
+            {currentLocationMarker && (
+                <Marker
+                    longitude={currentLocationMarker.longitude}
+                    latitude={currentLocationMarker.latitude}
+                    anchor="bottom"
+                >
+                    <div className="flex flex-col items-center">
+                        <Navigation className="h-6 w-6 text-blue-600 fill-blue-400" />
+                        <span className="text-xs font-medium bg-background/80 px-1 rounded">You</span>
+                    </div>
+                </Marker>
+            )}
 
 
             {restaurantMarkers.map((restaurantMarker, index) => (

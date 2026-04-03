@@ -86,7 +86,7 @@ export default function AboutPage() {
                         Become a part of our food-loving family. Share your experiences, discover new buffets, and contribute to the community.
                     </p>
                     <Link href="/authentication" passHref legacyBehavior>
-                        <Button size="lg" variant="secondary" disabled>
+                        <Button size="lg" variant="secondary">
                             Sign Up Now
                         </Button>
                     </Link>

@@ -96,20 +96,32 @@ export function makeRestaurantBaseV2(restaurant: Restaurant): RestaurantBaseV2 {
 }
 
 
-export async function getRestaurants({ page = 1, perPage = 30, sortKey = 'created', sortOrder = 'asc', filterQuery = '' }: { page?: number, perPage?: number, sortKey?: RestaurantV2Keys, sortOrder?: 'asc' | 'desc', filterQuery?: string } = {}): Promise<Restaurant[]> {
-    const order = sortOrder === 'desc' ? '' : '-'; // Only prepend '-' for descending order
+type GetRestaurantsParams = { page?: number, perPage?: number, sortKey?: RestaurantV2Keys, sortOrder?: 'asc' | 'desc', filterQuery?: string };
+type PaginatedResult = { items: Restaurant[], totalPages: number, totalItems: number, page: number };
+
+export async function getRestaurantsPaginated({ page = 1, perPage = 12, sortKey = 'created', sortOrder = 'asc', filterQuery = '' }: GetRestaurantsParams = {}): Promise<PaginatedResult> {
+    const order = sortOrder === 'desc' ? '' : '-';
     try {
         const data = await db.client.collection('restaurants').getList<RestaurantV2>(page, perPage, {
             sort: order + sortKey,
             filter: filterQuery,
             expand: 'reviews_via_restaurantId'
         });
-        console.log('Successfully fetched restaurants', data.items[0])
-        return data.items.map((restV2) => makeRestaurantFromV2(restV2))
+        return {
+            items: data.items.map((restV2) => makeRestaurantFromV2(restV2)),
+            totalPages: data.totalPages,
+            totalItems: data.totalItems,
+            page: data.page,
+        }
     } catch (error) {
         console.error('Error fetching restaurants with filterQuery:', filterQuery, error);
         throw new Error('Failed to fetch restaurants');
     }
+}
+
+export async function getRestaurants(params: GetRestaurantsParams = {}): Promise<Restaurant[]> {
+    const result = await getRestaurantsPaginated({ perPage: 30, ...params });
+    return result.items;
 }
 
 export async function getRestaurantsByProximity({ latitude, longitude, maxDistance = 10, searchQuery = '', page = 1, perPage = 30 }: { latitude: number, longitude: number, maxDistance?: number, searchQuery?: string, page?: number, perPage?: number }) {
@@ -204,6 +216,39 @@ export async function createRestaurant(restaurant: RestaurantBaseV2): Promise<Re
     }
 }
 
+
+export async function updateRestaurant(restaurantId: string, restaurant: Partial<RestaurantBaseV2>): Promise<Result<RestaurantV2>> {
+    try {
+        await loadAuthFromCookie();
+    } catch (error) {
+        return { success: false, error: 'Error loading auth from cookie' };
+    }
+
+    try {
+        const collection = db.client.collection<RestaurantV2>('restaurants');
+        const resp = await collection.update<RestaurantV2>(restaurantId, restaurant);
+        return { success: true, data: resp };
+    } catch (error) {
+        console.log('Error updating restaurant:', error);
+        return { success: false, error: 'Error updating restaurant' };
+    }
+}
+
+export async function deleteRestaurant(restaurantId: string): Promise<Result<boolean>> {
+    try {
+        await loadAuthFromCookie();
+    } catch (error) {
+        return { success: false, error: 'Error loading auth from cookie' };
+    }
+
+    try {
+        await db.client.collection('restaurants').delete(restaurantId);
+        return { success: true, data: true };
+    } catch (error) {
+        console.log('Error deleting restaurant:', error);
+        return { success: false, error: 'Error deleting restaurant' };
+    }
+}
 
 export async function likeRestaurant(restaurantId: string, userId: string) {
 

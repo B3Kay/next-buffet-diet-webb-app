@@ -1433,7 +1433,7 @@ export function GuideContent() {
 
           <Separator className="mb-16" />
 
-          {/* Chapter 11 - NEW: The Biohacker's Deep Dive */}
+          {/* Chapter 11 - The Biohacker's Deep Dive */}
           <section className="mb-16 print:break-before-page">
             <div className="flex items-center gap-3 mb-6">
               <div className="flex items-center justify-center w-10 h-10 rounded-full bg-primary text-primary-foreground font-bold text-lg">

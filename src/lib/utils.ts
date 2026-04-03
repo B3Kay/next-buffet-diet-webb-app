@@ -47,13 +47,10 @@ export function getGeolocation(): Promise<GeolocationCoords> {
           resolve({ latitude, longitude });
         },
         (error) => {
-          console.error('Failed to get geolocation:', error);
-          // TODO: handle error
           reject(error);
         }
       );
     } else {
-      // TODO: handle error
       reject(new Error('Geolocation is not supported by this browser.'));
     }
   });
