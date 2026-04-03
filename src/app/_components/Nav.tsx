@@ -27,7 +27,7 @@ const navLinks = [
         target: "_self",
     },
     {
-        label: "Guide",
+        label: "Free Guide",
         href: "/guide",
     },
     {
@@ -100,7 +100,7 @@ export const Nav = ({ user }: { user: AuthModel | false }) => {
                                 },
 
                                 {
-                                    title: "Guide",
+                                    title: "Free Guide",
                                     href: "/guide",
                                     variant: isActive('/guide') ? 'default' : 'ghost',
                                 },

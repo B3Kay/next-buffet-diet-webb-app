@@ -80,7 +80,7 @@ export function GuideContent() {
         <section className="print-title-page relative py-20 md:py-32 bg-gradient-to-br from-primary/10 via-background to-primary/5 overflow-hidden">
           <div className="max-w-4xl mx-auto px-4 text-center relative z-10">
             <Badge variant="secondary" className="mb-6 text-sm px-4 py-1">
-              Free Guide - 18 Pages
+              Free Guide - 25+ Pages
             </Badge>
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold mb-6 tracking-tight">
               THE BUFFET DIET
@@ -563,11 +563,203 @@ export function GuideContent() {
 
           <Separator className="mb-16" />
 
-          {/* Chapter 6 */}
+          {/* Chapter 6 - NEW: Know Your Enemy */}
           <section className="mb-16 print:break-before-page">
             <div className="flex items-center gap-3 mb-6">
               <div className="flex items-center justify-center w-10 h-10 rounded-full bg-primary text-primary-foreground font-bold text-lg">
                 6
+              </div>
+              <h2 className="text-3xl md:text-4xl font-bold">
+                Know Your Enemy — The Tricks Buffets Use Against You
+              </h2>
+            </div>
+
+            <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
+              Before we get into our battle plan, you need to understand what you&apos;re up against.
+              Buffets are <strong>not your friend</strong>. They are a business. A business that has spent
+              decades perfecting the art of making you fill up on cheap food while thinking you&apos;re
+              getting an amazing deal. They have tricks. They have strategies. They have literal psychologists
+              consulting on layout design. But once you know their playbook, you can beat them at their own game.
+            </p>
+
+            <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
+              Welcome to <strong>Buffet Counter-Intelligence 101</strong>.
+            </p>
+
+            <div className="space-y-6 mb-8">
+              <Card className="border-red-500/20">
+                <CardContent className="pt-6">
+                  <div className="flex gap-3">
+                    <AlertTriangle className="w-6 h-6 text-red-500 flex-shrink-0 mt-1" />
+                    <div>
+                      <p className="font-semibold text-lg mb-2">Trick #1: The Bread & Carb Wall</p>
+                      <p className="text-muted-foreground mb-2">
+                        Ever noticed how the first things you encounter at a buffet are always the bread rolls,
+                        pasta salads, rice dishes, and noodles? That&apos;s not an accident. Carbs are dirt cheap — a
+                        tray of bread rolls costs the buffet about $2. If you fill up on bread before you reach the
+                        proteins, you&apos;ve just saved them $15 worth of steak. They put the cheap stuff first because
+                        your plate is empty and you&apos;re hungry. They&apos;re counting on you loading up.
+                      </p>
+                      <p className="text-sm font-semibold text-green-600">
+                        Counter-move: Walk PAST all the carbs. Don&apos;t even look at them. Head straight for the protein station. Your first plate should have zero bread, zero rice, zero noodles.
+                      </p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="border-red-500/20">
+                <CardContent className="pt-6">
+                  <div className="flex gap-3">
+                    <AlertTriangle className="w-6 h-6 text-red-500 flex-shrink-0 mt-1" />
+                    <div>
+                      <p className="font-semibold text-lg mb-2">Trick #2: Small Plates, Big Margins</p>
+                      <p className="text-muted-foreground mb-2">
+                        Notice the plate sizes at buffets? They&apos;re getting smaller every year. Many buffets now use
+                        plates that are 20-30% smaller than a standard dinner plate. Smaller plate = less food per trip =
+                        you feel like you&apos;ve &quot;had enough plates&quot; sooner. It&apos;s a psychological trick.
+                        Three small plates feel like three full meals, even if the total food is barely one real serving.
+                      </p>
+                      <p className="text-sm font-semibold text-green-600">
+                        Counter-move: Don&apos;t count plates. Count protein. You need 100-150g+ of protein in this meal. Go back as many times as needed. Stack that protein high and proud. Nobody is judging you — and if they are, they&apos;re the ones with a full plate of bread rolls.
+                      </p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="border-red-500/20">
+                <CardContent className="pt-6">
+                  <div className="flex gap-3">
+                    <AlertTriangle className="w-6 h-6 text-red-500 flex-shrink-0 mt-1" />
+                    <div>
+                      <p className="font-semibold text-lg mb-2">Trick #3: The Soda Sugar Trap</p>
+                      <p className="text-muted-foreground mb-2">
+                        Many buffets offer &quot;free&quot; sodas, juices, or sweet tea. How generous! Except it&apos;s
+                        not generous at all. A large glass of soda has 200+ calories of pure sugar. Two or three glasses
+                        and you&apos;ve consumed 600+ empty calories that do nothing to fill you up but absolutely wreck
+                        your appetite for real food. You drink the sugar, you feel temporarily full, you eat less protein.
+                        The buffet saves money. You lose. And then you&apos;re hungry again an hour later.
+                      </p>
+                      <p className="text-sm font-semibold text-green-600">
+                        Counter-move: Water. Sparkling water if you feel fancy. Black coffee or tea after the meal. That&apos;s the complete beverage list. Save your stomach capacity for the food that matters.
+                      </p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="border-red-500/20">
+                <CardContent className="pt-6">
+                  <div className="flex gap-3">
+                    <AlertTriangle className="w-6 h-6 text-red-500 flex-shrink-0 mt-1" />
+                    <div>
+                      <p className="font-semibold text-lg mb-2">Trick #4: The Dessert Showstopper</p>
+                      <p className="text-muted-foreground mb-2">
+                        The dessert section is always the most visually stunning part of the buffet. Towers of cakes.
+                        Chocolate fountains. Colorful pastries. They make it look like a magazine cover. Why? Because
+                        desserts are <em>incredibly cheap</em> to produce — mostly flour, sugar, and butter — but they
+                        fill you up fast and look like high value. If you eat three slices of cake, you just consumed
+                        1,500 calories of ingredients that cost the buffet about $1.50. They literally want you at the
+                        dessert station.
+                      </p>
+                      <p className="text-sm font-semibold text-green-600">
+                        Counter-move: Desserts are your victory lap, not your main event. If you want something sweet, have ONE small piece AFTER you&apos;ve had your protein and vegetables. Or skip it entirely — your post-fast body doesn&apos;t need a sugar bomb.
+                      </p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="border-red-500/20">
+                <CardContent className="pt-6">
+                  <div className="flex gap-3">
+                    <AlertTriangle className="w-6 h-6 text-red-500 flex-shrink-0 mt-1" />
+                    <div>
+                      <p className="font-semibold text-lg mb-2">Trick #5: The Hidden Premium Zone</p>
+                      <p className="text-muted-foreground mb-2">
+                        The best items at a buffet — the carving station, the sashimi bar, the fresh seafood — are
+                        almost always tucked away in corners, behind other stations, or at the very end of the line.
+                        This is by design. Most people fill their plates before they even discover these stations.
+                        The buffet is literally hiding the expensive stuff from you. Some places even put the sushi
+                        bar in a separate room or have the carving station in a back corner with no signage.
+                      </p>
+                      <p className="text-sm font-semibold text-green-600">
+                        Counter-move: The Recon Walk. ALWAYS walk the entire buffet before picking up a plate. Scout every corner, every station, every hidden counter. Know where the premium items are BEFORE you start loading up. This one habit separates amateurs from Buffet Diet warriors.
+                      </p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="border-red-500/20">
+                <CardContent className="pt-6">
+                  <div className="flex gap-3">
+                    <AlertTriangle className="w-6 h-6 text-red-500 flex-shrink-0 mt-1" />
+                    <div>
+                      <p className="font-semibold text-lg mb-2">Trick #6: The Sauce & Dressing Calorie Bomb</p>
+                      <p className="text-muted-foreground mb-2">
+                        Sauces, gravies, and dressings are calorie nightmares that hide in plain sight. That innocent-looking
+                        ranch dressing? 200 calories per serving. The sweet teriyaki glaze on the chicken? Pure sugar.
+                        The creamy alfredo on the pasta? More calories than the pasta itself. Buffets drown food in sauces
+                        because sauces are cheap and they make mediocre food taste better. But those hidden calories add
+                        up fast and push you toward that overstuffed, sluggish feeling.
+                      </p>
+                      <p className="text-sm font-semibold text-green-600">
+                        Counter-move: Go for grilled, roasted, or steamed items. Choose proteins that don&apos;t need sauce to taste good — sashimi, roast beef, grilled chicken. If you want sauce, use it sparingly on the side. Your protein should be the star, not a vehicle for ranch dressing.
+                      </p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="border-red-500/20">
+                <CardContent className="pt-6">
+                  <div className="flex gap-3">
+                    <AlertTriangle className="w-6 h-6 text-red-500 flex-shrink-0 mt-1" />
+                    <div>
+                      <p className="font-semibold text-lg mb-2">Trick #7: The Time Pressure</p>
+                      <p className="text-muted-foreground mb-2">
+                        Some buffets have time limits — 60 or 90 minutes. This creates a rush mentality. You feel
+                        the clock ticking so you eat faster, grab more, and make worse choices. You pile food on your plate
+                        in a panic. You eat quickly without really tasting anything. You end up overeating on the wrong
+                        things because you didn&apos;t take time to be strategic. The buffet knows that panicked eaters
+                        grab the cheap stuff first.
+                      </p>
+                      <p className="text-sm font-semibold text-green-600">
+                        Counter-move: Even with a time limit, take the first 5 minutes for your recon walk. It&apos;s an investment that pays off for the remaining 55-85 minutes. Eat slowly, chew properly, and focus on protein. You&apos;ll get more value from 3 strategic plates than 6 frantic ones.
+                      </p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+
+            <Card className="border-primary/20 bg-primary/5">
+              <CardContent className="pt-6">
+                <div className="flex gap-3">
+                  <Trophy className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
+                  <div>
+                    <p className="font-semibold mb-2">The Bottom Line</p>
+                    <p className="text-muted-foreground">
+                      The buffet is a business, and their goal is to make money from you eating as much cheap food
+                      as possible. Your goal is the opposite: extract maximum nutritional value per dollar, focusing
+                      on premium proteins and real food. Now that you know their tricks, you&apos;re no longer a
+                      regular customer — you&apos;re a Buffet Diet strategist. And <strong>they should be scared of you</strong>.
+                    </p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </section>
+
+          <Separator className="mb-16" />
+
+          {/* Chapter 7 (was 6) */}
+          <section className="mb-16 print:break-before-page">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="flex items-center justify-center w-10 h-10 rounded-full bg-primary text-primary-foreground font-bold text-lg">
+                7
               </div>
               <h2 className="text-3xl md:text-4xl font-bold">
                 How to Win the Buffet Game
@@ -684,27 +876,10 @@ export function GuideContent() {
               Rule 7: Choose Your Buffet Wisely
             </h3>
             <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-              Not all buffets are created equal. You want buffets with <strong>quality protein options</strong>.
-              Here&apos;s my tier list:
+              Not all buffets are created equal. This is so important that we dedicated an entire chapter to it next.
+              But the short version: prioritize <strong>protein quality</strong> over everything else when choosing your buffet.
+              A buffet with amazing sashimi and a carving station is worth $5 more than a buffet that&apos;s 90% fried rice.
             </p>
-            <div className="grid gap-3 mb-6">
-              <div className="flex items-center gap-3 p-3 rounded-lg bg-yellow-500/10 border border-yellow-500/20">
-                <Badge variant="outline" className="border-yellow-500 text-yellow-600">S-Tier</Badge>
-                <span className="text-muted-foreground">Brazilian Rodizio (all-you-can-eat meat carved at your table), High-end sushi buffets, Hotel brunch buffets</span>
-              </div>
-              <div className="flex items-center gap-3 p-3 rounded-lg bg-blue-500/10 border border-blue-500/20">
-                <Badge variant="outline" className="border-blue-500 text-blue-600">A-Tier</Badge>
-                <span className="text-muted-foreground">Korean BBQ buffets, Chinese hot pot buffets, Indian buffets with tandoori options</span>
-              </div>
-              <div className="flex items-center gap-3 p-3 rounded-lg bg-green-500/10 border border-green-500/20">
-                <Badge variant="outline" className="border-green-500 text-green-600">B-Tier</Badge>
-                <span className="text-muted-foreground">General Asian buffets with sushi section, Mediterranean buffets, Seafood buffets</span>
-              </div>
-              <div className="flex items-center gap-3 p-3 rounded-lg bg-orange-500/10 border border-orange-500/20">
-                <Badge variant="outline" className="border-orange-500 text-orange-600">Avoid</Badge>
-                <span className="text-muted-foreground">Pizza buffets, cheap Chinese steam table joints, anything that&apos;s mostly bread and fried food</span>
-              </div>
-            </div>
 
             <h3 className="text-2xl font-bold mb-4 flex items-center gap-2">
               <Target className="w-6 h-6 text-primary" />
@@ -722,11 +897,206 @@ export function GuideContent() {
 
           <Separator className="mb-16" />
 
-          {/* Chapter 7 */}
+          {/* Chapter 8 - NEW: How to Select a Good Buffet */}
           <section className="mb-16 print:break-before-page">
             <div className="flex items-center gap-3 mb-6">
               <div className="flex items-center justify-center w-10 h-10 rounded-full bg-primary text-primary-foreground font-bold text-lg">
-                7
+                8
+              </div>
+              <h2 className="text-3xl md:text-4xl font-bold">
+                How to Select a Good Buffet
+              </h2>
+            </div>
+            <p className="text-lg text-primary font-medium mb-8 italic">
+              Your Buffet is Your Kitchen — Choose It Wisely
+            </p>
+
+            <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
+              If you&apos;re going to live the Buffet Diet lifestyle, your choice of buffet is the single most important
+              decision you&apos;ll make. This is your kitchen now. This is where your nutrition comes from. You wouldn&apos;t
+              stock your home kitchen with junk, so don&apos;t pick a junk buffet. Here&apos;s how to think about it, what to
+              look for, and what to avoid.
+            </p>
+
+            <h3 className="text-2xl font-bold mb-4 flex items-center gap-2">
+              <Star className="w-6 h-6 text-primary" />
+              The Buffet Tier List
+            </h3>
+            <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
+              Not all buffets are created equal. Here&apos;s how I rank them for Buffet Diet purposes — based on
+              protein quality, value, and how much the buffet will hate you for eating there:
+            </p>
+            <div className="grid gap-3 mb-8">
+              <div className="p-4 rounded-lg bg-yellow-500/10 border border-yellow-500/20">
+                <div className="flex items-center gap-3 mb-2">
+                  <Badge variant="outline" className="border-yellow-500 text-yellow-600 text-base px-3">S-Tier</Badge>
+                  <span className="font-semibold">The Gold Standard</span>
+                </div>
+                <p className="text-muted-foreground mb-2">
+                  <strong>Brazilian Rodizio / Churrascaria</strong> — They literally bring unlimited meat to your table and
+                  carve it in front of you. Picanha, lamb, chicken hearts, sausages. This is the Buffet Diet dream.
+                  Protein delivery on a sword. It doesn&apos;t get better than this.
+                </p>
+                <p className="text-muted-foreground mb-2">
+                  <strong>High-end Sushi Buffets</strong> — All-you-can-eat sashimi is pure protein heaven. Salmon, tuna,
+                  yellowtail, shrimp. Minimal carbs, maximum protein, insane value if you skip the tempura rolls.
+                </p>
+                <p className="text-muted-foreground">
+                  <strong>Premium Hotel Brunch Buffets</strong> — The Sunday brunch at a nice hotel often has a carving station,
+                  fresh seafood, omelette station, and quality everything. Pricier ($25-40) but the quality is unmatched.
+                </p>
+              </div>
+
+              <div className="p-4 rounded-lg bg-blue-500/10 border border-blue-500/20">
+                <div className="flex items-center gap-3 mb-2">
+                  <Badge variant="outline" className="border-blue-500 text-blue-600 text-base px-3">A-Tier</Badge>
+                  <span className="font-semibold">Excellent Choices</span>
+                </div>
+                <p className="text-muted-foreground mb-2">
+                  <strong>Korean BBQ Buffets</strong> — You grill your own meat. Bulgogi, pork belly, chicken, short ribs.
+                  High protein, interactive, and you control the cooking. Plus the banchan (side dishes) add great variety.
+                </p>
+                <p className="text-muted-foreground mb-2">
+                  <strong>Chinese Hot Pot Buffets</strong> — Choose your own meats, seafood, and vegetables, cook them in broth.
+                  Extremely protein-friendly. Skip the noodles, load up on thinly sliced beef and shrimp.
+                </p>
+                <p className="text-muted-foreground">
+                  <strong>Indian Buffets with Tandoori</strong> — Tandoori chicken, lamb kebabs, paneer tikka. Indian buffets
+                  can be excellent if they have a good tandoor selection. Watch out for the heavy curry gravies and naan bread traps though.
+                </p>
+              </div>
+
+              <div className="p-4 rounded-lg bg-green-500/10 border border-green-500/20">
+                <div className="flex items-center gap-3 mb-2">
+                  <Badge variant="outline" className="border-green-500 text-green-600 text-base px-3">B-Tier</Badge>
+                  <span className="font-semibold">Solid Options</span>
+                </div>
+                <p className="text-muted-foreground">
+                  General Asian buffets with sushi section, Mediterranean buffets, Seafood buffets, and any buffet with a
+                  decent carving station or grill. These work well for the Buffet Diet but require more selectivity —
+                  the protein options exist but are mixed in with a lot of carb-heavy fillers.
+                </p>
+              </div>
+
+              <div className="p-4 rounded-lg bg-red-500/10 border border-red-500/20">
+                <div className="flex items-center gap-3 mb-2">
+                  <Badge variant="outline" className="border-red-500 text-red-600 text-base px-3">Avoid</Badge>
+                  <span className="font-semibold">Not Worth Your Fast</span>
+                </div>
+                <p className="text-muted-foreground">
+                  Pizza buffets. Cheap steam table joints where everything is drowning in oil and cornstarch. Buffets that
+                  are 90% fried food and bread. Any place where the &quot;protein&quot; is mystery meat in a brown sauce.
+                  If you can&apos;t identify what animal the meat came from, walk out. You fasted for 24 hours — you
+                  deserve better than this.
+                </p>
+              </div>
+            </div>
+
+            <h3 className="text-2xl font-bold mb-4 flex items-center gap-2">
+              <CheckCircle className="w-6 h-6 text-primary" />
+              The Buffet Selection Checklist
+            </h3>
+            <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
+              Before you commit to a buffet as your regular spot, run through this checklist. You want to score
+              at least 6 out of 8 to make it Buffet Diet approved:
+            </p>
+
+            <Card className="mb-8">
+              <CardContent className="pt-6">
+                <div className="space-y-3">
+                  {[
+                    {
+                      q: "Does it have a dedicated protein station?",
+                      detail: "Carving station, sushi bar, grill, or seafood counter. If the only proteins are buried inside fried rice and pasta dishes, it's a red flag."
+                    },
+                    {
+                      q: "Is the protein fresh and high quality?",
+                      detail: "Look at the sashimi — is it glistening or dried out? Is the roast beef pink or grey? Is the chicken grilled or sitting in a pool of oil? Trust your eyes and nose."
+                    },
+                    {
+                      q: "Does it have a solid vegetable selection?",
+                      detail: "Steamed, grilled, or roasted vegetables. Not just iceberg lettuce drowning in ranch. Real vegetables that were cooked with care."
+                    },
+                    {
+                      q: "Is it clean and well-maintained?",
+                      detail: "Check the bathroom (seriously). Check the serving area. Are the trays fresh or crusty? Is the staff replacing empty dishes promptly? Cleanliness = food safety."
+                    },
+                    {
+                      q: "Is it reasonably priced for the protein quality?",
+                      detail: "A $15 buffet with good sashimi is better value than a $25 buffet with mediocre everything. Price per gram of quality protein is your real metric."
+                    },
+                    {
+                      q: "Is it conveniently located?",
+                      detail: "You'll be going here almost daily. If it's a 40-minute drive, that kills the time-saving benefit. Within 15 minutes of your home or office is ideal."
+                    },
+                    {
+                      q: "Does it have reasonable hours that fit your schedule?",
+                      detail: "Lunch buffet hours (11 AM - 2:30 PM) work for most OMAD schedules. Make sure your chosen protocol timing aligns with their service hours."
+                    },
+                    {
+                      q: "Do they refresh the food regularly?",
+                      detail: "Visit at different times. A great buffet at 11:30 AM might be a wasteland at 2 PM if they don't replenish. You want a place that keeps the trays stocked and fresh."
+                    },
+                  ].map((item, i) => (
+                    <div key={i} className="flex gap-3 items-start p-2 rounded hover:bg-muted/50">
+                      <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
+                      <div>
+                        <p className="font-medium">{item.q}</p>
+                        <p className="text-sm text-muted-foreground">{item.detail}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+
+            <h3 className="text-2xl font-bold mb-4 flex items-center gap-2">
+              <Target className="w-6 h-6 text-primary" />
+              The Multi-Buffet Rotation Strategy
+            </h3>
+            <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
+              Here&apos;s a pro tip: don&apos;t rely on just one buffet. Find <strong>2-3 solid options</strong> and
+              rotate between them. Why? First, variety — different buffets have different cuisines and specialties.
+              Second, freshness — if you go to the same place every day, you start noticing when they&apos;re having an
+              off day. Third, leverage — if the staff at your regular spot starts recognizing you and giving you smaller
+              plates or side-eye at the sashimi station (it happens), you rotate to your backup spot and come back in a week.
+            </p>
+
+            <Card className="mb-6 border-primary/20 bg-primary/5">
+              <CardContent className="pt-6">
+                <div className="flex gap-3">
+                  <Zap className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
+                  <div>
+                    <p className="font-semibold mb-2">Pro Move: The Review Scout</p>
+                    <p className="text-muted-foreground">
+                      Before visiting any new buffet, check our community at{" "}
+                      <strong>The Buffet Diet restaurant finder</strong>. Fellow Buffet Dieters rate restaurants
+                      specifically for protein quality, value, and dietary compatibility. Look for tags like
+                      &quot;Lean Protein,&quot; &quot;Carnivore Friendly,&quot; and &quot;Keto Friendly.&quot;
+                      This saves you from wasting a precious fast-breaking meal on a bad buffet. Your fast is sacred —
+                      don&apos;t break it at a place that scores 2 stars.
+                    </p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            <p className="text-lg text-muted-foreground leading-relaxed">
+              Think of it this way: a regular person picks a restaurant based on cravings and convenience.
+              A Buffet Dieter picks their buffet like an athlete picks their training facility. It needs to have
+              the right equipment (protein stations), the right environment (clean and fresh), the right price
+              (sustainable daily), and the right location (convenient). This isn&apos;t just eating out.
+              This is <strong>strategic nutrition sourcing</strong>. And you&apos;re about to become an expert at it.
+            </p>
+          </section>
+
+          <Separator className="mb-16" />
+
+          {/* Chapter 9 (was 7) */}
+          <section className="mb-16 print:break-before-page">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="flex items-center justify-center w-10 h-10 rounded-full bg-primary text-primary-foreground font-bold text-lg">
+                9
               </div>
               <h2 className="text-3xl md:text-4xl font-bold">
                 The Buffet Diet Protocols
@@ -854,11 +1224,11 @@ export function GuideContent() {
 
           <Separator className="mb-16" />
 
-          {/* Chapter 8 */}
+          {/* Chapter 10 */}
           <section className="mb-16 print:break-before-page">
             <div className="flex items-center gap-3 mb-6">
               <div className="flex items-center justify-center w-10 h-10 rounded-full bg-primary text-primary-foreground font-bold text-lg">
-                8
+                10
               </div>
               <h2 className="text-3xl md:text-4xl font-bold">
                 Health Benefits (Seriously Though)
@@ -953,11 +1323,11 @@ export function GuideContent() {
 
           <Separator className="mb-16" />
 
-          {/* Chapter 9 */}
+          {/* Chapter 11 */}
           <section className="mb-16 print:break-before-page">
             <div className="flex items-center gap-3 mb-6">
               <div className="flex items-center justify-center w-10 h-10 rounded-full bg-primary text-primary-foreground font-bold text-lg">
-                9
+                11
               </div>
               <h2 className="text-3xl md:text-4xl font-bold">
                 Common Objections (And Why They&apos;re Wrong)
@@ -1043,11 +1413,11 @@ export function GuideContent() {
 
           <Separator className="mb-16" />
 
-          {/* Chapter 10 */}
+          {/* Chapter 12 */}
           <section className="mb-16 print:break-before-page">
             <div className="flex items-center gap-3 mb-6">
               <div className="flex items-center justify-center w-10 h-10 rounded-full bg-primary text-primary-foreground font-bold text-lg">
-                10
+                12
               </div>
               <h2 className="text-3xl md:text-4xl font-bold">
                 Getting Started — Your First Week
