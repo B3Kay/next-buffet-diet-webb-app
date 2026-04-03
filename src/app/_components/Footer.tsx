@@ -76,6 +76,7 @@ export default function Footer() {
                     <nav className="flex flex-wrap justify-center gap-x-8 gap-y-4">
                         <NavLink href="/">Home</NavLink>
                         <NavLink href="/restaurants">Restaurants</NavLink>
+                        <NavLink href="/guide">Guide</NavLink>
                         <NavLink href="/about">About</NavLink>
                     </nav>
                     <div className="flex space-x-4">

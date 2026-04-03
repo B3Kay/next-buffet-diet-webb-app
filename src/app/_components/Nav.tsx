@@ -26,7 +26,10 @@ const navLinks = [
         href: "/restaurants",
         target: "_self",
     },
-
+    {
+        label: "Free Guide",
+        href: "/guide",
+    },
     {
         label: "About",
         href: "/about",
@@ -96,6 +99,11 @@ export const Nav = ({ user }: { user: AuthModel | false }) => {
                                     variant: isActive('/restaurants/new') ? 'default' : 'ghost', // Corrected path
                                 },
 
+                                {
+                                    title: "Free Guide",
+                                    href: "/guide",
+                                    variant: isActive('/guide') ? 'default' : 'ghost',
+                                },
                                 {
                                     title: "About",
                                     href: "/about",
