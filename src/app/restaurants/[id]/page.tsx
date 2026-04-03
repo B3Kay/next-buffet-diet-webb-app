@@ -55,7 +55,9 @@ export default async function RestaurantPage({ params }: { params: { id: string 
         return notFound();
     }
 
-    const images = [restaurant.imageUrl]
+    const images = restaurant.imageUrls?.length
+        ? restaurant.imageUrls
+        : [restaurant.imageUrl];
 
     const foodStyleBadges = restaurant.foodBadges.filter(isFoodStyleBadge);
     const goodBadges = restaurant.foodBadges.filter(isGoodBadge);
@@ -71,7 +73,7 @@ export default async function RestaurantPage({ params }: { params: { id: string 
                 user={user}
                 like={restaurantLike}
                 restaurant={restaurant}
-                images={[restaurant.imageUrl]}
+                images={images}
                 foodStyleBadges={foodStyleBadges}
                 goodBadges={goodBadges}
                 badBadges={badBadges}

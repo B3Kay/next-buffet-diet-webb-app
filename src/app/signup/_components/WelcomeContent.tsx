@@ -22,10 +22,10 @@ export default function WelcomeContent({ isLoggedIn }: WelcomeContentProps) {
             </div>
             {isLoggedIn ? (
                 <div className="space-y-4 ">
-                    <Link href="/explore" passHref>
+                    <Link href="/restaurants" passHref>
                         <Button className="w-full">Explore Buffets</Button>
                     </Link>
-                    <Link href="/create" passHref>
+                    <Link href="/restaurants/new" passHref>
                         <Button className="w-full mt-2" variant="outline">
                             Create New Buffet
                         </Button>

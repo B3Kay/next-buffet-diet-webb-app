@@ -4,6 +4,7 @@ import { EditProfileForm } from "./_components/edit-profile-form";
 import { RecentReviews } from "./_components/recent-reviews";
 import { User, UserProfile } from "./_components/user-profile";
 import { redirect } from "next/navigation";
+import { getReviewsByUser } from "@/services/reviewsService";
 
 export default async function DashboardPage() {
 
@@ -15,9 +16,7 @@ export default async function DashboardPage() {
         return
     }
 
-    console.log(user)
-
-
+    const userReviews = await getReviewsByUser(user.id)
 
     return (
         <div className="container mx-auto p-4 space-y-6">
@@ -25,15 +24,14 @@ export default async function DashboardPage() {
             <div className="grid gap-6 md:grid-cols-2">
                 <div className="space-y-6">
                     <UserProfile user={user as User} />
-                    {/* <RecentReviews /> */}
+                    <RecentReviews reviews={userReviews} />
                     {user.isAdmin && <AddDummyData />}
                 </div>
 
                 <div>
-                    {/* <EditProfileForm /> */}
+                    <EditProfileForm user={{ name: user.name, email: user.email }} />
                 </div>
             </div>
         </div>
     )
 }
-
