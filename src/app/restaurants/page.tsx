@@ -12,6 +12,11 @@ import { RestaurantFilters } from './_components/RestaurantFilters';
 import { Pagination } from './_components/Pagination';
 
 
+// Escape user input for PocketBase filter strings to prevent injection
+function sanitizeFilterValue(value: string): string {
+    return value.replace(/[\\"]/g, '\\$&');
+}
+
 // revalidate
 export const revalidate = 60
 
@@ -34,15 +39,15 @@ export default async function RestaurantsPage({ searchParams }: { searchParams?:
 
     if (foodStyles?.length || goodBadges?.length || badBadges?.length) {
         const foodStylesQuery = Array.isArray(foodStyles)
-            ? foodStyles.map(foodType => `foodBadges ~ "${foodType}"`).join(' || ')
+            ? foodStyles.map(foodType => `foodBadges ~ "${sanitizeFilterValue(foodType)}"`).join(' || ')
             : '';
 
         const goodBadgesQuery = Array.isArray(goodBadges)
-            ? goodBadges.map(badge => `foodBadges ~ "${badge}"`).join(' || ')
+            ? goodBadges.map(badge => `foodBadges ~ "${sanitizeFilterValue(badge)}"`).join(' || ')
             : '';
 
         const badBadgesQuery = Array.isArray(badBadges)
-            ? badBadges.map(badge => `foodBadges ~ "${badge}"`).join(' || ')
+            ? badBadges.map(badge => `foodBadges ~ "${sanitizeFilterValue(badge)}"`).join(' || ')
             : '';
 
         const searchQueryParts = [foodStylesQuery, goodBadgesQuery, badBadgesQuery].filter(Boolean);
@@ -52,8 +57,8 @@ export default async function RestaurantsPage({ searchParams }: { searchParams?:
     // Build additional filter query from name/type filters
     const filterParts: string[] = [];
     if (searchQuery) filterParts.push(searchQuery);
-    if (nameFilter) filterParts.push(`name ~ "${nameFilter}"`);
-    if (typeFilter) filterParts.push(`type = "${typeFilter}"`);
+    if (nameFilter) filterParts.push(`name ~ "${sanitizeFilterValue(nameFilter)}"`);
+    if (typeFilter) filterParts.push(`type = "${sanitizeFilterValue(typeFilter)}"`);
     const combinedFilter = filterParts.join(' && ');
 
     // Determine sort

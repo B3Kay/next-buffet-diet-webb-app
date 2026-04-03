@@ -9,6 +9,11 @@ export default async function EditRestaurantPage({ params }: { params: { id: str
         redirect('/authentication');
     }
 
+    const user = await getUser();
+    if (!user || !user.isAdmin) {
+        redirect('/restaurants');
+    }
+
     const restaurant = await getRestaurant(params.id);
     if (!restaurant) {
         return notFound();

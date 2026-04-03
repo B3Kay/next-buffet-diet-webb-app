@@ -6,7 +6,7 @@ import { Icon } from "@iconify/react/dist/iconify.js";
 import type { Restaurant, ReviewV1 } from "../../../../services/types";
 import { RestaurantRating } from "../../_components/RestaurantCard";
 import { likeRestaurantAction, removeLikeRestaurantAction } from "@/actions/restaurant";
-import { Bookmark, Globe, HeartIcon, PenBoxIcon, Pencil, Settings, Signpost } from "lucide-react";
+import { Bookmark, Globe, HeartIcon, PenBoxIcon, Pencil, Signpost } from "lucide-react";
 import { type AuthModel, ClientResponseError } from "pocketbase";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
@@ -162,9 +162,11 @@ export const RestaurantDetails = ({ restaurant, images, foodStyleBadges, goodBad
                     </a>
                     {!like.isLiked && <Button variant="secondary" onClick={() => handleLikeRestaurant()} > <Bookmark className="mr-2 h-4 w-4" />Save</Button>}
                     {like.isLiked && <Button variant="secondary" onClick={() => handleLikeRestaurant()} ><BookmarkFilledIcon className="mr-2 h-4 w-4" />Saved</Button>}
-                    <Link href={`/restaurants/${restaurant.id}/edit`}>
-                        <Button variant="secondary" aria-label='Edit restaurant' size="icon"><Pencil className="h-4 w-4" /></Button>
-                    </Link>
+                    {user && user.isAdmin && (
+                        <Link href={`/restaurants/${restaurant.id}/edit`}>
+                            <Button variant="secondary" aria-label='Edit restaurant' size="icon"><Pencil className="h-4 w-4" /></Button>
+                        </Link>
+                    )}
                 </div>
                 <div className="sm:hidden flex gap-1 mb-4">
 
@@ -176,9 +178,11 @@ export const RestaurantDetails = ({ restaurant, images, foodStyleBadges, goodBad
                     </a>
                     {!like.isLiked && <Button variant="secondary" size="icon" onClick={() => handleLikeRestaurant()} > <Bookmark className="h-4 w-4" /></Button>}
                     {like.isLiked && <Button variant="secondary" size="icon" onClick={() => handleLikeRestaurant()} ><BookmarkFilledIcon className="h-4 w-4" /></Button>}
-                    <Link href={`/restaurants/${restaurant.id}/edit`}>
-                        <Button variant="secondary" aria-label='Edit restaurant' size="icon"><Pencil className="h-4 w-4" /></Button>
-                    </Link>
+                    {user && user.isAdmin && (
+                        <Link href={`/restaurants/${restaurant.id}/edit`}>
+                            <Button variant="secondary" aria-label='Edit restaurant' size="icon"><Pencil className="h-4 w-4" /></Button>
+                        </Link>
+                    )}
                 </div>
 
                 <div className='flex flex-col gap-3  text-sm text-gray-400 light:text-gray-600 mb-12'>

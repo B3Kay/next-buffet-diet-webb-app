@@ -119,12 +119,12 @@ export function RestaurantCard(restaurant: RestaurantCardProps) {
                         {formatCurrency(restaurant.price, "kronor")}
                     </p>
                     {isOpenNow() ? (
-                        <Badge variant="default" className="bg-green-600 text-xs">
-                            <Clock className="mr-1 h-3 w-3" />Open
+                        <Badge variant="default" className="bg-green-600 text-xs" title="Based on typical buffet hours (10-22)">
+                            <Clock className="mr-1 h-3 w-3" />Likely Open
                         </Badge>
                     ) : (
-                        <Badge variant="secondary" className="text-xs">
-                            <Clock className="mr-1 h-3 w-3" />Closed
+                        <Badge variant="secondary" className="text-xs" title="Based on typical buffet hours (10-22)">
+                            <Clock className="mr-1 h-3 w-3" />Likely Closed
                         </Badge>
                     )}
                 </div>

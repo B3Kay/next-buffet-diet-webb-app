@@ -96,23 +96,10 @@ export function makeRestaurantBaseV2(restaurant: Restaurant): RestaurantBaseV2 {
 }
 
 
-export async function getRestaurants({ page = 1, perPage = 30, sortKey = 'created', sortOrder = 'asc', filterQuery = '' }: { page?: number, perPage?: number, sortKey?: RestaurantV2Keys, sortOrder?: 'asc' | 'desc', filterQuery?: string } = {}): Promise<Restaurant[]> {
-    const order = sortOrder === 'desc' ? '' : '-'; // Only prepend '-' for descending order
-    try {
-        const data = await db.client.collection('restaurants').getList<RestaurantV2>(page, perPage, {
-            sort: order + sortKey,
-            filter: filterQuery,
-            expand: 'reviews_via_restaurantId'
-        });
-        console.log('Successfully fetched restaurants', data.items[0])
-        return data.items.map((restV2) => makeRestaurantFromV2(restV2))
-    } catch (error) {
-        console.error('Error fetching restaurants with filterQuery:', filterQuery, error);
-        throw new Error('Failed to fetch restaurants');
-    }
-}
+type GetRestaurantsParams = { page?: number, perPage?: number, sortKey?: RestaurantV2Keys, sortOrder?: 'asc' | 'desc', filterQuery?: string };
+type PaginatedResult = { items: Restaurant[], totalPages: number, totalItems: number, page: number };
 
-export async function getRestaurantsPaginated({ page = 1, perPage = 12, sortKey = 'created', sortOrder = 'asc', filterQuery = '' }: { page?: number, perPage?: number, sortKey?: RestaurantV2Keys, sortOrder?: 'asc' | 'desc', filterQuery?: string } = {}): Promise<{ items: Restaurant[], totalPages: number, totalItems: number, page: number }> {
+export async function getRestaurantsPaginated({ page = 1, perPage = 12, sortKey = 'created', sortOrder = 'asc', filterQuery = '' }: GetRestaurantsParams = {}): Promise<PaginatedResult> {
     const order = sortOrder === 'desc' ? '' : '-';
     try {
         const data = await db.client.collection('restaurants').getList<RestaurantV2>(page, perPage, {
@@ -130,6 +117,11 @@ export async function getRestaurantsPaginated({ page = 1, perPage = 12, sortKey 
         console.error('Error fetching restaurants with filterQuery:', filterQuery, error);
         throw new Error('Failed to fetch restaurants');
     }
+}
+
+export async function getRestaurants(params: GetRestaurantsParams = {}): Promise<Restaurant[]> {
+    const result = await getRestaurantsPaginated({ perPage: 30, ...params });
+    return result.items;
 }
 
 export async function getRestaurantsByProximity({ latitude, longitude, maxDistance = 10, searchQuery = '', page = 1, perPage = 30 }: { latitude: number, longitude: number, maxDistance?: number, searchQuery?: string, page?: number, perPage?: number }) {

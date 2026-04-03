@@ -1,10 +1,19 @@
 'use server'
 
 import { getCoordinates } from '@/components/utils/map';
-import { createRestaurant, updateRestaurant, deleteRestaurant, likeRestaurant, removeLikedRestaurant } from '@/services/restaurantsService';
+import { createRestaurant, updateRestaurant, deleteRestaurant, getRestaurant, likeRestaurant, removeLikedRestaurant } from '@/services/restaurantsService';
 import type { RestaurantBaseV2, RestaurantV2 } from '@/services/types';
 import { revalidatePath } from 'next/cache'
 import { ClientResponseError } from 'pocketbase';
+import { getUser } from './auth';
+
+async function requireAdmin() {
+    const user = await getUser();
+    if (!user || !user.isAdmin) {
+        throw new Error('Unauthorized: admin access required');
+    }
+    return user;
+}
 
 export async function createRestaurantAction(restaurantV2: RestaurantV2) {
     try {
@@ -28,12 +37,17 @@ export async function createRestaurantAction(restaurantV2: RestaurantV2) {
 
 
 export async function updateRestaurantAction(restaurantId: string, restaurantV2: Partial<RestaurantBaseV2>) {
+    await requireAdmin();
+
     try {
-        // Re-geocode if address changed
+        // Only re-geocode if address actually changed
         if (restaurantV2.address) {
-            const { latitude, longitude } = await getCoordinates(restaurantV2.address);
-            restaurantV2.latitude = latitude || 0;
-            restaurantV2.longitude = longitude || 0;
+            const existing = await getRestaurant(restaurantId);
+            if (existing && existing.address !== restaurantV2.address) {
+                const { latitude, longitude } = await getCoordinates(restaurantV2.address);
+                restaurantV2.latitude = latitude || 0;
+                restaurantV2.longitude = longitude || 0;
+            }
         }
 
         const result = await updateRestaurant(restaurantId, restaurantV2);
@@ -51,6 +65,8 @@ export async function updateRestaurantAction(restaurantId: string, restaurantV2:
 }
 
 export async function deleteRestaurantAction(restaurantId: string) {
+    await requireAdmin();
+
     try {
         const result = await deleteRestaurant(restaurantId);
 
