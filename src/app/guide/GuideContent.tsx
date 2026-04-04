@@ -133,44 +133,89 @@ export function GuideContent() {
                 1
               </div>
               <h2 className="text-3xl md:text-4xl font-bold">
-                How This Started (It&apos;s Stupidly Obvious)
+                How This Started
               </h2>
             </div>
 
             <p className="text-lg text-muted-foreground mb-4 leading-relaxed">
-              I&apos;m a software engineer. I build startups. I train weighted calisthenics 3-4 times a week and gymnastics 3 times a week. I eat carnivore. These are not separate hobbies. This is just the operating system.
+              So I&apos;m a software engineer, building startups, training weighted calisthenics
+              like 3-4 times a week and gymnastics another 3, and at some point I went full
+              carnivore because that&apos;s just where the rabbit hole took me. And here&apos;s the
+              thing about carnivore that nobody warns you about — you just stop being hungry all
+              the time. Like, the constant background noise of &quot;I should eat something&quot;
+              goes quiet. You eat a pile of meat, you&apos;re done for hours. Sometimes you look up
+              and it&apos;s been a full day and you forgot to eat and you feel... fine? Better than fine
+              actually. Sharp. So naturally you start pushing it.
             </p>
 
             <p className="text-lg text-muted-foreground mb-4 leading-relaxed">
-              The carnivore diet did something unexpected. It naturally compressed my eating window. You stop snacking. You stop thinking about food every 2 hours. You eat meat. You feel full for a long time. One day you realize you haven&apos;t eaten since yesterday and you feel completely fine. That&apos;s when you start experimenting.
-            </p>
-
-            <p className="text-lg text-muted-foreground mb-4 leading-relaxed">
-              First fast: 24 hours. Easy. Then 3 days. Then 5 days. Water only. I did a 5-day water fast just to see what happened. What happened was I felt weirdly good and then remembered I had a half marathon in 2 days.
+              First I tried 24 hours. Nothing. Easy. Then 3 days, just water. Felt kind of amazing
+              honestly, like this weird clarity kicks in around day 2 that I can&apos;t really explain
+              to people who haven&apos;t done it. Then I did 5 days. Five days no food. And somewhere
+              around day 4 I remembered — oh right, I have a half marathon in two days.
             </p>
 
             <Card className="mb-6 border-primary/20 bg-primary/5">
               <CardContent className="pt-6">
                 <p className="text-xl text-center italic font-medium">
-                  I ran it anyway. Felt fine. Nobody is talking about this.
+                  Ran it anyway. Felt fine. Your body has stored energy — that&apos;s literally
+                  what body fat is for. Your ancestors didn&apos;t carb load before chasing dinner
+                  across the savanna. Anyway.
                 </p>
               </CardContent>
             </Card>
 
             <p className="text-lg text-muted-foreground mb-4 leading-relaxed">
-              Here&apos;s the actual problem. Eating carnivore while training hard means you need a <strong>lot</strong> of meat. Like 1.5kg of steak a day. Cooking that while running companies wasn&apos;t happening. And buying that volume of quality meat? Expensive. The protocol was right. The logistics were broken.
+              But here&apos;s where the actual problem was. Carnivore plus serious training means you
+              need a LOT of protein. Like genuinely absurd amounts of meat. And I&apos;m running
+              companies, I&apos;m in the gym constantly, I do not have time to come home and pan-sear
+              1.5 kilos of steak every single day. And sourcing that volume of quality meat from the
+              grocery store was getting expensive fast. So the diet was right, the training was right,
+              but the logistics of actually feeding myself were completely broken.
             </p>
 
             <p className="text-lg text-muted-foreground mb-4 leading-relaxed">
-              There were two all-you-can-eat buffets on each side of the road next to my office. I had walked past them every day for months. Then one day — 36 hours into a fast — I walked in. Sat down. Ate an absurd amount of protein for $15. Walked out. Didn&apos;t need to eat anything else that day.
+              And the whole time there are these two all-you-can-eat buffets sitting right there, one
+              on each side of the road next to my office. I&apos;d walked past them literally every day
+              for months without thinking about it. Then one day I&apos;m 36 hours into a fast and
+              something just clicks — wait. Unlimited meat. Cooked for me. No cleanup. $15. I walked
+              in, sat down, ate what was probably an irresponsible amount of salmon and roast beef,
+              walked out, and didn&apos;t want food for the rest of the day. Just... done. One meal.
+              Full. No dishes in the sink. No tupperware situation. Nothing.
             </p>
 
             <p className="text-lg text-muted-foreground mb-4 leading-relaxed">
-              I have a best friend. Overweight. I challenged him. &quot;Come eat with me every day. We&apos;re going to turn this into a game.&quot; He said yes. We started eating together daily. We started figuring out strategies. How do you maximize protein per dollar? How do you &quot;win&quot; against the buffet&apos;s business model? It became a competitive sport between two engineers with too much time and not enough food.
+              So then I got my best friend involved because that&apos;s what you do when you
+              find something good — you drag someone into it. He was overweight, kind of stuck in
+              the usual cycle, and I was like, just come eat lunch with me. Every day. We&apos;ll
+              make it a thing. And it became this whole... game between us. Like two engineers
+              who maybe have too much competitive drive sitting across from each other at a buffet
+              trying to figure out the meta. Which stations do you hit first? What&apos;s the protein
+              density play? How do you extract maximum value before your stomach taps out? We were
+              basically running optimization problems on lunch. It was genuinely fun. Great food,
+              good company, ridiculous conversations about buffet strategy. Every single day.
             </p>
 
             <p className="text-lg text-muted-foreground mb-4 leading-relaxed">
-              Then I checked my bank statement. I wasn&apos;t spending more money on food. I was spending <strong>less</strong>. Then the obvious thought hit: if I eat every 2nd day, I cut costs in half. Same food. Half the price. I tried every other day. Then every 3rd day. Three days was the limit — beyond that it stops being strategic and starts being something else. Every other day wasn&apos;t the most fun. But the savings in time and money were insane.
+              And then — and this is the part where my brain kind of broke — I looked at my bank
+              statement. And I wasn&apos;t spending more on food. I was spending <strong>less</strong>.
+              No groceries. No takeout. No food waste rotting in the fridge. Just one buffet per day.
+              And immediately the engineer brain goes: okay well what if I eat every <em>second</em> day?
+              Same amount of food when I eat, same satisfaction, but now the cost literally cuts in
+              half. There aren&apos;t many things in life where you can consume the exact same quality
+              and quantity of food and just... halve the bill. That&apos;s not a diet trick, that&apos;s
+              arbitrage.
+            </p>
+
+            <p className="text-lg text-muted-foreground mb-4 leading-relaxed">
+              So I tested it. Every other day. Then pushed to every third day because why not. Three
+              days without food was kind of the ceiling for me — past that it stops being a protocol
+              and starts being an ordeal. And honestly even every other day isn&apos;t exactly a
+              party. But the time you get back is insane. No cooking, no cleaning, no grocery runs,
+              no meal prep Sunday. All those hours just... go back into your business. Into training.
+              Into your actual life. And that&apos;s how this whole thing started. Not with some grand
+              plan. Just a hungry engineer who noticed the buffet across the street was a better deal
+              than his own kitchen.
             </p>
 
             <Card className="mb-6 border-primary/20">
@@ -178,21 +223,18 @@ export function GuideContent() {
                 <div className="flex gap-3">
                   <Zap className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
                   <div>
-                    <p className="font-semibold mb-1">The Reframe Nobody Does</p>
+                    <p className="font-semibold mb-1">The Protocol</p>
                     <p className="text-muted-foreground">
-                      All that time NOT thinking about food, NOT cooking, NOT cleaning — it goes back into the business. Into training. Into actually living. Your ancestors didn&apos;t meal prep. They ate when there was food. Then they went and did things that mattered. The protocol is that simple.
+                      Fast. Walk to buffet. Stack protein. Leave satisfied. Don&apos;t eat
+                      again until tomorrow — or the day after. Spend less than you did on
+                      groceries. Lose fat. Save time. Build things that matter with the hours
+                      you got back. It&apos;s that simple.
                     </p>
                   </div>
                 </div>
               </CardContent>
             </Card>
-
-            <p className="text-lg text-muted-foreground leading-relaxed">
-              This guide is the system I built from that experiment. Written for builders, athletes, and anyone who looked at how they were spending time and money on food and thought: there has to be a better way. There is. It&apos;s $15 and it&apos;s across the street.
-            </p>
           </section>
-
-          <Separator className="mb-16" />
 
           <Separator className="mb-16" />
 
