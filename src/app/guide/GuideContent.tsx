@@ -610,7 +610,7 @@ export function GuideContent() {
             </p>
 
             <p className="text-lg text-muted-foreground mb-4 leading-relaxed">
-              I&apos;ve identified 7 tactics they use against you. Learn these, internalize them, and you will never fall for their tricks again. You&apos;ll walk through that buffet line like a Navy SEAL walking through a room of laser tripwires — calm, calculated, untouchable.
+              I&apos;ve identified 8 tactics they use against you. Learn these, internalize them, and you will never fall for their tricks again. You&apos;ll walk through that buffet line like a Navy SEAL walking through a room of laser tripwires — calm, calculated, untouchable.
             </p>
 
             <div className="grid gap-4 mb-8">
@@ -741,6 +741,24 @@ export function GuideContent() {
               </Card>
             </div>
 
+              <Card className="mb-6 border-red-500/20">
+                <CardContent className="pt-6">
+                  <div className="flex items-start gap-3">
+                    <AlertTriangle className="w-6 h-6 text-red-500 flex-shrink-0 mt-1" />
+                    <div>
+                      <h4 className="font-bold text-lg mb-2">8. The Starch &amp; Oil Trap</h4>
+                      <p className="text-muted-foreground mb-3 leading-relaxed">
+                        This one is sneaky and it&apos;s everywhere at Asian buffets especially. That &quot;stir-fried chicken&quot; that looks like protein? It&apos;s 40% cornstarch and potato starch by weight, deep-fried in seed oil, then tossed in a sugary glaze. The &quot;Thai basil beef&quot; is a thin layer of meat swimming in a pool of oil thickened with starch. These dishes look like protein but they&apos;re actually cheap carb and fat delivery systems wearing a protein costume. The buffet takes $2 of chicken, coats it in $0.10 of cornstarch and oil, and suddenly it looks like a generous protein portion. You eat three pieces thinking you got 40g of protein — you actually got 15g of protein and 300 calories of inflammatory seed oil and refined starch. This is probably the most common trap that even experienced buffet-goers fall for.
+                      </p>
+                      <div className="bg-green-500/5 border border-green-500/20 rounded-lg p-4">
+                        <p className="font-semibold text-green-600 mb-1">Counter-move:</p>
+                        <p className="text-sm text-muted-foreground">Prioritize single-ingredient proteins you can identify. Sashimi — just fish. Carved roast beef — just beef. Steamed shrimp — just shrimp. If the protein is coated, glazed, battered, or swimming in sauce, treat it as suspicious. The absolute best for this protocol are cook-to-order spots like Mongolian BBQ where you pick your own raw meat and they grill it in front of you. You know exactly what you&apos;re getting. No hidden starch. No mystery oil. Just protein.</p>
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
             <Card className="mb-6 border-primary/20 bg-primary/5">
               <CardContent className="pt-6">
                 <div className="flex items-start gap-3">
@@ -748,7 +766,7 @@ export function GuideContent() {
                   <div>
                     <h4 className="font-bold text-lg mb-2">The New Dynamic</h4>
                     <p className="text-muted-foreground leading-relaxed">
-                      Once you internalize these 7 tactics, the power dynamic at any buffet completely inverts. You&apos;re not a mark anymore. You&apos;re an apex predator who happens to walk upright and pay a cover charge. Every layout trick, every psychological nudge, every cheap filler — you see through all of it. The buffet manager should be scared of you. You walk in with a plan, you execute with precision, and you extract maximum nutritional value while the guy next to you is on his third plate of garlic bread wondering why he&apos;s tired all the time. They designed this system to exploit the average person. You are no longer average.
+                      Once you internalize these 8 tactics, the power dynamic at any buffet completely inverts. You&apos;re not a mark anymore. You&apos;re an apex predator who happens to walk upright and pay a cover charge. Every layout trick, every psychological nudge, every cheap filler — you see through all of it. The buffet manager should be scared of you. You walk in with a plan, you execute with precision, and you extract maximum nutritional value while the guy next to you is on his third plate of garlic bread wondering why he&apos;s tired all the time. They designed this system to exploit the average person. You are no longer average.
                     </p>
                   </div>
                 </div>
@@ -766,7 +784,7 @@ export function GuideContent() {
             </div>
 
             <p className="text-lg text-muted-foreground mb-4 leading-relaxed">
-              Alright. You understand the science, you know the financial case, you can see through every trick they throw at you. Now it&apos;s time for the actual playbook. These are my 8 non-negotiable rules for absolutely dominating a buffet visit. I&apos;ve refined these over hundreds of buffet sessions and I can tell you with complete confidence — this is the most efficient way to feed yourself at an all-you-can-eat establishment. Follow these and you will walk out every single time with 150+ grams of premium protein, a full micronutrient profile, and the quiet satisfaction of someone who just gamed a system that was designed to game you.
+              Alright. You understand the science, you know the financial case, you can see through every trick they throw at you. Now it&apos;s time for the actual playbook. These are my 10 non-negotiable rules for absolutely dominating a buffet visit. I&apos;ve refined these over hundreds of buffet sessions and I can tell you with complete confidence — this is the most efficient way to feed yourself at an all-you-can-eat establishment. Follow these and you will walk out every single time with 150+ grams of premium protein, a full micronutrient profile, and the quiet satisfaction of someone who just gamed a system that was designed to game you.
             </p>
 
             <div className="grid gap-4 mb-8">
@@ -858,12 +876,70 @@ export function GuideContent() {
                 </CardContent>
               </Card>
 
+              <Card className="mb-6 border-orange-500/20 bg-orange-500/5">
+                <CardContent className="pt-6">
+                  <div className="flex items-start gap-3">
+                    <Flame className="w-6 h-6 text-orange-500 flex-shrink-0 mt-1" />
+                    <div>
+                      <h4 className="font-bold text-lg mb-2">5. The Extended Fast Refeed Order</h4>
+                      <p className="text-muted-foreground mb-3 leading-relaxed">
+                        Ok this one is critical and nobody talks about it. When you&apos;re coming off a 48 or 72 hour fast, your problem isn&apos;t willpower — it&apos;s capacity. You sit down with this massive caloric deficit that needs filling and your stomach has literally shrunk. You feel full after one plate and you&apos;re sitting there like &quot;I just fasted for three days and I ate 800 calories.&quot; That&apos;s not gonna cut it.
+                      </p>
+                      <p className="text-muted-foreground mb-3 leading-relaxed">
+                        So here&apos;s the order, and it matters:
+                      </p>
+                      <div className="space-y-2 mb-4">
+                        <div className="flex items-center gap-2">
+                          <Badge className="bg-red-500/10 text-red-600 border-red-500/20">Phase 1</Badge>
+                          <span className="text-muted-foreground"><strong>Protein first.</strong> Always. This is non-negotiable. Your body is a dry sponge right now — it&apos;s going to absorb and utilize protein more efficiently than at any other time. Get your meat in.</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <Badge className="bg-green-500/10 text-green-600 border-green-500/20">Phase 2</Badge>
+                          <span className="text-muted-foreground"><strong>Vegetables and starchy carbs.</strong> Rice, pasta, sweet potatoes — your glycogen stores are completely depleted and these are going straight into your muscles. This is the one time carbs are genuinely your friend.</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <Badge className="bg-blue-500/10 text-blue-600 border-blue-500/20">Phase 3</Badge>
+                          <span className="text-muted-foreground"><strong>Fat + sugar combos.</strong> Yes. Ice cream. This is not a joke. Fat and sugar together is the most calorie-dense combination that exists AND it makes you want to eat more. That&apos;s normally a trap — but after a 72 hour fast? It&apos;s a feature. You NEED to push calories in and ice cream is the optimal calorie bump.</span>
+                        </div>
+                      </div>
+                      <p className="text-muted-foreground mb-3 leading-relaxed">
+                        The reason this order matters: if you eat the ice cream first, you get a sugar spike, feel temporarily full, and you&apos;ve wasted your stomach capacity on empty calories. Protein first guarantees you hit your most important macro. The fat+sugar at the end is strategic — it&apos;s pushing your total calorie count higher when your appetite is already fading. You&apos;re essentially using your body&apos;s hedonic response to calorie-dense food as a tool to overcome the stomach-shrinkage problem.
+                      </p>
+                      <div className="bg-orange-500/5 border border-orange-500/20 rounded-lg p-4">
+                        <p className="font-semibold text-orange-600 mb-1">Real talk:</p>
+                        <p className="text-sm text-muted-foreground">On a regular OMAD day, you avoid the dessert station. On a 48-72h refeed? You close with it. The protocol flips. Context is everything. A 72 hour fast burns through so much stored energy that getting 2500+ calories in a single sitting becomes genuinely difficult — and that ice cream might be the difference between a successful refeed and an under-recovered one.</p>
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="mb-6">
+                <CardContent className="pt-6">
+                  <div className="flex items-start gap-3">
+                    <Scale className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
+                    <div>
+                      <h4 className="font-bold text-lg mb-2">6. Bring a Scale</h4>
+                      <p className="text-muted-foreground mb-3 leading-relaxed">
+                        Yeah I said it. Bring a portable food scale to the buffet. Is it a little unhinged? Sure. Does it work? Absolutely. The thing about buffet protein is you have zero idea how much you&apos;re actually eating. That pile of grilled chicken could be 40 grams or 120 grams — you literally cannot tell by looking at it. And if the entire protocol is built around hitting your protein target in one meal, guessing is not a strategy.
+                      </p>
+                      <p className="text-muted-foreground mb-3 leading-relaxed">
+                        A small digital kitchen scale costs $10, fits in your pocket, and turns your buffet from &quot;I think I ate enough protein&quot; into &quot;I know I hit 180 grams.&quot; You don&apos;t need to weigh everything forever — do it for two weeks and you&apos;ll develop a sense for portion sizes that&apos;ll serve you for life. Think of it as calibrating your instrument. After a while you can eyeball 200g of chicken breast with scary accuracy.
+                      </p>
+                      <p className="text-sm text-muted-foreground italic">
+                        Pro tip: weigh your plate empty first, then weigh it loaded. Subtract. Done. Nobody even notices if you&apos;re subtle about it — and honestly, even if they do, who cares. You&apos;re the one hitting your macros while they&apos;re eating their fourth plate of lo mein and wondering why they&apos;re not losing weight.
+                      </p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
               <Card className="mb-6">
                 <CardContent className="pt-6">
                   <div className="flex items-start gap-3">
                     <AlertTriangle className="w-6 h-6 text-yellow-500 flex-shrink-0 mt-1" />
                     <div>
-                      <h4 className="font-bold text-lg mb-2">5. The Hydration Hack</h4>
+                      <h4 className="font-bold text-lg mb-2">7. The Hydration Hack</h4>
                       <p className="text-muted-foreground leading-relaxed">
                         Water only. I said this in the counter-intelligence chapter and I&apos;m saying it again because it&apos;s that important. No soda, no juice, no lemonade. Every calorie you drink is a calorie of protein you&apos;re not eating. Liquid calories are the silent killer of buffet performance. I&apos;ve seen guys drink 800 calories of sweet tea and then wonder why they can only manage two plates. Your stomach has a finite volume — don&apos;t fill it with carbonated sugar water. Sip water between plates to aid digestion and reset your palate. That&apos;s it. This isn&apos;t complicated.
                       </p>
@@ -877,7 +953,7 @@ export function GuideContent() {
                   <div className="flex items-start gap-3">
                     <Clock className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
                     <div>
-                      <h4 className="font-bold text-lg mb-2">6. Timing Is Everything</h4>
+                      <h4 className="font-bold text-lg mb-2">8. Timing Is Everything</h4>
                       <p className="text-muted-foreground leading-relaxed">
                         Go for lunch, not dinner. Lunch buffets are typically $3-7 cheaper than dinner with 80-90% of the same food. The protein selection might be slightly smaller, but the value-per-dollar is significantly higher. Also — go off-peak. Hitting the buffet at 11:30am or 2pm means less competition for the premium stations, fresher food coming out of the kitchen, and less of that rushed feeling from being surrounded by a crowd. The sushi station at noon on a Tuesday versus 7pm on a Saturday is a completely different experience. You&apos;re getting fish that was just sliced versus fish that&apos;s been sitting under a sneeze guard for 45 minutes.
                       </p>
@@ -891,7 +967,7 @@ export function GuideContent() {
                   <div className="flex items-start gap-3">
                     <Star className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
                     <div>
-                      <h4 className="font-bold text-lg mb-2">7. Choose Wisely</h4>
+                      <h4 className="font-bold text-lg mb-2">9. Choose Wisely</h4>
                       <p className="text-muted-foreground leading-relaxed">
                         Not all protein is created equal at a buffet. Fried chicken is protein, sure, but it&apos;s also wrapped in a coat of oil-soaked breading that turns a lean protein into a calorie bomb. You want to prioritize protein in its cleanest form. Grilled over fried. Steamed over sautéed. Raw (sashimi) over cooked when quality allows. Carved meats over mystery casseroles. If you can identify the animal and the cooking method by looking at it, it&apos;s probably a good choice. If it&apos;s a brown lump in an ambiguous sauce and the label just says &quot;Chef&apos;s Special&quot; — that&apos;s a hard pass. Protein quality over protein quantity. Always.
                       </p>
@@ -905,7 +981,7 @@ export function GuideContent() {
                   <div className="flex items-start gap-3">
                     <Target className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
                     <div>
-                      <h4 className="font-bold text-lg mb-2">8. The Macro Play</h4>
+                      <h4 className="font-bold text-lg mb-2">10. The Macro Play</h4>
                       <p className="text-muted-foreground leading-relaxed">
                         Here&apos;s something nobody talks about — you can hit your macros with surgical precision at a buffet. More precisely than you can with meal prep, honestly. Think about it. You have access to dozens of individual ingredients, each visible and separate. You can build a plate that&apos;s exactly the ratio of protein, fats, and carbs you need. Need 50g protein with minimal fat? Pile up the sashimi and grilled chicken breast. Need to add healthy fats? Hit the salmon and avocado. Want some clean carbs for a post-workout refeed? Sweet potatoes and rice are right there. A buffet is basically a MyFitnessPal dashboard made physical. You just have to know your numbers and build accordingly. This is the most customizable meal on earth and people are out here using it to eat 4 plates of lo mein. Criminal.
                       </p>
@@ -946,6 +1022,7 @@ export function GuideContent() {
                       <ul className="text-muted-foreground space-y-2">
                         <li><strong>Brazilian Rodízio / Churrascaria</strong> — Unlimited meat carved tableside. Picanha, lamb, filet mignon, chicken hearts. This is the single greatest protein delivery system ever invented by human civilization. You sit down and they just keep bringing you swords of meat until you physically surrender. It&apos;s like DoorDash but the delivery guy is standing right next to you with a machete.</li>
                         <li><strong>High-end Sushi Buffet</strong> — All-you-can-eat sashimi is the holy grail. Raw fish is the leanest, most bioavailable protein source on the planet. 40g of protein per 200 calories. If you find a place with quality AYCE sushi, you protect that restaurant with your life.</li>
+                        <li><strong>Mongolian BBQ / Cook-to-Order</strong> — This is the buffetmaxxing cheat code. You pick your own raw meat — beef, chicken, shrimp, whatever — load up a bowl, hand it to the cook, and they grill it right in front of you on a massive flat top. Zero mystery ingredients. Zero starch coating. Zero seed oil glazes. You know exactly what&apos;s going on your plate because you literally assembled it yourself. The protein-per-dollar here is insane because you&apos;re in full control of the ratio. Stack that bowl with nothing but meat and watch the cook give you a look like &quot;this guy again.&quot; Yes. This guy again.</li>
                         <li><strong>Premium Hotel Brunch</strong> — The weekend brunch at a nice hotel is an absolute sleeper. Omelet stations, smoked salmon, carved meats, shrimp cocktail, fresh fruit. Usually $25-35 and absolutely stacked with premium options. Business travelers aren&apos;t eating enough of the good stuff so there&apos;s always plenty.</li>
                       </ul>
                     </div>
@@ -1256,9 +1333,9 @@ export function GuideContent() {
                   <div className="flex gap-3">
                     <Flame className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
                     <div>
-                      <p className="font-bold mb-1">Fat Burning — Autophagy Is Your Secret Weapon</p>
+                      <p className="font-bold mb-1">Fat Burning — The Ancestral Cycle</p>
                       <p className="text-muted-foreground">
-                        Autophagy. Literally means &quot;self-eating.&quot; Sounds metal because it is. When you fast, your cells go into cleanup mode — they start recycling damaged proteins, clearing out cellular junk, basically Marie Kondo-ing your entire biology. By the time you walk into that buffet, your body has been running on stored fat for 16–48 hours straight. That&apos;s literally what body fat is for — it&apos;s not decoration, it&apos;s fuel. You eat. You feast. Your body stores energy. Then you burn it all down. Then you do it again. This is the ancestral cycle your biology was built for. We just forgot about it because someone convinced us we need 6 small meals a day.
+                        We covered autophagy in the fasting chapter — your cells eating their own damaged parts, cellular housekeeping, all that. But the bigger picture is this: eat, feast, store energy, burn it all down, repeat. That&apos;s the cycle your biology was literally built for over 200,000 years. We just forgot about it because someone convinced us we need 6 small meals a day and a snack drawer at our desk.
                       </p>
                     </div>
                   </div>
@@ -1328,7 +1405,7 @@ export function GuideContent() {
                 <CardContent className="pt-6">
                   <p className="font-bold text-lg mb-2 text-red-500">&quot;That&apos;s too extreme!&quot;</p>
                   <p className="text-muted-foreground">
-                    You want to talk about extreme? Let&apos;s talk about extreme. Spending 15–20 hours a week on food logistics — planning, shopping, prepping, cooking, cleaning — that&apos;s extreme. Blowing $800 a month on groceries and watching a third of it rot in the back of your fridge — that&apos;s extreme. Washing dishes every single day until you die — that&apos;s extreme. Eating the same sad chicken and broccoli on repeat and calling it &quot;clean eating&quot; while your soul slowly leaves your body — THAT is extreme. One buffet meal a day where you sit down, eat incredible food cooked by professionals, and walk out? That&apos;s called being efficient. And for what? To look like you don&apos;t even lift in a T-shirt? Pass.
+                    You want to talk about extreme? Let&apos;s talk about extreme. Spending 15–20 hours a week on food logistics — planning, shopping, prepping, cooking, cleaning — that&apos;s extreme. Blowing $800 a month on groceries and watching a third of it rot in the back of your fridge — that&apos;s extreme. Washing dishes every single day until you die — that&apos;s extreme. Eating the same sad chicken and broccoli on repeat and calling it &quot;clean eating&quot; while your soul slowly leaves your body — THAT is extreme. One buffet meal a day where you sit down, eat incredible food cooked by professionals, and walk out? That&apos;s called being efficient. The bar for &quot;extreme&quot; has been so warped by the fitness industry that literally just going to a restaurant seems radical. Think about that for a second.
                   </p>
                 </CardContent>
               </Card>
