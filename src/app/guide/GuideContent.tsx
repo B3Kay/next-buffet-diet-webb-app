@@ -27,7 +27,13 @@ import {
   CheckCircle,
   AlertTriangle,
   Flame,
+  Dna,
+  Beef,
+  Droplets,
+  FlaskConical,
+  Activity,
 } from "lucide-react";
+import { MonthlyCostChart, InvestmentGrowthChart } from "./charts";
 
 export function GuideContent() {
   const handleDownloadPDF = () => {
@@ -581,6 +587,35 @@ export function GuideContent() {
               Think about it like this. The guy next to you eating his body weight in lo mein is literally subsidizing your sashimi habit. He&apos;s paying $18 to eat $3 worth of noodles so that the restaurant can afford to put out the salmon that you&apos;re about to inhale. This is wealth transfer, but for macros. You should send him a thank you card honestly.
             </p>
 
+            <h3 className="text-2xl font-bold mb-4 mt-10">The Numbers, Visualized</h3>
+
+            <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
+              I know I keep throwing numbers at you, so I built some charts. Adjust the buffet price slider
+              to match your local area. These numbers are real. I stared at spreadsheets for an uncomfortable
+              amount of time to verify them. My therapist says the spreadsheets are &quot;a coping mechanism.&quot;
+              I say they&apos;re proof.
+            </p>
+
+            <MonthlyCostChart />
+
+            <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
+              Now here&apos;s where it gets truly deranged in the best possible way. What if — and stay with me
+              here — you took the money you&apos;re <em>not</em> spending on groceries and cooking, and invested
+              it instead? Into an S&P 500 index fund, for example. The thing that has historically returned about
+              10% annually. I made a chart for this too, because apparently that is what I do now. I make charts
+              about buffets and compound interest. This is my life. I am not complaining.
+            </p>
+
+            <InvestmentGrowthChart />
+
+            <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
+              Read that final number again. By <strong>not cooking</strong> — by eating at a $15 buffet instead
+              of spending $700/month on groceries and kitchen time — and investing the difference, you could be
+              sitting on a five- or six-figure portfolio in 10 years. Your unused oven isn&apos;t just a place
+              where a spider lives. It&apos;s a <strong>wealth generation strategy</strong>. I told my financial
+              advisor about this. He was quiet for a very long time. Then he asked for the name of my buffet.
+            </p>
+
             <Card className="mb-6 border-primary/20 bg-primary/5">
               <CardContent className="pt-6">
                 <div className="flex items-start gap-3">
@@ -588,7 +623,7 @@ export function GuideContent() {
                   <div>
                     <h4 className="font-bold text-lg mb-2">The Bottom Line</h4>
                     <p className="text-muted-foreground leading-relaxed">
-                      You save $200-500/month compared to traditional grocery shopping. You eliminate 15-20 hours of monthly meal prep. You get access to more protein variety in a single sitting than most people eat in a week. You pay $8-20/day to eat like you have a personal chef. There is no financial argument against this. The only thing standing between you and this life is the weird guilt society programmed into you about going to a buffet alone. Get over it. Your bank account will thank you.
+                      You save $200-500/month compared to traditional grocery shopping. You eliminate 15-20 hours of monthly meal prep. You get access to more protein variety in a single sitting than most people eat in a week. You pay $8-20/day to eat like you have a personal chef. And if you invest the savings, potential financial independence. There is no financial argument against this. The only thing standing between you and this life is the weird guilt society programmed into you about going to a buffet alone. Get over it. Your bank account will thank you.
                     </p>
                   </div>
                 </div>
@@ -1287,11 +1322,234 @@ export function GuideContent() {
 
           <Separator className="mb-16" />
 
-          {/* Chapter 11 */}
+          {/* Chapter 11 - The Biohacker's Deep Dive */}
           <section className="mb-16 print:break-before-page">
             <div className="flex items-center gap-3 mb-6">
               <div className="flex items-center justify-center w-10 h-10 rounded-full bg-primary text-primary-foreground font-bold text-lg">
                 11
+              </div>
+              <h2 className="text-3xl md:text-4xl font-bold">
+                The Biohacker&apos;s Deep Dive
+              </h2>
+            </div>
+            <p className="text-lg text-primary font-medium mb-8 italic">
+              Keto, Carnivore, Hormones, and Why Your Body Is a Machine You&apos;re Not Reading the Manual For
+            </p>
+
+            <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
+              I mentioned earlier that I have a background in engineering. What I didn&apos;t mention is that
+              I have spent an unreasonable number of hours reading published research papers on human metabolism
+              while sitting in buffet restaurants. The staff at my regular spot has seen me eating salmon with
+              one hand and scrolling PubMed with the other. They no longer ask questions. Here is what I have learned.
+            </p>
+
+            {/* Keto + Buffet */}
+            <h3 className="text-2xl font-bold mb-4 flex items-center gap-2">
+              <FlaskConical className="w-6 h-6 text-primary" />
+              The Buffet Diet x Ketosis
+            </h3>
+
+            <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
+              When you fast for 16-48 hours, your body depletes its glycogen stores and switches to burning
+              fat for fuel — a metabolic state called <strong>ketosis</strong>. Your liver converts fatty acids
+              into <strong>ketone bodies</strong> (beta-hydroxybutyrate, acetoacetate, and acetone), which your
+              brain and muscles can use as an extremely efficient energy source. This is not a fad diet concept.
+              This is biochemistry. Your body has been doing this since before humans invented agriculture.
+            </p>
+
+            <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
+              Here&apos;s why this matters for the Buffet Diet: by the time you walk into that buffet after a
+              24-48 hour fast, you are in <strong>deep ketosis</strong>. Your body has been running on its own
+              stored fat for hours or days. Your metabolic machinery is primed for fat oxidation. When you then
+              eat a high-protein, moderate-fat, low-carb meal at the buffet (which is exactly what happens when
+              you follow the Protein First Protocol and skip the bread), you stay in or near ketosis. You&apos;re
+              not spiking your insulin. You&apos;re not crashing your blood sugar. You&apos;re fueling the machine
+              with premium protein while it continues to burn stored fat in the background.
+            </p>
+
+            <Card className="mb-6 border-primary/20 bg-primary/5">
+              <CardContent className="pt-6">
+                <p className="font-semibold mb-2">The Keto-Buffet Math</p>
+                <div className="text-muted-foreground space-y-1 text-sm">
+                  <p>Fasting for 24h → liver glycogen depleted → ketone production begins (~12-16h mark)</p>
+                  <p>Fasting for 48h → deep ketosis → blood ketones at 1.5-3.0 mmol/L</p>
+                  <p>Breaking fast with protein + fat (sashimi, roast beef) → minimal insulin spike → sustained ketosis</p>
+                  <p>Breaking fast with bread and rice → insulin spike → ketosis terminated → fat storage mode activated</p>
+                  <p className="font-semibold text-foreground pt-2">This is why the Protein First Protocol isn&apos;t just a buffet strategy. It&apos;s a metabolic strategy.</p>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Carnivore */}
+            <h3 className="text-2xl font-bold mb-4 flex items-center gap-2">
+              <Beef className="w-6 h-6 text-primary" />
+              Carnivore Diet Compatibility
+            </h3>
+
+            <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
+              The <strong>carnivore diet</strong> — eating exclusively animal products — has gained a devoted following
+              among biohackers who report reduced inflammation, improved autoimmune symptoms, and enhanced mental clarity.
+              The Buffet Diet is essentially <em>carnivore-compatible by default</em> if you follow the protocol. Your
+              first plate is 100% animal protein. Your second plate can be more protein. A Brazilian Rodizio buffet is
+              literally a carnivore diet delivery system on swords. A sushi buffet is a pescatarian carnival. A hotel
+              brunch with an omelette station and a carving counter is carnivore paradise.
+            </p>
+
+            <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
+              The beauty of the buffet is that it doesn&apos;t force a dietary ideology on you. Carnivore? Load up on
+              the meat station. Keto? Skip the rice, grab the salmon and vegetables. Even if you&apos;re doing something
+              like the <strong>vertical diet</strong> (red meat + white rice for bodybuilders) or <strong>paleo</strong>
+              (no grains, no dairy), a well-chosen buffet accommodates all of it. You are the architect of your plate.
+              The buffet is merely the supply chain.
+            </p>
+
+            {/* Sugar */}
+            <h3 className="text-2xl font-bold mb-4 flex items-center gap-2">
+              <Droplets className="w-6 h-6 text-primary" />
+              The Sugar Problem (And How the Buffet Diet Solves It)
+            </h3>
+
+            <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
+              The average person consumes approximately <strong>77 grams of added sugar per day</strong> — over three
+              times what the WHO recommends. This constant sugar bombardment creates a metabolic disaster: chronic
+              elevated insulin, insulin resistance, inflammation, visceral fat accumulation, and eventually metabolic
+              syndrome. It&apos;s the quiet engine behind the obesity epidemic, type 2 diabetes, and cardiovascular
+              disease. It is, by most reasonable scientific accounts, the single biggest dietary problem of our time.
+            </p>
+
+            <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
+              The Buffet Diet attacks this problem from two angles simultaneously. First, <strong>fasting resets
+              your insulin sensitivity</strong>. Every 24-48 hour fast gives your pancreas a break and allows your
+              cells to re-sensitize to insulin. Studies show that intermittent fasting can improve insulin sensitivity
+              by 20-31% within weeks. Second, when you follow the Protein First Protocol at the buffet, you&apos;re
+              naturally avoiding the highest-sugar items (bread, desserts, sodas, sauces). You&apos;re replacing a
+              sugar-heavy Standard American Diet with a protein-rich, whole-food feast. Your average daily sugar intake
+              on the Buffet Diet — especially on the Warrior protocol — can drop below <strong>15 grams</strong>.
+              That&apos;s an 80% reduction. Your pancreas sends its regards.
+            </p>
+
+            {/* Testosterone */}
+            <h3 className="text-2xl font-bold mb-4 flex items-center gap-2">
+              <Activity className="w-6 h-6 text-primary" />
+              Testosterone, Growth Hormone, and the Fasting-Feast Cycle
+            </h3>
+
+            <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
+              This section is going to make the biohacker bros very excited, and I want to be responsible about
+              it, so let me cite actual research. A study published in the <em>Journal of Clinical Endocrinology
+              &amp; Metabolism</em> found that short-term fasting (24-48 hours) can increase luteinizing hormone (LH)
+              by up to <strong>67%</strong> in men, which is a precursor to testosterone production. Another study showed
+              that 24-hour fasting periods increased growth hormone secretion by an average of <strong>2,000%</strong>
+              (yes, twenty times). Human growth hormone is responsible for muscle protein synthesis, fat mobilization,
+              and cellular repair. It is, in biohacker terms, the good stuff.
+            </p>
+
+            <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
+              Now combine that with breaking your fast at a buffet loaded with <strong>zinc-rich red meat</strong>
+              (critical for testosterone production), <strong>omega-3 fatty acids from salmon and tuna</strong>
+              (reduces SHBG, freeing up more bioavailable testosterone), <strong>cholesterol from eggs and shellfish</strong>
+              (the literal building block of steroid hormones), and <strong>vitamin D from fatty fish</strong> (linked
+              to testosterone levels in multiple studies). You&apos;re not just eating. You&apos;re running a
+              targeted hormonal optimization protocol. At a buffet. For $15.
+            </p>
+
+            <Card className="mb-6 border-primary/20 bg-primary/5">
+              <CardContent className="pt-6">
+                <p className="font-semibold mb-3">The Hormonal Optimization Stack (Available at Your Local Buffet)</p>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm text-muted-foreground">
+                  <div className="flex gap-2"><CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" /><span><strong>Red Meat</strong> → Zinc, B12, creatine, iron, complete amino acids</span></div>
+                  <div className="flex gap-2"><CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" /><span><strong>Salmon/Tuna</strong> → Omega-3 (EPA/DHA), vitamin D, selenium</span></div>
+                  <div className="flex gap-2"><CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" /><span><strong>Eggs</strong> → Cholesterol (hormone precursor), choline, B vitamins</span></div>
+                  <div className="flex gap-2"><CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" /><span><strong>Shrimp/Shellfish</strong> → Zinc, iodine (thyroid support), copper</span></div>
+                  <div className="flex gap-2"><CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" /><span><strong>Liver (if available)</strong> → Vitamin A, copper, folate, iron (nature&apos;s multivitamin)</span></div>
+                  <div className="flex gap-2"><CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" /><span><strong>Dark Leafy Greens</strong> → Magnesium (supports 300+ enzymatic processes)</span></div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* The Math of Macros */}
+            <h3 className="text-2xl font-bold mb-4 flex items-center gap-2">
+              <Dna className="w-6 h-6 text-primary" />
+              Macro Math: What a Buffet Diet Day Actually Looks Like
+            </h3>
+
+            <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
+              People ask me: &quot;What are your actual macros?&quot; Fair question. Let me walk you through a
+              typical OMAD buffet meal, tracked to the gram, because I am that person.
+            </p>
+
+            <Card className="mb-6">
+              <CardContent className="pt-6">
+                <p className="font-semibold mb-3">Sample OMAD Buffet Meal — Tracked</p>
+                <div className="space-y-2 text-sm text-muted-foreground">
+                  <div className="grid grid-cols-4 gap-2 font-semibold border-b pb-2 text-foreground">
+                    <span>Item</span><span>Protein</span><span>Fat</span><span>Carbs</span>
+                  </div>
+                  <div className="grid grid-cols-4 gap-2"><span>Sashimi (200g)</span><span>46g</span><span>4g</span><span>0g</span></div>
+                  <div className="grid grid-cols-4 gap-2"><span>Roast Beef (150g)</span><span>38g</span><span>12g</span><span>0g</span></div>
+                  <div className="grid grid-cols-4 gap-2"><span>Grilled Chicken (150g)</span><span>35g</span><span>5g</span><span>0g</span></div>
+                  <div className="grid grid-cols-4 gap-2"><span>Shrimp (100g)</span><span>20g</span><span>1g</span><span>0g</span></div>
+                  <div className="grid grid-cols-4 gap-2"><span>Steamed Vegetables (200g)</span><span>4g</span><span>0g</span><span>12g</span></div>
+                  <div className="grid grid-cols-4 gap-2"><span>Mixed Salad + Olive Oil</span><span>2g</span><span>14g</span><span>6g</span></div>
+                  <div className="grid grid-cols-4 gap-2"><span>Miso Soup</span><span>3g</span><span>1g</span><span>4g</span></div>
+                  <div className="grid grid-cols-4 gap-2"><span>Small Rice (optional, 100g)</span><span>3g</span><span>0g</span><span>28g</span></div>
+                  <div className="grid grid-cols-4 gap-2 border-t pt-2 font-semibold text-foreground">
+                    <span>Total</span><span>151g</span><span>37g</span><span>50g</span>
+                  </div>
+                  <div className="border-t pt-2 flex justify-between font-semibold text-foreground">
+                    <span>Total Calories</span><span>~1,130 kcal</span>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
+              <strong>151 grams of protein in a single meal.</strong> That exceeds the daily recommended intake for
+              a 75kg adult (which is about 60g by RDA standards, or 120-150g by athletic/bodybuilding standards).
+              You hit your protein target in one sitting. The calorie total? About 1,130 kcal. Even if you&apos;re
+              generous with portions and add a dessert, you&apos;re looking at 1,400-1,800 kcal for the day. The
+              average maintenance calorie requirement for an adult male is 2,200-2,500 kcal. You are in a caloric
+              deficit <em>by default</em>, while eating until you&apos;re comfortably full at an all-you-can-eat buffet.
+              Let that mathematical absurdity sink in.
+            </p>
+
+            <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
+              On the <strong>48-hour Warrior protocol</strong>, this gets even more extreme. You&apos;re consuming
+              ~1,200-1,800 calories every other day, which averages to 600-900 calories per day. That&apos;s a
+              massive deficit. Combined with elevated growth hormone (preserving muscle), ketosis (burning fat),
+              and high protein intake (maintaining lean mass), you get what bodybuilders spend thousands on supplements
+              trying to achieve: <strong>simultaneous fat loss and muscle preservation</strong>. Except you&apos;re
+              doing it at a sushi buffet for the price of a medium pizza. I genuinely cannot think of anything
+              funnier than that.
+            </p>
+
+            <Card className="mb-6 border-primary/20">
+              <CardContent className="pt-6">
+                <div className="flex gap-3">
+                  <Brain className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
+                  <div>
+                    <p className="font-semibold mb-2">The Nerd Summary</p>
+                    <p className="text-muted-foreground">
+                      The Buffet Diet sits at the intersection of intermittent fasting (autophagy, ketosis, insulin
+                      sensitivity), strategic nutrition (protein prioritization, micronutrient density, hormonal
+                      optimization), and economic efficiency (cost arbitrage, time liberation, compound investment
+                      potential). It is, as far as I can determine, the only dietary protocol that simultaneously
+                      optimizes for health, wealth, and time. I have looked for flaws in this logic for three years.
+                      I have not found any. This concerns me slightly.
+                    </p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </section>
+
+          <Separator className="mb-16" />
+
+          {/* Chapter 12 */}
+          <section className="mb-16 print:break-before-page">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="flex items-center justify-center w-10 h-10 rounded-full bg-primary text-primary-foreground font-bold text-lg">
+                12
               </div>
               <h2 className="text-3xl md:text-4xl font-bold">
                 Things People Say Before They Try It
@@ -1355,11 +1613,11 @@ export function GuideContent() {
 
           <Separator className="mb-16" />
 
-          {/* Chapter 12 */}
+          {/* Chapter 13 */}
           <section className="mb-16 print:break-before-page">
             <div className="flex items-center gap-3 mb-6">
               <div className="flex items-center justify-center w-10 h-10 rounded-full bg-primary text-primary-foreground font-bold text-lg">
-                12
+                13
               </div>
               <h2 className="text-3xl md:text-4xl font-bold">
                 Week 1 — Just Start
