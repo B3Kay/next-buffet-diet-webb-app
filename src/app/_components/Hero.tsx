@@ -89,11 +89,11 @@ export const Hero = ({ className, totalRestaurants, totalReviews, totalUsers }: 
                 <div className="flex flex-1 flex-col items-center gap-4 border-r border-[#9091A0] border-opacity-[16%] px-12">
                     <Count className="min-h-9 text-3xl font-bold" from={0} to={4} />
                     <motion.h2
-                        className="text-base"
+                        className="text-base text-center"
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
                     >
-                        Countries
+                        Countries & Growing
                     </motion.h2>
                 </div>
             </div>

@@ -7,10 +7,29 @@ import { HeroRestaurantParallax } from '@/components/ui/heroParallax';
 import { useViewportDimensions } from '@/hooks/useViewportDimensions';
 
 import type { Restaurant } from '@/services/types';
-import { HandPlatterIcon, MapPinCheckIcon, PlusIcon, Star, StarIcon, Users, Utensils } from 'lucide-react';
+import { HandPlatterIcon, MapPinCheckIcon, PlusIcon, Quote, Star, StarIcon, Users, Utensils } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
 import { foodStylesBadges, goodBadges } from '@/components/FoodBadges';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+
+const testimonials = [
+    {
+        quote: "Jag brukar hetsa mina barn att äta mer å så mycket ni kan så att de inte behöver äta sedan! Buffé dieten är som klippt och skuren för mig",
+        name: "Jenny Boberg",
+        detail: "Buffet Diet enthusiast",
+    },
+    {
+        quote: "70 pounds of vegetables a month! I got down to 3% body fat with the Buffet Diet.",
+        name: "Omar, DIF",
+        detail: "Athlete",
+    },
+    {
+        quote: "Everything in a single window dropped my fat percentage. Oboy!",
+        name: "Bransen Johnsson",
+        detail: "Community member",
+    },
+];
 
 
 export default function ClientHome({ restaurants, totalRestaurants, totalReviews, totalUsers }: { restaurants: Restaurant[], totalRestaurants: number, totalReviews: number, totalUsers: number }) {
@@ -49,6 +68,38 @@ export default function ClientHome({ restaurants, totalRestaurants, totalReviews
                 </div>
             </section>
 
+            <section className="py-12 md:py-24 lg:py-32 bg-muted/50">
+                <div className="max-w-6xl mx-auto px-4">
+                    <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none mb-4 text-center">
+                        What our community says
+                    </h2>
+                    <p className="text-muted-foreground text-center mb-12 max-w-2xl mx-auto md:text-lg">
+                        Real stories from real buffet enthusiasts who transformed their eating habits.
+                    </p>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        {testimonials.map((t) => (
+                            <Card key={t.name} className="relative">
+                                <CardContent className="pt-8 pb-6">
+                                    <Quote className="w-8 h-8 text-primary/20 mb-4" />
+                                    <blockquote className="text-base italic leading-relaxed mb-6">
+                                        &ldquo;{t.quote}&rdquo;
+                                    </blockquote>
+                                    <div className="flex items-center gap-3">
+                                        <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-sm font-bold text-primary">
+                                            {t.name.split(' ').map(n => n[0]).join('')}
+                                        </div>
+                                        <div>
+                                            <p className="font-semibold text-sm">{t.name}</p>
+                                            <p className="text-xs text-muted-foreground">{t.detail}</p>
+                                        </div>
+                                    </div>
+                                </CardContent>
+                            </Card>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
             <section className="flex justify-center w-full py-12 md:py-24 lg:py-32">
                 <div className="container px-4 md:px-6">
                     <div className="grid gap-6 lg:grid-cols-[1fr_400px] lg:gap-12 xl:grid-cols-[1fr_600px]">
@@ -62,9 +113,9 @@ export default function ClientHome({ restaurants, totalRestaurants, totalReviews
                         />
                         <div className="flex flex-col justify-center space-y-4">
                             <div className="space-y-2">
-                                <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none">
+                                <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none">
                                     Find your favorite buffet
-                                </h1>
+                                </h2>
                                 <div className='flex flex-wrap gap-2'>
                                     <Badge><StarIcon className='mr-2 h-4 w-4' />Highest Ratings</Badge>
                                     <Badge><MapPinCheckIcon className='mr-2 h-4 w-4' />Your Country</Badge>
@@ -76,26 +127,22 @@ export default function ClientHome({ restaurants, totalRestaurants, totalReviews
                                 </p>
                             </div>
                             <div className="flex flex-col gap-2 min-[400px]:flex-row">
-                                <Link
-                                    href="/restaurants"
-                                    className="inline-flex h-10 items-center justify-center rounded-md bg-primary px-8 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
-                                    prefetch={true}
-                                >
-                                    Find Buffets
+                                <Link href="/restaurants" prefetch={true}>
+                                    <Button>Find Buffets</Button>
                                 </Link>
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
-            <section className="flex justify-center w-full py-12 md:py-24 lg:py-32">
+            <section className="flex justify-center w-full py-12 md:py-24 lg:py-32 bg-muted/50">
                 <div className="container px-4 md:px-6">
                     <div className="grid gap-6 lg:grid-cols-[1fr_400px] lg:gap-12 xl:grid-cols-[1fr_600px]">
                         <div className="flex flex-col justify-center space-y-4 order-2 md:order-1">
                             <div className="space-y-2">
-                                <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none">
+                                <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none">
                                     Make sure it fits your Macros
-                                </h1>
+                                </h2>
                                 <div className="flex flex-wrap gap-2">
                                     <Badge>{goodBadges.LEAN_PROTEIN}</Badge>
                                     <Badge>{goodBadges.CARNIVORE_FRIENDLY}</Badge>
@@ -108,12 +155,8 @@ export default function ClientHome({ restaurants, totalRestaurants, totalReviews
                                 </p>
                             </div>
                             <div className="flex flex-col gap-2 min-[400px]:flex-row">
-                                <Link
-                                    href="/restaurants"
-                                    className="inline-flex h-10 items-center justify-center rounded-md bg-primary px-8 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
-                                    prefetch={true}
-                                >
-                                    Explore
+                                <Link href="/restaurants" prefetch={true}>
+                                    <Button>Explore</Button>
                                 </Link>
                             </div>
                         </div>
@@ -142,9 +185,9 @@ export default function ClientHome({ restaurants, totalRestaurants, totalReviews
                         />
                         <div className="flex flex-col justify-center space-y-4">
                             <div className="space-y-2">
-                                <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none">
+                                <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none">
                                     Contribute to the community
-                                </h1>
+                                </h2>
                                 <div className='flex flex-wrap gap-2'>
 
                                     <Badge>{foodStylesBadges.AMERICAN}</Badge>
@@ -159,15 +202,32 @@ export default function ClientHome({ restaurants, totalRestaurants, totalReviews
 
                             </div>
                             <div className="flex flex-col gap-2 min-[400px]:flex-row">
-                                <Link
-                                    href="/authentication"
-                                    className="inline-flex h-10 items-center justify-center rounded-md bg-primary px-8 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
-                                    prefetch={true}
-                                >
-                                    <PlusIcon className='mr-2 h-4 w-4' />Add restaurant
+                                <Link href="/authentication" prefetch={true}>
+                                    <Button>
+                                        <PlusIcon className='mr-2 h-4 w-4' />Add restaurant
+                                    </Button>
                                 </Link>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </section>
+
+            <section className="w-full py-16 md:py-24 lg:py-32 bg-muted/50">
+                <div className="max-w-3xl mx-auto px-4 text-center">
+                    <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl mb-4">
+                        Ready to find your next buffet?
+                    </h2>
+                    <p className="text-muted-foreground md:text-lg mb-8">
+                        Join our growing community across 4 countries and discover buffets that fit your diet.
+                    </p>
+                    <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                        <Link href="/restaurants" prefetch={true}>
+                            <Button size="lg">Explore Buffets</Button>
+                        </Link>
+                        <Link href="/authentication" prefetch={true}>
+                            <Button variant="outline" size="lg">Create Account</Button>
+                        </Link>
                     </div>
                 </div>
             </section>
